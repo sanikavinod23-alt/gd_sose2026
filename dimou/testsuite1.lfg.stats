@@ -1,0 +1,33 @@
+((1) (1 0.004 11) (4 words))
+((2) (0 0.003 11) (4 words))
+((3) (0 0.003 0) (4 words))
+((4) (0 0.002 8) (3 words))
+((5) (1 0.003 13) (5 words))
+((6) (0 0.003 0) (7 words))
+((7) (0 0.002 0) (3 words))
+((8) (0 0.002 0) (5 words))
+
+XLE release of Mar 17, 2017 21:12.
+Grammar = /mnt/c/Users/kassi/OneDrive/Έγγραφα/master/(3) sose 26/Grammar Development/dimou.kalypso/dimou/grammar1.lfg.
+Grammar last modified on Apr 24, 2026 12:05.
+Host machine is KD.
+8 sentences, 0 errors, 0 mismatches
+6 sentences had 0 parses
+2 good sentences
+2 sentences had exactly one grammatical parse
+timeout = 100
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 15 (#5)
+maximum event count per sentence = 358
+average event count per graph = 28.930
+tokens = 0.0%, morph = 0.0%, multiword = 0.0%, lex = 66.3%, chart = 0.0%,
+unifier = 33.7%, completer = 0.0%, solver = 0.0%, output = 0.0%
+max_alloc_mem = 54.24 MB
+0.023 CPU secs total, 0.004 CPU secs max
+elapsed time = 1 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10      2      6   4.50     0.004     12.00        1.00
+    all      2      6   4.50     0.004     12.00        1.00
+1.00 of the variance in seconds is explained by the number of subtrees

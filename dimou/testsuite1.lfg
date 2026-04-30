@@ -1,32 +1,33 @@
 #show how it works
 
-the dog devours bones
+the dog devours bones (1 0.004 11)
 
 # unification failure, subject-verb agreement (consistency)
 
-the dogs devours bones
+the dogs devours bones (0 0.003 11)
 
 # coherence violation
 
-the dog appears bones 
+the dog appears bones  (0 0.003 0)
 
 # completeness violation
 
-the dog devours 
+the dog devours  (0 0.002 8)
 
 # missing PRED value, completeness violation
 
-the dog devours a bone
+the dog devours a bone (1 0.003 13)
 
 #missing rules, unknown words
 
-the dog devours bones in the park
+the dog devours bones in the park (0 0.003 0)
 
 #new verbs --- intrans
 
-a dog sleeps
+a dog sleeps (0 0.002 0)
 
 #new verbs -- trans
 
-a dog chases a bone
+a dog chases a bone (0 0.002 0)
 
+# 8 sentences, 0.023 CPU secs total, 0.004 CPU secs max (04/24/26)
