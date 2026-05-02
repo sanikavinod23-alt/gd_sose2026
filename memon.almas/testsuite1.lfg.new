@@ -1,0 +1,55 @@
+# show how it works
+
+the dog devours bones (1 0.006 11)
+
+# unification failure, subject-verb agreement
+
+the dogs devours bones (0 0.005 11)
+
+# coherence violation
+
+the dog appears bones (0 0.001 0)
+
+# completeness violation
+
+the dog devours (0 0.001 8)
+
+# missing PRED value, completeness violation
+
+the dog devours a bone (0 0.001 13)
+
+# missing rules, unknown words
+
+the dog devours bones in the park (0 0.001 0)
+
+# working sentence for demo
+
+a sheep devours a banana (0 0.001 0)
+
+# positive
+
+the sheep devours the banana (0 0.001 0)
+
+# positive 
+
+a dog devours a bone (0 0.001 13)
+
+# positive 
+
+the dogs devour a banana (0 0.001 0)
+
+# agreement mismatch
+
+the dogs devours a bone (0 0.001 13)
+
+# unknown word
+
+The dog devours bones in the meadow (0 0.001 0)
+
+# completeness violation
+
+a sheep devours (0 0.001 0)
+
+# 2 mismatches, 13 sentences, 0.022 CPU secs total, 0.009 CPU secs max (04/23/26)
+
+# 13 sentences, 0.022 CPU secs total, 0.006 CPU secs max (04/23/26)
