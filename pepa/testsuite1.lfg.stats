@@ -1,0 +1,33 @@
+((1) (1 0.003 11) (4 words))
+((2) (0 0.003 11) (4 words))
+((3) (0 0.002 0) (4 words))
+((4) (0 0.001 8) (3 words))
+((5) (1 0.001 13) (5 words))
+((6) (0 0.001 0) (7 words))
+((7) (0 0.001 0) (3 words))
+((8) (0 0.001 0) (5 words))
+
+XLE release of Sep 25, 2017 21:02.
+Grammar = /Users/joanna.pepa/Desktop/GitHub/gd_sose2026/pepa/grammar1.lfg.
+Grammar last modified on Apr 24, 2026 11:11.
+Host machine is Joannas-MacBook-Air.local.
+8 sentences, 0 errors, 0 mismatches
+6 sentences had 0 parses
+2 good sentences
+2 sentences had exactly one grammatical parse
+timeout = 100
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 15 (#5)
+maximum event count per sentence = 358
+average event count per graph = 28.930
+tokens = 9.7%, morph = 8.9%, multiword = 0.6%, lex = 19.8%, chart = 48.1%,
+unifier = 10.6%, completer = 1.1%, solver = 1.2%, output = 0.0%
+max_alloc_mem = 54.24 MB
+0.013 CPU secs total, 0.003 CPU secs max
+elapsed time = 0 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10      2      6   4.50     0.002     12.00        1.00
+    all      2      6   4.50     0.002     12.00        1.00
+1.00 of the variance in seconds is explained by the number of subtrees
