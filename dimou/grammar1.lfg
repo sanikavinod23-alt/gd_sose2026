@@ -18,29 +18,136 @@ DEMO   ENGLISH   RULES (1.0)
 	     (! CASE)=nom;
  	 VP: ^=!.
 
-   VP --> V: ^=!; 
- 	  (NP: (^ OBJ)=!
-	       (! CASE)=acc).
+   
+   VP --> (AUX) 
+          V: ^=!;
+          (NP: (^ OBJ)=!           "optional direct object"
+               (! CASE)=acc)
+          (PP: (^ OBL-AG) = !).     "oblique agent of passive"
+   
+   AUX --> V.
+
+   PP --> P 
+          NP. 
 
    NP --> (D)  "can leave out ^=!"
  	  N. 
+
+ 
 
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
 
-"no templates yet"
+"Passive lexical rule"
+PASS(FRAME) = { FRAME                   "no passive, just give back subcat frame"
+	(^ PASSIVE) = -                  "no passive"
+	| FRAME                          "passive"
+	(^ PASSIVE) = +                  "mark as such"
+	(^ PARTICIPLE) =c past            "make sure to have a past participle"
+	(^ OBJ)-->(^ SUBJ)               "obj goes to subj; only (at least) transitives"
+	{ (^ SUBJ)-->(^ OBL-AG)           "either make subj obl-ag"
+	| (^ SUBJ)--> NULL                "or delete"
+	}
+		}. 
+
+
+
+"Template for 3sg"
+PRES3SG = (^ TENSE) = pres
+	(^ SUBJ PERS) = 3
+	(^ SUBJ NUM) = sg.
+
+
+"Parameterised template for count nouns"
+CN(P) = (^PRED)='P'
+	(^ NUM)=SG
+	(^ DEF).
+
+"Count plural nouns"
+CNPL(P) = (^PRED)='P'
+	(^ NUM)=PL
+	(^ DEF).
+
+
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'.
+
+TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ) (^ OBJ)>').
+
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }. 
+
+DITRANS(P) = (^ PRED)='P<(^ SUBJ) (^ OBJ) (^OBJ2)>'.
 
 
 ----
 
 DEMO ENGLISH LEXICON (1.0)
 
+
+"VERBS"
+
+is         V *  (^MOOD) = indicative
+                @PRES3SG
+		@(TRANS be).
+
+be         V *  (^MOOD) = indicative
+		@(TRANS be).
+
+was        AUX * (^MOOD) = indicative
+                (^TENS)= past
+		@(TRANS be).
+
+
+
+devour    V *  (^ MOOD) = indicative
+	       @(TRANS devour).
+
+
+devours   V *  (^ MOOD) = indicative
+               @PRES3SG
+	       @(TRANS devour).
+
+devoured  V *  (^MOOD) = indicative
+               (^TENS)= past
+		@(TRANS devour).
+	       
+
+eat       V *  (^MOOD) = indicative
+               @(OPT-TRANS eat).
+
+eats       V *  (^MOOD) = indicative
+               @(OPT-TRANS eat)
+               @PRES3SG.
+
+chase 	  V *  (^MOOD) = indicative
+               @(TRANS chase).
+               
+chases     V *  (^MOOD) = indicative
+               @(TRANS chase)
+                @PRES3SG.
+
+sleep     V *  (^ MOOD) = indicative
+               @(INTRANS sleep).
+
+sleeps    V *  (^ MOOD) = indicative
+               @PRES3SG
+               @(INTRANS sleep).
+
+appears   V *   @(INTRANS appear)
+	       (^ MOOD) = indicative
+               @PRES3SG.
+
+give     V *  @(DITRANS give).
+
+
+"NOUNS"
+
 bones 	  N * (^ PRED) = 'bone'
 	      (^ NUM) = pl
 	      (^ PERS) = 3. 
 
-bone 	  N * "forgotten to add a pred value" 
+bone 	  N * (^PRED) = 'bone'
 	      (^ NUM) = sg
 	      (^ PERS) = 3. 
 
@@ -52,20 +159,28 @@ dogs 	  N * (^ PRED) = 'dog'
 	      (^ NUM) = pl
 	      (^ PERS) = 3. 
 
-devours   V *  (^ PRED) = 'devour<(^SUBJ)(^OBJ)>' 
-       	    (^ TENSE) = pres
-	    (^ MOOD) = indicative
-            (^ SUBJ PERS) = 3
-            (^ SUBJ NUM) = sg.
+girl 	  N * @(CN girl).
 
-appears   V *  (^ PRED) = 'appear<(^SUBJ)>' 
-       	    (^ TENSE) = pres
-	    (^ MOOD) = indicative
-            (^ SUBJ PERS) = 3
-            (^ SUBJ NUM) = sg.
+cat       N * @(CN cat).
 
-the  D *  (^ DEF) = +.
+cats     N * (^ PRED) = 'cat'
+	      (^ NUM) = pl
+	      (^ PERS) = 3.
 
-a   D *  (^ DEF) = -.
+boy 	  N *  @(CN boy).
+
+mouse     N *  @(CN mouse).
+
+mice      N * (^ PRED) = 'mouse'
+	      (^ NUM) = pl
+	      (^ PERS) = 3.
+
+treat     N *  @(CN treat).
+
+the  	  D *  (^ DEF) = +.
+
+a   	  D *  (^ DEF) = -.
+
+by        P * (^ P-FORM) = by .
 
 ----
