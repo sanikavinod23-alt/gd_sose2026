@@ -1,0 +1,40 @@
+((1) (1 0.008 8) (3 words))
+((2) (1 0.003 13) (5 words))
+((3) (1 0.002 13) (5 words))
+((4) (1 0.002 8) (3 words))
+((5) (1 0.002 13) (5 words))
+((6) (0 0.001 13) (5 words))
+((7) (0 0.001 0) (3 words))
+((8) (0 0.001 0) (3 words))
+((9) (0 0.001 0) (3 words))
+((10) (1 0.002 18) (7 words))
+((11) (1 0.001 10) (4 words))
+((12) (1 0.001 10) (4 words))
+((13) (1 0.001 18) (7 words))
+((14) (0 0.001 0) (7 words))
+((15) (0 0.001 0) (4 words))
+
+XLE release of Sep 25, 2017 21:02.
+Grammar = /Users/valeriiavatulina/Desktop/GD/grammar/gd_sose2026/vatulina.valeriia/grammar1.lfg.
+Grammar last modified on May 08, 2026 11:56.
+Host machine is MacBook-Air-Valeriia.local.
+15 sentences, 0 errors, 0 mismatches
+6 sentences had 0 parses
+9 good sentences
+9 sentences had exactly one grammatical parse
+timeout = 100
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 20 (#10)
+maximum event count per sentence = 833
+average event count per graph = 40.210
+tokens = 6.3%, morph = 4.8%, multiword = 0.2%, lex = 15.2%, chart = 39.0%,
+unifier = 27.5%, completer = 2.1%, solver = 5.0%, output = 0.0%
+max_alloc_mem = 100.79 MB
+0.027 CPU secs total, 0.008 CPU secs max
+elapsed time = 1 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10      9      6   4.78     0.002     12.33        1.00
+    all      9      6   4.78     0.002     12.33        1.00
+0.14 of the variance in seconds is explained by the number of subtrees

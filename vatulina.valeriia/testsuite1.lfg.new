@@ -1,59 +1,61 @@
 #correct sentence 1 - intransitive verb
 
-the cat sleeps
+the cat sleeps (1 0.008 8)
 
 #correct sentence 2 - transitive verb
 
-the dog devours the bone
+the dog devours the bone (1 0.003 13)
 
 #correct sentence 3 - transitive verb
 
-the cats chase a mouse
+the cats chase a mouse (1 0.002 13)
 
 #correct sentence 4 - optionally transitive verb
 
-the dog eats
+the dog eats (1 0.002 8)
 
 #correct sentence 5 - optionally transitive verb
 
-the cats eat a treat
+the cats eat a treat (1 0.002 13)
 
 #incorrect sentence 6 - subject-verb agreement violation
 
-the girl see the gorilla
+the girl see the gorilla (0 0.001 13)
 
 #incorrect sentence 7 - count noun without determiner
 
-cat chases dogs
+cat chases dogs (0 0.001 0)
 
 #incorrect sentence 8 - subject-verb agreement violation
 
-gorilla devour bananas
+gorilla devour bananas (0 0.001 0)
 
 #incorrect sentence 9 - subject-verb agreement violation
 
-gorillas devours banana
+gorillas devours banana (0 0.001 0)
 
 #correct sentence 10
 
-the girl was seen by the gorilla
+the girl was seen by the gorilla (1 0.002 18)
 
 #correct sentence 11
 
-the cake was eaten
+the cake was eaten (1 0.001 10)
 
 #correct sentence 12
 
-the cat was chased
+the cat was chased (1 0.001 10)
 
 #correct sentence 13
 
-the bone was devoured by a dog
+the bone was devoured by a dog (1 0.001 18)
 
 # incorrect sentence 14 - passivisation rule violation
 
-the girl was saw by the gorilla
+the girl was saw by the gorilla (0 0.001 0)
 
 #incorrect sentence 15 - passivisation rule violation
 
-the dog was slept
+the dog was slept (0 0.001 0)
+
+# 15 sentences, 0.027 CPU secs total, 0.008 CPU secs max (05/08/26)

@@ -14,58 +14,192 @@ DEMO   ENGLISH   CONFIG (1.0)
 
 DEMO   ENGLISH   RULES (1.0)
 
-   S --> NP: (^ SUBJ)=!
-	     (! CASE)=nom;
- 	 VP: ^=!.
+   S --> NP: (^ SUBJ) = !
+	     (! CASE) = nom;
+ 	 VP: ^= !.
 
-   VP --> V: ^=!; 
- 	  (NP: (^ OBJ)=!
-	       (! CASE)=acc).
+   VP --> (AUX)
+	V: ^=!;
+	(NP: (^ OBJ) = !
+	     (! CASE) = acc)
+	(PP: (^ OBL-AG) = !).
 
    NP --> (D)  "can leave out ^=!"
- 	  N. 
+ 	  N.
 
+   PP --> P
+          NP.
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
 
-"no templates yet"
+TRANS(P) = @(PASS (^ PRED) = 'P<(^ SUBJ) (^ OBJ)>').
 
+INTRANS(P) = (^ PRED) = 'P<(^ SUBJ)>'
+	     (^ PASSIVE) = -.
 
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+3PER-SG = (^ SUBJ PERS) = 3
+	  (^ SUBJ NUM) = sg.
+
+3PER-PL = (^ SUBJ PERS) = 3
+	  (^ SUBJ NUM) = pl.
+
+CN-SG = (^ NUM) = sg
+	(^ DEF)
+	(^ PERS) = 3.
+
+CN-PL = (^ NUM) = pl
+	(^ PERS) = 3.
+
+IND-MD = (^ MOOD) = indicative.
+
+PRES-TNS = (^ TENSE) = present.
+
+PAST-TNS = (^ TENSE) = past.
+
+PAST-PRT = (^ PARTICIPLE) = past
+	   (^ CHECK _AUX)= +.
+
+PASS (FRAME) = { FRAME
+		   (^ PASSIVE) = -
+		 | FRAME "passive"
+		   (^ PASSIVE) = +
+		   (^ PARTICIPLE) =c past
+		   (^ OBJ) --> (^ SUBJ)
+		   { (^ SUBJ) --> (^ OBL-AG)
+		   | (^ SUBJ) --> NULL
+		   }
+		}.
 ----
 
 DEMO ENGLISH LEXICON (1.0)
 
-bones 	  N * (^ PRED) = 'bone'
-	      (^ NUM) = pl
-	      (^ PERS) = 3. 
+banana	N * (^ PRED) = 'banana'
+	    @CN-SG.
 
-bone 	  N * (^ PRED) = 'bone' 
-	      (^ NUM) = sg
-	      (^ PERS) = 3. 
+bananas	N * (^ PRED) = 'banana'
+	    @CN-PL.
 
-dog 	  N * (^ PRED) = 'dog'
-	      (^ NUM) = sg
-	      (^ PERS) = 3. 
+bone	N * (^ PRED) = 'bone' 
+	    @CN-SG.
 
-dogs 	  N * (^ PRED) = 'dog'
-	      (^ NUM) = pl
-	      (^ PERS) = 3. 
+bones	N * (^ PRED) = 'bone'
+	    @CN-PL.
 
-devours   V *  (^ PRED) = 'devour<(^SUBJ)(^OBJ)>' 
-       	    (^ TENSE) = pres
-	    (^ MOOD) = indicative
-            (^ SUBJ PERS) = 3
-            (^ SUBJ NUM) = sg.
+boy	N * (^ PRED) = 'boy'
+	    @CN-SG.
 
-appears   V *  (^ PRED) = 'appear<(^SUBJ)>' 
-       	    (^ TENSE) = pres
-	    (^ MOOD) = indicative
-            (^ SUBJ PERS) = 3
-            (^ SUBJ NUM) = sg.
+cake	N * (^ PRED) = 'cake'
+	    @CN-SG.
 
-the  D *  (^ DEF) = +.
+cat	N * (^ PRED) = 'cat'
+	    @CN-SG.
 
-a   D *  (^ DEF) = -.
+cats	N * (^ PRED) = 'cat'
+	    @CN-PL.
 
+dog	N * (^ PRED) = 'dog'
+	    @CN-SG.
+
+dogs	N * (^ PRED) = 'dog'
+	    @CN-PL.
+
+girl	N * (^ PRED) = 'girl'
+	    @CN-SG.
+
+gorilla	N * (^ PRED) = 'gorilla'
+	    @CN-SG.
+
+mouse	N * (^ PRED) = 'mouse'
+	    @CN-SG.
+
+treat	N * (^ PRED) = 'treat'
+	    @CN-SG.
+
+chase	V * @(TRANS chase)
+	    @PRES-TNS
+	    @3PER-PL.
+
+chases	V * @(TRANS chase)
+	    @PRES-TNS
+	    @3PER-SG.
+
+chased	V * @(TRANS chase)
+	    { @PAST-PRT
+	    | @PAST-TNS}.
+
+devour	V * @(TRANS devour)
+	    @PRES-TNS
+	    @3PER-PL.
+
+devours	V * @(TRANS devour)
+	    @PRES-TNS
+	    @3PER-SG.
+
+devoured V * @(TRANS devour)
+	    { @PAST-PRT
+	    | @PAST-TNS}.
+
+eats	V * @(OPT-TRANS eat)
+	    @PRES-TNS
+	    @3PER-SG.
+
+eat	V * @(OPT-TRANS eat)
+	    @PRES-TNS
+	    @3PER-PL.
+
+ate	V * @(OPT-TRANS eat)
+	    @PAST-TNS.
+
+eaten	V * @(OPT-TRANS eat)
+	    @PAST-PRT.
+
+see	V * @(TRANS see)
+	    @PRES-TNS
+	    @3PER-PL.
+
+sees	V * @(TRANS see)
+	    @PRES-TNS
+	    @3PER-SG.
+
+saw	V * @(TRANS see)
+	    @PAST-TNS.
+
+seen	V * @(TRANS see)
+	    @PAST-PRT.
+
+sleep	V * @(INTRANS sleep)
+	    @PRES-TNS
+	    @3PER-PL.
+
+sleeps	V * @(INTRANS sleep)
+	    @PRES-TNS
+	    @3PER-SG.
+
+slept	V * @(INTRANS sleep)
+	    @PAST-TNS.
+
+the	D *  (^ DEF) = +.
+
+a	D *  (^ DEF) = -.
+
+by	P *  (^ PFORM) = by.
+
+was	AUX * @PAST-TNS
+	      (^ PASSIVE) = +
+	      (^ CHECK _AUX)=c +
+	      { (^ SUBJ PERS) = 1
+	      | (^ SUBJ PERS) = 3
+	      }
+	      (^ SUBJ NUM) = sg.
+
+were	AUX * @PAST-TNS
+	      (^ PASSIVE) = +
+	      (^ CHECK _AUX)=c +
+	      { (^ SUBJ PERS) = 2
+	      | (^ SUBJ PERS) = 3
+	      }
+	      (^ SUBJ NUM) = pl.
 ----
