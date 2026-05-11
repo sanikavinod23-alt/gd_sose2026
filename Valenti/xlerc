@@ -17,4 +17,4 @@ set defaultParser [relpath grammar1.lfg]
 #load parser
 create-parser $defaultParser
 
-#parse-testfile Testfile1.lfg
+parse-testfile Testfile1.lfg
