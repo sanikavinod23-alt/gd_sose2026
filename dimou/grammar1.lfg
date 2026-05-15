@@ -25,13 +25,13 @@ DEMO   ENGLISH   RULES (1.0)
                (! CASE)=acc)
 	  (NP: (^ OBJ2)=!)           "optional indirect object" 
 	  PP*: { ! $ (^ ADJUNCT)      "PPs can be adjuncts"
-	        (! PTYPE) =c sem             "only semantic PPs here"
-                 |
-                (^ OBL) = ! "or a a general oblique"
+	        (! PTYPE) =c sem      "constraining equation: only semantic PPs here"
+                 | (^ OBL) = !        "or a a general oblique"
                 };
 	  (PP: (^ OBL-TO) = !
                 (! PFORM)=c to)      "oblique beneficiary for ditransitives"         
-          (PP: (^ OBL-AG) = !).     "oblique agent of passive"
+          (PP: (^ OBL-AG) = !
+	        (! PFORM)=c by).     "oblique agent of passive"
    
 
 
@@ -87,13 +87,13 @@ PRES3SG = (^ TENSE) = pres
 
 "Parameterised template for count nouns"
 CN(P) = (^PRED)='P'
-	(^ NUM)=SG
+	(^ NUM)=sg
 	(^ DEF).
 
 "Count plural nouns"
 CNPL(P) = (^PRED)='P'
-	(^ NUM)=PL
-	(^ DEF).
+	  (^ NUM)=pl
+	  {(^ DEF)}.
 
 
 INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'.
@@ -166,6 +166,18 @@ sleeps    V *  (^ MOOD) = indicative
                @PRES3SG
                @(INTRANS sleep).
 
+sit      V *  (^ MOOD) = indicative
+               @(INTRANS sit).
+
+sits       V *  (^ MOOD) = indicative
+               @PRES3SG
+               @(INTRANS sit).
+
+sat       V *  (^MOOD) = indicative
+               {(^TENSE)= past |
+                (^PARTICIPLE)= past }
+		@(INTRANS sit).
+
 appears   V *   @(INTRANS appear)
 	       (^ MOOD) = indicative
                @PRES3SG.
@@ -183,6 +195,60 @@ gave      V *  (^MOOD) = indicative
 
 given     V *   (^PARTICIPLE) = past
 		@(DITRANS give).
+
+wait       V *  (^MOOD) = indicative
+		@(OPT-TRANS wait).
+          
+
+waits      V *  (^MOOD) = indicative
+		 @(OPT-TRANS wait)
+                 @PRES3SG.
+
+waited    V *  (^MOOD) = indicative
+               {(^TENSE)= past |
+                (^PARTICIPLE)= past}
+		@(TRANS wait).
+		
+argue     V *  (^MOOD) = indicative
+               @(TRANS argue).
+
+argues    V *  (^MOOD) = indicative
+               @(TRANS argue)
+    	       @PRES3SG.
+
+argued    V * (^MOOD) = indicative
+               {(^TENSE)= past |
+                (^PARTICIPLE)= past}
+		@(TRANS argue).
+
+talk       V *  (^MOOD) = indicative
+               @(TRANS talk).
+
+talks      V *  (^MOOD) = indicative
+               @(TRANS talk)
+    	       @PRES3SG.
+
+talked     V * (^MOOD) = indicative
+               {(^TENSE)= past |
+                (^PARTICIPLE)= past}
+		@(TRANS talk).
+
+see       V *  (^MOOD) = indicative
+               @(OPT-TRANS see).
+
+sees      V *  (^MOOD) = indicative
+               @(OPT-TRANS sees)
+    	       @PRES3SG.
+
+saw        V * (^MOOD) = indicative
+               (^TENSE)= past 
+		@(OPT-TRANS see).
+
+seen       V * (^PARTICIPLE) = past
+		@(OPT-TRANS see).
+
+
+
 
 
 "NOUNS"
@@ -205,21 +271,43 @@ dogs 	  N * (^ PRED) = 'dog'
 
 girl 	  N * @(CN girl).
 
+girls     N * @(CNPL girls).
+
+gorilla   N * @(CN gorilla).
+
+gorillas  N * @(CNPL gorillas).
+
 cat       N * @(CN cat).
 
-cats     N * (^ PRED) = 'cat'
-	      (^ NUM) = pl
-	      (^ PERS) = 3.
+cats      N * @(CNPL cats).
+
+banana    N * @(CN banana).
+
+bananas   N * @(CNPL bananas).
+
+bench     N * @(CN bench).
+
+benches   N * @(CNPL benches). 
 
 boy 	  N *  @(CN boy).
 
+boys      N * @(CNPL boys).
+
 book 	  N *  @(CN book).
+
+books     N * @(CNPL books).
+
+monkey    N * @(CN monkey).
+
+monkeys   N * @(CNPL monkeys).
 
 mouse     N *  @(CN mouse).
 
-mice      N * (^ PRED) = 'mouse'
-	      (^ NUM) = pl
-	      (^ PERS) = 3.
+mice      N * @(CNPL mice).
+
+Alex      N * (^PRED) = 'Alex'
+		(^NUM) = sg
+		(^ PERS) = 3.
 
 Jordan    N * (^PRED) = 'Jordan'
 		(^NUM) = sg
@@ -229,8 +317,21 @@ Sam       N * (^PRED)= 'Sam'
 		(^NUM) = sg
 		(^ PERS) = 3.
 
+table     N * @(CN table).
+
+tables    N * @(CNPL tables).
 
 treat     N *  @(CN treat).
+
+telescope N * @(CN telescope).
+
+telescopes N * @(CNPL telescopes).
+
+waiter    N *  @(CN waiter).
+
+waiters   N *  @(CNPL waiters).
+
+zookeeper  N * @(CN zookeeper).
 
 the  	  D *  (^ DEF) = +.
 
