@@ -1,25 +1,125 @@
-a dog devours the bones (1 0.002 13)
+#1
 
-a dog sleeps (1 0.004 8)
+the dog devours the bone (0 0.014 13)
 
-the dog chases a bone (1 0.004 13)
+#2
+
+a dog sleeps (1 0.005 8)
+
+#3
+
+the dog chases a bone        (1 0.004 13)
+
+#4
 
 the girls like the cake (1 0.003 13)
 
+#5
+
 the gorillas see the girl (1 0.003 13)
 
-the bone was devoured by a dog (1 0.005 18)
+#6
 
-a boy was chased by the gorilla (1 0.004 18)
+the bone was devoured by a dog (3 0.003 23)
 
-the boys like the girl (1 0.004 13)
+#7 
 
-a girl likes the boy (1 0.005 13)
+a boy was chased by the gorilla (3 0.003 23)
 
-the boy slept (1 0.004 8)
+#8 
+
+the boys like the girl (1 0.003 13)
+
+#9 
+
+a girl likes the boy (1 0.002 13)
+
+#10
+
+the boy slept (1 0.003 8)
+
+#11 
 
 the cats devoured the mice (1 0.003 13)
 
+#12 
+
 a cat eats the mouse (1 0.003 13)
 
-# 12 sentences, 0.045 CPU secs total, 0.005 CPU secs max (05/08/26)
+#13 
+
+the girl gave the dog a bone (1 0.004 18)
+
+#14 
+
+the girl gives the gorilla bananas (1 0.004 16)
+
+#15 
+
+gorillas devour bananas (0 0.003 9)
+
+#16 
+
+a gorilla devours bananas (0 0.004 11)
+
+#17
+
+the girl give the gorilla bananas (0 0.003 16)
+
+#18 
+
+gorillas devours bananas (1 0.002 9)
+
+#19
+
+gorilla devour bananas (1 0.002 9)
+
+#20 
+
+gorillas devours banana (0 0.003 0)
+
+#21 
+
+the girl gives a bone to the dog (2 0.004 32)
+
+#22 
+
+the zookeeper gave a banana to the gorilla (2 0.004 32)
+
+#23 
+
+the dog was given a bone by the girl (6 0.005 35)
+
+#24 
+
+a bone was given to the dog by the girl (8 0.006 45)
+
+#25
+
+the girl gave to the dog a bone  (0 0.002 0)
+
+#26 
+
+the dog was given by the girl a bone  (0 0.002 0)
+
+#27 
+
+the waiter waited on the table (1 0.003 19)
+
+#28 
+
+Jordan talked to Sam (1 0.005 15)
+
+#29
+
+Alex argued with a gorilla (1 0.002 17)
+
+#30 
+
+Sam saw a monkey with a telescope (2 0.003 26)
+
+#31
+
+the dog sat on the bench with a book (2 0.004 37)
+
+# 31 sentences, 0.112 CPU secs total, 0.014 CPU secs max (05/19/26)

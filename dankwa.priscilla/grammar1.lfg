@@ -14,22 +14,35 @@ DEMO   ENGLISH   CONFIG (1.0)
 
 DEMO   ENGLISH   RULES (1.0)
 
-   S --> NP: (^ SUBJ)=!
+S --> NP: (^ SUBJ)=!
 	     (! CASE)=nom;
- 	 VP: ^=!.
+ 	     VP: ^=!.
 
-   VP --> (AUX: ^=!)
-          V: ^=!; 
- 	  (NP: (^ OBJ)=!
-	       (! CASE)=acc)
-          (PP: (^ OBL-AG) = !).
+VP --> (AUX: ^=!) 
+       V: ^=!; 
+    (NP: (^ OBJ)=! 
+         (! CASE)=acc)
+        (NP: (^ OBJ2)=!) 
+        PP*: { ! $ (^ ADJUNCT) 
+                   (! PTYPE) =c sem                 
+                   | 
+                   (^ OBL) = !}; 
+        (PP: (^ OBL-TO) = !) 
+        (PP: (^ OBL-AG) = !). 
 
-   PP --> P
-          NP.
+PP --> { P: ^ = ! 
+            (! PTYPE) =c sem;
+        NP: (^ OBJ) = !
+            (! CASE) = acc;
+            |
+        P: ^ = ! "head of PP" 
+           (! PTYPE) =c nosem; NP}. 
 
-   NP --> (D: ^=!)
-           N: ^=!. 
-
+NP --> (D) 
+        AP*: ! $ (^ ADJUNCT); 
+        N 
+        PP*: ! $ (^ ADJUNCT) 
+                 (! PTYPE) =c sem.
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
@@ -104,10 +117,31 @@ PASS(FRAME) = { FRAME
 		{ (^ SUBJ)-->(^ OBL-AG)
 		| (^ SUBJ)--> NULL } }.
 
+DAT-SHIFT(FRAME) = { FRAME 
+                    | FRAME 
+                    (^ OBJ)-->(^ OBJ2)
+                    (^ OBL-TO)-->(^ OBJ)}.
+
+DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^                      SUBJ) (^ OBJ)
+                (^ OBL-TO)>')).
+
+PREP(P) = { (^ PRED) = 'P<(^OBJ)>' 
+            (^ PTYPE) = sem
+          | (^ PTYPE) = nosem
+            (^ PFORM) = P}.
 
 ----
 
 DEMO ENGLISH LEXICON (1.0)
+
+Jordan  N * (^ PRED) = 'Jordan'
+              @3RD_PSG.
+
+Sam   N * (^ PRED) = 'Sam'
+              @3RD_PSG.
+
+Alex   N * (^ PRED) = 'Alex'
+              @3RD_PSG.
 
 bones 	  N * (^ PRED) = 'bone'
               @CN
@@ -129,21 +163,6 @@ cake 	  N * (^ PRED) = 'cake'
               @CN
               @3RD_PSG.
 
-gorillas  N * (^ PRED) = 'gorilla'
-	          @3RD_PPL.
-
-gorilla N * (^ PRED)='gorilla'
-            @CN
-            @3RD_PSG.
-
-dog  N * (^ PRED) = 'dog'
-         @CN
-	     @3RD_PSG.
-
-dogs 	  N * (^ PRED) = 'dog'
-             @CN
-	          @3RD_PPL. 
-
 girl  N * (^ PRED)='girl'
               @CN
               @3RD_PSG.
@@ -158,29 +177,93 @@ boy   N * (^ PRED)='boy'
 boys   N * (^ PRED)='boy'
               @3RD_PPL.
 
-mouse   N * (^ PRED)='mouce'
+zookeeper  N * (^ PRED)='zookeeper'
+              @CN
+              @3RD_PSG.
+
+zookeepers  N * (^ PRED)='zookeeper'
+              @3RD_PPL.
+              
+waiter  N * (^ PRED)='waiter'
+              @CN
+              @3RD_PSG.
+
+waiters  N * (^ PRED)='waiter'
+              @3RD_PPL.
+
+gorilla  N * (^ PRED) ='gorilla'
+              @3RD_PSG.
+            
+gorillas  N * (^ PRED) = 'gorilla'
+              @3RD_PPL.
+
+dog  N * (^ PRED) = 'dog'
+         @CN
+	     @3RD_PSG.
+
+dogs 	  N * (^ PRED) = 'dog'
+             @CN
+	          @3RD_PPL. 
+
+mouse   N * (^ PRED)='mouse'
               @CN
               @3RD_PSG.
 
 mice   N * (^ PRED) = 'mouse'
 	       @3RD_PPL.
 
+monkey   N * (^ PRED)='monkey'
+              @CN
+              @3RD_PSG.
+
+monkeys   N * (^ PRED) = 'monkey'
+	       @3RD_PPL.
+
 treat  N * (^ PRED)='treat'
               @CN
               @3RD_PSG.
 
-banana N * (^ PRED)='banana'
+banana N * (^ PRED)= 'banana'
               @CN
               @3RD_PSG.
 
 bananas N * (^ PRED) = 'banana'
 	          @3RD_PPL. 
 
+book     N* (^ PRED) = 'book'
+              @CN
+              @3RD_PSG.
+              
+books N * (^ PRED) = 'book'
+	          @3RD_PPL.
+              
+telescope N * (^ PRED)= 'telescope'
+              @CN
+              @3RD_PSG.
+
+telescopes N * (^ PRED) = 'telescope'
+	          @3RD_PPL. 
+
+bench N * (^ PRED) = 'bench'
+              @CN
+              @3RD_PSG.
+
+benches N * (^ PRED) = 'bench'
+	          @3RD_PPL. 
+
+table  N * (^ PRED) = 'table'
+              @3RD_PSG.
+
 was   AUX * "(^ PRED) = 'be'"
               @MOOD_IND
               @PAST3PSG_BE
               (^ PARTICIPLE) =c past.
 
+devour   V * @MOOD_IND
+              @ASP_SIMP
+              @PRESNON3SG
+	          @(TRANS devour).
+              
 devours   V * @MOOD_IND
               @ASP_SIMP
               @PRES3SG
@@ -247,14 +330,67 @@ saw     V*  @MOOD_IND
             @PAST
             @(OPT-TRANS see).
 
+waited     V*
+            @MOOD_IND
+            @ASP_SIMP
+            @PAST
+            @(INTRANS wait).
+
+talked     V*
+            @MOOD_IND
+            @ASP_SIMP
+            @PAST
+            @(INTRANS talk).
+
+sat     V*
+            @MOOD_IND
+            @ASP_SIMP
+            @PAST
+            @(INTRANS sit).
+
+argued     V*
+            @MOOD_IND
+            @ASP_SIMP
+            @PAST
+            @(OPT-TRANS argue).
+
+
 slept     V* @MOOD_IND
              @PAST
              @(INTRANS sleep).
+
+give     V*  @MOOD_IND
+            @ASP_SIMP
+            @PRESNON3SG 
+            @(DITRANS give).
+
+
+gives     V* @MOOD_IND
+            @ASP_SIMP
+            @PRES3SG 
+            @(DITRANS give).
+
+gave     V* @MOOD_IND
+            @ASP_SIMP
+            @PAST
+            @(DITRANS give).
+
+given    V*  (^ PARTICIPLE) = past
+            @(DITRANS give).
+
+
 
 the  D *  (^ DEF) = +.
 
 a   D *  (^ DEF) = -.
 
-by  P * (^ PASSIVE) = +.
+by P * @(PREP by). 
 
+to P * @(PREP to).
+
+on P * @(PREP on). 
+
+in P * @(PREP in). 
+
+with P * @(PREP with).
 ----
