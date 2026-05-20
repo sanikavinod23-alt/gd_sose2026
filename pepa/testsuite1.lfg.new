@@ -1,14 +1,14 @@
 #1 - Intransitive verb
 
-the cat sleeps (1 0.009 8)
+the cat sleeps (1 0.003 8)
 
 #2 - Transitive verb (3rd person singular)
 
-the dog devours the bone (1 0.003 13)
+the dog devours the bone (1 0.001 13)
 
 #3 - Transitive verb (3rd person plural)
 
-the cats chase a mouse (1 0.002 13)
+the cats chase a mouse (1 0.001 13)
 
 #4 - The verb "eat" as intransitive
 
@@ -36,7 +36,7 @@ gorillas devours banana (0 0.001 0)
 
 #10 - Passive structure with agent
 
-the girl was seen by the gorilla (1 0.001 18)
+the girl was seen by the gorilla (3 0.001 23)
 
 #11 - Passive structure without agent
 
@@ -48,7 +48,7 @@ the cat was chased (1 0.001 10)
 
 #13 - Passive structure with agent
 
-the bone was devoured by a dog (1 0.001 18)
+the bone was devoured by a dog (3 0.001 23)
 
 #14 - Passive structure without past participle
 
@@ -60,6 +60,82 @@ the dog was slept (0 0.001 0)
 
 #16 - The lexeme "was" doesn't work as a verb in its past tense but as an auxiliary
 
-the girl was a banana (0 0.001 0)
+the girl was a banana (0 0.000 0)
 
-# 16 sentences, 0.026 CPU secs total, 0.009 CPU secs max (05/07/26)
+#17 - Ditransative verb (past tense)
+
+the girl gave the dog a bone (1 0.001 18)
+
+#18 - Ditransative verb (present tense)
+
+the girl gives the gorilla bananas (1 0.001 16)
+
+#19 - Transitive verb (3rd person plural)
+
+gorillas devour bananas (1 0.001 9)
+
+#20 - Transitive verb (3rd person singular)
+
+a gorilla devours bananas (1 0.001 11)
+
+# 21 - Subject and verb don't agree
+
+the girl give the gorilla bananas (0 0.001 16)
+
+#22 - Subject and verb don't agree
+
+gorillas devours bananas (0 0.001 9)
+
+#23 - Subject and verb don't agree
+
+gorilla devour bananas (0 0.000 0)
+
+#24 - Subject and verb don't agree
+
+gorillas devours banana (0 0.000 0)
+
+#25 - Gets 2 solutions (to[2]: OBL & OBL-TO)
+
+the girl gives a bone to the dog (2 0.001 32)
+
+#26 - Gets 2 solutions (to[2]: OBL & OBL-TO)
+
+the zookeeper gave a banana to the gorilla (2 0.001 32)
+
+#27 - Gets 6 solutions (by[2]: OBL-AG & Adjunct, to[3]: OBL & OBL-TO & adjunct, I don't know which is the 6th solution...)
+
+the dog was given a bone by the girl (6 0.001 35)
+
+#28 - Gets 8 solutions (same as before)
+
+a bone was given to the dog by the girl (8 0.001 45)
+
+#29 - The PP isn't at the end
+
+the girl gave to the dog a bone (0 0.001 0)
+
+#30 - The PP isn't at the end
+
+the dog was given by the girl a bone (0 0.001 0)
+
+#31 - Non-semantic PP
+
+the waiter waited on the table (1 0.001 19)
+
+#32 - Non-semantic PP
+
+Jordan talked to Sam (1 0.001 15)
+
+#33 - Non-semantic PP
+
+Alex argued with a gorilla (1 0.001 17)
+
+#34 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
+
+Sam saw a monkey with a telescope (2 0.001 26)
+
+#35 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
+
+the dog sat on the bench with a book (2 0.001 37)
+
+# 35 sentences, 0.028 CPU secs total, 0.003 CPU secs max (05/19/26)

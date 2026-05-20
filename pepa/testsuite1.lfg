@@ -61,3 +61,79 @@ the dog was slept
 #16 - The lexeme "was" doesn't work as a verb in its past tense but as an auxiliary
 
 the girl was a banana
+
+#17 - Ditransative verb (past tense)
+
+the girl gave the dog a bone
+
+#18 - Ditransative verb (present tense)
+
+the girl gives the gorilla bananas
+
+#19 - Transitive verb (3rd person plural)
+
+gorillas devour bananas
+
+#20 - Transitive verb (3rd person singular)
+
+a gorilla devours bananas
+
+# 21 - Subject and verb don't agree
+
+the girl give the gorilla bananas
+
+#22 - Subject and verb don't agree
+
+gorillas devours bananas
+
+#23 - Subject and verb don't agree
+
+gorilla devour bananas
+
+#24 - Subject and verb don't agree
+
+gorillas devours banana
+
+#25 - Gets 2 solutions (to[2]: OBL & OBL-TO)
+
+the girl gives a bone to the dog
+
+#26 - Gets 2 solutions (to[2]: OBL & OBL-TO)
+
+the zookeeper gave a banana to the gorilla
+
+#27 - Gets 6 solutions (by[2]: OBL-AG & Adjunct, to[3]: OBL & OBL-TO & adjunct, I don't know which is the 6th solution...)
+
+the dog was given a bone by the girl
+
+#28 - Gets 8 solutions (same as before)
+
+a bone was given to the dog by the girl
+
+#29 - The PP isn't at the end
+
+the girl gave to the dog a bone
+
+#30 - The PP isn't at the end
+
+the dog was given by the girl a bone
+
+#31 - Non-semantic PP
+
+the waiter waited on the table
+
+#32 - Non-semantic PP
+
+Jordan talked to Sam
+
+#33 - Non-semantic PP
+
+Alex argued with a gorilla
+
+#34 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
+
+Sam saw a monkey with a telescope
+
+#35 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
+
+the dog sat on the bench with a book
