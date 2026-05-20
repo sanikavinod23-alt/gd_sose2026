@@ -1,33 +1,36 @@
-((1) (1 0.004 11) (4 words))
-((2) (0 0.003 11) (4 words))
-((3) (0 0.003 0) (4 words))
-((4) (0 0.002 8) (3 words))
-((5) (1 0.003 13) (5 words))
-((6) (0 0.003 0) (7 words))
-((7) (0 0.002 0) (3 words))
-((8) (0 0.002 0) (5 words))
+((1) (1 0.018 11) -> (1 0.008 11) (4 words))
+((2) (0 0.003 11) -> (0 0.004 11) (4 words))
+((3) (0 0.003 0) -> (0 0.002 0) (4 words))
+((4) (0 0.002 8) -> (0 0.001 8) (3 words))
+((5) (1 0.003 13) -> (1 0.002 13) (5 words))
+((6) (0 0.003 0) -> (0 0.002 0) (7 words))
+((7) (1 0.005 8) -> (1 0.003 8) (3 words))
+((8) (1 0.004 13) -> (1 0.002 13) (5 words))
 
 XLE release of Mar 17, 2017 21:12.
 Grammar = /mnt/c/Users/kassi/OneDrive/Έγγραφα/master/(3) sose 26/Grammar Development/dimou.kalypso/dimou/grammar1.lfg.
-Grammar last modified on Apr 24, 2026 12:05.
+Grammar last modified on May 15, 2026 18:29.
 Host machine is KD.
 8 sentences, 0 errors, 0 mismatches
-6 sentences had 0 parses
-2 good sentences
-2 sentences had exactly one grammatical parse
-timeout = 100
+4 sentences had 0 parses
+4 good sentences
+4 sentences had exactly one grammatical parse
+timeout = 15
 max_xle_scratch_storage = 100 MB
 prune_subtree_location = 1
 max_new_events_per_graph_when_skimming = 500
-maximum raw subtrees per sentence = 15 (#5)
-maximum event count per sentence = 358
-average event count per graph = 28.930
-tokens = 0.0%, morph = 0.0%, multiword = 0.0%, lex = 66.3%, chart = 0.0%,
-unifier = 33.7%, completer = 0.0%, solver = 0.0%, output = 0.0%
-max_alloc_mem = 54.24 MB
-0.023 CPU secs total, 0.004 CPU secs max
-elapsed time = 1 seconds
+maximum raw subtrees per sentence = 20 (#5)
+maximum event count per sentence = 376
+average event count per graph = 29.891
+tokens = 3.5%, morph = 0.0%, multiword = 0.0%, lex = 56.1%, chart = 0.0%,
+unifier = 40.4%, completer = 0.0%, solver = 0.0%, output = 0.0%
+max_alloc_mem = 73.15 MB
+0.024 CPU secs total, 0.008 CPU secs max
+new time/old time = 0.596
+elapsed time = 0 seconds
+biggest increase = 0.001 sec (#2 = 0.004 sec)
+biggest decrease = 0.010 sec (#1 = 0.008 sec)
   range parsed failed  words   seconds  subtrees     optimal
-   1-10      2      6   4.50     0.004     12.00        1.00
-    all      2      6   4.50     0.004     12.00        1.00
-1.00 of the variance in seconds is explained by the number of subtrees
+   1-10      4      4   4.25     0.004     11.25        1.00
+    all      4      4   4.25     0.004     11.25        1.00
+0.07 of the variance in seconds is explained by the number of subtrees
