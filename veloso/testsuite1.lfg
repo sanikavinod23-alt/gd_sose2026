@@ -1,24 +1,75 @@
-#show how it works
-the dog devours bones
+#1 Is working-ish. the problem seems to be the sg noun template.
+the dog devours bones 
 
-# unification failure, subject-verb agreement (consistency)
+#2 +template(trans) seems to be working perf. no template for plural yet
+the dogs devour a bone 
+
+#3 unification failure, subject-verb agreement (consistency)
 the dogs devours bones
 
-# coherence violation
+#4 coherence violation
 the dog appears bones 
 
-# completeness violation
+#5 completeness violation
 the dog devours 
 
-# missing PRED value, completeness violation
-the dog devours a bone
+#6 Same as nmr1
+the dog devours a bone 
 
-#missing rules, unknown words
+#7 missing rules, unknown words
 the dog devours bones in the park
 
-#new verbs --- intrans
+#8 new verbs --- intrans
 a dog sleeps
 
-#new verbs -- trans
+#9 new verbs -- trans
 a dog chases a bone
 
+#10 is working-ish + template(CN and INTRANS)
+the cat sleeps
+
+#11 is working-ish + template(CN and INTRANS)
+the dog devours the bone
+
+#12 works perf +templates(TRANS)
+the cats chase a mouse
+
+#13 is working-ish +templates(CN and OPTTRANS)
+the dog eats
+
+#14 works perf +template(TRANS)
+the cats eat a treat
+
+#15 doesn't work
+the girl see the gorilla
+
+#16 doesn't work
+cat chases dogs
+
+#17 doesn't work
+gorilla devour bananas
+
+#18 doesn't work
+gorillas devours banana
+
+#19 works perf +temp(CN and INTRANS)
+the dog appears
+
+#20 works
+the girl was seen by the gorilla
+
+#21 works
+the cake was eaten
+
+#22 works
+the cat was chased
+
+#23 works
+the bone was devoured by a dog
+
+
+#24 not working
+the girl was saw by the gorilla
+
+#25 not working
+the dog was slept

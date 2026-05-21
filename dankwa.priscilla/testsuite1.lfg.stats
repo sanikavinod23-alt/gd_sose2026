@@ -1,0 +1,56 @@
+((1) (1 0.013 13) (5 words))
+((2) (1 0.003 8) (3 words))
+((3) (1 0.004 13) (5 words))
+((4) (1 0.004 13) (5 words))
+((5) (1 0.003 13) (5 words))
+((6) (3 0.005 23) (7 words))
+((7) (3 0.004 23) (7 words))
+((8) (1 0.003 13) (5 words))
+((9) (1 0.003 13) (5 words))
+((10) (1 0.003 8) (3 words))
+((11) (1 0.004 13) (5 words))
+((12) (1 0.003 13) (5 words))
+((13) (1 0.003 18) (7 words))
+((14) (1 0.004 16) (6 words))
+((15) (1 0.003 9) (3 words))
+((16) (1 0.003 11) (4 words))
+((17) (0 0.003 16) (6 words))
+((18) (0 0.004 9) (3 words))
+((19) (0 0.003 9) (3 words))
+((20) (0 0.003 0) (3 words))
+((21) (2 0.004 32) (8 words))
+((22) (2 0.006 32) (8 words))
+((23) (6 0.004 35) (9 words))
+((24) (8 0.005 45) (10 words))
+((25) (0 0.003 0) (8 words))
+((26) (0 0.003 0) (9 words))
+((27) (1 0.003 19) (6 words))
+((28) (1 0.005 15) (4 words))
+((29) (1 0.004 17) (5 words))
+((30) (2 0.003 26) (7 words))
+((31) (2 0.003 37) (9 words))
+
+XLE release of Mar 17, 2017 21:12.
+Grammar = /home/sapphpearson/grammar/gd_sose2026/dankwa.priscilla/grammar1.lfg.
+Grammar last modified on May 19, 2026 18:44.
+Host machine is penguin.
+31 sentences, 0 errors, 0 mismatches
+6 sentences had 0 parses
+25 good sentences
+17 sentences had exactly one grammatical parse
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 54 (#24)
+maximum event count per sentence = 4831
+average event count per graph = 73.867
+tokens = 1.7%, morph = 3.4%, multiword = 0.0%, lex = 9.6%, chart = 37.0%,
+unifier = 38.3%, completer = 5.0%, solver = 5.0%, output = 0.0%
+max_alloc_mem = 315.03 MB
+0.120 CPU secs total, 0.013 CPU secs max
+elapsed time = 0 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10     25      6   5.84     0.004     19.12        1.80
+    all     25      6   5.84     0.004     19.12        1.80
+0.01 of the variance in seconds is explained by the number of subtrees

@@ -1,32 +1,25 @@
-#show how it works
 
-the dog devours bones
+the cat sleeps
+the dog devours the bone
+the cats chase a mouse
+the dog eats
+the cats eat a treat
 
-# unification failure, subject-verb agreement (consistency)
+# Passives
+the girl was seen by the gorilla
+the cake was eaten
+the cat was chased
+the bone was devoured by a dog
 
-the dogs devours bones
+# === NEGATIVE EXAMPLES (These should fail) ===
+# Unification / Agreement failures
+the girl see the gorilla
+cat chases dogs
+gorilla devour bananas
+gorillas devours banana
 
-# coherence violation
+# Passive failures
+the girl was saw by the gorilla
+the dog was slept
 
-the dog appears bones 
-
-# completeness violation
-
-the dog devours 
-
-# missing PRED value, completeness violation
-
-the dog devours a bone
-
-#missing rules, unknown words
-
-the dog devours bones in the park
-
-#new verbs --- intrans
-
-a dog sleeps
-
-#new verbs -- trans
-
-a dog chases a bone
 

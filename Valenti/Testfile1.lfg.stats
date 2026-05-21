@@ -1,34 +1,61 @@
-((1) (0 0.003 0) (5 words))
-((2) (0 0.000 0) (5 words))
-((3) (0 0.000 0) (5 words))
-((4) (0 0.000 0) (5 words))
-((5) (0 0.004 0) (7 words))
-((6) (0 0.000 0) (7 words))
-((7) (0 0.000 0) (7 words))
-((8) (0 0.004 0) (4 words))
-((9) (0 0.000 0) (4 words))
-((10) (0 0.000 0) (3 words))
-((11) (0 0.000 0) (3 words))
-((12) (0 0.000 0) (4 words))
+((1) (0 0.003 0) (2 words))
+((2) (1 0.002 13) (5 words))
+((3) (1 0.000 13) (5 words))
+((4) (1 0.000 13) (5 words))
+((5) (1 0.004 13) (5 words))
+((6) (2 0.000 23) (7 words))
+((7) (2 0.004 23) (7 words))
+((8) (2 0.000 23) (7 words))
+((9) (1 0.004 10) (4 words))
+((10) (1 0.000 10) (4 words))
+((11) (1 0.000 8) (3 words))
+((12) (1 0.004 8) (3 words))
 ((13) (0 0.000 0) (4 words))
-((14) (0 0.000 0) (5 words))
-((15) (0 0.000 0) (5 words))
-((16) (0 0.000 0) (7 words))
-((17) (0 0.000 0) (4 words))
+((14) (0 0.000 9) (4 words))
+((15) (0 0.000 0) (4 words))
+((16) (0 0.004 13) (5 words))
+((17) (0 0.000 13) (5 words))
+((18) (0 0.000 0) (3 words))
+((19) (1 0.004 18) (7 words))
+((20) (1 0.000 16) (6 words))
+((21) (1 0.000 9) (3 words))
+((22) (1 0.004 11) (4 words))
+((23) (1 0.000 32) (8 words))
+((24) (1 0.004 32) (8 words))
+((25) (3 0.000 33) (9 words))
+((26) (3 0.004 45) (10 words))
+((27) (1 0.000 21) (6 words))
+((28) (1 0.004 18) (4 words))
+((29) (1 0.000 19) (5 words))
+((30) (0 0.000 0) (4 words))
+((31) (0 0.004 16) (6 words))
+((32) (0 0.000 0) (3 words))
+((33) (0 0.000 0) (3 words))
+((34) (0 0.000 0) (3 words))
+((35) (0 0.004 0) (8 words))
+((36) (0 0.000 0) (9 words))
 
 XLE release of Mar 17, 2017 21:12.
 Grammar = /home/ilaria/grammars/gd_sose2026/Valenti/grammar1.lfg.
-Grammar last modified on May 05, 2026 17:06.
+Grammar last modified on May 11, 2026 09:45.
 Host machine is DESKTOP-KAR20M4.
-17 sentences, 0 errors, 0 mismatches
-17 sentences had 0 parses
-timeout = 100
+36 sentences, 0 errors, 0 mismatches
+14 sentences had 0 parses
+22 good sentences
+17 sentences had exactly one grammatical parse
+timeout = 15
 max_xle_scratch_storage = 100 MB
 prune_subtree_location = 1
 max_new_events_per_graph_when_skimming = 500
-maximum raw subtrees per sentence = 7 (#5)
-tokens = 0.0%, morph = 0.0%, multiword = 0.0%, lex = 0.0%, chart = 100.0%,
-unifier = 0.0%, completer = 0.0%, solver = 0.0%, output = 0.0%
-max_alloc_mem = 34.41 MB
-0.011 CPU secs total, 0.004 CPU secs max
+maximum raw subtrees per sentence = 54 (#26)
+maximum event count per sentence = 3877
+average event count per graph = 48.136
+tokens = 11.1%, morph = 11.1%, multiword = 0.0%, lex = 11.1%, chart = 22.2%,
+unifier = 33.3%, completer = 11.1%, solver = 0.0%, output = 0.0%
+max_alloc_mem = 271.51 MB
+0.055 CPU secs total, 0.004 CPU secs max
 elapsed time = 0 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10     22     14   5.68     0.002     18.68        1.32
+    all     22     14   5.68     0.002     18.68        1.32
+0.01 of the variance in seconds is explained by the number of subtrees
