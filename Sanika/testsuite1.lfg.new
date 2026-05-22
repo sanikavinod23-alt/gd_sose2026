@@ -1,0 +1,95 @@
+#show how it works
+
+the dog devours bones (0 0.005 11)
+
+# unification failure, subject-verb agreement (consistency)
+
+the dogs devours bones (0 0.002 11)
+
+# coherence violation
+
+the dog appears bones  (0 0.002 0)
+
+# completeness violation
+
+the dog devours  (0 0.002 8)
+
+# missing PRED value, completeness violation
+
+the dog devours a bone (1 0.002 13)
+
+#missing rules, unknown words
+
+the dog devours bones in the park (0 0.002 0)
+
+#new verbs --- intrans
+
+a dog sleeps (1 0.002 8)
+
+#new verbs -- trans
+
+a dog chases a bone (0 0.001 0)
+
+#intransitive
+
+the cat sleeps (1 0.002 8)
+
+#transitive
+
+the dog devours the bone (1 0.002 13)
+
+#unification failure, sv agreement
+
+the cat chase a mouse (0 0.002 13)
+
+#missing objects for transitive verb
+
+the dog eats (1 0.001 8)
+
+#grammatical, sv agreement
+
+the cats eat a treat (1 0.002 13)
+
+#unfication failure, sv agreement
+
+the girl see the gorilla (0 0.001 0)
+
+#determiners missing
+
+cat chases dogs (0 0.001 0)
+
+#plural object noun
+
+gorilla devours bananas (0 0.001 0)
+
+#singular object noun
+
+gorilla devours banana (0 0.001 0)
+
+#passive
+
+the girl was seen by the gorilla (2 0.002 18)
+
+#passive
+
+the cake was eaten (2 0.001 10)
+
+#completness violation
+
+the cat was chased (2 0.001 10)
+
+# grammatical
+
+the bone was devoured by the dog (2 0.001 18)
+
+#coherence violation
+
+the girl was saw happy by the gorilla (0 0.001 0)
+
+#coherence violation
+
+the dog was slept (0 0.001 0)
+
+
+
+# 23 sentences, 0.037 CPU secs total, 0.005 CPU secs max (05/08/26)

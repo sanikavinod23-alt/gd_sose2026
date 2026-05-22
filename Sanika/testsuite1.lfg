@@ -30,3 +30,106 @@ a dog sleeps
 
 a dog chases a bone
 
+#intransitive
+
+the cat sleeps
+
+#transitive
+
+the dog devours the bone
+
+#unification failure, sv agreement
+
+the cat chase a mouse
+
+#missing objects for transitive verb
+
+the dog eats
+
+#grammatical, sv agreement
+
+the cats eat a treat
+
+#unfication failure, sv agreement
+
+the girl see the gorilla
+
+#determiners missing
+
+cat chases dogs
+
+#plural object noun
+
+gorilla devours bananas
+
+#singular object noun
+
+gorilla devours banana
+
+#passive
+
+the girl was seen by the gorilla
+
+#passive
+
+the cake was eaten
+
+#completness violation
+
+the cat was chased
+
+# grammatical
+
+the bone was devoured by the dog
+
+#coherence violation
+
+the girl was saw happy by the gorilla
+
+#coherence violation
+
+the dog was slept
+
+the girl gave the dog a bone
+
+the girl gave the gorilla bananas
+
+gorillas devour bananas
+
+a gorilla devours bananas
+
+the girl give the gorilla bananas
+
+gorillas devour bananas
+
+gorilla devour bananas
+
+gorilla devour banana
+
+the girl gives a bone to the dog
+
+the zookeeper gave a banana to the gorilla
+
+the dog was given a bone by the girl
+
+a bone was given to the dog by the girl
+
+the girl gave to the dog a bone
+
+the dog was given by the girl a bone
+
+The waiter waited on the table
+
+Jordan talked to Sam
+
+Alex argued with a gorilla
+
+Sam saw a monkey with a telescope
+
+The dog sat on the bench with a book
+
+
+
+
+
+
