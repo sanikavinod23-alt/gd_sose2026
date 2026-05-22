@@ -18,62 +18,107 @@ DEMO   ENGLISH   RULES (1.0)
 	     (! CASE)=nom;
  	 VP: ^=!.
 
-   VP --> (AUX)
-          V: ^=!; 
- 	  (NP: (^ OBJ)=!
-	       (! CASE)=acc)
-          (NP: (^ OBJ2)=!
-               (! CASE)=acc)
-          (PP: (^ OBL-AG)=!).
-
-   NP --> (D)  "can leave out ^=!"
- 	  N.
+   "VP rule: PP* only for adjuncts, specific positions for obliques"
    
-   PP --> P
-          NP.
+    VP --> (AUX)
+      V: ^=!;
+      (NP: (^ OBJ2)=!
+           (! CASE)=acc)
+      (NP: (^ OBJ)=!
+           (! CASE)=acc)
+      PP*: ! $ (^ ADJUNCT)
+           (! PTYPE) =c sem;
+      (PP: (^ OBL-TO)=!
+           (! PTYPE)=c nosem)
+      (PP: (^ OBL-AG)=!
+           (! PTYPE)=c nosem)
+      (PP: (^ OBL)=!
+           (! PTYPE)=c nosem).
+
+
+   "NP rule with optional determiner, adjectives, head noun, and PP adjuncts"
+   NP --> (D)
+ 	  N
+          PP*: ! $ (^ ADJUNCT)
+               (! PTYPE) =c sem.
+   
+   "PP rule distinguishing semantic from non-semantic prepositions"
+   PP --> { P: ^ = !
+             (! PTYPE) =c nosem;
+              NP
+            | P: ^ = !
+              (! PTYPE) =c sem;
+              NP: (^ OBJ) = !
+                  (! CASE) = acc
+           }.
 
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
 
 "Passive lexical rule - maps OBJ to SUBJ, SUBJ to OBL-AG or NULL"
-PASS(FRAME) = { FRAME
-                (^ PASSIVE) = -
-              | FRAME
-                (^ PASSIVE) = +
-                (^ PARTICIPLE) =c past
-                (^ OBJ)-->(^ SUBJ)
-                { (^ SUBJ)-->(^ OBL-AG)
-                | (^ SUBJ)--> NULL
-                }
+PASSIVE(FRAME) = FRAME
+              (^ PASSIVE) = +
+              (^ PARTICIPLE) =c past
+              (^ OBJ)-->(^ SUBJ)
+              { (^ SUBJ)-->(^ OBL-AG)
+              | (^ SUBJ)--> NULL
               }.
+              
 
+"Dative shift lexical rule - maps OBJ to OBJ2, OBL-TO to OBJ"
+DAT-SHIFT(FRAME) = { FRAME
+                   | FRAME
+                     (^ OBJ)-->(^ OBJ2)
+                     (^ OBL-TO)-->(^ OBJ)
+                   }.
 
-"Subcategorization templates"
+"Subcategorization templates (Active)"
 INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'
              (^ PASSIVE) = -.
 
-TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ)(^ OBJ)>').
+TRANS(P) =  (^ PRED)='P<(^ SUBJ)(^ OBJ)>'
+                  (^ PASSIVE)= -.
 
 OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
 
-DITRANS(P) = (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBJ2)>'.
+"Active ditransitives: allow either PP dative or double-object"
+DITRANS(P) = { (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBL-TO)>'
+               (^ PASSIVE) = -
+             | (^ PRED)='P<(^ SUBJ)(^ OBJ2)(^ OBJ)>'
+               (^ PASSIVE) = -
+             }.
 
+
+"Passive versions used by participles (separate, deterministic)"
+TRANS-PASS(P) = @(PASSIVE (^ PRED)='P<(^ SUBJ)(^ OBJ)>').
+
+"Passive ditransitive:
+ apply optional dative shift first, then make it passive"
+DITRANS-PASS(P) =
+  @(PASSIVE @(DAT-SHIFT (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBL-TO)>')).
+
+"Oblique-taking verbs (intransitive with oblique)"
+OBLIQUE(P OFORM) = (^ PRED)='P<(^ SUBJ)(^ OBL)>'
+                   (^ OBL PFORM) =c OFORM
+                   (^ PASSIVE) = -.
 
 "Tense-Aspect-Mood templates"
 PRES3SG = (^ TENSE) = pres
-           (^ MOOD) = indicative
-           (^ SUBJ PERS) = 3
-           (^ SUBJ NUM) = sg.
+          (^ MOOD) = indicative
+          (^ SUBJ PERS) = 3
+          (^ SUBJ NUM) = sg.
 
-"Plural/base verbs - no case-person constraints"
+"Plural/base verbs"
 PRES3PL = (^ TENSE) = pres
           (^ MOOD) = indicative
           (^ SUBJ PERS) = 3
           (^ SUBJ NUM) = pl.
 
 PAST = (^ TENSE) = past
-       (^ MOOD) = indicative.
+       (^ MOOD) = indicative
+       (^ SUBJ PERS) = 3
+       { (^ SUBJ NUM) = sg | (^ SUBJ NUM) = pl }. 
 
 PASTPART = (^ PARTICIPLE) = past.
 
@@ -84,11 +129,26 @@ CN(P) = (^ PRED) = 'P'
         (^ PERS) = 3
         (^ DEF).
 
+"Proper names - no determiner required"
+NODET(P) = (^ PRED) = 'P'
+           (^ NUM) = sg
+           (^ PERS)= 3.
+
 "PLN: plural noun - no determiner required"
 PLN(P) = (^ PRED) = 'P'
          (^ NUM) = pl
          (^ PERS) = 3.
 
+"Preposition template - for obliques only non-semantic"
+PREP(P) = (^ PFORM) = P
+          (^ PTYPE) = nosem.
+
+"Preposition template - can be semantic or non-semantic"
+PREP-SEM(P) = { (^ PRED) = 'P<(^OBJ)>'
+                (^ PTYPE) = sem
+              | (^ PFORM) = P
+                (^ PTYPE) = nosem
+              }.
 
 ----
 
@@ -119,6 +179,25 @@ gorilla   N * @(CN gorilla).
 meadow    N * @(CN meadow).
 
 park      N * @(CN park).
+
+book      N * @(CN book).
+
+table     N * @(CN table).
+
+bench     N * @(CN bench).
+
+telescope N * @(CN telescope).
+
+monkey    N * @(CN monkey).
+
+"Proper names - no determiner"
+
+jordan    N * @(NODET jordan).
+
+sam       N * @(NODET sam).
+
+alex      N * @(NODET alex).
+
 
 "Plural count nouns - no determiner required"
 
@@ -156,7 +235,19 @@ sees      V * @(TRANS see)
 gives     V * @(DITRANS give)
               @PRES3SG.
 
-"Verbs -plural present / base form"
+waits     V * @(OBLIQUE wait on)
+              @PRES3SG.
+
+talks     V * @(OBLIQUE talk to)
+              @PRES3SG.
+
+argues    V * @(OBLIQUE argue with)
+              @PRES3SG.
+
+sat       V * @(INTRANS sit)
+              @PAST.
+
+"Verbs - plural present / base form"
 
 devour    V * @(TRANS devour)
               @PRES3PL.
@@ -179,36 +270,84 @@ see       V * @(TRANS see)
 give      V * @(DITRANS give)
               @PRES3PL.
 
+wait      V * @(OBLIQUE wait on)
+              @PRES3PL.
+
+talk      V * @(OBLIQUE talk to)
+              @PRES3PL.
+
+argue     V * @(OBLIQUE argue with)
+              @PRES3PL.
 
 "Past Participles - for passive constructions"
-devoured  V * @(TRANS devour)
+devoured  V * @(TRANS-PASS devour)
               @PASTPART.
 
-chased    V * @(TRANS chase)
+chased    V * @(TRANS-PASS chase)
               @PASTPART.
 
-eaten     V * @(OPT-TRANS eat)
+eaten     V * @(TRANS-PASS eat)
               @PASTPART.
 
-seen      V * @(TRANS see)
+seen      V * @(TRANS-PASS see)
               @PASTPART.
 
 slept     V * @(INTRANS sleep)
               @PASTPART.
 
+given     V * @(DITRANS-PASS give)
+              @PASTPART.
 
+"Verb past form"
+
+gave      V * @(DITRANS give)
+              @PAST. 
+
+saw       V * @(TRANS see)
+              @PAST.
+
+waited   V * @(OBLIQUE wait on)
+             @PAST.
+
+talked   V * @(OBLIQUE talk to)
+             @PAST.
+
+argued   V * @(OBLIQUE argue with)
+             @PAST.
 
 "Determiners"
-the  D *  (^ DEF) = +.
+the       D * (^ DEF) = +.
 
-a   D *  (^ DEF) = -.
+a         D * (^ DEF) = -.
 
 "Auxiliary"
-was  AUX * (^ TENSE) = past
-           (^ MOOD) = indicative
-           (^PASSIVE) =c +.
+was       AUX * (^ TENSE) = past
+               (^ MOOD) = indicative
+               (^PASSIVE) =c +
+               (^ SUBJ NUM) = sg.
+
+were      AUX * (^ TENSE) = past
+               (^ MOOD) = indicative
+               (^PASSIVE) =c +
+               (^ SUBJ NUM) = pl.
 
 "Prepositions"
-by   P * .
+"by and to are non-semantic (oblique markers)"
+by        P * @(PREP by).
+
+to        P * @(PREP to).
+
+"on, in, with can be semantic adjuncts or non-semantic obliques"
+on        P * @(PREP-SEM on).
+
+in        P * @(PREP-SEM in).
+
+with      P * @(PREP-SEM with).
+
+"Additional nouns for examples"
+waiter    N * @(CN waiter).
+
+zookeeper N * @(CN zookeeper).
 
 ----
+
