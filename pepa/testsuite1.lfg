@@ -137,3 +137,111 @@ Sam saw a monkey with a telescope
 #35 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
 
 the dog sat on the bench with a book
+
+#36 - Adjective works
+
+the small dog slept
+
+#37 - Two adjectives without comma work
+
+the small black dog slept
+
+#38 - Three adjectives without comma work
+
+the small black hungry dog ate bones
+
+#39 - Adverb works
+
+the gorilla devoured the banana quickly
+
+#40 - Many adjectives without comma and an adverb work
+
+the small black hungry dog ate bones quickly
+
+#41 - Adjective after adverb works
+
+the very small gorilla slept
+
+#42 - I get 4 solutions (one for each type of AdjP)
+
+the very very very small gorilla slept
+
+#43 - Pronoun as subject works
+
+he sleeps
+
+#44 - Pronoun as subject and object works
+
+she devoured it
+
+#45 - Same here
+
+they devoured them
+
+#46 - I don't understand why this doesn't work????
+
+I waited for him for hours
+
+#47 - All the possessive pronouns don't work. I don't know why. The f-structure shows there's a problem with the noun. It says "incomplete" and marks with black background the "c T" on the DEF.
+
+my dog sleeps
+
+#48 - Same here
+
+she gave us her banana
+
+#49 - No results because subject in accusative
+
+him sleeps
+
+#50 - No results because subject in accusative
+
+them devoured it
+
+#51 - No results because object in nominative
+
+they devoured they
+
+#52 - No results because PP in nominative
+
+I waited for she for hours
+
+#53 - 2+4 results, which I don't understand why. It should give only 1. The tree remains the same. The only difference that I see is that in one of the results it mentions the case and in the other it doesn't.
+
+the dog was given a bone by the girl
+
+#54 - 2+6: Same as the previous one
+
+a bone was given to the dog by the girl
+
+#55 - 1 result
+
+the gorilla waited on the bench
+
+#56 - 1 result
+
+the zookeeper waited on the gorilla
+
+#57 - 2 results: In general I have a problem with the verb "put" because it's neither transitive, nor ditransitive or intransitive. It has an object and an OBL which shows the location ("I put something somewhere"). So I created a template for "locative-transatives".
+
+the gorilla put the banana in the cage
+
+#58 - 1 result
+
+the gorilla in the cage devoured a banana
+
+#59 - 1+1 results due to OT-marks
+
+the gorilla devoured a banana in the cage
+
+#60 - 2+3 results: Again a problem with the verb "put" I think.
+
+a banana was put in the cage by the gorilla
+
+#61 - 1 result
+
+the zookeeper waited by the bench
+
+#62 - 1+1 results due to OT-marks
+
+the zookeeper waited by the bench in the garden

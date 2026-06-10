@@ -84,7 +84,7 @@ the girl give the gorilla bananas (0 0.001 16)
 
 #22 - Subject and verb don't agree
 
-gorillas devours bananas (0 0.001 9)
+gorillas devours bananas (0 0.000 9)
 
 #23 - Subject and verb don't agree
 
@@ -112,11 +112,11 @@ a bone was given to the dog by the girl (2+6 0.001 45)
 
 #29 - The PP isn't at the end
 
-the girl gave to the dog a bone (0 0.001 0)
+the girl gave to the dog a bone (0 0.000 0)
 
 #30 - The PP isn't at the end
 
-the dog was given by the girl a bone (0 0.001 0)
+the dog was given by the girl a bone (0 0.000 0)
 
 #31 - Non-semantic PP
 
@@ -180,7 +180,7 @@ they devoured them (1 0.001 9)
 
 #46 - I don't understand why this doesn't work????
 
-I waited for him for hours (1 0.001 24)
+I waited for him for hours (0 0.001 24)
 
 #47 - All the possessive pronouns don't work. I don't know why. The f-structure shows there's a problem with the noun. It says "incomplete" and marks with black background the "c T" on the DEF.
 
@@ -246,4 +246,4 @@ the zookeeper waited by the bench (1 0.001 19)
 
 the zookeeper waited by the bench in the garden (1+1 0.001 37)
 
-# 62 sentences, 0.045 CPU secs total, 0.003 CPU secs max (06/09/26)
+# 62 sentences, 0.044 CPU secs total, 0.003 CPU secs max (06/09/26)

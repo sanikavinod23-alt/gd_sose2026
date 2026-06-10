@@ -19,15 +19,15 @@
 ((19) (1 0.001 9) (3 words))
 ((20) (1 0.001 11) (4 words))
 ((21) (0 0.001 16) (6 words))
-((22) (0 0.001 9) (3 words))
+((22) (0 0.000 9) (3 words))
 ((23) (0 0.000 0) (3 words))
 ((24) (0 0.000 0) (3 words))
 ((25) (2 0.001 32) (8 words))
 ((26) (2 0.001 32) (8 words))
 ((27) (2+4 0.001 35) (9 words))
 ((28) (2+6 0.001 45) (10 words))
-((29) (0 0.001 0) (8 words))
-((30) (0 0.001 0) (9 words))
+((29) (0 0.000 0) (8 words))
+((30) (0 0.000 0) (9 words))
 ((31) (1 0.001 19) (6 words))
 ((32) (1 0.001 15) (4 words))
 ((33) (1 0.001 17) (5 words))
@@ -43,7 +43,7 @@
 ((43) (1 0.000 6) (2 words))
 ((44) (1 0.001 9) (3 words))
 ((45) (1 0.001 9) (3 words))
-((46) (1 0.001 24) (6 words))
+((46) (0 0.001 24) (6 words))
 ((47) (0 0.000 9) (3 words))
 ((48) (0 0.001 15) (5 words))
 ((49) (0 0.000 3) (2 words))
@@ -63,25 +63,25 @@
 
 XLE release of Sep 25, 2017 21:02.
 Grammar = /Users/joanna.pepa/Desktop/GitHub/gd_sose2026/pepa/grammar1.lfg.
-Grammar last modified on Jun 09, 2026 17:06.
+Grammar last modified on Jun 09, 2026 16:49.
 Host machine is Joannas-MacBook-Air.local.
 62 sentences, 0 errors, 0 mismatches
-19 sentences had 0 parses
-43 good sentences
-34 sentences had exactly one grammatical parse
+20 sentences had 0 parses
+42 good sentences
+33 sentences had exactly one grammatical parse
 timeout = 15
 max_xle_scratch_storage = 100 MB
 prune_subtree_location = 1
 max_new_events_per_graph_when_skimming = 500
 maximum raw subtrees per sentence = 61 (#28)
 maximum event count per sentence = 7454
-average event count per graph = 92.497
-tokens = 4.4%, morph = 5.2%, multiword = 0.1%, lex = 9.1%, chart = 42.1%,
-unifier = 30.6%, completer = 2.7%, solver = 5.7%, output = 0.0%
+average event count per graph = 91.426
+tokens = 4.4%, morph = 5.2%, multiword = 0.1%, lex = 9.0%, chart = 42.5%,
+unifier = 30.5%, completer = 2.7%, solver = 5.6%, output = 0.0%
 max_alloc_mem = 365.65 MB
-0.045 CPU secs total, 0.003 CPU secs max
+0.044 CPU secs total, 0.003 CPU secs max
 elapsed time = 0 seconds
   range parsed failed  words   seconds  subtrees     optimal
-   1-10     43     19   6.16     0.001     21.00        1.26
-    all     43     19   6.16     0.001     21.00        1.26
+   1-10     42     20   6.17     0.001     20.93        1.26
+    all     42     20   6.17     0.001     20.93        1.26
 0.05 of the variance in seconds is explained by the number of subtrees
