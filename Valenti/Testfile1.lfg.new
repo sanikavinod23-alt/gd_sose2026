@@ -1,76 +1,138 @@
-"11 sentences" (0 0.003 0)
+#11 sentences#
 
-The girl chases the gorilla (1 0.002 13)
+The girl chases the gorilla (1 0.008 17)
 
-The cats chase a mouse (1 0.000 13)
+The cats chase a mouse (1 0.004 17)
 
-The boy devours a cake (1 0.000 13)
+The boy devours a cake (1 0.000 17)
 
-A dog eats a treat (1 0.004 13)
+A dog eats a treat (1 0.000 17)
 
-The boy was seen by the girl (2 0.000 23)
+The boy was seen by the girl (1 0.000 25)
 
-A mouse was devoured by the cats (2 0.004 23)
+A mouse was devoured by the cats (1 0.004 25)
 
-The cake was eaten by the boy (2 0.000 23)
+The cake was eaten by the boy (1 0.000 25)
 
-The treat was eaten (1 0.004 10)
+The treat was eaten (1 0.000 12)
 
-The girl was seen (1 0.000 10)
+The girl was seen (1 0.004 12)
 
-The girl sleeps (1 0.000 8)
+The girl sleeps (1 0.000 10)
 
-The boy appears (1 0.004 8)
+The boy appears (1 0.004 10)
 
 
-"Wrong sentences- 4 sentences" (0 0.000 0)
+#Wrong sentences- 4 sentences#
 
-The girl was slept (0 0.000 9)
+The girl was slept (0 0.000 11)
 
 The boy was appeared (0 0.000 0)
 
-The girl chase the gorilla (0 0.004 13)
+The girl chase the gorilla (0 0.000 17)
 
-The dogs chases the cat (0 0.000 13)
+The dogs chases the cat (0 0.000 17)
 
 
-"Ex4- 11 sentences" (0 0.000 0)
+#Ex4- 11 sentences#
 
-The girl gave the dog a bone (1 0.004 18)
+The girl gave the dog a bone (1 0.000 24)
 
-The girl gives the gorilla bananas (1 0.000 16)
+The girl gives the gorilla bananas (1 0.004 20)
 
-gorillas devour bananas (1 0.000 9)
+Gorillas devour bananas (1 0.000 9)
 
-A gorilla devours bananas (1 0.004 11)
+A gorilla devours bananas (1 0.000 13)
 
-The girl gives a bone to the dog (1 0.000 32)
+The girl gives a bone to the dog (1 0.000 37)
 
-The zookeeper gave a banana to the gorilla (1 0.004 32)
+The zookeeper gave a banana to the gorilla (1 0.004 37)
 
-The dog was given a bone by the girl (3 0.000 33)
+The dog was given a bone by the girl (1+1 0.000 38)
 
-A bone was given to the dog by the girl (3 0.004 45)
+A bone was given to the dog by the girl (1+1 0.000 45)
 
-The waiter waited on the table (1 0.000 21)
+The waiter waited on the table (1 0.000 23)
 
-Jordan talked to Sam (1 0.004 18)
+Jordan talked to Sam (1 0.000 15)
 
 Alex argued with a gorilla (1 0.000 19)
 
 
-"Wrong sentences- 8 sentences" (0 0.000 0)
+#Wrong sentences- 8 sentences#
 
-The girl give the gorilla bananas (0 0.004 16)
+The girl give the gorilla bananas (0 0.000 20)
 
-Gorillas devours bananas (0 0.000 0)
+Gorillas devours bananas (0 0.004 9)
 
 Gorilla devour bananas (0 0.000 0)
 
-Gorillas devours banana (0 0.000 0)
+Gorillas devours banana (0 0.000 9)
 
 The girl gave to the dog a bone (0 0.004 0)
 
 The dog was given by the girl a bone (0 0.000 0)
 
-# 36 sentences, 0.055 CPU secs total, 0.004 CPU secs max (05/11/26)
+#Ex 5 - 14 sentences#
+
+The small dog slept (1 0.000 13)
+
+The small black dog slept (1 0.004 16)
+
+The small black hungry dog ate bones (1 0.000 22)
+
+The gorilla devoured the banana quickly (1 0.004 19)
+
+The small black hungry dog ate bones quickly (1 0.000 24)
+
+The very small gorilla slept (1 0.000 15)
+
+The very very very small gorilla slept (1 0.000 19)
+
+The small, black, hungry dog slept. (1 0.000 25)
+
+He sleeps (1 0.004 6)
+
+She devoured it (1 0.000 9)
+
+They devoured them (1 0.000 9)
+
+I waited for him for hours (1 0.004 30)
+
+My dog sleeps (1 0.000 10)
+
+She gave us her banana (1 0.004 16)
+
+#ex 5 errors - 4 sentences#
+
+him sleeps (0 0.000 3)
+
+them devoured it (0 0.000 3)
+
+they devoured they (0 0.004 8)
+
+I waited for she for hours (0 0.000 24)
+
+#ex5 OT-Marks#
+
+The dog was given a bone by the girl (1+1 0.004 38)
+
+A bone was given to the dog by the girl (1+1 0.000 45)
+
+The gorilla waited on the bench (1 0.000 23)
+
+The zookeeper waited on the gorilla (1 0.000 23)
+
+The gorilla put the banana in the cage (1 0.004 34)
+
+The gorilla in the cage devoured a banana (1 0.004 30)
+
+The gorilla devoured a banana in the cage (1 0.000 33)
+
+A banana was put in the cage by the gorilla (1+1 0.004 45)
+
+The zookeeper waited by the bench (1 0.000 23)
+
+The zookeeper waited by the bench in the garden (1 0.004 43)
+
+# 60 sentences, 0.084 CPU secs total, 0.008 CPU secs max (06/10/26)
