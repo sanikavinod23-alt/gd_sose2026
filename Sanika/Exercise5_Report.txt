@@ -1,0 +1,10 @@
+Reason for multiple parses:
+
+Both structures are grammatically valid, so xle produces two, an Adjunct and an OBL and OT mark pick Adjunct as optimal.
+
+If we see the sentence: "the gorilla devoured a banana in the cage, "in the cage" which is the PP can attach to VP or NP where both attachments are syntactically available and licensed by the rules. As both structures satisfy the grammatical constraints, XLE generated two trees. 
+
+In sentences involving motion or location verbs such as “the zookeeper waited on the bench / by the bench in the garden”, multiple readings arise because PP attachment is not fully restricted by semantic selectional restrictions. May be the lack of semantic information is one of the reasons for the multiple parsing. 
+Both NP and VP level attachment satisfy the local constraints.
+
+If we intorduce semantic information this might be resolved. 
