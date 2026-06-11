@@ -1,0 +1,132 @@
+A dog devours the {bone.|bone}
+
+1:REGENERATION DID NOT MATCH 'a dog devours the bone'.
+
+A dog {sleeps.|sleeps}
+
+2:REGENERATION DID NOT MATCH 'a dog sleeps'.
+
+The dog chases a {bone.|bone}
+
+3:REGENERATION DID NOT MATCH 'the dog chases a bone'.
+
+The girls like the {cake.|cake}
+
+4:REGENERATION DID NOT MATCH 'the girls like the cake'.
+
+The gorillas see the {girl.|girl}
+
+5:REGENERATION DID NOT MATCH 'the gorillas see the girl'.
+
+The bone was devoured by a {dog.|dog}
+
+6:REGENERATION DID NOT MATCH 'the bone was devoured by a dog'.
+
+A boy was chased by the {gorilla.|gorilla}
+
+7:REGENERATION DID NOT MATCH 'a boy was chased by the gorilla'.
+
+The boys like the {girl.|girl}
+
+8:REGENERATION DID NOT MATCH 'the boys like the girl'.
+
+A girl likes the {boy.|boy}
+
+9:REGENERATION DID NOT MATCH 'a girl likes the boy'.
+
+The boy {slept.|slept}
+
+10:REGENERATION DID NOT MATCH 'the boy slept'.
+
+The cats devoured the {mice.|mice}
+
+11:REGENERATION DID NOT MATCH 'the cats devoured the mice'.
+
+A cat eats the {mouse.|mouse}
+
+12:REGENERATION DID NOT MATCH 'a cat eats the mouse'.
+
+The girl gave the dog a {bone.|bone}
+
+13:REGENERATION DID NOT MATCH 'the girl gave the dog a bone'.
+
+The girl gives the gorilla {bananas.|bananas}
+
+14:REGENERATION DID NOT MATCH 'the girl gives the gorilla bananas'.
+
+Gorillas devour {bananas.|bananas}
+
+15:REGENERATION DID NOT MATCH 'gorillas devour bananas'.
+
+A gorilla devours {bananas.|bananas}
+
+16:REGENERATION DID NOT MATCH 'a gorilla devours bananas'.
+
+The girl gives a bone to the {dog.|dog}
+
+21:REGENERATION DID NOT MATCH 'the girl gives a bone to the dog'.
+
+The zookeeper gave a banana to the {gorilla.|gorilla}
+
+22:REGENERATION DID NOT MATCH 'the zookeeper gave a banana to the gorilla'.
+
+The dog was given a bone by the {girl.|girl}
+
+23:REGENERATION DID NOT MATCH 'the dog was given a bone by the girl'.
+
+A bone was given to the dog by the {girl.|girl}
+
+24:REGENERATION DID NOT MATCH 'a bone was given to the dog by the girl'.
+
+The waiter waited on the {table.|table}
+
+27:REGENERATION DID NOT MATCH 'the waiter waited on the table'.
+
+Jordan talked to {Sam.|Sam}
+
+Alex argued with a {gorilla.|gorilla}
+
+Sam saw a monkey with a {telescope.|telescope}
+
+The dog sat 
+  { on the bench with a {book.|book}
+   |with a book on the {bench.|bench}}
+
+31:REGENERATION DID NOT MATCH 'the dog sat on the bench with a book'.
+
+The gorilla waited on the {bench.|bench}
+
+32:REGENERATION DID NOT MATCH 'the gorilla waited on the bench'.
+
+The zookeeper waited on the {gorilla.|gorilla}
+
+33:REGENERATION DID NOT MATCH 'the zookeeper waited on the gorilla'.
+
+The gorilla put the banana in the {cage.|cage}
+
+34:REGENERATION DID NOT MATCH 'the gorilla put the banana in the cage'.
+
+The gorilla in the cage devoured a {banana.|banana}
+
+35:REGENERATION DID NOT MATCH 'the gorilla in the cage devoured a banana'.
+
+The gorilla devoured a banana in the {cage.|cage}
+
+36:REGENERATION DID NOT MATCH 'the gorilla devoured a banana in the cage'.
+
+A banana was put 
+  { by the gorilla in the {cage.|cage}
+   |in the cage by the {gorilla.|gorilla}}
+
+37:REGENERATION DID NOT MATCH 'a banana was put in the cage by the gorilla'.
+
+The zookeeper waited by the {bench.|bench}
+
+38:REGENERATION DID NOT MATCH 'the zookeeper waited by the bench'.
+
+The zookeeper waited 
+  { by the bench in the {garden.|garden}
+   |in the garden by the {bench.|bench}}
+
+39:REGENERATION DID NOT MATCH 'the zookeeper waited by the bench in the garden'.
+
