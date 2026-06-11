@@ -1,59 +1,83 @@
-((1) (1 0.010 8) (3 words))
-((2) (1 0.003 13) (5 words))
+((1) (1 0.004 8) (3 words))
+((2) (1 0.002 13) (5 words))
 ((3) (1 0.002 13) (5 words))
-((4) (1 0.002 8) (3 words))
+((4) (1 0.001 8) (3 words))
 ((5) (1 0.001 13) (5 words))
 ((6) (0 0.001 13) (5 words))
 ((7) (0 0.001 0) (3 words))
 ((8) (0 0.001 0) (3 words))
 ((9) (0 0.001 0) (3 words))
-((10) (1 0.002 18) (7 words))
+((10) (1+1 0.002 23) (7 words))
 ((11) (1 0.001 10) (4 words))
 ((12) (1 0.001 10) (4 words))
-((13) (1 0.001 18) (7 words))
-((14) (0 0.001 0) (7 words))
-((15) (0 0.001 0) (4 words))
+((13) (1+1 0.002 23) (7 words))
+((14) (0 0.001 9) (7 words))
+((15) (0 0.001 9) (4 words))
 ((16) (1 0.001 18) (7 words))
 ((17) (1 0.001 16) (6 words))
 ((18) (1 0.001 9) (3 words))
 ((19) (1 0.001 11) (4 words))
-((20) (0 0.001 16) (6 words))
+((20) (0 0.002 16) (6 words))
 ((21) (0 0.001 9) (3 words))
 ((22) (0 0.001 0) (3 words))
 ((23) (0 0.001 0) (3 words))
-((24) (1 0.001 21) (8 words))
-((25) (1 0.001 21) (8 words))
-((26) (1 0.002 23) (9 words))
-((27) (1 0.002 26) (10 words))
+((24) (1 0.002 32) (8 words))
+((25) (1 0.002 32) (8 words))
+((26) (1+2 0.002 33) (9 words))
+((27) (1+1 0.002 45) (10 words))
 ((28) (0 0.001 0) (8 words))
 ((29) (0 0.001 0) (9 words))
-((30) (2 0.002 19) (6 words))
-((31) (1 0.001 12) (4 words))
+((30) (1 0.002 19) (6 words))
+((31) (1+1 0.001 15) (4 words))
 ((32) (1 0.001 17) (5 words))
-((33) (2 0.002 26) (7 words))
-((34) (2 0.002 37) (9 words))
+((33) (1+1 0.002 26) (7 words))
+((34) (1+1 0.002 37) (9 words))
+((35) (1 0.001 11) (4 words))
+((36) (1 0.001 14) (5 words))
+((37) (1 0.001 20) (7 words))
+((38) (1 0.002 15) (6 words))
+((39) (1 0.002 22) (8 words))
+((40) (1 0.001 13) (5 words))
+((41) (1 0.002 17) (7 words))
+((42) (1 0.001 23) (6 words))
+((43) (1 0.001 6) (2 words))
+((44) (1 0.001 9) (3 words))
+((45) (1 0.001 9) (3 words))
+((46) (2+1 0.002 24) (6 words))
+((47) (1 0.001 8) (3 words))
+((48) (1 0.002 14) (5 words))
+((49) (1+2 0.002 33) (9 words))
+((50) (1+1 0.003 45) (10 words))
+((51) (1 0.002 19) (6 words))
+((52) (1+1 0.002 19) (6 words))
+((53) (1 0.002 28) (8 words))
+((54) (1 0.002 24) (8 words))
+((55) (1+1 0.002 28) (8 words))
+((56) (1+2 0.003 41) (10 words))
+((57) (1 0.002 19) (6 words))
+((58) (1+1 0.002 37) (9 words))
 
 XLE release of Sep 25, 2017 21:02.
 Grammar = /Users/valeriiavatulina/Desktop/GD/grammar/gd_sose2026/vatulina.valeriia/grammar1.lfg.
-Grammar last modified on May 21, 2026 12:46.
+Grammar last modified on Jun 11, 2026 23:47.
 Host machine is MacBook-Air-Valeriia.local.
-34 sentences, 0 errors, 0 mismatches
+58 sentences, 0 errors, 0 mismatches
 12 sentences had 0 parses
-22 good sentences
-19 sentences had exactly one grammatical parse
+46 good sentences
+45 sentences had exactly one grammatical parse
 timeout = 100
 max_xle_scratch_storage = 100 MB
 prune_subtree_location = 1
 max_new_events_per_graph_when_skimming = 500
-maximum raw subtrees per sentence = 54 (#27)
-maximum event count per sentence = 1547
-average event count per graph = 41.059
-tokens = 5.5%, morph = 5.6%, multiword = 0.1%, lex = 13.3%, chart = 41.1%,
-unifier = 26.9%, completer = 2.6%, solver = 4.8%, output = 0.0%
-max_alloc_mem = 176.37 MB
-0.055 CPU secs total, 0.010 CPU secs max
-elapsed time = 1 seconds
+maximum raw subtrees per sentence = 57 (#27)
+maximum event count per sentence = 4278
+average event count per graph = 52.549
+tokens = 6.7%, morph = 7.0%, multiword = 0.2%, lex = 10.6%, chart = 42.8%,
+unifier = 25.5%, completer = 2.8%, solver = 4.5%, output = 0.0%
+max_alloc_mem = 304.35 MB
+0.091 CPU secs total, 0.004 CPU secs max
+elapsed time = 0 seconds
   range parsed failed  words   seconds  subtrees     optimal
-   1-10     22     12   5.86     0.002     16.68        1.14
-    all     22     12   5.86     0.002     16.68        1.14
-0.06 of the variance in seconds is explained by the number of subtrees
+   1-10     46     12   6.07     0.002     20.20        1.02
+    all     46     12   6.07     0.002     20.20        1.02
+0.19 of the variance in seconds is explained by the number of subtrees

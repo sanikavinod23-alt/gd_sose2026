@@ -8,70 +8,103 @@ DEMO   ENGLISH   CONFIG (1.0)
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
   EPSILON   e.
-  OPTIMALITYORDER NOGOOD.
+  OPTIMALITYORDER NOGOOD  PPadj +OblAg +PPattach.
+  GENOPTIMALITYORDER NOGOOD .
+
+----
+
+DEMO ENGLISH MORPHOLOGY (1.0)
+
+TOKENIZE:
+P!basic-parse-tok.fst G!default-gen-tokenizer.fst
 
 ----
 
 DEMO   ENGLISH   RULES (1.0)
 
-   S -->	NP:	(^ SUBJ) = !
+   	S -->	NP:	(^ SUBJ) = !
 	    		(! CASE) = nom;
- 			VP: ^= !.
+ 			VP: ^= !;
+			(PERIOD).
 
-   VP -->	(AUX)
+   	VP -->	(AUX)
 			V:^=!;
 			(NP: (^ OBJ) = ! "optional direct object"
-	    	(! CASE) = acc)
+	    		 (! CASE) = acc)
+			Adv*: ! $ (^ ADJUNCT);
 			(NP: (^ OBJ2) = !) "restricted object of d-transitives"
 			PP*: { ! $	(^ ADJUNCT) "PPs can be adjuncts"
-						(! PTYPE) =c sem "only semantic PPs here"
+						(! PTYPE) =c sem 
+						@(OT-MARK PPadj)
 						|
-						(^ OBL) = ! "or a a general oblique"
+						(^ OBL) = !
+						(! PTYPE) =c nosem "or a a general oblique"
 						};
 			(PP: (^ OBL-TO) = !
 				 (! PFORM) =c to)
 			(PP: (^ OBL-AG) = !
-				 (! PFORM) =c by).
+				 (! PFORM) =c by
+				 @(OT-MARK OblAg)).
 
-   NP -->	(D)
+   	NP -->	{({D
+			|
+			PRON: (! PRON-TYPE) =c poss
+				  (^ POSS) = !;
+			})
    			AP*: ! $ (^ ADJUNCT);
  			N
 			PP*: ! $ (^ ADJUNCT)
-					 (! PTYPE) =c sem.
-
-   PP --> { P: ^ = ! "head of PP" "semantic"
-   			(! PTYPE) =c sem;
-			NP: (^ OBJ) = !
-			(! CASE) = acc;
+				 (! PTYPE) =c sem 
+				 @(OT-MARK PPattach)
 			|
-			P: ^ = ! "head of PP" "non-semantic"
-			(! PTYPE) =c nosem;
-			NP}.
+			PRON
+			}.
+
+	AP -->	Adv*: ! $ (^ ADJUNCT);
+			A
+			(COMMA).
+
+   	PP -->	{P: ^ = !
+   				(! PTYPE) =c sem;
+			NP: (^ OBJ) = !
+			    (! CASE) = acc;
+			|
+			P: ^ = !
+			    (! PTYPE) =c nosem;
+			NP
+			}.
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
 
+OT-MARK(_mark) = "assigns an OT mark, from common templates"
+    _mark $ o::*.
+
 TRANS(P) = @(PASS (^ PRED) = 'P<(^ SUBJ) (^ OBJ)>').
 
 INTRANS(P) = (^ PRED) = 'P<(^ SUBJ)>'
-	    	 (^ PASSIVE) = -.
+	     (^ PASSIVE) = -.
 
 OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
 
 DI-TRANS(P) = @(PASS @(DAT-SHIFT (^ PRED) = 'P<(^ SUBJ) (^ OBJ) (^ OBL-TO)>')).
 
-INTRANS-OBL(P) = (^ PRED) = 'P<(^ SUBJ)(^ OBL)>'
-				 (^ OBL PTYPE) = nosem.
+INTRANS-OBL(P) = @(PASS (^ PRED) = 'P<(^ SUBJ)(^ OBL)>')
+		(^ OBL PTYPE) = nosem.
+
+TRANS-OBL(P) = @(PASS(^ PRED) = 'P<(^ SUBJ) (^ OBJ) (^ OBL)>').
 
 3PER-SG = (^ SUBJ PERS) = 3
-	  	  (^ SUBJ NUM) = sg.
+	      (^ SUBJ NUM) = sg.
 
 3PER-PL = (^ SUBJ PERS) = 3
-		  (^ SUBJ NUM) = pl.
+	  	  (^ SUBJ NUM) = pl.
 
 CN-SG = (^ NUM) = sg
-		(^ DEF)
-		(^ PERS) = 3.
+		(^ PERS) = 3
+		{ (^ DEF)
+        | (^ POSS)
+        }.
 
 CN-PL = (^ NUM) = pl
 		(^ PERS) = 3.
@@ -83,21 +116,24 @@ PRES-TNS = (^ TENSE) = present.
 PAST-TNS = (^ TENSE) = past.
 
 PAST-PRT = (^ PARTICIPLE) = past
-	   	   (^ CHECK _AUX)= +.
+		   (^ PASSIVE) = +.
 
-PREP(P) = 
-		{	(^ PTYPE) = sem
-			(^ PRED) = 'P<(^ OBJ)>'
-	  		| 	
-			(^ PTYPE) = nosem
-	    	(^ PFORM) = P
-		}.
+PRON-PERS(P N C R) = (^ PRED) = 'P'
+			   (^ NUM) = N
+			   (^ CASE) = C
+			   (^ PERS) = R
+			   (^ PRON-TYPE) = pers.
 
-PREP-SEM(P) = (^ PTYPE) = sem
-              (^ PRED) = 'P<(^ OBJ)>'.
+PRON-POSS(P R) = (^ PRED) = 'P'
+			   (^ PERS) = R
+			   (^ PRON-TYPE) = poss.
 
-PREP-NOSEM(P) = (^ PTYPE) = nosem
-                (^ PFORM) = P.
+PREP(P) = {(^ PTYPE) = sem
+	   (^ PRED) = 'P<(^ OBJ)>'
+	   | 	
+	   (^ PTYPE) = nosem
+	   (^ PFORM) = P
+	  }.
 
 DAT-SHIFT (FRAME) = {FRAME
 		    | FRAME
@@ -118,6 +154,20 @@ PASS (FRAME) = { FRAME
 
 DEMO ENGLISH LEXICON (1.0)
 
+"adjectives"
+
+small		A * (^ PRED) = 'small'.
+
+black		A * (^ PRED) = 'black'.
+
+hungry		A * (^ PRED) = 'hungry'.
+
+"adverbs"
+
+very		Adv * (^ PRED) = 'very'.
+
+quickly		Adv * (^ PRED) = 'quickly'.
+
 "proper names"
 
 Alex		N * (^ PRED) = 'Alex'.
@@ -135,6 +185,7 @@ bananas		N * (^ PRED) = 'banana'
 	    		@CN-PL.
 
 bench		N * (^ PRED) = 'bench'
+				(^ ANIM) = -
 				@CN-SG.
 
 book		N * (^ PRED) = 'book'
@@ -147,6 +198,9 @@ bones		N * (^ PRED) = 'bone'
 	    		@CN-PL.
 
 boy			N * (^ PRED) = 'boy'
+	    		@CN-SG.
+
+cage 		N * (^ PRED) = 'cage'
 	    		@CN-SG.
 
 cake		N * (^ PRED) = 'cake'
@@ -164,13 +218,24 @@ dog			N * (^ PRED) = 'dog'
 dogs		N * (^ PRED) = 'dog'
 	    		@CN-PL.
 
+garden		N * (^ PRED) = 'garden'
+				@CN-SG.
+
 girl		N * (^ PRED) = 'girl'
 	    		@CN-SG.
 
 gorilla		N * (^ PRED) = 'gorilla'
+				(^ ANIM) = +
 	    		@CN-SG.
 
 gorillas	N * (^ PRED) = 'gorilla'
+				(^ ANIM) = +
+	    		@CN-PL.
+
+hour		N * (^ PRED) = 'hour'
+	    		@CN-SG.
+
+hours		N * (^ PRED) = 'hour'
 	    		@CN-PL.
 
 monkey		N * (^ PRED) = 'monkey'
@@ -197,106 +262,121 @@ waiter		N * (^ PRED) = 'waiter'
 "verbs"
 
 argued		V * @(INTRANS-OBL argue)
-				(^ OBL PFORM) =c with
-				@PAST-TNS.
+		    	(^ OBL PFORM) =c with
+		    	@PAST-TNS.
 
 chase		V * @(TRANS chase)
-	    		@PRES-TNS
-	    		@3PER-PL.
+	    	    @PRES-TNS
+	    	    @3PER-PL.
 
 chases		V * @(TRANS chase)
-	    		@PRES-TNS
-	    		@3PER-SG.
+	    	    @PRES-TNS
+	     	    @3PER-SG.
 
 chased		V * @(TRANS chase)
-	    		{ @PAST-PRT
-	    		|
-				@PAST-TNS}.
+	    	    { @PAST-PRT
+	    	    |
+		    	@PAST-TNS}.
 
 devour		V * @(TRANS devour)
-	    		@PRES-TNS
-	    		@3PER-PL.
+	    	    @PRES-TNS
+	    	    @3PER-PL.
+
+devoured	V * @(TRANS devour)
+	    	    { @PAST-PRT
+	    	    |
+		    	@PAST-TNS}.
 
 devours		V * @(TRANS devour)
-	    		@PRES-TNS
-	    		@3PER-SG.
-
-devoured 	V * @(TRANS devour)
-	    		{ @PAST-PRT
-	    		|
-				@PAST-TNS}.
+	    	    @PRES-TNS
+	    	    @3PER-SG.
 
 eats		V * @(OPT-TRANS eat)
-	    		@PRES-TNS
-	    		@3PER-SG.
+	    	    @PRES-TNS
+	    	    @3PER-SG.
 
 eat			V * @(OPT-TRANS eat)
-	    		@PRES-TNS
-	    		@3PER-PL.
+	    	    @PRES-TNS
+	    	    @3PER-PL.
 
 ate			V * @(OPT-TRANS eat)
-	    		@PAST-TNS.
+	    	    @PAST-TNS.
 
 eaten		V * @(OPT-TRANS eat)
-				@PAST-PRT.
+		    	@PAST-PRT.
 
 give		V * @(DI-TRANS give)
-				@PRES-TNS
-				@3PER-PL.
+		   		@PRES-TNS
+		    	@3PER-PL.
 
 gives		V * @(DI-TRANS give)
-				@PRES-TNS
-				@3PER-SG.
+		    	@PRES-TNS
+		    	@3PER-SG.
 
 given		V * @(DI-TRANS give)
-				@PAST-PRT.
+		    	@PAST-PRT.
 
 gave		V * @(DI-TRANS give)
-				@PAST-TNS.
+		    	@PAST-TNS.
+
+put 		V *@(TRANS-OBL put)
+				{(^ OBL PFORM) =c in
+				|
+				(^ OBL PFORM) =c on}
+		    	{ @PAST-PRT
+	    	    |
+		    	@PAST-TNS}
+				.
+
+waited		V * {@(INTRANS wait)
+				|
+				@(INTRANS-OBL wait)
+				{
+		    	(^ OBL PFORM) =c on
+				(^ OBL ANIM) =c +
+				|
+				(^ OBL PFORM) =c for}
+				}
+		    	@PAST-TNS.
+
 
 see			V * @(TRANS see)
-	    		@PRES-TNS
-	    		@3PER-PL.
+	    	    @PRES-TNS
+	    	    @3PER-PL.
 
 sees		V * @(TRANS see)
-	    		@PRES-TNS
-	    		@3PER-SG.
+	    	    @PRES-TNS
+	    	    @3PER-SG.
 
 saw			V * @(TRANS see)
-				@PAST-TNS.
+		    	@PAST-TNS.
 
 seen		V * @(TRANS see)
-	    		@PAST-PRT.
+	    	    @PAST-PRT.
 
 sit 		V * @(INTRANS sit)
-	    		@PRES-TNS
-	    		@3PER-PL.
+		    	@PRES-TNS
+		    	@3PER-PL.
 
 sat			V * @(INTRANS sit)
-	    		@PAST-TNS.
+		    	@PAST-TNS.
 
 sleep		V * @(INTRANS sleep)
-	    		@PRES-TNS
-	    		@3PER-PL.
+	    	    @PRES-TNS
+	    	    @3PER-PL.
 
 sleeps		V * @(INTRANS sleep)
-				@PRES-TNS
-	    		@3PER-SG.
+		    	@PRES-TNS
+	    	    @3PER-SG.
 
 slept		V * @(INTRANS sleep)
-	    		@PAST-TNS.
+		    	@PAST-TNS.
 
 talked		V * {@(INTRANS talk) 
-				| 
-				@(INTRANS-OBL talk)
-				(^ OBL PFORM) =c to}
-				@PAST-TNS.
-
-waited		V * {@(INTRANS wait) 
-				| 
-				@(INTRANS-OBL wait)
-				(^ OBL PFORM) =c on}
-				@PAST-TNS.
+		    	| 
+		    	@(INTRANS-OBL talk)
+		    	(^ OBL PFORM) =c to}
+		    	@PAST-TNS.
 
 "determiners"
 
@@ -305,35 +385,76 @@ the		D *	(^ DEF) = +.
 a		D *	(^ DEF) = -
 			(^ NUM) = sg.
 
+"pronouns"
+
+I		PRON * @(PRON-PERS I sg nom 1).
+
+me		PRON * @(PRON-PERS I sg acc 1).
+
+my		PRON * @(PRON-POSS I 1).
+
+we		PRON * @(PRON-PERS we pl nom 1).
+
+us		PRON * @(PRON-PERS we pl acc 1).
+
+he 		PRON * @(PRON-PERS he sg nom 3).
+
+him 	PRON * @(PRON-PERS he sg acc 3).
+
+his 	PRON * @(PRON-POSS he 3).
+
+she		PRON * @(PRON-PERS she sg nom 3).
+
+her		PRON * {@(PRON-PERS she sg acc 3)
+				|
+				@(PRON-POSS she 3)
+				}.
+
+it 		PRON * {@(PRON-PERS it sg nom 3)
+				|
+				@(PRON-PERS it sg acc 3)
+				}.
+
+its 	PRON * @(PRON-POSS it 3).
+
+they	PRON * @(PRON-PERS they pl nom 3).
+
+them	PRON * @(PRON-PERS they pl acc 3).
+
 "prepositions"
 
-by		P *	@(PREP-NOSEM by).
+by 		P *@(PREP by).
 
-to		P *	@(PREP-NOSEM to).
+to 		P *@(PREP to).
 
-with	P * {@(PREP-SEM with)
-			|
-			@(PREP-NOSEM with)}.
+in 		P *@(PREP in).
 
-on 		P * {@(PREP-SEM on)
-			|
-			@(PREP-NOSEM on)}.
+with 	P *@(PREP with).
+
+on 		P *@(PREP on).
+
+for 	P *@(PREP for).
 
 "auxiliaries"
 
-was	AUX * @PAST-TNS
-	      (^ PASSIVE) = +
-	      (^ CHECK _AUX)=c +
-	      { (^ SUBJ PERS) = 1
-	      | (^ SUBJ PERS) = 3
-	      }
-	      (^ SUBJ NUM) = sg.
+was		AUX * 	@PAST-TNS
+				(^ PASSIVE) = +
+	      		{ (^ SUBJ PERS) = 1
+	      		| (^ SUBJ PERS) = 3
+	      		}
+	      		(^ SUBJ NUM) = sg.
 
-were	AUX * @PAST-TNS
-	      (^ PASSIVE) = +
-	      (^ CHECK _AUX)=c +
-	      { (^ SUBJ PERS) = 2
-	      | (^ SUBJ PERS) = 3
-	      }
-	      (^ SUBJ NUM) = pl.
+were	AUX * 	@PAST-TNS
+				(^ PASSIVE) = +
+	      		{ (^ SUBJ PERS) = 2
+	      		| (^ SUBJ PERS) = 3c
+	      		}
+	      		(^ SUBJ NUM) = pl.
+
+"punctuation"
+
+.	PERIOD * .
+
+,	COMMA * .
+
 ----
