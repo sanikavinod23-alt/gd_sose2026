@@ -1,0 +1,450 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES  .
+  RULES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH).
+    LEXENTRIES   (DEMO ENGLISH).
+   
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD +PPattach PPadj.
+
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+   S --> NP: (^ SUBJ)=!
+	     (! CASE)=nom;
+	 VP: ^=!;
+	 (PERIOD).
+     
+   NP --> {  (D)
+	     AP*: ! $ (^ ADJUNCT);
+	     N   
+             PP*: ! $ (^ ADJUNCT)
+                  (! PTYPE) =c sem
+		  @(OT-MARK PPattach)
+	   | PRON: ^ = !
+	   }.   
+
+
+   AP --> Adv*: ! $ (^ ADJUNCT);
+	  A
+	  (COMMA).
+
+   VP --> (AUX: ^ = !)   
+          V: ^=!; 
+          (NP: (^ OBJ)=!   
+               (! CASE)=acc)
+          (NP: (^ OBJ2)=!) 
+          
+	  PP*: { ! $ (^ ADJUNCT)
+          	     (! PTYPE) =c sem
+		     @(OT-MARK PPadj)
+		     (! ANIM) =c -
+                     |
+          	     (^ OBL) = !
+		     (! ANIM) =c +
+		     |
+		     (^ OBL) = !
+		     (! PFORM)=c for
+		     (! ANIM)=c +
+          	       }; 
+
+          (PP: (^ OBL-TO) = !
+ 	              (! PFORM)=c to)
+
+          (PP: (^ OBL-AG) = !
+	              (! PFORM)=c by)
+
+	  Adv*: ! $ (^ ADJUNCT).
+
+
+   PP --> { P: ^ = !
+               (! PTYPE) =c sem;
+           NP: (^ OBJ) = !
+               (! CASE) = acc
+	       (^ ANIM) = (! ANIM)
+               |
+           P: ^ = !
+              (! PTYPE) =c nosem;
+           NP: (^ OBJ) = !
+	       (^ ANIM) = (! OBJ ANIM)
+          }.  
+  
+----
+
+DEMO ENGLISH TEMPLATES (1.0)
+
+
+CN-SG(P) = (^ PRED) = 'P'
+           (^ NUM)  = sg
+           (^ PERS) = 3
+	   (^ DEF).
+
+CN-PL(P) = (^ PRED) = 'P'
+           (^ NUM)  = pl
+           (^ PERS) = 3.
+
+PRES3SG = (^ TENSE) = pres
+          (^ SUBJ PERS) =c 3
+          (^ SUBJ NUM) =c sg.
+
+PRES3PL = (^ TENSE) = pres
+          (^ SUBJ PERS) =c 3 
+          (^ SUBJ NUM) =c pl.
+
+PAST = (^ TENSE) = past.		"کلا برای اقعال زمان گذشته"
+
+PST = (^ TENSE) = past			"برای تو بی ورب مجهول تعریف شده فقط- یک بار هم با PAST امتحان کن ببین جواب میده یا نه"
+      (^ SUBJ PERS) = 3
+      (^ SUBJ NUM) = sg.
+
+INTRANS(P) = (^ PRED) = 'P<(^ SUBJ)>'.
+
+TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ)(^ OBJ)>').
+
+DITRANS(P) =
+   @(PASS
+      @(DAT-SHIFT
+         (^ PRED) = 'P<(^ SUBJ)(^ OBJ)(^ OBL-TO)>'
+      )
+   ).
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+INDIC = (^ MOOD) = indicative.
+
+DAT-SHIFT(FRAME) =
+   { FRAME
+   | FRAME
+     (^ OBJ) --> (^ OBJ2)
+     (^ OBL-TO) --> (^ OBJ)
+   }.
+
+
+PASS(FRAME) =
+   { FRAME
+   | FRAME
+     (^ SUBJ) --> (^ OBL-AG)
+     (^ OBJ) --> (^ SUBJ)
+     (^ PASSIVE) = +
+   }.
+
+
+PARTICIP = (^ PARTICIPLE) = past.
+
+PASSIV = (^ PASSIVE) = +.
+
+PREP(P) = { (^ PRED) = 'P<(^ OBJ)>'
+	    (^ PTYPE) = sem
+	    (^ PFORM) = P
+	  | (^ PTYPE) = nosem
+	    (^ PFORM) = P }.
+
+ADJ(P) = (^ PRED) = 'P'.
+
+OT-MARK(MARK) = (^ OT-MARK MARK) = +.
+
+ANIMATE =   (^ ANIM) = +.
+
+INANIMATE =   (^ ANIM) = -.
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+bones 	  N * @(CN-PL bone)
+	      @INANIMATE.
+
+bone 	  N * @(CN-SG bone)
+	      @INANIMATE.
+
+banana	  N * @(CN-SG banana)
+	      @INANIMATE.
+
+bananas	  N * @(CN-PL banana)
+	      @INANIMATE.
+
+girl	  N * @(CN-SG girl)
+	      @ANIMATE.
+
+gorilla	  N * @(CN-SG gorilla)
+	      @ANIMATE.
+
+gorillas  N * @(CN-PL gorilla)
+	      @ANIMATE.
+
+dog 	  N * @(CN-SG dog)
+	      @ANIMATE.
+
+Jordan	  N * (^ PRED) = 'jordan'
+	      @ANIMATE.
+
+Sam	  N * (^ PRED) = 'sam'
+	      @ANIMATE.
+
+Alex 	  N * (^ PRED) = 'alex'
+	      @ANIMATE.
+
+zookeeper N * @(CN-SG zookeeper)
+	      @ANIMATE.
+	     
+book	   N * @(CN-SG book)
+	      @INANIMATE.
+
+cat       N * @(CN-SG cat)
+	      @ANIMATE.
+
+mouse	  N * @(CN-SG mouse)
+	      @ANIMATE.
+
+treat	  N * @(CN-SG treat)
+	      @INANIMATE.
+
+dogs 	  N * @(CN-PL dog)
+	      @ANIMATE.
+
+cats 	  N * @(CN-PL cat)
+	      @ANIMATE.
+
+cake	  N * @(CN-SG cake)
+	      @INANIMATE.
+
+waiter	  N * @(CN-SG waiter)
+	      @ANIMATE.
+
+table 	  N * @(CN-SG table)
+	      @INANIMATE.
+
+telescope N * @(CN-SG telescope)
+	      @INANIMATE.
+
+monkey	  N * @(CN-SG monkey)
+	      @ANIMATE.
+
+monkeys	  N * @(CN-PL monkey)
+	      @ANIMATE.
+
+bench     N * @(CN-SG bench)
+	      @INANIMATE.
+
+cage      N * @(CN-SG cage)
+	      @INANIMATE.
+
+garden    N * @(CN-SG garden)
+	      @INANIMATE.
+
+hours	  N * @(CN-SG hour)
+	      @INANIMATE.
+
+sleeps	  V * @(INTRANS sleep)
+	      @INDIC
+	      @PRES3SG.
+
+chase     V * @(TRANS chase)
+	      @INDIC
+	      @PRES3PL.
+
+chases	  V * @(TRANS chase)
+	      @INDIC
+	      @PRES3SG.
+
+see	  V * @(TRANS see)
+	      @INDIC
+	      @PRES3PL.
+
+appears   V * (^ PRED) = 'appear<(^ SUBJ)>'
+	      @INDIC
+	      @PRES3SG.
+
+eats	  V * @(OPT-TRANS eat)
+	      @INDIC
+	      @PRES3SG.
+
+eat	  V * @(OPT-TRANS eat)
+	      @INDIC
+	      @PRES3PL.
+
+
+was       AUX * "(^ PRED) = 'be'"
+                @PST
+	        @INDIC
+                (^ PARTICIPLE) =c past.
+
+
+sees     V * @(TRANS see)
+             @PRES3SG
+             @INDIC.
+
+saw	 V * @(TRANS see)
+             @PAST
+	     @INDIC.
+
+sat 	 V * @(INTRANS sit)
+             @PAST
+	     @INDIC.
+
+seen     V * @(TRANS see)
+             @PARTICIP
+	     @PASSIV.
+
+slept	 V * @(INTRANS sleep)
+             @PAST
+             @INDIC.
+
+give	 V * @(DITRANS give)
+	     @PRES3PL
+	     @INDIC.
+
+gives    V * @(DITRANS give)
+             @PRES3SG
+             @INDIC.
+
+gave	 V * @(DITRANS give)
+	     @PAST
+	     @INDIC.
+
+put	 V * @(TRANS put)
+	     @PAST
+	     @INDIC.
+
+put	 V * @(TRANS put)
+             @PARTICIP
+             @PASSIV.
+
+talked   V * @(INTRANS talk)
+	     @PAST
+	     @INDIC.
+
+
+waited	 V*  { (^ PRED) = 'wait<(^ SUBJ)>'
+             | (^ PRED) = 'wait<(^ SUBJ)(^ OBL)>'
+             }
+	     @PAST
+	     @INDIC.
+
+argued	 V * @(INTRANS argue)
+             @PAST
+             @INDIC.
+
+given 	  V * @PARTICIP
+              @(DITRANS give)
+	      @PASSIV.
+
+ate	 V * @(OPT-TRANS eat)
+	     @PAST
+	     @INDIC.
+
+eaten    V * @(OPT-TRANS eat)
+             @PARTICIP
+	     @PASSIV.
+
+
+chased   V * @(TRANS chase)
+             @PARTICIP
+	     @PASSIV.
+
+devours  V * @(TRANS devour)
+             @PRES3SG
+	     @INDIC.
+
+devour	 V * @(OPT-TRANS devour)
+             @PRES3PL
+	     @INDIC.
+
+devoured V * @(OPT-TRANS devour)
+             @PARTICIP
+	     @PASSIV.
+
+.	PERIOD * .
+
+,	COMMA * .
+
+
+the  D *  (^ DEF) = +.
+
+a   D *  (^ DEF) = -.
+
+to P * @(PREP to).
+
+by P * @(PREP by).
+
+with P * @(PREP with).
+
+on P * @(PREP on).
+
+in P * @(PREP in).
+
+for P * @(PREP for).
+
+small  A * (^PRED) = 'small'.
+
+black  A * (^PRED) = 'black'.
+
+hungry  A * (^PRED) = 'hungry'.
+
+very Adv * (^ PRED) = 'very'.
+
+quickly Adv * (^ PRED) = 'quickly'.
+
+
+my   D * (^ POSS PRED) = 'pro'
+         (^ POSS PERS) = 1
+         (^ POSS NUM)  = sg
+         (^ DEF) = +.
+
+
+I   PRON * (^ PRED) = 'pro'
+           (^ NUM)  = sg
+           (^ PERS) = 1
+           (^ CASE) = nom.
+
+he   PRON * (^ PRED) = 'pro'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+            (^ CASE) = nom
+	        (^ GEND)=masc.
+
+she  PRON * (^ PRED) = 'pro'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+            (^ CASE) = nom
+	        (^ GEND)=fem.
+
+they PRON * (^ PRED) = 'pro'
+            (^ NUM)  = pl
+            (^ PERS) = 3
+            (^ CASE) = nom.
+
+them PRON * (^ PRED) = 'pro'
+            (^ NUM)  = pl
+            (^ PERS) = 3
+            (^ CASE) = acc.
+
+him  PRON * (^ PRED) = 'pro'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+	    (^ GEND)=fem
+            (^ CASE) = acc.
+
+her  D * (^ POSS PRED) = 'pro'
+         (^ POSS PERS) = 3
+         (^ POSS NUM)  = sg
+         (^ POSS GEND) = fem
+         (^ DEF) = +.
+
+us   PRON * (^ PRED) = 'pro'
+            (^ NUM)  = pl
+            (^ PERS) = 1
+            (^ CASE) = acc.
+
+it   PRON * (^ PRED) = 'pro'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+	    (^ CASE) = acc.
+
+----
+
