@@ -9,7 +9,7 @@ the cats chase a mouse (1 0.002 13)
 
 the dog eats (1 0.001 8)
 
-the cats eat a treat (1 0.003 13)
+the cats eat a treat (1 0.002 13)
 
 
 # Ungrammatical base sentences 6-9
@@ -25,13 +25,13 @@ gorillas devours banana (0 0.001 0)
 
 # Grammatical passive sentences 10-13
 
-the girl was seen by the gorilla (1+1 0.002 23)
+the girl was seen by the gorilla (1+2 0.002 23)
 
-the cake was eaten (1 0.002 10)
+the cake was eaten (1 0.001 10)
 
-the cat was chased (1 0.002 10)
+the cat was chased (1 0.001 10)
 
-the bone was devoured by a dog (1+1 0.002 23)
+the bone was devoured by a dog (1+2 0.001 23)
 
 
 # Ungrammatical passive sentences 14-15
@@ -47,14 +47,14 @@ the girl gave the dog a bone (1 0.001 18)
 
 the girl gives the gorilla bananas (1 0.001 16)
 
-gorillas devour bananas (1 0.001 9)
+gorillas devour bananas (1 0.002 9)
 
 a gorilla devours bananas (1 0.001 11)
 
 
 # Ungrammatical ditransitives 20 - 23
 
-the girl give the gorilla bananas (0 0.001 16)
+the girl give the gorilla bananas (0 0.002 16)
 
 gorillas devours bananas (0 0.001 9)
 
@@ -69,24 +69,94 @@ the girl gives a bone to the dog (1 0.001 32)
 
 the zookeeper gave a banana to the gorilla (1 0.001 32)
 
-the dog was given a bone by the girl (1+2 0.001 33)
+the dog was given a bone by the girl (1+3 0.001 33)
 
-a bone was given to the dog by the girl (1+1 0.002 45)
+a bone was given to the dog by the girl (1+2 0.002 45)
 
 
 # Grammatical PP sentences 28 - 30
 
-The waiter waited on the table. (1+1 0.001 21)
+The waiter waited on the table. (1+4 0.001 21)
 
-Jordan talked to Sam. (1+1 0.001 17)
+Jordan talked to Sam. (1+2 0.001 17)
 
-Alex argued with a gorilla. (1+1 0.001 19)
+Alex argued with a gorilla. (1+2 0.001 19)
 
 
 # PP attachment sentences 31 - 32
 
 Sam saw a monkey with a telescope. (1+1 0.001 28)
 
-The dog sat on the bench with a book.  (1+1 0.001 39)
+The dog sat on the bench with a book. (1+1 0.001 39)
+
+# adjectives 33 - 41
+
+the small dog slept (1 0.001 11)
+
+the small black dog slept (1 0.001 14)
+
+the small black hungry dog ate bones (1 0.001 20)
+
+the gorilla devoured the banana quickly (1 0.001 15)
+
+the small black hungry dog ate bones quickly (1 0.001 22)
+
+the very small gorilla slept (1 0.001 13)
+
+the very very very small gorilla slept (1 0.001 17)
+
+the dog was given a bone by the girl (1+3 0.001 33)
+
+a bone was given to the dog by the girl (1+2 0.001 45)
+
+# Pronouns 42 - 47
+
+he sleeps. (1 0.001 8)
+
+she devoured it. (1 0.001 11)
+
+they devoured them. (1 0.001 11)
+
+I waited for him for hours (1 0.001 24)
+
+my dog sleeps (1 0.001 8)
+
+she gave us her banana (1 0.001 14)
+
+# Pronouns ungrammatical 48 - 51
+
+him sleeps (0 0.001 3)
+
+them devoured it (0 0.001 3)
+
+they devoured they (0 0.001 8)
+
+I waited for she for hours (0 0.001 13)
+
+# OT-marks 52 - 61
+
+the dog was given a bone by the girl (1+3 0.001 33)
+
+a bone was given to the dog by the girl (1+2 0.001 45)
+
+the gorilla waited on the bench (1+1 0.001 19)
+
+the zookeeper waited on the gorilla (1+2 0.001 19)
+
+the gorilla put the banana in the cage (1+2 0.001 28)
+
+the gorilla in the cage devoured a banana (1 0.001 24)
+
+the gorilla devoured a banana in the cage (1+1 0.001 28)
+
+a banana was put in the cage by the gorilla (1+14 0.001 41)
+
+the zookeeper waited by the bench (1 0.001 19)
+
+the zookeeper waited by the bench in the garden  (1+1 0.001 37)
+
+
 
 # 32 sentences, 0.043 CPU secs total, 0.004 CPU secs max (05/22/26)
+
+# 7 mismatches, 61 sentences, 0.070 CPU secs total, 0.004 CPU secs max (06/11/26)
