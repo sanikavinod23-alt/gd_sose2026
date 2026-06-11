@@ -18,54 +18,368 @@ DEMO   ENGLISH   RULES (1.0)
 	     (! CASE)=nom;
  	 VP: ^=!.
 
-   VP --> V: ^=!; 
+   VP --> (AUX: ^=!)
+          V: ^=!; 
  	  (NP: (^ OBJ)=!
-	       (! CASE)=acc).
+	       (! CASE)=acc)
+          (NP: (^ OBJ2)=!)
+          PP*: { ! $ (^ ADJUNCT)
+                     (! PTYPE) =c sem
+                     |
+                     (^ OBL) = !};
+          (PP: (^ OBL-TO) = !)
+          (PP: (^ OBL-AG) = !).
 
-   NP --> (D)  "can leave out ^=!"
- 	  N. 
+   PP --> { P: ^ = !
+               (! PTYPE) =c sem;
+           NP: (^ OBJ) = !
+               (! CASE) = acc;
+               |
+           P: ^ = !
+              (! PTYPE) =c nosem;
+           NP}.
+
+   NP --> (D)
+           AP*: ! $ (^ ADJUNCT);
+           N
+           PP*: ! $ (^ ADJUNCT)
+                    (! PTYPE) =c sem.
 
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
 
-"no templates yet"
+PRES3SG = (^ TENSE) = pres
+          (^ SUBJ PERS) = 3
+          (^ SUBJ NUM) = sg.
 
+PRES-NON3SG = { (^ TENSE) = pres
+                (^ SUBJ PERS) = 1
+                (^ SUBJ NUM) = sg
+              | (^ TENSE) = pres
+                (^ SUBJ PERS) = 1
+                (^ SUBJ NUM) = pl
+              | (^ TENSE) = pres
+                (^ SUBJ PERS) = 2
+                (^ SUBJ NUM) = sg
+              | (^ TENSE) = pres
+                (^ SUBJ PERS) = 2
+                (^ SUBJ NUM) = pl
+              | (^ TENSE) = pres
+                (^ SUBJ PERS) = 3
+                (^ SUBJ NUM) = pl }.
+
+PAST =  { (^ TENSE) = past
+          (^ SUBJ PERS) = 1
+          (^ SUBJ NUM) = sg
+        | (^ TENSE) = past
+          (^ SUBJ PERS) = 1
+          (^ SUBJ NUM) = pl
+        | (^ TENSE) = past
+          (^ SUBJ PERS) = 2
+          (^ SUBJ NUM) = sg
+        | (^ TENSE) = past
+          (^ SUBJ PERS) = 2
+          (^ SUBJ NUM) = pl
+        | (^ TENSE) = past
+          (^ SUBJ PERS) = 3
+          (^ SUBJ NUM) = sg
+        | (^ TENSE) = past
+          (^ SUBJ PERS) = 3
+          (^ SUBJ NUM) = pl }.
+
+PAST-BE-3SG = (^ TENSE) = past
+          (^ SUBJ PERS) = 3
+          (^ SUBJ NUM) = sg.
+
+MOOD-IND = (^ MOOD) = indicative.
+
+ASPECT-SIMP = (^ ASPECT) = simple.
+
+SG-3PERS = (^ NUM) = sg
+           (^ PERS) = 3.
+
+PL-3PERS = (^ NUM) = pl
+          (^ PERS) = 3.
+
+CN = (^ DEF).
+
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'.
+
+TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ)(^ OBJ)>').
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+PASS(FRAME) = { FRAME 
+		(^ PASSIVE) = -
+		| FRAME
+		(^ PASSIVE) = +
+		(^ PARTICIPLE) =c past
+		(^ OBJ)-->(^ SUBJ)
+		{ (^ SUBJ)-->(^ OBL-AG)
+		| (^ SUBJ)--> NULL}
+		}.
+
+DAT-SHIFT(FRAME) = { FRAME
+                     | FRAME
+                       (^ OBJ)-->(^ OBJ2)
+                       (^ OBL-TO)-->(^ OBJ)}.
+
+DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ)
+              (^ OBL-TO)>')).
+
+PREP(P) = { (^ PRED) = 'P<(^OBJ)>'
+            (^ PTYPE) = sem
+            | (^ PTYPE) = nosem
+            (^ PFORM) = P}.
 
 ----
 
 DEMO ENGLISH LEXICON (1.0)
 
 bones 	  N * (^ PRED) = 'bone'
-	      (^ NUM) = pl
-	      (^ PERS) = 3. 
+              "@CN"
+	      @PL-3PERS.
 
-bone 	  N * "forgotten to add a pred value" 
-	      (^ NUM) = sg
-	      (^ PERS) = 3. 
+bone 	  N * (^ PRED) = 'bone'
+              @CN 
+	      @SG-3PERS. 
+
+book 	  N * (^ PRED) = 'book'
+              @CN 
+	      @SG-3PERS.
+
+cat 	  N * (^ PRED) = 'cat'
+              @CN
+              @SG-3PERS.
+
+cats 	  N * (^ PRED) = 'cat'
+              "@CN"
+	      @PL-3PERS.
+
+cake 	  N * (^ PRED) = 'cake'
+              @CN
+              @SG-3PERS.
+
+gorillas  N * (^ PRED) = 'gorilla'
+              "@CN"
+	      @PL-3PERS.
+
+gorilla N * (^ PRED)='gorilla'
+            @CN
+            @SG-3PERS.
 
 dog 	  N * (^ PRED) = 'dog'
-	      (^ NUM) = sg
-	      (^ PERS) = 3. 
+              @CN
+	      @SG-3PERS. 
 
 dogs 	  N * (^ PRED) = 'dog'
-	      (^ NUM) = pl
-	      (^ PERS) = 3. 
+              "@CN"
+	      @PL-3PERS. 
 
-devours   V *  (^ PRED) = 'devour<(^SUBJ)(^OBJ)>' 
-       	    (^ TENSE) = pres
-	    (^ MOOD) = indicative
-            (^ SUBJ PERS) = 3
-            (^ SUBJ NUM) = sg.
+girl N * (^ PRED)='girl'
+              @CN
+              @SG-3PERS.
 
-appears   V *  (^ PRED) = 'appear<(^SUBJ)>' 
-       	    (^ TENSE) = pres
-	    (^ MOOD) = indicative
-            (^ SUBJ PERS) = 3
-            (^ SUBJ NUM) = sg.
+boy N * (^ PRED)='boy'
+              @CN
+              @SG-3PERS.
+
+mouse N * (^ PRED)='mouce'
+              @CN
+              @SG-3PERS.
+
+mice 	  N * (^ PRED) = 'mouse'
+              "@CN"
+	      @PL-3PERS.
+
+treat N * (^ PRED)='treat'
+              @CN
+              @SG-3PERS.
+
+banana N * (^ PRED)='banana'
+              @CN
+              @SG-3PERS.
+
+bananas N * (^ PRED) = 'banana'
+              "@CN"
+	      @PL-3PERS.
+
+zookeeper N * (^ PRED)='zookeeper'
+              @CN
+              @SG-3PERS.
+
+waiter N * (^ PRED)='waiter'
+              @CN
+              @SG-3PERS.
+
+telescope N * (^ PRED)='telescope'
+              @CN
+              @SG-3PERS.
+
+table N * (^ PRED)='table'
+              @CN
+              @SG-3PERS.
+
+monkey N * (^ PRED)='monkey'
+              @CN
+              @SG-3PERS.
+
+bench N * (^ PRED)='bench'
+              @CN
+              @SG-3PERS.
+
+Jordan N * (^ PRED)='Jordan'
+              @SG-3PERS.
+
+Sam N * (^ PRED)='Sam'
+              @SG-3PERS.
+
+Alex N * (^ PRED)='Alex'
+              @SG-3PERS.
+
+devours   V * 
+	    @MOOD-IND
+            @ASPECT-SIMP
+            @PRES3SG
+	    @(TRANS devour).
+
+devour     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PRES-NON3SG
+            @(TRANS devour).
+
+appears   V * 
+	    @MOOD-IND
+            @ASPECT-SIMP
+            @PRES3SG
+	    @(INTRANS appear).
+
+sleeps    V *
+	    @MOOD-IND
+            @ASPECT-SIMP
+            @PRES3SG
+	    @(INTRANS sleep).
+
+chase     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PRES-NON3SG
+            @(TRANS chase).
+
+chases   V * 
+	    @MOOD-IND
+            @ASPECT-SIMP
+            @PRES3SG
+	    @(TRANS chase).
+
+eat     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PRES-NON3SG
+            @(OPT-TRANS eat).
+
+eats   V * 
+	    @MOOD-IND
+            @ASPECT-SIMP
+            @PRES3SG
+	    @(OPT-TRANS eat).
+
+see     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PRES-NON3SG
+            @(OPT-TRANS see).
+
+give     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PRES-NON3SG
+            @(DITRANS give).
+
+gives   V * 
+	    @MOOD-IND
+            @ASPECT-SIMP
+            @PRES3SG
+	    @(DITRANS give).
+
+was   AUX * "(^ PRED) = 'be'"
+            @MOOD-IND
+            @PAST-BE-3SG
+            (^ PARTICIPLE) =c past.
+
+seen    V* (^ PARTICIPLE) = past
+           @(TRANS see).
+
+eaten    V* (^ PARTICIPLE) = past
+           @(TRANS eat).
+
+chased    V* (^ PARTICIPLE) = past
+           @(TRANS chase).
+
+given    V* (^ PARTICIPLE) = past
+           @(DITRANS give).
+
+devoured    V* (^ PARTICIPLE) = past
+           @(TRANS devour).
+
+saw     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PAST
+            @(OPT-TRANS see).
+
+slept     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PAST
+            @(INTRANS sleep).
+
+gave     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PAST
+            @(DITRANS give).
+
+waited     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PAST
+            @(INTRANS wait).
+
+talked     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PAST
+            @(INTRANS talk).
+
+sat     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PAST
+            @(INTRANS sit).
+
+argued     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PAST
+            @(OPT-TRANS argue).
 
 the  D *  (^ DEF) = +.
 
 a   D *  (^ DEF) = -.
+
+by P *
+        @(PREP by)
+        (^ PASSIVE)=+.
+
+to P * @(PREP to).
+
+on P * @(PREP on).
+
+in P * @(PREP in).
+
+with P * @(PREP with).
 
 ----

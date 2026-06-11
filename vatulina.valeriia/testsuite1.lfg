@@ -1,24 +1,135 @@
-#show how it works
-the dog devours bones
+#correct sentence 1 - intransitive verb
 
-# unification failure, subject-verb agreement (consistency)
-the dogs devours bones
+the cat sleeps
 
-# coherence violation
-the dog appears bones 
+#correct sentence 2 - transitive verb
 
-# completeness violation
-the dog devours 
+the dog devours the bone
 
-# missing PRED value, completeness violation
-the dog devours a bone
+#correct sentence 3 - transitive verb
 
-#missing rules, unknown words
-the dog devours bones in the park
+the cats chase a mouse
 
-#new verbs --- intrans
-a dog sleeps
+#correct sentence 4 - optionally transitive verb
 
-#new verbs -- trans
-a dog chases a bone
+the dog eats
 
+#correct sentence 5 - optionally transitive verb
+
+the cats eat a treat
+
+#incorrect sentence 6 - subject-verb agreement violation
+
+the girl see the gorilla
+
+#incorrect sentence 7 - count noun without determiner
+
+cat chases dogs
+
+#incorrect sentence 8 - subject-verb agreement violation
+
+gorilla devour bananas
+
+#incorrect sentence 9 - subject-verb agreement violation
+
+gorillas devours banana
+
+#correct sentence 10
+
+the girl was seen by the gorilla
+
+#correct sentence 11
+
+the cake was eaten
+
+#correct sentence 12
+
+the cat was chased
+
+#correct sentence 13
+
+the bone was devoured by a dog
+
+# incorrect sentence 14 - passivisation rule violation
+
+the girl was saw by the gorilla
+
+#incorrect sentence 15 - passivisation rule violation
+
+the dog was slept
+
+#correct sentence 16
+
+the girl gave the dog a bone
+
+#correct sentence 17
+
+the girl gives the gorilla bananas
+
+#correct sentence 18
+
+gorillas devour bananas
+
+#correct sentence 19
+
+a gorilla devours bananas
+
+#incorrect sentence 20
+
+the girl give the gorilla bananas
+
+#incorrect sentence 21
+
+gorillas devours bananas
+
+#incorrect sentence 22
+
+gorilla devour bananas
+
+#incorrect sentence 23
+
+gorillas devours banana
+
+#correct sentence 24
+
+the girl gives a bone to the dog
+
+#correct sentence 25
+
+the zookeeper gave a banana to the gorilla
+
+#correct sentence 26
+
+the dog was given a bone by the girl
+
+#correct sentence 27
+
+a bone was given to the dog by the girl
+
+#incorrect sentence 28
+
+the girl gave to the dog a bone
+
+#incorrect sentence 29
+
+the dog was given by the girl a bone
+
+#correct sentence 30
+
+the waiter waited on the table
+
+#correct sentence 31
+
+Jordan talked to Sam
+
+#correct sentence 32
+
+Alex argued with a gorilla
+
+#correct sentence 33
+
+Sam saw a monkey with a telescope
+
+#correct sentence 34
+
+the dog sat on the bench with a book

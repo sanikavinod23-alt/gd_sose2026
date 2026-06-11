@@ -1,32 +1,175 @@
 #show how it works
 
-the dog devours bones
+the dog devours bones (1 0.008 11)
 
 # unification failure, subject-verb agreement (consistency)
 
-the dogs devours bones
+the dogs devours bones (0 0.004 11)
 
 # coherence violation
 
-the dog appears bones 
+the dog appears bones (0 0.002 0)
 
 # completeness violation
 
-the dog devours 
+the dog devours (0 0.001 8)
 
 # missing PRED value, completeness violation
 
-the dog devours a bone
+the dog devours a bone (1 0.002 13)
 
 #missing rules, unknown words
 
-the dog devours bones in the park
+the dog devours bones in the park (0 0.002 0)
 
 #new verbs --- intrans
 
-a dog sleeps
+a dog sleeps (1 0.003 8)
 
 #new verbs -- trans
 
-a dog chases a bone
+a dog chases a bone (1 0.002 13)
 
+# 8 sentences, 0.023 CPU secs total, 0.004 CPU secs max (04/24/26)
+
+# 2 mismatches, 8 sentences, 0.046 CPU secs total, 0.017 CPU secs max (05/08/26)
+
+# 8 sentences, 0.044 CPU secs total, 0.018 CPU secs max (05/10/26)
+
+# 8 sentences, 0.024 CPU secs total, 0.008 CPU secs max (05/15/26)
+
+#sentences from ex 3 that work
+
+the cat sleeps
+
+#transitive verb1
+
+the dog devours the bone
+
+#transitive verb2
+
+the cats chase a mouse
+
+#subj-verb agreement
+
+the dog eats
+
+#plural
+
+the cats eat a treat
+
+#sentences from ex 3 that do not work
+
+cat chases dogs 
+
+#no subj-verb agreement
+
+the girl see the gorilla
+
+#singular nouns need articles
+
+gorilla devour bananas
+
+#article not necessary for plural nouns
+
+gorillas devours banana
+
+#passive constructions that work
+
+the girl was seen by the gorilla
+
+#new lexicon items
+
+the cake was eaten
+
+#passive without oblique agent
+
+the cat was chased
+
+#passive with oblique agent
+
+the bone was devoured by a dog
+
+#passive construction that do not work
+
+the girl was saw by the gorilla
+
+#no agreement between auxiliary and main verb
+
+the dog was slept
+
+#sentences from ex 4 that work
+
+the girl gave the dog a bone
+
+#ditransitive verb
+
+the girl gives the gorilla bananas
+
+#plural nouns do not need articles
+
+gorillas devour bananas
+
+#but singular nouns do
+
+a gorilla devours bananas
+
+#sentences from ex 4 that do not work
+
+the girl give the gorilla bananas
+
+#no agreement
+
+gorillas devours bananas
+
+#no agreement
+
+gorilla devour bananas
+
+#no agreement
+
+gorillas devours banana
+
+#dative shift
+
+the girl gives a bone to the dog
+
+#pp as indirect object
+
+the zookeeper gave a banana to the gorilla
+
+#passive with ditransitive verb
+
+the dog was given a bone by the girl
+
+#dative passive
+
+a bone was given to the dog by the girl
+
+#dative shifts that do not work
+
+the girl gave to the dog a bone
+
+#no right word order
+
+the dog was given by the girl a bone
+
+#no sem pps
+
+The waiter waited on the table.
+
+#pp as oblique
+
+Jordan talked to Sam.
+
+#no sem pps do not have a pred value, only pform
+
+Alex argued with a gorilla.
+
+#sem pps
+
+Sam saw a monkey with a telescope.
+
+#pps as adjuncts
+
+The dog sat on the bench with a book.

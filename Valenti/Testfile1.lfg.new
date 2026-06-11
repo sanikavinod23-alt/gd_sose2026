@@ -1,0 +1,76 @@
+"11 sentences" (0 0.003 0)
+
+The girl chases the gorilla (1 0.002 13)
+
+The cats chase a mouse (1 0.000 13)
+
+The boy devours a cake (1 0.000 13)
+
+A dog eats a treat (1 0.004 13)
+
+The boy was seen by the girl (2 0.000 23)
+
+A mouse was devoured by the cats (2 0.004 23)
+
+The cake was eaten by the boy (2 0.000 23)
+
+The treat was eaten (1 0.004 10)
+
+The girl was seen (1 0.000 10)
+
+The girl sleeps (1 0.000 8)
+
+The boy appears (1 0.004 8)
+
+
+"Wrong sentences- 4 sentences" (0 0.000 0)
+
+The girl was slept (0 0.000 9)
+
+The boy was appeared (0 0.000 0)
+
+The girl chase the gorilla (0 0.004 13)
+
+The dogs chases the cat (0 0.000 13)
+
+
+"Ex4- 11 sentences" (0 0.000 0)
+
+The girl gave the dog a bone (1 0.004 18)
+
+The girl gives the gorilla bananas (1 0.000 16)
+
+gorillas devour bananas (1 0.000 9)
+
+A gorilla devours bananas (1 0.004 11)
+
+The girl gives a bone to the dog (1 0.000 32)
+
+The zookeeper gave a banana to the gorilla (1 0.004 32)
+
+The dog was given a bone by the girl (3 0.000 33)
+
+A bone was given to the dog by the girl (3 0.004 45)
+
+The waiter waited on the table (1 0.000 21)
+
+Jordan talked to Sam (1 0.004 18)
+
+Alex argued with a gorilla (1 0.000 19)
+
+
+"Wrong sentences- 8 sentences" (0 0.000 0)
+
+The girl give the gorilla bananas (0 0.004 16)
+
+Gorillas devours bananas (0 0.000 0)
+
+Gorilla devour bananas (0 0.000 0)
+
+Gorillas devours banana (0 0.000 0)
+
+The girl gave to the dog a bone (0 0.004 0)
+
+The dog was given by the girl a bone (0 0.000 0)
+
+# 36 sentences, 0.055 CPU secs total, 0.004 CPU secs max (05/11/26)

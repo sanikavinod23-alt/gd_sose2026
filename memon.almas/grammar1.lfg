@@ -18,65 +18,336 @@ DEMO   ENGLISH   RULES (1.0)
 	     (! CASE)=nom;
  	 VP: ^=!.
 
-   VP --> V: ^=!; 
- 	  (NP: (^ OBJ)=!
-	       (! CASE)=acc).
+   "VP rule: PP* only for adjuncts, specific positions for obliques"
+   
+    VP --> (AUX)
+      V: ^=!;
+      (NP: (^ OBJ2)=!
+           (! CASE)=acc)
+      (NP: (^ OBJ)=!
+           (! CASE)=acc)
+      PP*: ! $ (^ ADJUNCT)
+           (! PTYPE) =c sem;
+      (PP: (^ OBL-TO)=!
+           (! PTYPE)=c nosem)
+      (PP: (^ OBL-AG)=!
+           (! PTYPE)=c nosem)
+      (PP: (^ OBL)=!
+           (! PTYPE)=c nosem).
 
-   NP --> (D)  "can leave out ^=!"
- 	  N. 
+
+   "NP rule with optional determiner, adjectives, head noun, and PP adjuncts"
+   NP --> (D)
+ 	  N
+          PP*: ! $ (^ ADJUNCT)
+               (! PTYPE) =c sem.
+   
+   "PP rule distinguishing semantic from non-semantic prepositions"
+   PP --> { P: ^ = !
+             (! PTYPE) =c nosem;
+              NP
+            | P: ^ = !
+              (! PTYPE) =c sem;
+              NP: (^ OBJ) = !
+                  (! CASE) = acc
+           }.
 
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
 
-"no templates yet"
+"Passive lexical rule - maps OBJ to SUBJ, SUBJ to OBL-AG or NULL"
+PASSIVE(FRAME) = FRAME
+              (^ PASSIVE) = +
+              (^ PARTICIPLE) =c past
+              (^ OBJ)-->(^ SUBJ)
+              { (^ SUBJ)-->(^ OBL-AG)
+              | (^ SUBJ)--> NULL
+              }.
+              
 
+"Dative shift lexical rule - maps OBJ to OBJ2, OBL-TO to OBJ"
+DAT-SHIFT(FRAME) = { FRAME
+                   | FRAME
+                     (^ OBJ)-->(^ OBJ2)
+                     (^ OBL-TO)-->(^ OBJ)
+                   }.
+
+"Subcategorization templates (Active)"
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'
+             (^ PASSIVE) = -.
+
+TRANS(P) =  (^ PRED)='P<(^ SUBJ)(^ OBJ)>'
+                  (^ PASSIVE)= -.
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+"Active ditransitives: allow either PP dative or double-object"
+DITRANS(P) = { (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBL-TO)>'
+               (^ PASSIVE) = -
+             | (^ PRED)='P<(^ SUBJ)(^ OBJ2)(^ OBJ)>'
+               (^ PASSIVE) = -
+             }.
+
+
+"Passive versions used by participles (separate, deterministic)"
+TRANS-PASS(P) = @(PASSIVE (^ PRED)='P<(^ SUBJ)(^ OBJ)>').
+
+"Passive ditransitive:
+ apply optional dative shift first, then make it passive"
+DITRANS-PASS(P) =
+  @(PASSIVE @(DAT-SHIFT (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBL-TO)>')).
+
+"Oblique-taking verbs (intransitive with oblique)"
+OBLIQUE(P OFORM) = (^ PRED)='P<(^ SUBJ)(^ OBL)>'
+                   (^ OBL PFORM) =c OFORM
+                   (^ PASSIVE) = -.
+
+"Tense-Aspect-Mood templates"
+PRES3SG = (^ TENSE) = pres
+          (^ MOOD) = indicative
+          (^ SUBJ PERS) = 3
+          (^ SUBJ NUM) = sg.
+
+"Plural/base verbs"
+PRES3PL = (^ TENSE) = pres
+          (^ MOOD) = indicative
+          (^ SUBJ PERS) = 3
+          (^ SUBJ NUM) = pl.
+
+PAST = (^ TENSE) = past
+       (^ MOOD) = indicative
+       (^ SUBJ PERS) = 3
+       { (^ SUBJ NUM) = sg | (^ SUBJ NUM) = pl }. 
+
+PASTPART = (^ PARTICIPLE) = past.
+
+"Noun templates"
+"CN: singular count noun - requires a determiner via existential constraint"
+CN(P) = (^ PRED) = 'P'
+        (^ NUM) = sg
+        (^ PERS) = 3
+        (^ DEF).
+
+"Proper names - no determiner required"
+NODET(P) = (^ PRED) = 'P'
+           (^ NUM) = sg
+           (^ PERS)= 3.
+
+"PLN: plural noun - no determiner required"
+PLN(P) = (^ PRED) = 'P'
+         (^ NUM) = pl
+         (^ PERS) = 3.
+
+"Preposition template - for obliques only non-semantic"
+PREP(P) = (^ PFORM) = P
+          (^ PTYPE) = nosem.
+
+"Preposition template - can be semantic or non-semantic"
+PREP-SEM(P) = { (^ PRED) = 'P<(^OBJ)>'
+                (^ PTYPE) = sem
+              | (^ PFORM) = P
+                (^ PTYPE) = nosem
+              }.
 
 ----
 
 DEMO ENGLISH LEXICON (1.0)
 
-bones 	  N * (^ PRED) = 'bone'
-	      (^ NUM) = pl
-	      (^ PERS) = 3. 
+"Singular Count nouns - require a determiner"
 
-bone 	  N * "forgotten to add a pred value" 
-	      (^ NUM) = sg
-	      (^ PERS) = 3. 
+bone      N * @(CN bone).
 
-dog 	  N * (^ PRED) = 'dog'
-	      (^ NUM) = sg
-	      (^ PERS) = 3. 
+dog       N * @(CN dog).
 
-dogs 	  N * (^ PRED) = 'dog'
-	      (^ NUM) = pl
-	      (^ PERS) = 3. 
+cat       N * @(CN cat).
 
-devours   V *  (^ PRED) = 'devour<(^SUBJ)(^OBJ)>' 
-       	    (^ TENSE) = pres
-	    (^ MOOD) = indicative
-            (^ SUBJ PERS) = 3
-            (^ SUBJ NUM) = sg.
+sheep     N * @(CN sheep).
 
-appears   V *  (^ PRED) = 'appear<(^SUBJ)>' 
-       	    (^ TENSE) = pres
-	    (^ MOOD) = indicative
-            (^ SUBJ PERS) = 3
-            (^ SUBJ NUM) = sg.
-meadow    N *  (^ PRED) = 'meadow'
-            (^ NUM) = sg
-            (^ PERS) = 3.
+mouse     N * @(CN mouse).
 
-park      N *  (^ PRED) = 'park'
-            (^ NUM) = sg
-            (^ PERS) = 3.
+banana    N * @(CN banana).
 
-banana    N *  (^ PRED) = 'banana'
-            (^ NUM) = sg
-            (^ PERS) = 3. 
+treat     N * @(CN treat).
 
-the  D *  (^ DEF) = +.
+cake      N * @(CN cake).
 
-a   D *  (^ DEF) = -.
+girl      N * @(CN girl).
+
+gorilla   N * @(CN gorilla).
+
+meadow    N * @(CN meadow).
+
+park      N * @(CN park).
+
+book      N * @(CN book).
+
+table     N * @(CN table).
+
+bench     N * @(CN bench).
+
+telescope N * @(CN telescope).
+
+monkey    N * @(CN monkey).
+
+"Proper names - no determiner"
+
+jordan    N * @(NODET jordan).
+
+sam       N * @(NODET sam).
+
+alex      N * @(NODET alex).
+
+
+"Plural count nouns - no determiner required"
+
+bones     N * @(PLN bone).
+
+dogs      N * @(PLN dog).
+
+cats      N * @(PLN cat).
+
+bananas   N * @(PLN banana).
+
+gorillas  N * @(PLN gorilla).
+
+
+"Verbs - 3rd person singular present"
+
+devours   V * @(TRANS devour)
+              @PRES3SG.
+
+chases    V * @(TRANS chase)
+              @PRES3SG.
+
+eats      V * @(OPT-TRANS eat)
+              @PRES3SG.
+
+sleeps    V * @(INTRANS sleep)
+              @PRES3SG.
+
+appears   V * @(INTRANS appear)
+              @PRES3SG.
+
+sees      V * @(TRANS see)
+              @PRES3SG.
+
+gives     V * @(DITRANS give)
+              @PRES3SG.
+
+waits     V * @(OBLIQUE wait on)
+              @PRES3SG.
+
+talks     V * @(OBLIQUE talk to)
+              @PRES3SG.
+
+argues    V * @(OBLIQUE argue with)
+              @PRES3SG.
+
+sat       V * @(INTRANS sit)
+              @PAST.
+
+"Verbs - plural present / base form"
+
+devour    V * @(TRANS devour)
+              @PRES3PL.
+
+chase     V * @(TRANS chase)
+              @PRES3PL.
+
+eat       V * @(OPT-TRANS eat)
+              @PRES3PL.
+
+sleep     V * @(INTRANS sleep)
+              @PRES3PL.
+
+appear    V * @(INTRANS appear)
+              @PRES3PL.
+
+see       V * @(TRANS see)
+              @PRES3PL.
+
+give      V * @(DITRANS give)
+              @PRES3PL.
+
+wait      V * @(OBLIQUE wait on)
+              @PRES3PL.
+
+talk      V * @(OBLIQUE talk to)
+              @PRES3PL.
+
+argue     V * @(OBLIQUE argue with)
+              @PRES3PL.
+
+"Past Participles - for passive constructions"
+devoured  V * @(TRANS-PASS devour)
+              @PASTPART.
+
+chased    V * @(TRANS-PASS chase)
+              @PASTPART.
+
+eaten     V * @(TRANS-PASS eat)
+              @PASTPART.
+
+seen      V * @(TRANS-PASS see)
+              @PASTPART.
+
+slept     V * @(INTRANS sleep)
+              @PASTPART.
+
+given     V * @(DITRANS-PASS give)
+              @PASTPART.
+
+"Verb past form"
+
+gave      V * @(DITRANS give)
+              @PAST. 
+
+saw       V * @(TRANS see)
+              @PAST.
+
+waited   V * @(OBLIQUE wait on)
+             @PAST.
+
+talked   V * @(OBLIQUE talk to)
+             @PAST.
+
+argued   V * @(OBLIQUE argue with)
+             @PAST.
+
+"Determiners"
+the       D * (^ DEF) = +.
+
+a         D * (^ DEF) = -.
+
+"Auxiliary"
+was       AUX * (^ TENSE) = past
+               (^ MOOD) = indicative
+               (^PASSIVE) =c +
+               (^ SUBJ NUM) = sg.
+
+were      AUX * (^ TENSE) = past
+               (^ MOOD) = indicative
+               (^PASSIVE) =c +
+               (^ SUBJ NUM) = pl.
+
+"Prepositions"
+"by and to are non-semantic (oblique markers)"
+by        P * @(PREP by).
+
+to        P * @(PREP to).
+
+"on, in, with can be semantic adjuncts or non-semantic obliques"
+on        P * @(PREP-SEM on).
+
+in        P * @(PREP-SEM in).
+
+with      P * @(PREP-SEM with).
+
+"Additional nouns for examples"
+waiter    N * @(CN waiter).
+
+zookeeper N * @(CN zookeeper).
 
 ----
+
