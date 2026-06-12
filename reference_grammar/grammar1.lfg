@@ -1,16 +1,17 @@
 DEMO   ENGLISH   CONFIG (1.0)
   ROOTCAT   S.
-  FILES  .
-  LEXENTRIES   (DEMO ENGLISH).
-  TEMPLATES (DEMO ENGLISH). 
-  RULES   (DEMO ENGLISH).
-  MORPHOLOGY (DEMO ENGLISH).
+  FILES .
+  LEXENTRIES   (DEMO ENGLISH) .
+  TEMPLATES (DEMO ENGLISH) . 
+  RULES   (DEMO ENGLISH) .
+  MORPHOLOGY (DEMO ENGLISH) .
   GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
-  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS STANDARD.
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
   EPSILON   e.
-  OPTIMALITYORDER NOGOOD  PPadj +PPattach.
-  GENOPTIMALITYORDER NOGOOD +PUNCT CAPITAL.
+  OPTIMALITYORDER NOGOOD  PPadj +NonAnimObl +AnimObl +PPattach +LocAttach. 
+  GENOPTIMALITYORDER  GenBadPunct NOGOOD +PUNCT CAPITAL.
+
 
 ----
 
@@ -23,13 +24,10 @@ P!basic-parse-tok.fst G!default-gen-tokenizer.fst
 
 DEMO   ENGLISH   RULES (1.0)
 
- ROOT --> "can have other things here as well, imperatives, etc." 
-	  S. 
-
    S --> NP: (^ SUBJ)=!
-	     (! CASE)=nom;
- 	 VP: (^ TENSE); "require that sentences have tense"
- 	 (PERIOD: @(OT-MARK Punct)).  "prefer for generation" 
+	         (! CASE)=nom;
+ 	     VP: (^ TNS-ASP TENSE); "require that sentences have tense"
+ 	     (PERIOD: @(OT-MARK Punct)).  "prefer for generation"
 
    VP --> (AUX) "auxiliary introduced for passive" 
  	  V: ^=!;   "head of VP"
@@ -38,22 +36,43 @@ DEMO   ENGLISH   RULES (1.0)
  	  (NP: (^ OBJ2) = !) "secondary object"
  	  PP*: { ! $ (^ ADJUNCT) "PPs can be all types of adjuncts"
 		 (! PTYPE) =c sem "only semantic PPs here"
-		 @(OT-MARK PPadj) "disprefer adjunct PPs" 
+		 {
+		 @(OT-MARK LocAttach)
+		 (! OBJ LOC) =c +
+		 |
+		 @(OT-MARK PPadj)
+		 (! OBJ LOC) ~= +
+                 }
+		  "disprefer adjunct PPs" 
 	       | (^ OBL) = ! "or a a general oblique"
+	         {@(OT-MARK NonAnimObl)
+		  (! PTYPE) =c sem }
 	       };
  	  (PP: (^ OBL-TO) = ! "special obl for ditransitives"
 	       "example of a constraining equation: require a value with =c"
 	       (! PFORM) =c to)
- 	  (PP: (^ OBL-AG) = ! "oblique agent of passive" 
+ 	  (PP: (^ OBL-AG) = ! "oblique agent of passive"
+	       { (! ANIMATE) =c +
+	         @(OT-MARK AnimObl) }
 	       "example of a constraining equation: require a value with =c"
-	       (! PFORM) =c by ). 
+	       (! PFORM) =c by )
+	 (ADV: ! $ (^ ADJUNCT)). 
+
 
    NP --> "either a full NP or a PRON"
-	    (D) "optional determiner"
+ 	  { ({D | PRON: (^ SPEC POSS) = !
+	                (^ SPEC POSS PRON-TYPE) =c poss}) "optional determiner"
+ 	    AP*: ! $ (^ ADJUNCT); "introducing adjectives in sets"
  	    N "head of NP"
  	    PP*: ! $ (^ ADJUNCT) "PPs modifying NPs" 
 		 (! PTYPE) =c sem "have to be semantic" 
-		 @(OT-MARK PPattach) "prefer PPs attached to NPs". 
+		 "@(OT-MARK PPattach) replace general PPattach with finegrained attach"
+ 	  | PRON: (^ PRON-TYPE) =c pers}. 
+ 
+
+   AP --> ADV*: ! $ (^ ADJUNCT);
+ 	  A
+ 	  (COMMA).
  
    PP --> { P: ^ = ! "head of PP"
 	       (! PTYPE) =c sem; "semantic type, Adjunct"
@@ -62,7 +81,8 @@ DEMO   ENGLISH   RULES (1.0)
  	  | P: ^ = ! "head of PP" 
 	       (! PTYPE) =c nosem; "non-semantic type, OBL"
  	    NP
- 	  }. 
+ 	  }.
+
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
@@ -71,8 +91,6 @@ DEMO ENGLISH TEMPLATES (1.0)
 
 OT-MARK(_mark) = "assigns an OT mark, from common templates"
        _mark $ o::*.
-
-"Lexical rules and subcategorization"
 
 PASS(FRAME) = { FRAME "no passive, just give back subcat frame"
 	          (^ PASSIVE) = - "no passive"
@@ -92,6 +110,8 @@ DAT-SHIFT(SCHEMATA) = { SCHEMATA
 
 DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL-TO)>')).
 
+DITRANS-OBL(P) = @(PASS (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL)>').
+
 "transitives can passivize"
 
 TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ) (^ OBJ)>').
@@ -103,7 +123,6 @@ INTRANS-OBL(P) = (^ PRED) = 'P<(^SUBJ)(^OBL)>'.
 OPT-TRANS(P) = { @(TRANS P)   "P is a variable"
 	       | @(INTRANS P) }.  "this template takes one argument:  P"
 
-
 PRED(P) = (^ PRED) = 'P'.
 
 "verbal templates"
@@ -111,9 +130,9 @@ PRED(P) = (^ PRED) = 'P'.
 PRES3SG = @PRES
 	  @S-AGR.
 
-PRES = (^ TENSE) = pres.
+PRES = (^ TNS-ASP TENSE) = pres.
 
-PAST = (^ TENSE) = past.
+PAST = (^ TNS-ASP TENSE) = past.
 
 PASTP = (^ PARTICIPLE) = past.
 
@@ -136,16 +155,35 @@ COUNT-NOUN(P N) = @(PRED P)
 	           (^ PERS) = 3
 	           (^ NTYPE) = count.
 
+CASE(A) = (^ CASE) = A.
+
+ANIMATE = (^ ANIMATE) = +.
+
+INANIMATE = (^ ANIMATE) = -.
+
+LOCATION = (^ LOC) = +.
+
+
+"Pronouns"
+
+PRON(P Z   N T) = @(PRED P)
+	  (^ NUM) = N
+	  (^ PERS) = Z
+	  (^ PRON-TYPE) = T
+	  (^ NTYPE) = pron.
+
 
 "function words"
 
-DEF = (^DEF).
+DEF = (^ SPEC).
 
 PREP(P) = "template for most prepositions"
 	  { (^ PRED) = 'P<(^OBJ)>' 
 	    (^ PTYPE) = sem
 	  | (^ PTYPE) = nosem
 	    (^ PFORM) = P}.
+
+
 ----
 
 DEMO ENGLISH LEXICON (1.0)
@@ -186,6 +224,9 @@ eat    V * @(OPT-TRANS eat)
            @BARE-AGR
 	   @PRES.
 
+ate    V * @(OPT-TRANS eat)
+	   @PAST.
+
 eaten V * @(OPT-TRANS eat)
           @PASTP.
 
@@ -193,17 +234,23 @@ eaten V * @(OPT-TRANS eat)
 
 argued V *   { @(INTRANS argue) |
               @(INTRANS-OBL argue)
+	      {(^ OBL ANIMATE) =c +
+	        @(OT-MARK AnimObl)}
 	       (^ OBL PFORM) =c with}
 	       @PAST.
 
 talked V *  { @(INTRANS talk) |
               @(INTRANS-OBL talk)
+	      {(^ OBL ANIMATE) =c +
+	        @(OT-MARK AnimObl)}
 	      {(^ OBL PFORM) =c with|
 	       (^ OBL PFORM) =c to}}
 	       @PAST.
 
 waited V *  { @(INTRANS wait) |
               @(INTRANS-OBL wait)
+	      {(^ OBL ANIMATE) =c +
+	        @(OT-MARK AnimObl)}	
 	      (^ OBL PFORM) =c on}
 	      @PAST.
 
@@ -234,7 +281,10 @@ give      V * @(DITRANS give)
 	      @PRES.
 
 given 	  V * @(DITRANS give)
-	       @PASTP. 
+	       @PASTP.
+
+put 	  V * @(DITRANS-OBL give)
+	       @PAST-BOTH.
 
 "auxiliaries"
 
@@ -243,38 +293,135 @@ was 	  AUX * @PAST
 		{ (^ SUBJ PERS) = 1
                 | (^ SUBJ PERS) = 3
                 }
-                (^ SUBJ NUM) = sg. 
+                (^ SUBJ NUM) = sg.
+
+"adjectives"
+
+small	A * @(PRED small). 
+
+smart	A * @(PRED smart). 
+
+grey	A * @(PRED grey).
+
+black	A * @(PRED black).
+
+hungry A * @(PRED hungry).
+
+"adverbs"
+
+quickly   ADV * @(PRED quickly). 
+
+very   ADV * @(PRED very). 
+
+"pronouns (not complete)"
+
+I 	  PRON * @(PRON I 1 sg pers) 
+		 @(CASE nom).
+
+You	PRON * {@(PRON you 2 sg pers)
+	       |@(PRON you 2 pl pers)}.
+
+you	PRON * {@(PRON you 2 sg pers)
+	       |@(PRON you 2 pl pers)}.
+
+He 	  PRON * @(PRON he 3 sg pers)
+		 @(CASE nom).
+
+he 	  PRON * @(PRON he 3 sg pers)
+		 @(CASE nom).
+
+She 	  PRON * @(PRON she 3 sg pers)
+		 @(CASE nom).
+
+she 	  PRON * @(PRON she 3 sg pers)
+		 @(CASE nom).
+
+it	  PRON * @(PRON it 3 sg pers). 
+
+We 	  PRON * @(PRON we 1 pl pers)
+		 @(CASE nom).
+
+we 	  PRON * @(PRON we 1 pl pers)
+		 @(CASE nom).
+
+us 	  PRON * @(PRON us 1 pl pers)
+		 @(CASE acc).
+
+Us 	  PRON * @(PRON us 1 pl pers)
+		 @(CASE acc).
+
+They 	  PRON * @(PRON they 3 pl pers) 
+		 @(CASE nom). 
+
+they 	  PRON * @(PRON they 3 pl pers)
+		 @(CASE nom).
+
+Them 	  PRON * @(PRON them 3 pl pers)
+		 @(CASE acc). 
+
+them 	  PRON * @(PRON them 3 pl pers)
+		 @(CASE acc). 
+
+My	PRON * @(PRON my 1 sg poss).
+    
+my	PRON * @(PRON my 1 sg poss).
+	
+Her	PRON * @(PRON her 3 sg poss).
+
+her	PRON * @(PRON her 3 sg poss).
+
+Him 	  PRON * @(PRON he 3 sg pers)
+		 @(CASE acc).
+
+him 	  PRON * @(PRON he 3 sg pers)
+		 @(CASE acc).
+
 
 
 "Nouns"
 
+cage N * @(COUNT-NOUN cage sg)
+        @DEF
+	@INANIMATE
+	@LOCATION.
+
 cat N * @(COUNT-NOUN cat sg)
         @DEF.
         
-
 cats N * @(COUNT-NOUN cat pl).
 
 mouse N * @(COUNT-NOUN mouse sg)
           @DEF.
 
 dog N * @(COUNT-NOUN dog sg)
-        @DEF.
+        @DEF
+	@ANIMATE.
 
 dogs N * @(COUNT-NOUN dog pl).
 
 treat N * @(COUNT-NOUN treat sg)
           @DEF.
 
+garden N * @(COUNT-NOUN garden sg)
+         @DEF
+	 @LOCATION.
+
 girl N * @(COUNT-NOUN girl sg)
-         @DEF.
+         @DEF
+	 @ANIMATE.
 
 gorilla N * @(COUNT-NOUN gorilla sg)
-            @DEF.
+            @DEF
+	    @ANIMATE.
 
-gorillas N * @(COUNT-NOUN gorilla pl).
+gorillas N * @(COUNT-NOUN gorilla pl)
+             @ANIMATE.
+
+hours N * @(COUNT-NOUN hour pl).
 
 banana N * @(COUNT-NOUN banana sg)
-           @DEF.
+           @DEF
+	   @INANIMATE.
 
 bananas N * @(COUNT-NOUN banana pl).
 
@@ -282,47 +429,63 @@ cake N * @(COUNT-NOUN cake sg)
          @DEF.
 
 bench N * @(COUNT-NOUN bench sg)
-         @DEF.
+         @DEF
+	 @INANIMATE
+	 @LOCATION.
 
 bone N * @(COUNT-NOUN bone sg)
          @DEF.
 
+bones N * @(COUNT-NOUN bone pl).
+
 book N * @(COUNT-NOUN book sg)
-         @DEF.
+         @DEF
+	 @INANIMATE.
 
 monkey N * @(COUNT-NOUN monkey sg)
-         @DEF.
+         @DEF
+	 @ANIMATE.
 
 table N * @(COUNT-NOUN table sg)
-          @DEF.
+          @DEF
+	  {@ANIMATE | @INANIMATE @LOCATION}.
+	  "Either the table as location or as refering to the group at the table"
 
 waiter N * @(COUNT-NOUN waiter sg)
-          @DEF.
+          @DEF
+	  @ANIMATE.
 
 telescope N * @(COUNT-NOUN telescope sg)
               @DEF.
 
 zookeeper N * @(COUNT-NOUN zookeeper sg)
-              @DEF.
+              @DEF
+	      @ANIMATE.
 
 "Proper nouns"
 
-Sam N * @(PRED sam).
+Sam N * @(PRED sam)
+        @ANIMATE.
 
-Jordan N * @(PRED jordan).
+Jordan N * @(PRED jordan)
+           @ANIMATE.
 
-Alex N * @(PRED alex).
+Alex N * @(PRED alex)
+         @ANIMATE.
 
 
 "determiners"
 
 "Lexical entries are case sensitive"
-the  D *  (^DEF) = +.
+the  D *     (^ SPEC PRED) = 'the'
+             (^ SPEC DEF) = +.
 
-The  D *  (^DEF) = +
+The  D *  (^ SPEC PRED) = 'the'
+          (^ SPEC DEF) = +.
           @(OT-MARK CAPITAL) "for generation disprefer capitalization".
 
-a   D *  (^ DEF) = -.
+a   D *  (^ SPEC PRED) = 'a'
+         (^ SPEC DEF) = -.
 
 
 "prepositions"
@@ -336,13 +499,22 @@ on 	  P * @(PREP on).
 
 in 	  P * @(PREP in). 
 
-with 	  P * @(PREP with). 
+with 	  P * @(PREP with).
 
+for 	  P * @(PREP for). 
+
+"Coordination"
+
+and  CONJ * @(COORD-FORM %stem);
+     CONJnp * @(COORD-FORM %stem) @(NUM pl).
 
 "punctuation"
 
-. PERIOD * . 
+. PERIOD * (^ STMT-TYPE) = declarative. 
 
 , COMMA  * . 
+
+!  EXCL * (^ STMT-TYPE) = exclamation. 
+
 
 ----
