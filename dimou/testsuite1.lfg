@@ -202,7 +202,7 @@ they devoured them
 
 I waited for him for hours
 
-#possessives do not work although they should
+#possessives
 
 my dog sleeps
 
@@ -234,10 +234,36 @@ the zookeeper waited on the gorilla
 
 a banana was put in the cage by the gorilla
 
-#do not work
-
 the gorilla waited on the bench
 
 the zookeeper waited by the bench
 
 the zookeeper waited by the bench in the garden
+
+#imperatives (ex. 6)
+
+Eat the beans!
+
+Give the gorilla a banana!
+
+Think a creative thought!
+
+#wrong imperatives
+
+Eats the beans!
+
+Gave a bone to the dog!
+
+#should work
+
+Sophie educated the bright robot and the intelligent child.
+
+Sophie educated the bright and efficient robot.
+
+lazy leopards sleep and eat.
+
+Mary and the gorilla like bananas.
+
+The gorilla and I like bananas.
+
+You and Mary like bananas.

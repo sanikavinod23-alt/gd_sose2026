@@ -1,34 +1,34 @@
 #show how it works
 
-the dog devours bones (1 0.014 11)
+the dog devours bones (1 0.013 12)
 
 # unification failure, subject-verb agreement (consistency)
 
-the dogs devours bones (0 0.003 11)
+the dogs devours bones (0 0.005 11)
 
 # coherence violation
 
-the dog appears bones (0 0.003 0)
+the dog appears bones (0 0.004 0)
 
 # completeness violation
 
-the dog devours (0 0.002 8)
+the dog devours (0 0.005 9)
 
 # missing PRED value, completeness violation
 
-the dog devours a bone (1 0.003 13)
+the dog devours a bone (1 0.004 14)
 
 #missing rules, unknown words
 
-the dog devours bones in the park (0 0.003 0)
+the dog devours bones in the park (0 0.005 0)
 
 #new verbs --- intrans
 
-a dog sleeps (1 0.003 8)
+a dog sleeps (1 0.004 9)
 
 #new verbs -- trans
 
-a dog chases a bone (1 0.003 13)
+a dog chases a bone (1 0.004 14)
 
 # 8 sentences, 0.023 CPU secs total, 0.004 CPU secs max (04/24/26)
 
@@ -40,91 +40,91 @@ a dog chases a bone (1 0.003 13)
 
 #sentences from ex 3 that work
 
-the cat sleeps (1 0.003 8)
+the cat sleeps (1 0.004 9)
 
 #transitive verb1
 
-the dog devours the bone (1 0.002 13)
+the dog devours the bone (1 0.003 14)
 
 #transitive verb2
 
-the cats chase a mouse (2 0.004 13)
+the cats chase a mouse (1 0.004 14)
 
 #subj-verb agreement
 
-the dog eats (1 0.003 8)
+the dog eats (1 0.004 9)
 
 #plural
 
-the cats eat a treat (2 0.004 13)
+the cats eat a treat (1 0.005 14)
 
 #sentences from ex 3 that do not work
 
-cat chases dogs  (0 0.004 0)
+cat chases dogs  (0 0.003 0)
 
 #no subj-verb agreement
 
-the girl see the gorilla (1 0.004 13)
+the girl see the gorilla (0 0.004 13)
 
 #singular nouns need articles
 
-gorilla devour bananas (0 0.003 0)
+gorilla devour bananas (0 0.004 0)
 
 #article not necessary for plural nouns
 
-gorillas devours banana (0 0.003 0)
+gorillas devours banana (0 0.004 0)
 
 #passive constructions that work
 
-the girl was seen by the gorilla (1+2 0.004 23)
+the girl was seen by the gorilla (1+2 0.006 24)
 
 #new lexicon items
 
-the cake was eaten (0 0.002 0)
+the cake was eaten (1 0.004 11)
 
 #passive without oblique agent
 
-the cat was chased (0 0.002 0)
+the cat was chased (1 0.003 11)
 
 #passive with oblique agent
 
-the bone was devoured by a dog (1+1 0.004 23)
+the bone was devoured by a dog (1+2 0.005 24)
 
 #passive construction that do not work
 
-the girl was saw by the gorilla (1 0.003 21)
+the girl was saw by the gorilla (0 0.004 9)
 
 #no agreement between auxiliary and main verb
 
-the dog was slept (1 0.003 10)
+the dog was slept (0 0.005 0)
 
 #sentences from ex 4 that work
 
-the girl gave the dog a bone (1 0.003 18)
+the girl gave the dog a bone (1 0.004 19)
 
 #ditransitive verb
 
-the girl gives the gorilla bananas (1 0.003 16)
+the girl gives the gorilla bananas (1 0.004 17)
 
 #plural nouns do not need articles
 
-gorillas devour bananas (1 0.002 9)
+gorillas devour bananas (1 0.003 10)
 
 #but singular nouns do
 
-a gorilla devours bananas (1 0.004 11)
+a gorilla devours bananas (1 0.004 12)
 
 #sentences from ex 4 that do not work
 
-the girl give the gorilla bananas (1 0.003 16)
+the girl give the gorilla bananas (0 0.004 16)
 
 #no agreement
 
-gorillas devours bananas (0 0.004 9)
+gorillas devours bananas (0 0.003 9)
 
 #no agreement
 
-gorilla devour bananas (0 0.002 0)
+gorilla devour bananas (0 0.004 0)
 
 #no agreement
 
@@ -132,23 +132,23 @@ gorillas devours banana (0 0.003 0)
 
 #dative shift
 
-the girl gives a bone to the dog (1 0.003 32)
+the girl gives a bone to the dog (1 0.005 33)
 
 #pp as indirect object
 
-the zookeeper gave a banana to the gorilla (1 0.003 32)
+the zookeeper gave a banana to the gorilla (1 0.006 33)
 
 #passive with ditransitive verb
 
-the dog was given a bone by the girl (1+2 0.004 34)
+the dog was given a bone by the girl (1+3 0.005 34)
 
 #dative passive
 
-a bone was given to the dog by the girl (1+1 0.007 45)
+a bone was given to the dog by the girl (1+2 0.006 46)
 
 #dative shifts that do not work
 
-the girl gave to the dog a bone (0 0.002 0)
+the girl gave to the dog a bone (0 0.003 0)
 
 #no right word order
 
@@ -156,64 +156,102 @@ the dog was given by the girl a bone (0 0.003 0)
 
 #no sem pps
 
-The waiter waited on the table. (0 0.004 0)
+The waiter waited on the table. (1+4 0.005 22)
 
 #pp as oblique
 
-Jordan talked to Sam. (1 0.004 17)
+Jordan talked to Sam. (1+2 0.004 18)
 
 #no sem pps do not have a pred value, only pform
 
-Alex argued with a gorilla. (1 0.004 19)
+Alex argued with a gorilla. (1+2 0.004 20)
 
 #sem pps
 
-Sam saw a monkey with a telescope. (1 0.006 28)
+Sam saw a monkey with a telescope. (1+1 0.004 29)
 
 #pps as adjuncts
 
-The dog sat on the bench with a book. (0 0.004 0)
+The dog sat on the bench with a book. (1+1 0.004 40)
 
 #sentences from ex. 5 that work
 
-the small dog slept (1 0.003 11)
+the small dog slept (1 0.004 12)
 
-the small black dog slept (1 0.003 14)
+the small black dog slept (1 0.003 15)
 
-the small black hungry dog ate bones (1 0.003 20)
+the small black hungry dog ate bones (1 0.004 21)
 
-the gorilla devoured the banana quickly (2 0.003 16)
+the gorilla devoured the banana quickly (1 0.004 16)
 
 the small black hungry dog ate bones quickly (1 0.003 23)
 
-the very small gorilla slept (1 0.002 14)
+the very small gorilla slept (1 0.003 14)
 
-the very very very small gorilla slept (4 0.004 31)
+the very very very small gorilla slept (1 0.003 18)
 
-the small, black, hungry dog slept. (1 0.005 23)
+the small, black, hungry dog slept. (1 0.004 24)
 
 #working with pronouns
 
 he sleeps (1 0.003 7)
 
-she devoured it (2 0.004 11)
+she devoured it (1 0.005 10)
 
-they devoured them (2 0.003 11)
+they devoured them (1 0.005 10)
 
-I waited for him for hours (0 0.004 0)
+I waited for him for hours (1 0.004 25)
 
-my dog sleeps (0 0.003 5)
+#possessives
 
-she gave us her banana (0 0.004 0)
+my dog sleeps (1 0.003 9)
+
+she gave us her banana (1 0.004 15)
 
 #not working 
 
-him sleeps (0 0.004 4)
+him sleeps (0 0.003 3)
 
-them devoured it (0 0.002 4)
+them devoured it (0 0.003 3)
 
-they devoured they (0 0.003 10)
+they devoured they (0 0.003 8)
 
-I waited for she for hours (0 0.002 0)
+I waited for she for hours (0 0.004 13)
 
-# 60 sentences, 0.209 CPU secs total, 0.014 CPU secs max (06/09/26)
+#work (sometimes with many solutions)
+
+the gorilla put the banana in the cage (1+2 0.004 29)
+
+the gorilla in the cage devoured a banana (1 0.003 25)
+
+the gorilla devoured a banana in the cage (1+1 0.005 29)
+
+the dog was given a bone by the girl (1+3 0.003 34)
+
+a bone was given to the dog by the girl (1+2 0.006 46)
+
+the zookeeper waited on the gorilla (1+2 0.003 20)
+
+a banana was put in the cage by the gorilla (1+14 0.004 42)
+
+the gorilla waited on the bench (1+1 0.004 20)
+
+the zookeeper waited by the bench (1 0.005 20)
+
+the zookeeper waited by the bench in the garden (1+1 0.003 38)
+
+#imperatives
+
+Eat the beans! (1+1 0.003 11)
+
+Give the gorilla a banana! (1+1 0.003 16)
+
+Think a creative thought! (1+1 0.003 14)
+
+#wrong imperatives
+
+Eats the beans! (0 0.002 0)
+
+Gave a bone to the dog! (0 0.002 0)
+
+# 75 sentences, 0.302 CPU secs total, 0.013 CPU secs max (06/13/26)
