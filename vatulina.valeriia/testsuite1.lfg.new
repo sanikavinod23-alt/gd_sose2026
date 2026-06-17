@@ -1,10 +1,10 @@
 #correct sentence 1 - intransitive verb
 
-the cat sleeps (1 0.010 8)
+the cat sleeps (1 0.004 8)
 
 #correct sentence 2 - transitive verb
 
-the dog devours the bone (1 0.003 13)
+the dog devours the bone (1 0.002 13)
 
 #correct sentence 3 - transitive verb
 
@@ -12,7 +12,7 @@ the cats chase a mouse (1 0.002 13)
 
 #correct sentence 4 - optionally transitive verb
 
-the dog eats (1 0.002 8)
+the dog eats (1 0.001 8)
 
 #correct sentence 5 - optionally transitive verb
 
@@ -36,7 +36,7 @@ gorillas devours banana (0 0.001 0)
 
 #correct sentence 10
 
-the girl was seen by the gorilla (1 0.002 18)
+the girl was seen by the gorilla (1+1 0.002 23)
 
 #correct sentence 11
 
@@ -48,15 +48,15 @@ the cat was chased (1 0.001 10)
 
 #correct sentence 13
 
-the bone was devoured by a dog (1 0.001 18)
+the bone was devoured by a dog (1+1 0.002 23)
 
 # incorrect sentence 14 - passivisation rule violation
 
-the girl was saw by the gorilla (0 0.001 0)
+the girl was saw by the gorilla (0 0.001 9)
 
 #incorrect sentence 15 - passivisation rule violation
 
-the dog was slept (0 0.001 0)
+the dog was slept (0 0.001 9)
 
 #correct sentence 16
 
@@ -76,7 +76,7 @@ a gorilla devours bananas (1 0.001 11)
 
 #incorrect sentence 20
 
-the girl give the gorilla bananas (0 0.001 16)
+the girl give the gorilla bananas (0 0.002 16)
 
 #incorrect sentence 21
 
@@ -92,19 +92,19 @@ gorillas devours banana (0 0.001 0)
 
 #correct sentence 24
 
-the girl gives a bone to the dog (1 0.001 21)
+the girl gives a bone to the dog (1 0.002 32)
 
 #correct sentence 25
 
-the zookeeper gave a banana to the gorilla (1 0.001 21)
+the zookeeper gave a banana to the gorilla (1 0.002 32)
 
 #correct sentence 26
 
-the dog was given a bone by the girl (1 0.002 23)
+the dog was given a bone by the girl (1+2 0.002 33)
 
 #correct sentence 27
 
-a bone was given to the dog by the girl (1 0.002 26)
+a bone was given to the dog by the girl (1+1 0.002 45)
 
 #incorrect sentence 28
 
@@ -116,11 +116,11 @@ the dog was given by the girl a bone (0 0.001 0)
 
 #correct sentence 30
 
-the waiter waited on the table (2 0.002 19)
+the waiter waited on the table (1 0.002 19)
 
 #correct sentence 31
 
-Jordan talked to Sam (1 0.001 12)
+Jordan talked to Sam (1+1 0.001 15)
 
 #correct sentence 32
 
@@ -128,10 +128,106 @@ Alex argued with a gorilla (1 0.001 17)
 
 #correct sentence 33
 
-Sam saw a monkey with a telescope (2 0.002 26)
+Sam saw a monkey with a telescope (1+1 0.002 26)
 
 #correct sentence 34
 
-the dog sat on the bench with a book (2 0.002 37)
+the dog sat on the bench with a book (1+1 0.002 37)
 
-# 34 sentences, 0.055 CPU secs total, 0.010 CPU secs max (05/21/26)
+#correct sentence 35
+
+the small dog slept (1 0.001 11)
+
+#correct sentence 36
+
+the small black dog slept (1 0.001 14)
+
+#correct sentence 37
+
+the small black hungry dog ate bones (1 0.001 20)
+
+#correct sentence 38
+
+the gorilla devoured the banana quickly (1 0.002 15)
+
+#correct sentence 39
+
+the small black hungry dog ate bones quickly (1 0.002 22)
+
+#correct sentence 40
+
+the very small gorilla slept (1 0.001 13)
+
+#correct sentence 41
+
+the very very very small gorilla slept (1 0.002 17)
+
+#correct sentence 42
+
+the small, black, hungry dog slept. (1 0.001 23)
+
+#correct sentence 43
+
+he sleeps (1 0.001 6)
+
+#correct sentence 44
+
+she devoured it (1 0.001 9)
+
+#correct sentence 45
+
+they devoured them (1 0.001 9)
+
+#correct sentence 46
+
+I waited for him for hours (2+1 0.002 24)
+
+#correct sentence 47
+
+my dog sleeps (1 0.001 8)
+
+#correct sentence 48
+
+she gave us her banana (1 0.002 14)
+
+#OT mark test
+
+the dog was given a bone by the girl (1+2 0.002 33)
+
+#OT mark test
+
+a bone was given to the dog by the girl (1+1 0.003 45)
+
+#OT mark test
+
+the gorilla waited on the bench (1 0.002 19)
+
+#OT mark test
+
+the zookeeper waited on the gorilla (1+1 0.002 19)
+
+#OT mark test
+
+the gorilla put the banana in the cage (1 0.002 28)
+
+#OT mark test
+
+the gorilla in the cage devoured a banana (1 0.002 24)
+
+#OT mark test
+
+the gorilla devoured a banana in the cage (1+1 0.002 28)
+
+#OT mark test
+
+a banana was put in the cage by the gorilla (1+2 0.003 41)
+
+#OT mark test
+
+the zookeeper waited by the bench (1 0.002 19)
+
+#OT mark test
+
+the zookeeper waited by the bench in the garden (1+1 0.002 37)
+
+# 58 sentences, 0.091 CPU secs total, 0.004 CPU secs max (06/12/26)
