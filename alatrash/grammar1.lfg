@@ -8,34 +8,38 @@ DEMO   ENGLISH   CONFIG (1.0)
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
   EPSILON   e.
-  OPTIMALITYORDER NOGOOD.
-
-----
+  OPTIMALITYORDER NOGOOD OBL-OVER-ADJ.
+  ----
 
 DEMO ENGLISH RULES (1.0)
 
 S --> NP: (^ SUBJ)=! (! CASE)=nom;
-      VP: ^=!.
+      VP: ^=!;
+      (PUNC).
 
 VP --> (AUX) 
        V: ^=! ;
        (NP: (^ OBJ)=! (! CASE)=acc) 
        (NP: (^ OBJ2)=!) 
-       PP*: { ! $ (^ ADJUNCT) (! PTYPE) =c sem | (^ OBL) =! };
-       (PP: (^ OBL-TO) =!) 
-       (PP: (^ OBL-AG) =!).
-
+       AdvP*: ! $ (^ ADJUNCT);
+       PP*: { ! $ (^ ADJUNCT) (! PTYPE) =c sem @(OT-MARK OBL-OVER-ADJ) 
+     | (^ OBL) =! };
+       (PP: (^ OBL-TO) =! (! PFORM) =c to) 
+       (PP: (^ OBL-AG) =! (! PFORM) =c by).
 NP --> (D) 
        AP*: ! $ (^ ADJUNCT);
        N: ^=! ; 
-       PP*: ! $ (^ ADJUNCT) (! PTYPE) =c sem. 
-
+       PP*: ! $ (^ ADJUNCT) (! PTYPE) =c sem.
 PP --> { P: ^=! (! PTYPE) =c sem; 
          NP: (^ OBJ) =! (! CASE) = acc
        | P: ^=! (! PTYPE) =c nosem; 
          NP 
        }.
 
+AP --> (PUNC)
+       AdvP*: ! $ (^ ADJUNCT);
+       A: ^=!.
+AdvP --> Adv: ^=!.
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
@@ -78,6 +82,20 @@ PREP(P) = { (^ PRED) = 'P<(^ OBJ)>'
             (^ PTYPE) = sem 
           | (^ PTYPE) = nosem 
             (^ PFORM) = P }.
+
+"Pronoun Templates"
+"Pronoun Templates"
+PRON(F N Pe C) = (^ PRED) = 'F'
+                 (^ NUM) = N
+                 (^ PERS) = Pe
+                 (^ CASE) = C
+                 (^ PRON-TYPE) = pers.
+POSS-PRON(F N Pe) = (^ PRED) = 'F'
+                    (^ NUM) = N
+                    (^ PERS) = Pe
+                    (^ PRON-TYPE) = poss.
+"OT-Mark Template"
+OT-MARK(M) = M $ o::*.
 ----
 
 DEMO ENGLISH LEXICON (1.0)
@@ -88,43 +106,44 @@ a        D * (^ DEF) = -.
 was      AUX * (^ TENSE) = past.
 
 "==== Nouns ===="
-cat      N * @(CN cat).
-cats     N * @(PL cat).
-dog      N * @(CN dog).
-dogs     N * @(PL dog).
-bone     N * @(CN bone).
-bones    N * @(PL bone).
-mouse    N * @(CN mouse).
-gorilla  N * @(CN gorilla).
-gorillas N * @(PL gorilla).
-banana   N * @(CN banana).
-bananas  N * @(PL banana).
-treat    N * @(CN treat).
-cake     N * @(CN cake).
-girl     N * @(CN girl).
-girls    N * @(PL girl).
+cat      N * @(CN cat) (^ ANIM) = +.
+cats     N * @(PL cat) (^ ANIM) = +.
+dog      N * @(CN dog) (^ ANIM) = +.
+dogs     N * @(PL dog) (^ ANIM) = +.
+bone     N * @(CN bone) (^ ANIM) = -.
+bones    N * @(PL bone) (^ ANIM) = -.
+mouse    N * @(CN mouse) (^ ANIM) = +.
+gorilla  N * @(CN gorilla) (^ ANIM) = +.
+gorillas N * @(PL gorilla) (^ ANIM) = +.
+banana   N * @(CN banana) (^ ANIM) = -.
+bananas  N * @(PL banana) (^ ANIM) = -.
+treat    N * @(CN treat) (^ ANIM) = -.
+cake     N * @(CN cake) (^ ANIM) = -.
+girl     N * @(CN girl) (^ ANIM) = +.
+girls    N * @(PL girl) (^ ANIM) = +.
 
-zookeeper  N * @(CN zookeeper).
-waiter     N * @(CN waiter).
-table      N * @(CN table).
-bench      N * @(CN bench).
-book       N * @(CN book).
-monkey     N * @(CN monkey).
-telescope  N * @(CN telescope).
+zookeeper  N * @(CN zookeeper) (^ ANIM) = +.
+waiter     N * @(CN waiter) (^ ANIM) = +.
+table      N * @(CN table) (^ ANIM) = -.
+bench      N * @(CN bench) (^ ANIM) = -.
+book       N * @(CN book) (^ ANIM) = -.
+monkey     N * @(CN monkey) (^ ANIM) = +.
+telescope  N * @(CN telescope) (^ ANIM) = -.
+hours    N * @(PL hour) (^ ANIM) = -.
 
 "Proper nouns (no determiner needed, so use PL-style or a custom template)"
 
-jordan     N * (^ PRED) = 'jordan' (^ NUM) = sg (^ PERS) = 3.
-sam        N * (^ PRED) = 'sam' (^ NUM) = sg (^ PERS) = 3.
-alex       N * (^ PRED) = 'alex' (^ NUM) = sg (^ PERS) = 3.
+jordan     N * (^ PRED) = 'jordan' (^ NUM) = sg (^ PERS) = 3 (^ ANIM) = +.
+sam        N * (^ PRED) = 'sam' (^ NUM) = sg (^ PERS) = 3 (^ ANIM) = +.
+alex       N * (^ PRED) = 'alex' (^ NUM) = sg (^ PERS) = 3 (^ ANIM) = +.
 
 "==== Intransitive Verbs ===="
 sleeps   V * @(INTRANS sleep) @VPRES @PRES3SG.
-slept    V * @(INTRANS sleep) { (^ TENSE) = past | (^ PARTICIPLE) = past }.
-sat      V * @(INTRANS sit) 
-             (^ TENSE) = past.
+slept    V * @(INTRANS sleep) (^ TENSE) = past.
+sat      V * (^ PRED) = 'sit<(^ SUBJ)(^ OBL)>'
+             (^ TENSE) = past
+             (^ OBL PFORM) = on.
 
- 
 "==== Transitive Verbs ===="
 devours  V * @(TRANS devour) @VPRES @PRES3SG.
 devour   V * @(TRANS devour) @VPRES @PRES3PL.
@@ -140,8 +159,9 @@ seen     V * @(TRANS see) (^ PARTICIPLE) = past.
 
 "==== Optionally Transitive Verbs ===="
 eats     V * @(OPT-TRANS eat) @VPRES @PRES3SG.
+ate      V * @(OPT-TRANS eat) (^ TENSE) = past.
 eat      V * @(OPT-TRANS eat) @VPRES @PRES3PL.
-eaten    V * @(OPT-TRANS eat) (^ PARTICIPLE) = past.
+eaten     V * @(TRANS eat) (^ PARTICIPLE) = past.
 
 "==== Ditransitive Verbs ===="
 gives    V * @(DITRANS give) @VPRES @PRES3SG.
@@ -151,13 +171,26 @@ given    V * @(DITRANS give) (^ PARTICIPLE) = past.
 
 "==== Verbs that take OBL as object==="
 waited   V * (^ PRED) = 'wait<(^ SUBJ)(^ OBL)>' 
-             (^ TENSE) = past.
+             (^ TENSE) = past
+             (^ OBL PFORM) = on
+             (^ OBL PTYPE) = nosem.
+
+"waited   V * (^ PRED) = 'wait<(^ SUBJ)(^ OBL)>' 
+             (^ TENSE) = past
+             (^ OBL PFORM) = on
+             (^ OBL PTYPE) = nosem
+             (^ OBL ANIM) = +."
+
+"waited   V * (^ PRED) = 'wait<(^ SUBJ)>'
+             (^ TENSE) = past."
 
 talked   V * (^ PRED) = 'talk<(^ SUBJ)(^ OBL)>' 
-             (^ TENSE) = past.
+             (^ TENSE) = past
+             (^ OBL PFORM) = to.
 
 argued   V * (^ PRED) = 'argue<(^ SUBJ)(^ OBL)>' 
-             (^ TENSE) = past.
+             (^ TENSE) = past
+             (^ OBL PFORM) = with.
 
 
 "==== Prepositions ===="
@@ -166,5 +199,50 @@ to       P * @(PREP to).
 on       P * @(PREP on).
 in       P * @(PREP in).
 with     P * @(PREP with).
+for      P * @(PREP for).
 
+"==== Adjectives ===="
+small    A * (^ PRED) = 'small'.
+black    A * (^ PRED) = 'black'.
+hungry   A * (^ PRED) = 'hungry'.
+
+"==== Adverbs ===="
+quickly  Adv * (^ PRED) = 'quickly'.
+very     Adv * (^ PRED) = 'very'.
+
+"==== Punctuation ===="
+.    PUNC * .
+,    PUNC * .
+
+"==== Pronouns ===="
+he       N * @(PRON he sg 3 nom).
+she      N * @(PRON she sg 3 nom).
+I       N * @(PRON I sg 1 nom).
+i        N * @(PRON I sg 1 nom).
+they     N * @(PRON they pl 3 nom).
+we       N * @(PRON we pl 1 nom).
+
+him      N * @(PRON he sg 3 acc).
+me       N * @(PRON I sg 1 acc).
+them     N * @(PRON they pl 3 acc).
+us       N * @(PRON we pl 1 acc).
+it       N * @(PRON it sg 3 acc).
+
+"==== Possessive Pronouns ===="
+my   D * (^ DEF) = +
+         (^ POSS PRED) = 'I'
+         (^ POSS NUM) = sg
+         (^ POSS PERS) = 1
+         (^ POSS PRON-TYPE) = poss.
+his      D * @(POSS-PRON he sg 3).
+her      D * (^ DEF) = +
+             (^ POSS PRED) = 'she'
+             (^ POSS NUM) = sg
+             (^ POSS PERS) = 3
+             (^ POSS PRON-TYPE) = poss.
+
+her      N * @(PRON she sg 3 acc)
+             (^ NTYPE) = pron.
+their    D * @(POSS-PRON they pl 3).
+our      D * @(POSS-PRON we pl 1).
 ----
