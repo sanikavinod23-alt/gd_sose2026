@@ -1,0 +1,33 @@
+The most problematic verb is 'waited' because it can combine with both semantic and nonsemantic prepositions, with 'on' being very often ambiguous. The sentence 'the gorilla waited on the bench' always gave 0 solutions, while 'the zookeeper waited on the gorilla' analysed 'on the gorilla' as adjunct. In my lexicon, there is a distinction between animate and non-animate nouns so I implemented the restriction:
+
+ PP*: { ! $ (^ ADJUNCT)      
+	        (! PTYPE) =c sem      
+                (! OBJ ANIM)=c +
+                 @(OT-MARK PPadj)
+                 |
+                 ! $ (^ ADJUNCT)      
+	        (! PTYPE) =c sem      
+                (! OBJ ANIM)=c -
+                 |
+                 (^ OBL) = !      
+                @(OT-MARK PPadj) };
+
+Interestingly, "the zookeeper waited by the bench" had one valid solution but 'by the bench' was analysed as OBL-AG, even though it was correctly marked as nosem.
+
+Also, 'the dog was given a bone by the girl' had 1+2 solutions and 'a bone was given to the dog by the girl' had 1+1 solutions. The specification below did not help much.
+
+by	P *  (^PRED)= 'by<( ^OBJ)>'
+              {(^ PTYPE)= sem
+              @(OT-MARK PPadj)
+              |
+              (^ PTYPE)= nosem
+               (^ PFORM)= by}.
+
+I played around with OT-Marks but ended up getting less solutions and more faulty results, eg. adding a OT-Mark directly in the problematic verb 'waited'.
+
+To parse sentences with 'put' , I created a locative template which worked very well:
+LOC(P) = @(PASS (^PRED) = 'P<(^ SUBJ)(^OBJ)(^OBL)>')
+         (^OBL PTYPE) = nosem.
+
+Also, the possessive pronouns do not parse at all, even though their template follows the logic of the personal-pronoun-template which works fine.
+

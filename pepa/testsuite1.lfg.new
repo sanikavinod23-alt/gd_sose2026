@@ -36,7 +36,7 @@ gorillas devours banana (0 0.001 0)
 
 #10 - Passive structure with agent
 
-the girl was seen by the gorilla (3 0.001 23)
+the girl was seen by the gorilla (1+2 0.001 23)
 
 #11 - Passive structure without agent
 
@@ -48,7 +48,7 @@ the cat was chased (1 0.001 10)
 
 #13 - Passive structure with agent
 
-the bone was devoured by a dog (3 0.001 23)
+the bone was devoured by a dog (1+2 0.001 23)
 
 #14 - Passive structure without past participle
 
@@ -56,7 +56,7 @@ the girl was saw by the gorilla (0 0.001 0)
 
 #15 - Passive structure without past participle
 
-the dog was slept (0 0.001 0)
+the dog was slept (0 0.000 0)
 
 #16 - The lexeme "was" doesn't work as a verb in its past tense but as an auxiliary
 
@@ -104,11 +104,11 @@ the zookeeper gave a banana to the gorilla (2 0.001 32)
 
 #27 - Gets 6 solutions (by[2]: OBL-AG & Adjunct, to[3]: OBL & OBL-TO & adjunct, I don't know which is the 6th solution...)
 
-the dog was given a bone by the girl (6 0.001 35)
+the dog was given a bone by the girl (2+4 0.001 35)
 
 #28 - Gets 8 solutions (same as before)
 
-a bone was given to the dog by the girl (8 0.001 45)
+a bone was given to the dog by the girl (2+6 0.001 45)
 
 #29 - The PP isn't at the end
 
@@ -132,10 +132,118 @@ Alex argued with a gorilla (1 0.001 17)
 
 #34 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
 
-Sam saw a monkey with a telescope (2 0.001 26)
+Sam saw a monkey with a telescope (1+1 0.001 26)
 
 #35 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
 
-the dog sat on the bench with a book (2 0.001 37)
+the dog sat on the bench with a book (1+1 0.001 37)
 
-# 35 sentences, 0.028 CPU secs total, 0.003 CPU secs max (05/19/26)
+#36 - Adjective works
+
+the small dog slept (1 0.001 11)
+
+#37 - Two adjectives without comma work
+
+the small black dog slept (1 0.001 14)
+
+#38 - Three adjectives without comma work
+
+the small black hungry dog ate bones (1 0.001 20)
+
+#39 - Adverb works
+
+the gorilla devoured the banana quickly (1 0.001 15)
+
+#40 - Many adjectives without comma and an adverb work
+
+the small black hungry dog ate bones quickly (1 0.001 22)
+
+#41 - Adjective after adverb works
+
+the very small gorilla slept (1 0.001 14)
+
+#42 - I get 4 solutions (one for each type of AdjP)
+
+the very very very small gorilla slept (4 0.001 31)
+
+#43 - Pronoun as subject works
+
+he sleeps (1 0.000 6)
+
+#44 - Pronoun as subject and object works
+
+she devoured it (1 0.001 9)
+
+#45 - Same here
+
+they devoured them (1 0.001 9)
+
+#46 - I don't understand why this doesn't work????
+
+I waited for him for hours (1 0.001 24)
+
+#47 - All the possessive pronouns don't work. I don't know why. The f-structure shows there's a problem with the noun. It says "incomplete" and marks with black background the "c T" on the DEF.
+
+my dog sleeps (0 0.000 9)
+
+#48 - Same here
+
+she gave us her banana (0 0.001 15)
+
+#49 - No results because subject in accusative
+
+him sleeps (0 0.000 3)
+
+#50 - No results because subject in accusative
+
+them devoured it (0 0.000 3)
+
+#51 - No results because object in nominative
+
+they devoured they (0 0.000 8)
+
+#52 - No results because PP in nominative
+
+I waited for she for hours (0 0.001 13)
+
+#53 - 2+4 results, which I don't understand why. It should give only 1. The tree remains the same. The only difference that I see is that in one of the results it mentions the case and in the other it doesn't.
+
+the dog was given a bone by the girl (2+4 0.001 35)
+
+#54 - 2+6: Same as the previous one
+
+a bone was given to the dog by the girl (2+6 0.001 45)
+
+#55 - 1 result
+
+the gorilla waited on the bench (1 0.001 19)
+
+#56 - 1 result
+
+the zookeeper waited on the gorilla (1 0.001 19)
+
+#57 - 2 results: In general I have a problem with the verb "put" because it's neither transitive, nor ditransitive or intransitive. It has an object and an OBL which shows the location ("I put something somewhere"). So I created a template for "locative-transatives".
+
+the gorilla put the banana in the cage (2 0.001 28)
+
+#58 - 1 result
+
+the gorilla in the cage devoured a banana (1 0.001 24)
+
+#59 - 1+1 results due to OT-marks
+
+the gorilla devoured a banana in the cage (1+1 0.001 28)
+
+#60 - 2+3 results: Again a problem with the verb "put" I think.
+
+a banana was put in the cage by the gorilla (2+3 0.001 41)
+
+#61 - 1 result
+
+the zookeeper waited by the bench (1 0.001 19)
+
+#62 - 1+1 results due to OT-marks
+
+the zookeeper waited by the bench in the garden (1+1 0.001 37)
+
+# 62 sentences, 0.045 CPU secs total, 0.003 CPU secs max (06/09/26)

@@ -1,0 +1,190 @@
+#show how it works
+
+the dog devours bones (1 0.012 11)
+
+# unification failure, subject-verb agreement (consistency)
+
+the dogs devours bones (0 0.002 11)
+
+# coherence violation
+
+the dog appears bones  (0 0.002 0)
+
+# completeness violation
+
+the dog devours  (0 0.001 8)
+
+# missing PRED value, completeness violation
+
+the dog devours a bone (1 0.002 13)
+
+#missing rules, unknown words
+
+the dog devours bones in the park (0 0.002 0)
+
+#new verbs --- intrans
+
+a dog sleeps (1 0.002 8)
+
+#new verbs -- trans
+
+a dog chases a bone (1 0.002 13)
+
+#intransitive
+
+the cat sleeps (1 0.001 8)
+
+#transitive
+
+the dog devours the bone (1 0.001 13)
+
+#unification failure, sv agreement
+
+the cat chase a mouse (0 0.002 13)
+
+#missing objects for transitive verb
+
+the dog eats (1 0.001 8)
+
+#grammatical, sv agreement
+
+the cats eat a treat (1 0.001 13)
+
+#unfication failure, sv agreement
+
+the girl see the gorilla (0 0.001 13)
+
+#determiners missing
+
+cat chases dogs (0 0.001 0)
+
+#plural object noun
+
+gorilla devours bananas (0 0.001 0)
+
+#singular object noun
+
+gorilla devours banana (0 0.001 0)
+
+#passive
+
+the girl was seen by the gorilla (1+1 0.002 23)
+
+#passive
+
+the cake was eaten (1 0.001 10)
+
+#completness violation
+
+the cat was chased (1 0.001 10)
+
+# grammatical
+
+the bone was devoured by the dog (1+1 0.002 23)
+
+#coherence violation
+
+the girl was saw happy by the gorilla (0 0.001 0)
+
+#coherence violation
+
+the dog was slept (0 0.001 0)
+
+the girl gave the dog a bone (1 0.001 18)
+
+the girl gave the gorilla bananas (1 0.001 16)
+
+gorillas devour bananas (1 0.001 9)
+
+a gorilla devours bananas (1 0.001 11)
+
+the girl give the gorilla bananas (0 0.001 16)
+
+gorillas devour bananas (1 0.001 9)
+
+gorilla devour bananas (0 0.001 0)
+
+gorilla devour banana (0 0.001 0)
+
+the girl gives a bone to the dog (1 0.001 32)
+
+the zookeeper gave a banana to the gorilla (1 0.001 32)
+
+the dog was given a bone by the girl (1+4 0.002 33)
+
+a bone was given to the dog by the girl (1+3 0.002 46)
+
+the girl gave to the dog a bone (0 0.001 0)
+
+the dog was given by the girl a bone (0 0.001 0)
+
+The waiter waited on the table (1+2 0.001 19)
+
+Jordan talked to Sam (1+1 0.001 15)
+
+Alex argued with a gorilla (1+1 0.001 17)
+
+Sam saw a monkey with a telescope (1+3 0.001 26)
+
+The dog sat on the bench with a book (2+6 0.002 37)
+
+the small dog slept (1 0.001 11)
+
+the small black dog slept (2 0.001 19)
+
+the small black hungry dog ate bones (5 0.001 37)
+
+the gorilla devoured the banana quickly (2 0.001 15)
+
+the small black hungry dog ate bones quickly (5 0.001 39)
+
+the very small gorilla slept (1 0.001 13)
+
+the very very very small gorilla slept (1 0.001 17)
+
+he sleeps (1 0.001 6)
+
+she devours it  (1 0.001 9)
+
+they devoured them (2 0.001 9)
+
+I waited for him for hours (1 0.001 24)
+
+my dog sleeps (0 0.001 0)
+
+she gave us her banana (0 0.001 12)
+
+him sleeps (0 0.001 3)
+
+them devoured it (0 0.001 3)
+
+they devoured they (0 0.001 8)
+
+I waited for she for hours (0 0.001 13)
+
+the dog was given a bone by the girl (1+4 0.001 33)
+
+a bone was given to the dog by the girl (1+3 0.002 46)
+
+the gorilla waited on the bench (1+2 0.001 19)
+
+the zookeeper waited on the gorilla (1+2 0.001 19)
+
+the gorilla put the banana in the cage (2 0.001 28)
+
+the gorilla in the cage devoured a banana (4+2 0.001 24)
+
+the gorilla devoured a banana in the cage (2+6 0.001 28)
+
+a banana was put in the cage by the gorilla (1+3 0.001 42)
+
+the zookeeper waited by the bench (1+1 0.001 19)
+
+the zookeeper waited by the bench in the garden (1+7 0.001 37)
+
+
+
+
+
+
+# 69 sentences, 0.091 CPU secs total, 0.012 CPU secs max (06/12/26)

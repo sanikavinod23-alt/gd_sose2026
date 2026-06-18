@@ -1,0 +1,10 @@
+Overall, almost all sentences were generated correctly. In one sentence, "The {cats|Cats} chase a mouse" the noun is seen as either capitalized or not. I tried to fix it, but strangely, only the noun "cat" in this particular sentence behaves this way. Every attempt to correct this led me to have problems in all the other sentences.
+
+In passive sentences with OBL-TO and the Agent like "A bone was given {by the girl to the dog|to the dog by the girl}" the generation had problems with the order. I tried to fix it with two OT-MARKS, one negative and one positive, but it did not work since I couldn't understand how to simply mark the order in a sentence. In any case, the sentence is grammatically correct in both ways. 
+
+The last problem is about the adjectives order in English. In sentences like "The 
+  { {black hungry|hungry black} small
+   |small {black hungry|hungry black}
+   |black small hungry
+   |hungry small black} 
+dog ate bones" the generation is confused on the order of the adjectives. The solution would be to mark each adjective according to one category (size, color and state) and use OT-MARKS to prefer the order. Same as above, I couldn't understand how to mark the order in the sentences. As of right now, the NP rule allows an infinite number of adjectives, separated by commas. Thinking that could be the problem, I also tried to put OT-MARKS in the rule, but it didn't work. 

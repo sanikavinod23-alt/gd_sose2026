@@ -40,16 +40,16 @@ the dog eats
 #14 works perf +template(TRANS)
 the cats eat a treat
 
-#15 doesn't work
+#15 0
 the girl see the gorilla
 
-#16 doesn't work
+#16 0
 cat chases dogs
 
-#17 doesn't work
+#17 0
 gorilla devour bananas
 
-#18 doesn't work
+#18 0
 gorillas devours banana
 
 #19 works perf +temp(CN and INTRANS)
@@ -67,9 +67,121 @@ the cat was chased
 #23 works
 the bone was devoured by a dog
 
-
-#24 not working
+#24 0
 the girl was saw by the gorilla
 
 #25 not working
 the dog was slept
+
+#PW4
+
+#26 works
+the girl gave the dog a bone
+
+#27 works
+the girl gives the gorilla bananas
+
+#28 works
+gorillas devour bananas
+
+#29 works
+a gorilla devours bananas
+
+#30 0
+the girl give the gorilla bananas
+
+#31 0
+gorillas devours bananas
+
+#32 0
+gorilla devour bananas
+
+#33 0
+gorillas devours banana
+
+#34 works
+the girl gives a bone to the dog
+
+#35 works
+the zookeeper gave a banana to the gorilla
+
+#36 works
+the dog was given a bone by the girl
+
+#37 works
+a bone was given to the dog by the girl
+
+#38 0
+the girl gave to the dog a bone
+
+#39 0
+the dog was given by the girl a bone
+
+#40 works
+the waiter waited on the table
+
+#41 works
+Jordan talked to Sam
+
+#42 works
+Alex argued with a gorilla
+
+#43 works
+Sam saw a monkey with a telescope
+
+#44 works
+the dog sat on the bench with a book
+
+#45 works
+the small dog slept
+
+#46 works
+the small black dog slept
+
+#47 works
+the small black hungry dog ate bones
+
+#48 works
+the gorilla devoured the banana quickly
+
+#49 works
+the small black hungry dog ate bones quickly
+
+#50 works
+the very small gorilla slept
+
+#51 works
+the very very very small gorilla slept
+
+#52 not figured out commas
+the small, black, hungry dog slept.
+
+#53 works
+he sleeps
+
+#54 works
+she devoured it
+
+#55 works
+they devoured them
+
+#56 works
+I waited for him for hours
+
+#57 no - prob with poss
+my dog sleeps
+
+#58 no - prob with poss
+she gave us her banana
+
+#59 0
+him sleeps
+
+#60 0
+them devoured it
+
+#61 0
+they devoured they
+
+#62 0
+I waited for she for hours

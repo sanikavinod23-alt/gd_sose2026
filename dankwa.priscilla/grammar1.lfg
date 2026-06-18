@@ -8,7 +8,8 @@ DEMO   ENGLISH   CONFIG (1.0)
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
   EPSILON   e.
-  OPTIMALITYORDER NOGOOD.
+  OPTIMALITYORDER NOGOOD PPadj +PPattach.
+  GENOPTIMALITYORDER NOGOOD NoPunct NoCapital NoPP +ActiveVoice +DObjBeforeOBLTO. 
 
 ----
 
@@ -16,19 +17,30 @@ DEMO   ENGLISH   RULES (1.0)
 
 S --> NP: (^ SUBJ)=!
 	     (! CASE)=nom;
- 	     VP: ^=!.
+ 	     VP: ^=!;
+         (PERIOD: @(OT-MARK NoPunct)).
 
-VP --> (AUX: ^=!) 
-       V: ^=!; 
-    (NP: (^ OBJ)=! 
-         (! CASE)=acc)
-        (NP: (^ OBJ2)=!) 
-        PP*: { ! $ (^ ADJUNCT) 
-                   (! PTYPE) =c sem                 
-                   | 
-                   (^ OBL) = !}; 
-        (PP: (^ OBL-TO) = !) 
-        (PP: (^ OBL-AG) = !). 
+VP --> (AUX: ^=!)
+          V: ^=!; 
+ 	  (NP: (^ OBJ)=!
+	       (! CASE)=acc)
+       (NP: (^ OBJ2)=!)
+       PP*: { ! $ (^ ADJUNCT)
+                  (! PTYPE) =c sem
+                  (! OBJ ANIM) =c +
+                  @(OT-MARK PPadj) 
+                  @(OT-MARK NoPP)  
+             |
+               ! $ (^ ADJUNCT)
+                 (! PTYPE) =c sem
+                 (! OBJ ANIM) =c -
+                 @(OT-MARK NoPP) 
+            |
+                (^ OBL) = !
+                @(OT-MARK PPadj)}; 
+          (PP: (^ OBL-TO) = !)
+          (PP: (^ OBL-AG) = !)
+          Adv*: ! $ (^ ADJUNCT).
 
 PP --> { P: ^ = ! 
             (! PTYPE) =c sem;
@@ -36,16 +48,40 @@ PP --> { P: ^ = !
             (! CASE) = acc;
             |
         P: ^ = ! "head of PP" 
-           (! PTYPE) =c nosem; NP}. 
+           (! PTYPE) =c nosem;
+           NP:^=!}.
 
-NP --> (D) 
-        AP*: ! $ (^ ADJUNCT); 
-        N 
-        PP*: ! $ (^ ADJUNCT) 
-                 (! PTYPE) =c sem.
+NP --> {({D
+          | PRON:
+            (^ SPEC POSS) = !})
+            "PRON: ^=!
+              (! PRON-TYPE) = poss})"
+           AP*: ! $ (^ ADJUNCT);
+           N
+           PP*: ! $ (^ ADJUNCT)
+                    (! PTYPE) =c sem
+                    @(OT-MARK PPadj)
+           | PRON: ^=!
+              (! PRON-TYPE) = pers}.
+
+
+AP --> AdvP*: ! $ (^ ADJUNCT);
+           (COMMA)
+           A.
+
+AdvP --> Adv*: ! $ (^ ADJUNCT);
+           (COMMA)
+           Adv.
+
+PRON --> Pron: ^=!
+               {(! PRON-TYPE) = pers
+               |(! PRON-TYPE) = poss}.
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
+
+OT-MARK(_mark) = "assigns an OT mark"
+_mark $ o::*.
 
 PRES3SG = (^ TENSE) = pres
           (^ SUBJ PERS) = 3
@@ -110,6 +146,7 @@ OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
 
 PASS(FRAME) = { FRAME 
 		(^ PASSIVE) = -
+        @(OT-MARK ActiveVoice)
 		| FRAME
 		(^ PASSIVE) = +
 		(^ PARTICIPLE) =c past
@@ -118,141 +155,221 @@ PASS(FRAME) = { FRAME
 		| (^ SUBJ)--> NULL } }.
 
 DAT-SHIFT(FRAME) = { FRAME 
+                     @(OT-MARK DObjBeforeOBLTO) 
                     | FRAME 
                     (^ OBJ)-->(^ OBJ2)
                     (^ OBL-TO)-->(^ OBJ)}.
 
-DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^                      SUBJ) (^ OBJ)
+DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ)
                 (^ OBL-TO)>')).
+
+LOC-TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBL)>')
+               (^ OBL PTYPE) = nosem.
+
 
 PREP(P) = { (^ PRED) = 'P<(^OBJ)>' 
             (^ PTYPE) = sem
           | (^ PTYPE) = nosem
             (^ PFORM) = P}.
 
+
+PRON-SUBJ(P N C) = (^ PRED) = 'P'
+              (^ NUM) = N
+              (^ PERS) = C
+              (^ CASE) = nom
+              (^ PRON-TYPE) = pers
+              (^ ANIM) = +.
+
+PRON-OBJ(P N C) = (^ PRED) = 'P'
+              (^ NUM) = N
+              (^ PERS) = C
+              (^ CASE) = acc
+              (^ PRON-TYPE) = pers
+              (^ ANIM) = +.
+
+PRON-POSS(P N C) = (^ DEF) = +
+            (^ "SPEC POSS" PRED) = 'P'
+            (^ "SPEC POSS" NUM) = N
+            (^ "SPEC POSS" PERS) = C
+            (^ "SPEC POSS" PRON-TYPE) = poss
+            (^ "SPEC POSS" ANIM) = +.
+
 ----
 
 DEMO ENGLISH LEXICON (1.0)
 
+"NOUNS"
+
 Jordan  N * (^ PRED) = 'Jordan'
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
 
 Sam   N * (^ PRED) = 'Sam'
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
 
 Alex   N * (^ PRED) = 'Alex'
-              @3RD_PSG.
-
-bones 	  N * (^ PRED) = 'bone'
-              @CN
-	          @3RD_PPL.
-
-bone 	  N * (^ PRED) = 'bone'
-              @CN 
-	          @3RD_PSG. 
-
-cat 	  N * (^ PRED) = 'cat'
-              @CN
-              @3RD_PSG.
-
-cats 	  N * (^ PRED) = 'cat'
-              @CN
-	          @3RD_PPL.
-
-cake 	  N * (^ PRED) = 'cake'
-              @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
 
 girl  N * (^ PRED)='girl'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
 
 girls  N * (^ PRED)='girl'
-              @3RD_PPL.
+              @3RD_PPL
+              (^ ANIM) = +.
 
 boy   N * (^ PRED)='boy'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
 
 boys   N * (^ PRED)='boy'
-              @3RD_PPL.
+              @3RD_PPL
+              (^ ANIM) = +.
 
 zookeeper  N * (^ PRED)='zookeeper'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
 
 zookeepers  N * (^ PRED)='zookeeper'
-              @3RD_PPL.
+              @3RD_PPL
+              (^ ANIM) = +.
               
 waiter  N * (^ PRED)='waiter'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
 
 waiters  N * (^ PRED)='waiter'
-              @3RD_PPL.
+              @3RD_PPL
+              (^ ANIM) = +.
 
 gorilla  N * (^ PRED) ='gorilla'
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
             
 gorillas  N * (^ PRED) = 'gorilla'
-              @3RD_PPL.
+              @3RD_PPL
+              (^ ANIM) = +.
+
+cat 	  N * (^ PRED) = 'cat'
+              @CN
+              @3RD_PSG
+              (^ ANIM) = +.
+
+cats 	  N * (^ PRED) = 'cat'
+              @CN
+	          @3RD_PPL
+              (^ ANIM) = +.
 
 dog  N * (^ PRED) = 'dog'
          @CN
-	     @3RD_PSG.
+	     @3RD_PSG
+         (^ ANIM) = +.
 
 dogs 	  N * (^ PRED) = 'dog'
              @CN
-	          @3RD_PPL. 
+	          @3RD_PPL
+              (^ ANIM) = +.
 
 mouse   N * (^ PRED)='mouse'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
 
 mice   N * (^ PRED) = 'mouse'
-	       @3RD_PPL.
+	       @3RD_PPL
+           (^ ANIM) = +.
 
 monkey   N * (^ PRED)='monkey'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = +.
 
 monkeys   N * (^ PRED) = 'monkey'
-	       @3RD_PPL.
+	       @3RD_PPL
+           (^ ANIM) = +.
 
 treat  N * (^ PRED)='treat'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = -.
 
 banana N * (^ PRED)= 'banana'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = -.
 
 bananas N * (^ PRED) = 'banana'
-	          @3RD_PPL. 
+	          @3RD_PPL
+              (^ ANIM) = -. 
 
-book     N* (^ PRED) = 'book'
+cake 	  N * (^ PRED) = 'cake'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = -.
               
+bones 	  N * (^ PRED) = 'bone'
+              @CN
+	          @3RD_PPL
+              (^ ANIM) = -.
+
+bone 	  N * (^ PRED) = 'bone'
+              @CN 
+	          @3RD_PSG
+              (^ ANIM) = -. 
+
+book 	  N * (^ PRED) = 'book'
+              @CN
+	          @3RD_PSG
+              (^ ANIM) = -.
+
 books N * (^ PRED) = 'book'
-	          @3RD_PPL.
+	          @3RD_PPL
+              (^ ANIM) = -.
               
 telescope N * (^ PRED)= 'telescope'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = -.
 
 telescopes N * (^ PRED) = 'telescope'
-	          @3RD_PPL. 
+	          @3RD_PPL
+              (^ ANIM) = -. 
 
 bench N * (^ PRED) = 'bench'
               @CN
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = -.
 
 benches N * (^ PRED) = 'bench'
-	          @3RD_PPL. 
+	          @3RD_PPL
+              (^ ANIM) = -. 
 
 table  N * (^ PRED) = 'table'
-              @3RD_PSG.
+              @3RD_PSG
+              (^ ANIM) = -.
+
+cage    N * (^ PRED) = 'cage'
+              @CN
+              @3RD_PSG
+              (^ ANIM) = -.
+
+garden  N * (^ PRED) = 'garden'
+             @CN
+              @3RD_PSG
+              (^ ANIM) = -.
+
+hours 	  N * (^ PRED) = 'hour'
+	          @3RD_PPL
+               (^ ANIM) = -.
+
+
+"VERBS"
 
 was   AUX * "(^ PRED) = 'be'"
               @MOOD_IND
@@ -317,7 +434,12 @@ eats   V *  @MOOD_IND
             
 eaten   V*  (^ PARTICIPLE) = past
             @(TRANS eat).
-           
+
+ate     V*  @MOOD_IND
+            @ASP_SIMP
+            @PAST
+            @(OPT-TRANS eat).
+            
 see     V*  @MOOD_IND
             @ASP_SIMP
             @PRESNON3SG 
@@ -329,6 +451,18 @@ seen    V* (^ PARTICIPLE) = past
 saw     V*  @MOOD_IND
             @PAST
             @(OPT-TRANS see).
+
+wait     V* @MOOD_IND
+            @ASP_SIMP
+            @PRESNON3SG
+            @(INTRANS wait).
+
+waits    V *
+	       @MOOD_IND
+            @ASP_SIMP
+            @PRES3SG
+	       @(INTRANS wait).
+           
 
 waited     V*
             @MOOD_IND
@@ -378,13 +512,33 @@ gave     V* @MOOD_IND
 given    V*  (^ PARTICIPLE) = past
             @(DITRANS give).
 
+put  V* { @MOOD_IND
+          @ASP_SIMP
+          @PRESNON3SG
+          @(LOC-TRANS put)
+        | @MOOD_IND
+          @ASP_SIMP
+          @PAST
+          @(LOC-TRANS put)
+        | (^ PARTICIPLE) = past
+          @(LOC-TRANS put) }.
 
+
+
+
+"Determiners"
 
 the  D *  (^ DEF) = +.
 
 a   D *  (^ DEF) = -.
 
-by P * @(PREP by). 
+by P * { (^ PRED) = 'by<(^ OBJ)>'
+          (^ PTYPE) = sem
+          @(OT-MARK PPadj)
+       | (^ PTYPE) = nosem
+         (^ PFORM) = by }.
+
+"by P * @(PREP by)."
 
 to P * @(PREP to).
 
@@ -393,4 +547,92 @@ on P * @(PREP on).
 in P * @(PREP in). 
 
 with P * @(PREP with).
+
+
+"Adjectives"
+
+
+small  A *  (^ PRED) = 'small'.
+
+black  A *  (^ PRED) = 'black'.
+
+hungry  A *  (^ PRED) = 'hungry'.
+
+
+
+"Adverbs"
+
+
+quickly  Adv *  (^ PRED) = 'quickly'.
+
+very  Adv *  (^ PRED) = 'very'.
+
+
+
+"Punctuation"
+
+,   COMMA * .
+
+.   PERIOD * .
+
+
+
+"Possesive Pronouns"
+
+my    Pron * @(PRON-POSS I sg 1).
+
+your  Pron * @(PRON-POSS you sg 2).
+
+his   Pron * @(PRON-POSS he sg 3).
+
+hers   Pron * { @(PRON-OBJ she sg 3)
+             | @(PRON-POSS she sg 3)}.
+
+our   Pron * @(PRON-POSS we pl 1).
+
+their Pron * @(PRON-POSS they pl 3).
+
+
+"Subject Pronouns (1st,3rd Person Sg,Pl )"
+
+
+I   PRON * @(PRON-SUBJ I sg 1).
+
+he   PRON * @(PRON-SUBJ he sg 3).
+
+she   PRON * @(PRON-SUBJ she sg 3).
+
+we   PRON * @(PRON-SUBJ we pl 1).
+
+they   PRON * @(PRON-SUBJ they pl 3).
+
+
+
+"Object Pronouns  (1st,3rd Person Sg,Pl)"
+
+
+me   PRON * @(PRON-OBJ I sg 1).
+
+him   PRON * @(PRON-OBJ he sg 3).
+
+her   PRON * @(PRON-OBJ she sg 3).
+
+us   PRON * @(PRON-OBJ we pl 1).
+
+them   PRON * @(PRON-OBJ they pl 3).
+
+
+
+"Subject & Object Pronouns(2nd person & it)"
+
+
+you  PRON * { @(PRON-SUBJ you sg 2)
+         | @(PRON-SUBJ you pl 2)
+         | @(PRON-OBJ you sg 2)
+         | @(PRON-OBJ you pl 2) }.
+
+it PRON * { @(PRON-SUBJ it sg 3)
+       | @(PRON-OBJ it sg 3) }.
+
+
 ----

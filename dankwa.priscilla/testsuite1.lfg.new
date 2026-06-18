@@ -1,6 +1,6 @@
 #1
 
-a dog devours the bone (1 0.013 13)
+a dog devours the bone (1 0.017 13)
 
 #2
 
@@ -8,11 +8,11 @@ a dog sleeps (1 0.003 8)
 
 #3
 
-the dog chases a bone        (1 0.004 13)
+the dog chases a bone        (1 0.003 13)
 
 #4
 
-the girls like the cake (1 0.004 13)
+the girls like the cake (1 0.003 13)
 
 #5
 
@@ -20,11 +20,11 @@ the gorillas see the girl (1 0.003 13)
 
 #6
 
-the bone was devoured by a dog (3 0.005 23)
+the bone was devoured by a dog (1+2 0.004 23)
 
 #7 
 
-a boy was chased by the gorilla (3 0.004 23)
+a boy was chased by the gorilla (1+2 0.004 23)
 
 #8 
 
@@ -32,23 +32,23 @@ the boys like the girl (1 0.003 13)
 
 #9 
 
-a girl likes the boy (1 0.003 13)
+a girl likes the boy (1 0.002 13)
 
 #10
 
-the boy slept (1 0.003 8)
+the boy slept (1 0.004 8)
 
 #11 
 
-the cats devoured the mice (1 0.004 13)
+the cats devoured the mice (1 0.003 13)
 
 #12 
 
-a cat eats the mouse (1 0.003 13)
+a cat eats the mouse (1 0.002 13)
 
 #13 
 
-the girl gave the dog a bone (1 0.003 18)
+the girl gave the dog a bone (1 0.004 18)
 
 #14 
 
@@ -60,7 +60,7 @@ gorillas devour bananas (1 0.003 9)
 
 #16 
 
-a gorilla devours bananas (1 0.003 11)
+a gorilla devours bananas (1 0.002 11)
 
 #17
 
@@ -68,15 +68,15 @@ the girl give the gorilla bananas (0 0.003 16)
 
 #18 
 
-gorillas devours bananas (0 0.004 9)
+gorillas devours bananas (0 0.003 9)
 
 #19
 
-gorilla devour bananas (0 0.003 9)
+gorilla devour bananas (0 0.002 9)
 
 #20 
 
-gorillas devours banana (0 0.003 0)
+gorillas devours banana (0 0.002 0)
 
 #21 
 
@@ -88,11 +88,11 @@ the zookeeper gave a banana to the gorilla (2 0.006 32)
 
 #23 
 
-the dog was given a bone by the girl (6 0.004 35)
+the dog was given a bone by the girl (2+4 0.004 35)
 
 #24 
 
-a bone was given to the dog by the girl (8 0.005 45)
+a bone was given to the dog by the girl (2+6 0.006 45)
 
 #25
 
@@ -100,7 +100,7 @@ the girl gave to the dog a bone  (0 0.003 0)
 
 #26 
 
-the dog was given by the girl a bone  (0 0.003 0)
+the dog was given by the girl a bone  (0 0.002 0)
 
 #27 
 
@@ -108,7 +108,7 @@ the waiter waited on the table (1 0.003 19)
 
 #28 
 
-Jordan talked to Sam (1 0.005 15)
+Jordan talked to Sam (1 0.003 15)
 
 #29
 
@@ -116,10 +116,42 @@ Alex argued with a gorilla (1 0.004 17)
 
 #30 
 
-Sam saw a monkey with a telescope (2 0.003 26)
+Sam saw a monkey with a telescope (1+1 0.003 26)
 
 #31
 
-the dog sat on the bench with a book (2 0.003 37)
+the dog sat on the bench with a book (1+1 0.004 37)
 
-# 31 sentences, 0.120 CPU secs total, 0.013 CPU secs max (05/19/26)
+#32
+
+the gorilla waited on the bench (1 0.004 19)
+
+#33
+
+the zookeeper waited on the gorilla (1 0.004 19)
+
+#34
+
+the gorilla put the banana in the cage (2 0.004 28)
+
+#35
+
+the gorilla in the cage devoured a banana (1 0.003 24)
+
+#36
+
+the gorilla devoured a banana in the cage (1+1 0.004 28)
+
+#37
+
+a banana was put in the cage by the gorilla (2+3 0.004 41)
+
+#38
+
+the zookeeper waited by the bench (1 0.003 19)
+
+#39
+
+the zookeeper waited by the bench in the garden (1+1 0.006 37)
+
+# 39 sentences, 0.144 CPU secs total, 0.017 CPU secs max (06/11/26)

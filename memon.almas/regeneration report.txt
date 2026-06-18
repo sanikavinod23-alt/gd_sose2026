@@ -1,0 +1,8 @@
+Generation Report — grammar1.lfg
+
+
+The grammar was tested on 59 sentences, 40 of which parsed correctly. Most regeneration mismatches are simply due to capitalisation, the tokeniser automatically capitalises the first word of every generated string, which cannot be fixed from within the grammar itself.
+The one real error is sentence 15 (the dog was slept), which the grammar incorrectly accepts as grammatical. This is caused by a remaining lexical entry for slept that licenses passive morphology, even though sleep is intransitive. That entry needs to be removed.
+Sentences with multiple adjectives (the small black dog slept) regenerate in all possible adjective orderings because adjectives contribute to an unordered set in the f-structure. This cannot be fixed syntactically, adjective ordering requires world knowledge.
+'I waited for him for hours' regenerates with both PP orders (him for hours and hours for him) for the same reason both PPs are in an unordered adjunct set and the generator cannot determine which comes first.
+Duplicate entry warnings for devoured, chased, and put remain and should be cleaned up by consistently using @PAST-BOTH to avoid listing the same verb form twice.

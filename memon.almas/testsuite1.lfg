@@ -94,6 +94,118 @@ the dogs devours a bone (0 0.001 13)
 
 a sheep devours (0 0.001 8)
 
+# Ditransitive 
+
+the girl gave the dog a bone 
+
+# Ditransitive with sub-verb agreement
+
+the girl gives the gorilla bananas
+
+# sub-verb agreement
+
+gorillas devour bananas
+
+# det rule
+
+a gorilla devours bananas
+
+# should not work
+
+the girl give the gorilla bananas
+
+# should not work
+
+gorillas devours bananas
+
+# should not parse
+
+gorilla devour bananas
+
+# should not parse
+
+gorillas devours banana
+
+# Dative shift (should work)
+
+the girl gives a bone to the dog
+
+# Dative shift (should work)
+
+the zookeeper gave a banana to the gorilla
+
+# Dative shift (passive should work)
+
+the dog was given a bone by the girl
+
+# Ditransitive passive (should work)
+
+a bone was given to the dog by the girl
+
+# word order violation
+
+the girl gave to the dog a bone
+
+# word order violation
+
+the dog was given by the girl a bone
+
+# PP obliques (non-sem prepositions)
+
+the waiter waited on the table
+
+# PP obliques (non-sem prepositions)
+
+jordan talked to sam
+
+# PP obliques (non-sem prepositions)
+
+alex argued with a gorilla
+
+# PP adjuncts (multiple solutions)
+
+sam saw a monkey with a telescope
+
+# PP adjuncts (multiple solutions)
+
+the dog sat on the bench with a book
+
+the small dog slept
+
+the small black dog slept
+
+the small black hungry dog ate bones
+
+the gorilla devoured the banana quickly
+
+the small black hungry dog ate bones quickly
+
+the very small gorilla slept
+
+the very very very small gorilla slept
+
+he sleeps
+
+she devoured it
+
+they devoured them
+
+I waited for him for hours
+
+my dog sleeps
+
+she gave us her banana
+
+# bad cases
+
+him sleeps
+
+them devoured it
+
+they devoured they
+
+
+
 # 2 mismatches, 13 sentences, 0.022 CPU secs total, 0.009 CPU secs max (04/23/26)
 
 

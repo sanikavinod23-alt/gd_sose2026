@@ -1,0 +1,51 @@
+# Templates with arguments: should work
+
+the girl gave the dog a bone (1 0.006 18)
+
+the girl gives the gorilla bananas (1 0.004 16)
+
+gorillas devour bananas (1 0.002 9)
+
+a gorilla devours bananas (1 0.001 11)
+
+# Templates with arguments: should not work
+
+the girl give the gorilla bananas (0 0.001 16)
+
+gorillas devours bananas (0 0.001 9)
+
+gorilla devour bananas (0 0.001 1)
+
+gorillas devours banana (0 0.001 6)
+
+# Lexical Rules: should work
+
+the girl gives a bone to the dog (2 0.004 32)
+
+the zookeeper gave a banana to the gorilla (2 0.002 32)
+
+the dog was given a bone by the girl (4 0.003 33)
+
+a bone was given to the dog by the girl (8 0.002 45)
+
+# Lexical Rules: should NOT work
+
+the girl gave to the dog a bone (0 0.001 0)
+
+the dog was given by the girl a bone (0 0.001 0)
+
+# PPs: Obliques
+
+the waiter waited on the table (1 0.001 19)
+
+Jordan talked to Sam (1 0.001 15)
+
+Alex argued with a gorilla (1 0.001 17)
+
+# PPs: Adjuncts
+
+Sam saw a monkey with a telescope (2 0.001 26)
+
+the dog sat on the bench with a book (4 0.001 37)
+
+# 19 sentences, 0.035 CPU secs total, 0.006 CPU secs max (05/21/26)

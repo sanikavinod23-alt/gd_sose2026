@@ -1,0 +1,185 @@
+#show how it works
+
+the dog devours bones
+
+# unification failure, subject-verb agreement (consistency)
+
+the dogs devours bones
+
+# coherence violation
+
+the dog appears bones 
+
+# completeness violation
+
+the dog devours 
+
+# missing PRED value, completeness violation
+
+the dog devours a bone
+
+#missing rules, unknown words
+
+the dog devours bones in the park
+
+#new verbs --- intrans
+
+a dog sleeps
+
+#new verbs -- trans
+
+a dog chases a bone
+
+# Templates: should work
+
+the cat sleeps
+
+the dog devours the bone
+
+the cats chase a mouse
+
+the dog eats
+
+the cats eat a treat
+
+# Feature Unification: should NOT work
+
+the girl see the gorilla
+
+cat chases dogs
+
+gorilla devour bananas
+
+gorillas devours banana
+
+# Passive: should work
+
+the girl was seen by the gorilla
+
+the cake was eaten
+
+the cat was chased
+
+the bone was devoured by a dog
+
+# Passive: should NOT work
+
+the girl was saw by the gorilla
+
+the dog was slept
+
+# Templates with arguments: should work
+
+the girl gave the dog a bone
+
+the girl gives the gorilla bananas
+
+gorillas devour bananas
+
+a gorilla devours bananas
+
+# Templates with arguments: should not work
+
+the girl give the gorilla bananas
+
+gorillas devours bananas
+
+gorilla devour bananas
+
+gorillas devours banana
+
+# Lexical Rules: should work
+
+the girl gives a bone to the dog
+
+the zookeeper gave a banana to the gorilla
+
+the dog was given a bone by the girl
+
+a bone was given to the dog by the girl
+
+# Lexical Rules: should NOT work
+
+the girl gave to the dog a bone
+
+the dog was given by the girl a bone
+
+# PPs: Obliques
+
+the waiter waited on the table
+
+Jordan talked to Sam
+
+Alex argued with a gorilla
+
+# PPs: Adjuncts
+
+Sam saw a monkey with a telescope
+
+the dog sat on the bench with a book
+
+# Adjectives and Adverbs
+
+the small dog slept
+
+the small black dog slept
+
+the small black hungry dog ate bones
+
+the gorilla devoured the banana quickly
+
+the small black hungry dog ate bones quickly
+
+the very small gorilla slept
+
+the very very very small gorilla slept
+
+# With pucntuation
+
+the small, black, hungry dog slept.
+
+# Pronouns: should work
+
+he sleeps
+
+she devoured it
+
+they devoured them
+
+I waited for him for hours
+
+my dog sleeps
+
+she gave us her banana
+
+# Pronouns: should NOT work
+
+him sleeps
+
+them devoured it
+
+they devoured they
+
+I waited for she for hours
+
+# OT-Marks (i.e. 1 solution)
+
+the dog was given a bone by the girl
+
+a bone was given to the dog by the girl
+
+the gorilla waited on the bench
+
+the zookeeper waited on the gorilla
+
+the gorilla put the banana in the cage
+
+the gorilla in the cage devoured a banana
+
+the gorilla devoured a banana in the cage
+
+a banana was put in the cage by the gorilla
+
+the zookeeper waited by the bench
+
+the zookeeper waited by the bench in the garden
