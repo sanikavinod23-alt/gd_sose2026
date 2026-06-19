@@ -1,10 +1,10 @@
 DEMO   ENGLISH   CONFIG (1.0)
-  ROOTCAT   S.
-  FILES .
-  LEXENTRIES   (DEMO ENGLISH) .
-  TEMPLATES (DEMO ENGLISH) . 
-  RULES   (DEMO ENGLISH) .
-  MORPHOLOGY (DEMO ENGLISH) .
+  ROOTCAT   ROOT.
+  FILES  common.templates.lfg .
+  LEXENTRIES   (DEMO ENGLISH) (MORPH ENGLISH).
+  TEMPLATES (DEMO ENGLISH) (STANDARD COMMON). 
+  RULES   (DEMO ENGLISH) (MORPH ENGLISH).
+  MORPHOLOGY (DEMO ENGLISH).
   GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS STANDARD.
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
@@ -20,15 +20,27 @@ DEMO ENGLISH MORPHOLOGY (1.0)
 TOKENIZE:
 P!basic-parse-tok.fst G!default-gen-tokenizer.fst
 
+ANALYZE:
+english.infl.patch.full.fst
+
 ----
 
 DEMO   ENGLISH   RULES (1.0)
 
-   S --> NP: (^ SUBJ)=!
-	         (! CASE)=nom;
- 	     VP: (^ TNS-ASP TENSE); "require that sentences have tense"
- 	     (PERIOD: @(OT-MARK Punct)).  "prefer for generation"
+   ROOT --> "can have other things here as well, imperatives, etc." 
+ 	  { S 
+ 	    (PERIOD: @(OT-MARK Punct)) "prefer for generation" 
+	  | Simp}. 
 
+  Simp --> e: (^ SUBJ PRED) = 'pro'
+	       (^ SUBJ PERS) = 2; 
+ 	  VP: (^TNS-ASP TENSE) =c pres;
+ 	  EXCL.  "obligatory exclamation mark"
+
+   S --> NP: (^ SUBJ)=!
+	     (! CASE)=nom;
+ 	 VP: (^ TNS-ASP TENSE). "require that sentences have tense"
+ 
    VP --> (AUX) "auxiliary introduced for passive" 
  	  V: ^=!;   "head of VP"
  	  (NP: (^ OBJ)=! "direct object"
@@ -83,6 +95,77 @@ DEMO   ENGLISH   RULES (1.0)
  	    NP
  	  }.
 
+
+"Coordination rules"
+
+ METARULEMACRO(_CAT _BASECAT _RHS) = "applies to all rules in the grammar"
+
+    { "just use the rule as stated"
+      "don't do anything to it; ALWAYS include this option"
+
+      _RHS
+
+     |"if it is an NP or an N, pass it to the NP
+      coordination rule"
+      "COM{EX RULE NP: the girl and the boy}"
+
+      e: _CAT $c { NP N };
+      @(NPCOORD _CAT)
+
+     |"if it is any other category, pass it to
+      the same category coordination rule"
+      "COM{EX RULE S: the girl sleeps and walks.}"
+      "COM{EX RULE PP: with the girl and in the park}"
+
+      e: _CAT ~$ { NP N };
+      @(SCCOORD _CAT)
+
+     |"allow bracketing around any category"
+      "COM{EX RULE S: [the girl] sleeps.}"
+      "COM{EX RULE S: boys baked [the bananas in the cake].}"
+
+      LB: @(OT-MARK GenBadPunct); "preceding quote mark"
+                                  "disprefer in generation"
+      _CAT: @PUSHUP; "this pushes the quotes to the top
+                      to avoid vacuous ambiguity for things like:
+                      COM{EX RULES NP: [cakes])"
+      RB "following quote mark"}.
+
+"Coordination rules"
+
+NPCOORD(_CAT) = "coordination of nominals"
+   "COM{EX RULE NP: girls and boys}"
+   "This differs from SCCOORD in that the conjunction provides NUM pl to
+   the resulting coordinated f-structure and the person features are
+   resolved for the noun phrase."
+
+   _CAT: @IN-SET  "first nominal"
+         @NP-CONJUNCT; "calls person resolution template"
+
+   CONJnp: @PUSHUP; "conjunction"
+           "PUSHUP avoids vacuous ambiguity in constructions like:
+            COM{EX RULES NP: girls and boys}"
+
+   _CAT: @IN-SET "second nominal"
+         @NP-CONJUNCT.
+
+SCCOORD(_CAT) = "coordination of non-nominals"
+  "COM{EX RULES PP: with girls and with boys}"
+  "COM{EX RULES S: girls sleep and boys sleep.}"
+  "no features other than a COORD-FORM are provided to the coordinated
+  f-structure."
+
+   _CAT: @IN-SET; "first constituent"
+   (COMMA: @(OT-MARK GenBadPunct)) "optional comma; 
+                                    disprefered in generation"
+                       "COM{EX RULES S: girls sleep, and boys sleep.}"
+
+   CONJ: @PUSHUP; "conjunction"
+         "PUSHUP avoids vacuous ambiguity in constructions like:
+         COM{EX RULES S: boys walk and sleep.}" 
+
+   _CAT: @IN-SET "second constituent".
+
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
@@ -91,6 +174,29 @@ DEMO ENGLISH TEMPLATES (1.0)
 
 OT-MARK(_mark) = "assigns an OT mark, from common templates"
        _mark $ o::*.
+
+
+"Coordination"
+
+ NP-CONJUNCT = "provides person resolution features for nominal
+                 coordination" 
+  
+      { "if either conjunct is 1st person; the whole NP is"
+        "EX: the boys and me}"
+        (! PERS)=c 1
+        (^ PERS)=1
+       |"if a conjunct is 2nd person and the NP is not
+        already 1st person, make it 2nd person"
+        (! PERS)=c 2
+        { (^ PERS)=c 1 "one conjunct was 1st person"
+                       "EX: you and I}"
+         |(^ PERS)=2 } "else assign 2nd person"
+                       "EX: you and the boys}"
+       |"otherwise, the NP is 3rd person"
+        "EX: the boys and her}"
+        (^ PERS)=3}.
+
+"Lexical rules and subcategorization"
 
 PASS(FRAME) = { FRAME "no passive, just give back subcat frame"
 	          (^ PASSIVE) = - "no passive"
@@ -123,7 +229,6 @@ INTRANS-OBL(P) = (^ PRED) = 'P<(^SUBJ)(^OBL)>'.
 OPT-TRANS(P) = { @(TRANS P)   "P is a variable"
 	       | @(INTRANS P) }.  "this template takes one argument:  P"
 
-PRED(P) = (^ PRED) = 'P'.
 
 "verbal templates"
 
@@ -136,7 +241,9 @@ PAST = (^ TNS-ASP TENSE) = past.
 
 PASTP = (^ PARTICIPLE) = past.
 
-PAST-BOTH = {@PAST | @ PASTP}. 
+PAST-BOTH = {@PAST | @ PASTP}.
+
+PROG = (^ TNS-ASP PROG) = +.
 
 
 "templates for nouns"
@@ -155,8 +262,6 @@ COUNT-NOUN(P N) = @(PRED P)
 	           (^ PERS) = 3
 	           (^ NTYPE) = count.
 
-CASE(A) = (^ CASE) = A.
-
 ANIMATE = (^ ANIMATE) = +.
 
 INANIMATE = (^ ANIMATE) = -.
@@ -164,9 +269,11 @@ INANIMATE = (^ ANIMATE) = -.
 LOCATION = (^ LOC) = +.
 
 
+
+
 "Pronouns"
 
-PRON(P Z   N T) = @(PRED P)
+PRON(P Z   N T) = (^ PRED) = 'P'
 	  (^ NUM) = N
 	  (^ PERS) = Z
 	  (^ PRON-TYPE) = T
@@ -190,8 +297,20 @@ DEMO ENGLISH LEXICON (1.0)
 
 "Verbs"
 
+"Morphologically analyzed"
+
+hate	  V-S XLE @(TRANS %stem).  "using the morphological analyzer"
+
+eat       V-S XLE @(OPT-TRANS %stem); ETC. 
+
+"Fullforms"
+
 appears   V *  (^ PRED) = 'appear<(^SUBJ)>'
        	    @PRES3SG.
+
+sleep   V *  @(INTRANS sleep)
+       	    @BARE-AGR
+	    @PRES.
 
 sleeps V * @(INTRANS sleep) @PRES3SG.
 
@@ -207,23 +326,41 @@ devour   V *  @(TRANS devour)
 devoured   V *  @(TRANS devour)
        	    @PAST-BOTH.
 
-chases  V *  @(TRANS devour)
+chases  V *  @(TRANS chase)
        	    @PRES3SG.
 
-chase  V *  @(TRANS devour)
+chase  V *  @(TRANS chase)
        	    @BARE-AGR
 	    @PRES.
 
-chased  V *  @(TRANS devour)
+chased  V *  @(TRANS chase)
        	     @PAST-BOTH.
+
+educated  V *  @(TRANS educate)
+       	     @PAST-BOTH.
+
+like  V *  @(TRANS like)
+       	    @BARE-AGR
+	    @PRES.
+
+Think  V *  @(TRANS think)
+       	    @BARE-AGR
+	    @PRES.
+
+Eats    V * @(OPT-TRANS eat)
+            @PRES3SG.
 
 eats    V * @(OPT-TRANS eat)
             @PRES3SG.
 
-eat    V * @(OPT-TRANS eat)
+Eat    V * @(OPT-TRANS eat)
            @BARE-AGR
 	   @PRES.
 
+eat    V * @(OPT-TRANS eat)
+           @BARE-AGR
+	   @PRES.
+	   
 ate    V * @(OPT-TRANS eat)
 	   @PAST.
 
@@ -268,15 +405,21 @@ see    V * @(TRANS see)
 seen V *   @(TRANS see)
            @PASTP.
 
-
+Gave 	  V * @(DITRANS give)
+	      @PAST. 
 
 gave 	  V * @(DITRANS give)
-	      @PAST. 
+	      @PAST.
+	     
 
 gives     V * @(DITRANS give)
 	      @PRES3SG.
 
 give      V * @(DITRANS give)
+	      @BARE-AGR
+	      @PRES.
+
+Give      V * @(DITRANS give)
 	      @BARE-AGR
 	      @PRES.
 
@@ -296,6 +439,16 @@ was 	  AUX * @PAST
                 (^ SUBJ NUM) = sg.
 
 "adjectives"
+
+bright  A * @(PRED bright).
+
+creative  A * @(PRED creative).
+
+efficient  A * @(PRED efficient).
+
+intelligent	A * @(PRED intelligent).
+
+lazy  A * @(PRED lazy).
 
 small	A * @(PRED small). 
 
@@ -390,6 +543,10 @@ cat N * @(COUNT-NOUN cat sg)
         
 cats N * @(COUNT-NOUN cat pl).
 
+child N * @(COUNT-NOUN child sg)
+        @DEF
+	@ANIMATE.
+
 mouse N * @(COUNT-NOUN mouse sg)
           @DEF.
 
@@ -425,6 +582,8 @@ banana N * @(COUNT-NOUN banana sg)
 
 bananas N * @(COUNT-NOUN banana pl).
 
+beans N * @(COUNT-NOUN beans pl).
+
 cake N * @(COUNT-NOUN cake sg)
          @DEF.
 
@@ -442,9 +601,15 @@ book N * @(COUNT-NOUN book sg)
          @DEF
 	 @INANIMATE.
 
+leopards N * @(COUNT-NOUN leopard pl).
+
 monkey N * @(COUNT-NOUN monkey sg)
          @DEF
 	 @ANIMATE.
+
+robot N * @(COUNT-NOUN robot sg)
+        @DEF
+	@ANIMATE.
 
 table N * @(COUNT-NOUN table sg)
           @DEF
@@ -457,6 +622,10 @@ waiter N * @(COUNT-NOUN waiter sg)
 
 telescope N * @(COUNT-NOUN telescope sg)
               @DEF.
+
+thought N * @(COUNT-NOUN thought sg)
+              @DEF.
+
 
 zookeeper N * @(COUNT-NOUN zookeeper sg)
               @DEF
@@ -471,6 +640,12 @@ Jordan N * @(PRED jordan)
            @ANIMATE.
 
 Alex N * @(PRED alex)
+         @ANIMATE.
+
+Mary N * @(PRED mary)
+         @ANIMATE.
+
+Sophie N * @(PRED sophie)
          @ANIMATE.
 
 
@@ -518,3 +693,50 @@ and  CONJ * @(COORD-FORM %stem);
 
 
 ----
+
+MORPH   ENGLISH   RULES (1.0)
+
+"sample rule"
+
+"this deals with verbs.  
+The sublexcial items are the POS assigned to the various tags in morph-lex.lfg" 
+
+   V --> V-S_BASE "verb stem, e.g. run"
+ 	 V-POS_BASE "suffix saying that this is a verb: +Verb"
+ 	 { TNS_BASE "tense suffix, e.g. +Pres" 
+ 	   PERS_BASE "person suffix, e.g. +3sg"
+	 | ASP_BASE}.   "aspectual information"
+
+  
+----
+MORPH   ENGLISH   LEXICON (1.0)
+
+"this guesses words that are unknown to your lexicon
+ to be either adjectives or nouns"
+-unknown  ADJ-S XLE (^ PRED) = '%stem';
+	  N-S XLE (^ PRED) = '%stem'.
+
+"lexical entries for tags coming out of the morphological analyzer"
+
+"Verb tags"
+
++Verb	V-POS XLE .
+
++Pres   TNS XLE @PRES.
+
++3sg	PERS XLE @S-AGR.
+
++PastBoth TNS XLE "past tense or past particle"
+		 @PAST-BOTH. 
+
++123SP	PERS XLE .
+
++Non3sg PERS XLE @BARE-AGR.
+
++Prog	ASP XLE @PROG.
+
+
+
+
+----
+
