@@ -186,4 +186,38 @@ they devoured they
 #62 0
 I waited for she for hours
 
-# 0 sentences, 0.000 CPU secs total, 0.000 CPU secs max (06/12/26)
+#63 works
+Eat the beans!
+
+#64 works
+Give the gorilla a banana!
+
+#65 0
+Think a creative thought!
+
+#66 0
+Eats the beans!
+
+#67 works - is not supposed to; past should only work with subj?
+Gave a bone to the dog!
+
+#68 works
+Sophie educated the bright robot and the intelligent child.
+
+#69 works
+Sophie educated the bright and efficient robot.
+
+#70 works
+lazy leopards sleep and eat.
+
+#71 does not work -- subject does not accept coordination.
+Mary and the gorilla like bananas.
+
+#72 does not work -- subject does not accept coordination.
+The gorilla and I like bananas.
+
+#73 does not work -- subject does not accept coordination.
+You and Mary like bananas.
+
+
+# 0 sentences, 0.000 CPU secs total, 0.000 CPU secs max (06/18/26)
