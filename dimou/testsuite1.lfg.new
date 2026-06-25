@@ -1,6 +1,6 @@
 #show how it works
 
-the dog devours bones (1 0.013 12)
+the dog devours bones (1 0.017 12)
 
 # unification failure, subject-verb agreement (consistency)
 
@@ -12,11 +12,11 @@ the dog appears bones (0 0.004 0)
 
 # completeness violation
 
-the dog devours (0 0.005 9)
+the dog devours (0 0.003 9)
 
 # missing PRED value, completeness violation
 
-the dog devours a bone (1 0.004 14)
+the dog devours a bone (1 0.006 14)
 
 #missing rules, unknown words
 
@@ -24,7 +24,7 @@ the dog devours bones in the park (0 0.005 0)
 
 #new verbs --- intrans
 
-a dog sleeps (1 0.004 9)
+a dog sleeps (1 0.005 9)
 
 #new verbs -- trans
 
@@ -48,7 +48,7 @@ the dog devours the bone (1 0.003 14)
 
 #transitive verb2
 
-the cats chase a mouse (1 0.004 14)
+the cats chase a mouse (1 0.005 14)
 
 #subj-verb agreement
 
@@ -56,15 +56,15 @@ the dog eats (1 0.004 9)
 
 #plural
 
-the cats eat a treat (1 0.005 14)
+the cats eat a treat (1 0.004 14)
 
 #sentences from ex 3 that do not work
 
-cat chases dogs  (0 0.003 0)
+cat chases dogs  (0 0.005 0)
 
 #no subj-verb agreement
 
-the girl see the gorilla (0 0.004 13)
+the girl see the gorilla (0 0.005 13)
 
 #singular nouns need articles
 
@@ -80,43 +80,43 @@ the girl was seen by the gorilla (1+2 0.006 24)
 
 #new lexicon items
 
-the cake was eaten (1 0.004 11)
+the cake was eaten (1 0.005 11)
 
 #passive without oblique agent
 
-the cat was chased (1 0.003 11)
+the cat was chased (1 0.005 11)
 
 #passive with oblique agent
 
-the bone was devoured by a dog (1+2 0.005 24)
+the bone was devoured by a dog (1+2 0.006 24)
 
 #passive construction that do not work
 
-the girl was saw by the gorilla (0 0.004 9)
+the girl was saw by the gorilla (0 0.005 9)
 
 #no agreement between auxiliary and main verb
 
-the dog was slept (0 0.005 0)
+the dog was slept (0 0.004 0)
 
 #sentences from ex 4 that work
 
-the girl gave the dog a bone (1 0.004 19)
+the girl gave the dog a bone (1 0.006 19)
 
 #ditransitive verb
 
-the girl gives the gorilla bananas (1 0.004 17)
+the girl gives the gorilla bananas (1 0.006 17)
 
 #plural nouns do not need articles
 
-gorillas devour bananas (1 0.003 10)
+gorillas devour bananas (1 0.004 10)
 
 #but singular nouns do
 
-a gorilla devours bananas (1 0.004 12)
+a gorilla devours bananas (1 0.003 12)
 
 #sentences from ex 4 that do not work
 
-the girl give the gorilla bananas (0 0.004 16)
+the girl give the gorilla bananas (0 0.005 16)
 
 #no agreement
 
@@ -124,7 +124,7 @@ gorillas devours bananas (0 0.003 9)
 
 #no agreement
 
-gorilla devour bananas (0 0.004 0)
+gorilla devour bananas (0 0.005 0)
 
 #no agreement
 
@@ -136,15 +136,15 @@ the girl gives a bone to the dog (1 0.005 33)
 
 #pp as indirect object
 
-the zookeeper gave a banana to the gorilla (1 0.006 33)
+the zookeeper gave a banana to the gorilla (1 0.005 33)
 
 #passive with ditransitive verb
 
-the dog was given a bone by the girl (1+3 0.005 34)
+the dog was given a bone by the girl (1+3 0.007 34)
 
 #dative passive
 
-a bone was given to the dog by the girl (1+2 0.006 46)
+a bone was given to the dog by the girl (1+2 0.008 46)
 
 #dative shifts that do not work
 
@@ -152,65 +152,65 @@ the girl gave to the dog a bone (0 0.003 0)
 
 #no right word order
 
-the dog was given by the girl a bone (0 0.003 0)
+the dog was given by the girl a bone (0 0.004 0)
 
 #no sem pps
 
-The waiter waited on the table. (1+4 0.005 22)
+The waiter waited on the table. (2+8 0.006 26)
 
 #pp as oblique
 
-Jordan talked to Sam. (1+2 0.004 18)
+Jordan talked to Sam. (2+4 0.005 22)
 
 #no sem pps do not have a pred value, only pform
 
-Alex argued with a gorilla. (1+2 0.004 20)
+Alex argued with a gorilla. (2+4 0.005 24)
 
 #sem pps
 
-Sam saw a monkey with a telescope. (1+1 0.004 29)
+Sam saw a monkey with a telescope. (2+2 0.005 33)
 
 #pps as adjuncts
 
-The dog sat on the bench with a book. (1+1 0.004 40)
+The dog sat on the bench with a book. (2+2 0.008 44)
 
 #sentences from ex. 5 that work
 
-the small dog slept (1 0.004 12)
+the small dog slept (0 0.004 0)
 
-the small black dog slept (1 0.003 15)
+the small black dog slept (0 0.004 0)
 
-the small black hungry dog ate bones (1 0.004 21)
+the small black hungry dog ate bones (0 0.004 0)
 
-the gorilla devoured the banana quickly (1 0.004 16)
+the gorilla devoured the banana quickly (1 0.005 16)
 
-the small black hungry dog ate bones quickly (1 0.003 23)
+the small black hungry dog ate bones quickly (0 0.003 0)
 
-the very small gorilla slept (1 0.003 14)
+the very small gorilla slept (0 0.004 0)
 
-the very very very small gorilla slept (1 0.003 18)
+the very very very small gorilla slept (0 0.003 0)
 
-the small, black, hungry dog slept. (1 0.004 24)
+the small, black, hungry dog slept. (0 0.005 0)
 
 #working with pronouns
 
-he sleeps (1 0.003 7)
+he sleeps (1 0.005 7)
 
-she devoured it (1 0.005 10)
+she devoured it (1 0.004 10)
 
 they devoured them (1 0.005 10)
 
-I waited for him for hours (1 0.004 25)
+I waited for him for hours (1 0.006 25)
 
 #possessives
 
-my dog sleeps (1 0.003 9)
+my dog sleeps (1 0.004 9)
 
-she gave us her banana (1 0.004 15)
+she gave us her banana (1 0.005 15)
 
 #not working 
 
-him sleeps (0 0.003 3)
+him sleeps (0 0.004 3)
 
 them devoured it (0 0.003 3)
 
@@ -220,33 +220,33 @@ I waited for she for hours (0 0.004 13)
 
 #work (sometimes with many solutions)
 
-the gorilla put the banana in the cage (1+2 0.004 29)
+the gorilla put the banana in the cage (1+2 0.006 29)
 
-the gorilla in the cage devoured a banana (1 0.003 25)
+the gorilla in the cage devoured a banana (1 0.004 25)
 
-the gorilla devoured a banana in the cage (1+1 0.005 29)
+the gorilla devoured a banana in the cage (1+1 0.002 29)
 
-the dog was given a bone by the girl (1+3 0.003 34)
+the dog was given a bone by the girl (1+3 0.006 34)
 
 a bone was given to the dog by the girl (1+2 0.006 46)
 
-the zookeeper waited on the gorilla (1+2 0.003 20)
+the zookeeper waited on the gorilla (1+2 0.002 20)
 
-a banana was put in the cage by the gorilla (1+14 0.004 42)
+a banana was put in the cage by the gorilla (1+14 0.005 42)
 
-the gorilla waited on the bench (1+1 0.004 20)
+the gorilla waited on the bench (1+1 0.003 20)
 
 the zookeeper waited by the bench (1 0.005 20)
 
-the zookeeper waited by the bench in the garden (1+1 0.003 38)
+the zookeeper waited by the bench in the garden (1+1 0.004 38)
 
-#imperatives
+#imperatives (ex. 6)
 
-Eat the beans! (1+1 0.003 11)
+Eat the beans! (1+1 0.005 11)
 
 Give the gorilla a banana! (1+1 0.003 16)
 
-Think a creative thought! (1+1 0.003 14)
+Think a creative thought! (0 0.004 0)
 
 #wrong imperatives
 
@@ -254,4 +254,26 @@ Eats the beans! (0 0.002 0)
 
 Gave a bone to the dog! (0 0.002 0)
 
-# 75 sentences, 0.302 CPU secs total, 0.013 CPU secs max (06/13/26)
+#should work
+
+Sophie educated the bright robot and the intelligent child. (0 0.005 0)
+
+Sophie educated the bright and efficient robot. (0 0.003 0)
+
+lazy leopards sleep and eat. (0 0.003 0)
+
+Mary and the gorilla like bananas. (2 0.004 24)
+
+The gorilla and I like bananas. (2 0.004 24)
+
+You and Mary like bananas. (4 0.005 22)
+
+#ex. 7 
+
+Sophie implemented a new grammar. (0 0.003 0)
+
+Lazy tigers yawn. (0 0.003 0)
+
+The curious leprechaun stole a goat in Ireland. (0 0.004 0)
+
+# 84 sentences, 0.376 CPU secs total, 0.017 CPU secs max (06/25/26)

@@ -1,9 +1,9 @@
 DEMO   ENGLISH   CONFIG (1.0)
   ROOTCAT   ROOT.
   FILES common.templates.lfg .
-  LEXENTRIES   (DEMO ENGLISH) .
+  LEXENTRIES   (DEMO ENGLISH) (MORPH ENGLISH) .
   TEMPLATES (DEMO ENGLISH) (STANDARD COMMON). 
-  RULES   (DEMO ENGLISH) .
+  RULES   (DEMO ENGLISH) (MORPH ENGLISH).
   MORPHOLOGY (DEMO ENGLISH) .
   GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS STANDARD.
@@ -20,19 +20,22 @@ DEMO ENGLISH MORPHOLOGY (1.0)
 TOKENIZE:
 P!basic-parse-tok.fst G!default-gen-tokenizer.fst
 
+ANALYZE:
+english.infl.patch.full.fst
+
 ----
 
 DEMO   ENGLISH   RULES (1.0)
 
   ROOT --> { S
-            "(PERIOD: @(OT-MARK Punct)"
+            (PERIOD: @(OT-MARK Punct))
              |
             Simp
              }.
 
    Simp --> e: (^ SUBJ PRED) = 'pro'
                 (^ SUBJ PERS) = 2;
-                 VP
+                 VP: (^TNS-ASP TENSE) =c pres;
                 EXCL. 
 
    S --> NP: (^ SUBJ)=!
@@ -81,12 +84,12 @@ DEMO   ENGLISH   RULES (1.0)
  	  A
  	  (COMMA).
  
-   PP --> { P: ^ = ! "head of PP"
-	       (! PTYPE) =c sem; "semantic type, Adjunct"
+   PP --> { P: ^ = ! 
+	       (! PTYPE) =c sem; 
  	    NP: (^ OBJ) = !
 		(! CASE) = acc
- 	  | P: ^ = ! "head of PP" 
-	       (! PTYPE) =c nosem; "non-semantic type, OBL"
+ 	  | P: ^ = !  
+	       (! PTYPE) =c nosem; 
  	    NP}. 
 
 METARULEMACRO(_CAT _BASECAT _RHS) = "applies to all rules in the grammar"
@@ -230,6 +233,8 @@ PASTP = (^ PARTICIPLE) = past.
 
 PAST-BOTH = {@PAST | @ PASTP}. 
 
+PROG = (^ TNS-ASP PROG) = +.
+
 
 "templates for nouns"
 
@@ -262,7 +267,7 @@ PROPER(P) = @(PRED P)
 
 "Pronouns"
 
-PRON(P Z   N T) = @(PRED P)
+PRON(P Z N T) = @(PRED P)
 	  (^ NUM) = N
 	  (^ PERS) = Z
 	  (^ PRON-TYPE) = T
@@ -284,6 +289,21 @@ PREP(P) = "template for most prepositions"
 DEMO ENGLISH LEXICON (1.0)
 
 "Verbs"
+
+hate	  V-S XLE @(TRANS %stem).  
+
+eat       V-S XLE @(OPT-TRANS %stem); ETC. 
+
+implement V-S XLE @(TRANS %stem).
+
+yawn     V-S XLE @(INTRANS %stem).
+
+steal    V-S XLE @(TRANS %stem).
+
+house 	  V-S XLE @(TRANS house); ETC.
+
+
+"full-form entries"
 
 appears   V *  (^ PRED) = 'appear<(^SUBJ)>'
        	    @PRES3SG.
@@ -445,7 +465,7 @@ was 	  AUX * @PAST
 
 "adjectives"
 
-small	A * @(PRED small). 
+"small	A * @(PRED small). 
 
 smart	A * @(PRED smart). 
 
@@ -463,7 +483,7 @@ bright A * @(PRED bright).
 
 efficient A * @(PRED efficient).
 
-intelligent A * @(PRED intelligent).
+intelligent A * @(PRED intelligent)."
 
 
 
@@ -720,6 +740,83 @@ and  CONJ * @(COORD-FORM %stem);
 , COMMA  * . 
 
 !  EXCL * (^ STMT-TYPE) = exclamation. 
+
+
+----
+
+MORPH   ENGLISH   RULES (1.0)
+
+
+"this deals with verbs.  
+The sublexical items are the POS assigned to the various tags in morph-lex.lfg" 
+
+   V --> V-S_BASE      "verb stem, e.g. run"
+ 	 V-POS_BASE    "suffix saying that this is a verb: +Verb"
+ 	 { TNS_BASE    "tense suffix, e.g. +Pres" 
+ 	   PERS_BASE   "person suffix, e.g. +3sg"
+	 | ASP_BASE}.  "aspectual information"
+
+   N --> N-S_BASE
+         N-POS_BASE
+         NUM
+         N-SFX_BASE+.
+
+  ADJ --> ADJ-S_BASE
+          ADJ-POS_BASE.
+        
+  
+----
+MORPH   ENGLISH   LEXICON (1.0)
+
+"guessing adjectives or nouns"
+
+-unknown  ADJ-S XLE (^ PRED) = '%stem';
+	  N-S XLE (^ PRED) = '%stem'.
+
+
+"lexical entries for tags coming out of the morphological analyzer"
+
+"Verb tags"
+
++Verb	V-POS XLE .
+
++Pres   TNS XLE @PRES.
+
++3sg	PERS XLE @S-AGR.
+
++PastBoth TNS XLE @PAST-BOTH. 
+
++123SP	PERS XLE .
+
++Non3sg PERS XLE @BARE-AGR.
+
++Prog	ASP XLE @PROG.
+
+
+"noun tags"
+
++Noun N-POS XLE "@(PERS 3) @(NSYN common)".
+
++Sg NUM XLE @(NUM sg).
+
++Pl NUM XLE @(NUM pl).
+
++Nom N-SFX XLE @(CASE nom).
+
++Acc N-SFX XLE @(CASE acc).
+
++1Pers N-SFX XLE @(PERS 1).
+
++3Pers N-SFX XLE @(PERS 3).
+
++Pronoun  N-SFX XLE @(PRON-TYPE pers) "personal pronoun"
+		    ~(^ SPEC) "no determiner allowed".
+
+"adj tags"
+
++Adj ADJ-POS XLE.
+
+
 
 
 ----
