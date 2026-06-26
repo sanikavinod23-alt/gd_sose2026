@@ -887,18 +887,15 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 implement  V-S XLE @(TRANS implement).
 
-yawn  V-S XLE @(INTRANS yawn).
+yawn  V-S XLE @(INTRANS yawn); ETC.
 
-steal  V-S XLE @(TRANS steal).
+steal  V-S XLE @(TRANS steal); ETC.
 
-house  V-S XLE @(TRANS house).
+house  V-S XLE @(TRANS house); ETC.
 
-build  V-S XLE @(TRANS build).
-
-built  V-S XLE @(TRANS build)
-               (^ PARTICIPLE) = past.
-               
-hate V-S XLE @(TRANS hate).
+build  V-S XLE @(TRANS build); ETC.
+                             
+hate V-S XLE @(TRANS hate); ETC.
                
 "this guesses words that are unknown to your lexicon
  to be either adjectives or nouns"

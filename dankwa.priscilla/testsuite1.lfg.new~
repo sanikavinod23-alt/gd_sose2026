@@ -1,10 +1,10 @@
 #1
 
-a dog devours the bone (1 0.012 14)
+a dog devours the bone (1 0.009 14)
 
 #2
 
-a dog sleeps (1 0.005 9)
+a dog sleeps (1 0.003 9)
 
 #3
 
@@ -12,7 +12,7 @@ the dog chases a bone        (1 0.004 14)
 
 #4
 
-the girls like the cake (1 0.006 14)
+the girls like the cake (1 0.004 14)
 
 #5
 
@@ -24,7 +24,7 @@ the bone was devoured by a dog (1+2 0.005 24)
 
 #7 
 
-a boy was chased by the gorilla (1+2 0.005 24)
+a boy was chased by the gorilla (1+2 0.004 24)
 
 #8 
 
@@ -32,7 +32,7 @@ the boys like the girl (1 0.003 14)
 
 #9 
 
-a girl likes the boy (1 0.003 14)
+a girl likes the boy (1 0.004 14)
 
 #10
 
@@ -44,7 +44,7 @@ the cats devoured the mice (1 0.004 14)
 
 #12 
 
-a cat eats the mouse (1 0.003 14)
+a cat eats the mouse (1 0.004 14)
 
 #13 
 
@@ -56,7 +56,7 @@ the girl gives the gorilla bananas (1 0.004 17)
 
 #15 
 
-gorillas devour bananas (1 0.003 10)
+gorillas devour bananas (1 0.002 10)
 
 #16 
 
@@ -68,7 +68,7 @@ the girl give the gorilla bananas (0 0.004 16)
 
 #18 
 
-gorillas devours bananas (0 0.004 9)
+gorillas devours bananas (0 0.003 9)
 
 #19
 
@@ -84,23 +84,23 @@ the girl gives a bone to the dog (2 0.005 33)
 
 #22 
 
-the zookeeper gave a banana to the gorilla (2 0.009 33)
+the zookeeper gave a banana to the gorilla (2 0.006 33)
 
 #23 
 
-the dog was given a bone by the girl (2+4 0.007 36)
+the dog was given a bone by the girl (2+4 0.005 36)
 
 #24 
 
-a bone was given to the dog by the girl (2+6 0.009 46)
+a bone was given to the dog by the girl (2+6 0.008 46)
 
 #25
 
-the girl gave to the dog a bone  (0 0.006 0)
+the girl gave to the dog a bone  (0 0.003 0)
 
 #26 
 
-the dog was given by the girl a bone  (0 0.005 0)
+the dog was given by the girl a bone  (0 0.003 0)
 
 #27 
 
@@ -112,31 +112,31 @@ Jordan talked to Sam (1 0.004 16)
 
 #29
 
-Alex argued with a gorilla (1 0.005 18)
+Alex argued with a gorilla (1 0.003 18)
 
 #30 
 
-Sam saw a monkey with a telescope (1+1 0.006 27)
+Sam saw a monkey with a telescope (1+1 0.005 27)
 
 #31
 
-the dog sat on the bench with a book (1+1 0.006 38)
+the dog sat on the bench with a book (1+1 0.004 38)
 
 #32
 
-the gorilla waited on the bench (1 0.006 20)
+the gorilla waited on the bench (1 0.004 20)
 
 #33
 
-the zookeeper waited on the gorilla (1 0.004 20)
+the zookeeper waited on the gorilla (1 0.005 20)
 
 #34
 
-the gorilla put the banana in the cage (2 0.006 29)
+the gorilla put the banana in the cage (2 0.005 29)
 
 #35
 
-the gorilla in the cage devoured a banana (1 0.004 25)
+the gorilla in the cage devoured a banana (1 0.003 25)
 
 #36
 
@@ -144,7 +144,7 @@ the gorilla devoured a banana in the cage (1+1 0.004 29)
 
 #37
 
-a banana was put in the cage by the gorilla (2+3 0.007 42)
+a banana was put in the cage by the gorilla (2+3 0.006 42)
 
 #38
 
@@ -156,15 +156,15 @@ the zookeeper waited by the bench in the garden (1+1 0.007 38)
 
 #40
 
-Sophie educated the bright robot and the intelligent child. (2 0.006 32)
+Sophie educated the bright robot and the intelligent child. (2 0.004 32)
 
 #41
 
-Sophie educated the bright and efficient robot. (2 0.005 27)
+Sophie educated the bright and efficient robot. (2 0.003 27)
 
 #42
 
-lazy leopards sleep and eat. (2 0.006 27)
+lazy leopards sleep and eat. (2 0.005 27)
 
 #43
 
@@ -172,11 +172,11 @@ Mary and the gorilla like bananas. (2 0.004 24)
 
 #44
 
-The gorilla and I like bananas. (2 0.005 24)
+The gorilla and I like bananas. (2 0.004 24)
 
 #45
 
-you and Mary like bananas. (4 0.005 22)
+you and Mary like bananas. (4 0.004 22)
 
 #46
 
@@ -192,7 +192,7 @@ think a creative thought! (2 0.004 14)
 
 #49
 
-eats the beans! (0 0.004 15)
+eats the beans! (0 0.003 15)
 
 #50
 
@@ -200,11 +200,11 @@ gave a bone to the dog! (0 0.004 27)
 
 #51
 
-Sophie implemented a new grammar. (4 0.005 33)
+Sophie implemented a new grammar. (4 0.004 33)
 
 #52
 
-lazy tigers yawn. (2 0.004 28)
+lazy tigers yawn. (2 0.003 28)
 
 #53
 
@@ -212,10 +212,10 @@ the curious leprechaun stole a goat in Ireland. (2+2 0.006 53)
 
 #54
 
-the house was built by a diligent worker. (0 0.004 0)
+the house was built by a diligent worker. (2+2 0.005 48)
 
 #55
 
-the building houses a happy family. (2 0.004 40)
+the building houses a happy family. (2 0.005 40)
 
-# 55 sentences, 0.268 CPU secs total, 0.012 CPU secs max (06/26/26)
+# 55 sentences, 0.231 CPU secs total, 0.009 CPU secs max (06/26/26)
