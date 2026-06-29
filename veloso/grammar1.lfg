@@ -1,9 +1,9 @@
 DEMO   ENGLISH   CONFIG (1.0)
-  ROOTCAT   S.
+  ROOTCAT   ROOT.
   FILES  common.templates.lfg .
-  LEXENTRIES   (DEMO ENGLISH) .
+  LEXENTRIES   (DEMO ENGLISH) (MORPH ENGLISH).
   TEMPLATES (DEMO ENGLISH) (STANDARD COMMON). 
-  RULES   (DEMO ENGLISH).
+  RULES   (DEMO ENGLISH) (MORPH ENGLISH).
   MORPHOLOGY (DEMO ENGLISH) .
   GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
@@ -19,6 +19,9 @@ DEMO ENGLISH MORPHOLOGY (1.0)
 
 TOKENIZE:
 P!basic-parse-tok.fst G!default-gen-tokenizer.fst
+
+ANALYZE:
+english.infl.patch.full.fst
 
 ----
 
@@ -83,6 +86,7 @@ DEMO   ENGLISH   RULES (1.0)
           | P: ^ = !						"head of PP"
                 (! PTYPE) =c nosem;				"non-semantic type, OBL"
                 NP }.
+
 
 METARULEMACRO(_CAT _BASECAT _RHS) = "applies to all rules in the grammar"
 
@@ -157,6 +161,8 @@ SCCOORD(_CAT) = "coordination of non-nominals"
 
 DEMO ENGLISH TEMPLATES (1.0)
 
+"Coordination"
+
 NP-CONJUNCT = "provides person resolution features for nominal
                  coordination" 
   
@@ -205,6 +211,15 @@ FNM = (^ NAME-TYPE) = fist_name
 LN = (^ NAME-TYPE) = last_name
      (^ HUMAN) = +.
 
+BARE-AGR = { (^ SUBJ NUM) = pl 		"either it is plural"
+	  | (^ SUBJ PERS) ~= 3 		"or singular and not 3rd person"
+	    (^ SUBJ NUM) = sg
+	    @(OT-MARK sg-imp) 		"prefer a singular imperative"
+	  }.
+
+S-AGR = (^ SUBJ PERS) = 3  		"for verbs in -s"
+	(^ SUBJ NUM) = sg.
+
 "present 3rd person singular"
 PRES3SG = (^ TNS-ASP TENSE) = pres
           (^ MOOD) = ind
@@ -214,11 +229,14 @@ PRES3SG = (^ TNS-ASP TENSE) = pres
 "present all persons minus 3psg"
 PRES = (^ TNS-ASP TENSE) = pres
        (^ MOOD) = ind
+      {
       {(^ SUBJ PERS) = 1
       |(^ SUBJ PERS) = 2}
+
       {(^ SUBJ NUM) = sg
       |(^ SUBJ NUM) = pl}
-      {(^ SUBJ PERS) = 3
+      |
+       (^ SUBJ PERS) = 3
        (^ SUBJ NUM) = pl}.
 
 "past all persons"
@@ -229,6 +247,8 @@ PAST = (^ TNS-ASP TENSE) = past
          |(^ SUBJ PERS) = 3}
          {(^ SUBJ NUM) = sg
          |(^ SUBJ NUM) = pl}.
+
+VPROG = (^ ASPECT PROG) = +.
 
 "intransitive verbs"
 INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'.
@@ -255,6 +275,8 @@ PASS(FRAME) = { FRAME 				"no passive, just give back subcat frame"
                }.
 
 PASTP = (^ PARTICIPLE) = past.
+
+PAST-BOTH = {@PAST | @ PASTP}.
 
 DAT-SHIFT(FRAME) = { FRAME 
                     | FRAME 
@@ -449,6 +471,22 @@ quickly		Adv * (^ PRED) = 'quickly'.
 
 very		Adv * (^ PRED) = 'very'.
 
+"verbs"
+
+"morphologically analyzed"
+
+hate	  V-S XLE @(TRANS %stem).  "using the morphological analyzer"
+
+eat       V-S XLE @(OPT-TRANS %stem); ETC. 
+
+"Full-form version"
+
+hate	  V * @(TRANS hate); 
+	  N * (^ PRED)='hate'.
+
+house 	  +V-S XLE @(TRANS house);
+	  ETC.
+
 "verbs transitive"
 
 argue      V * @(TRANS argue) @PRES.
@@ -482,6 +520,7 @@ educated  V * @(TRANS talk)
               {(^ TNS-ASP TENSE) = past
                (^ MOOD) = ind
               | @PASTP}.
+
 
 like      V * @(TRANS like) @PRES.
 likes     V * @(TRANS like) @PRES3SG.
@@ -638,5 +677,63 @@ and  CONJ * @(COORD-FORM %stem);
 . PERIOD *.
 , COMMA *.
 ! EXCL *.
+
+----
+
+MORPH   ENGLISH   RULES (1.0)
+
+"sample rule"
+
+"this deals with verbs.  
+The sublexcial items are the POS assigned to the various tags in morph-lex.lfg" 
+
+   V --> V-S_BASE 		"verb stem, e.g. run"
+         V-POS_BASE 		"suffix saying that this is a verb: +Verb"
+         { TNS_BASE 		"tense suffix, e.g. +Pres" 
+           PERS_BASE 		"person suffix, e.g. +3sg"
+         | ASP_BASE}.   	"aspectual information"
+
+   N --> N-S_BASE "noun stem"
+         N-POS_BASE
+         N-NUM_BASE.
+
+   A --> A-S_BASE
+         A-POS_BASE.
+----
+
+MORPH   ENGLISH   LEXICON (1.0)
+
+"this guesses words that are unknown to your lexicon
+ to be either adjectives or nouns"
+-unknown  ADJ-S XLE (^ PRED) = '%stem';
+	  N-S XLE (^ PRED) = '%stem'.
+
+"lexical entries for tags coming out of the morphological analyzer"
+
+"Verb tags"
+
++Verb	V-POS XLE .
+
++Pres   TNS XLE @PRES.
+
++3sg	PERS XLE @S-AGR.
+
++PastBoth TNS XLE "past tense or past particle"
+		 @PAST-BOTH. 
+
++123SP	PERS XLE .
+
++Non3sg PERS XLE @BARE-AGR.
+
++Prog	ASP XLE @PROG.
+
++Noun	N-POS XLE.
+
++Pl	N-NUM XLE (^ NUM) = pl.
+
++Sg	N-NUM XLE (^ NUM) = sg.
+
++Adj	A-POS XLE.
+
 
 ----
