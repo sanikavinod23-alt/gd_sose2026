@@ -1,16 +1,4 @@
-the dog devours bones (1 0.008 11)
+the dog devours bones in the park (0 0.002 0)
 
-# MISMATCH ON: 1 (1 -> 2)
-
-the dog devours a bone (1 0.002 13)
-
-# MISMATCH ON: 5 (1 -> 2)
-
-a dog sleeps (1 0.003 8)
-
-# MISMATCH ON: 7 (1 -> 2)
-
-a dog chases a bone (1 0.002 13)
-
-# MISMATCH ON: 8 (1 -> 2)
+# MISMATCH ON: 6 (0 -> 1+1)
 
