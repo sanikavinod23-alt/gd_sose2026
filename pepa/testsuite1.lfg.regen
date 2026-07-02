@@ -1,92 +1,101 @@
-The cat {sleeps|sleeps.}
+The cat {sleeps.|sleeps|sleeps. .}
 
 1:REGENERATION DID NOT MATCH 'the cat sleeps'.
 
-The dog devours the {bone|bone.}
+The dog devours {the|The} {bone.|bone|bone. .}
 
 2:REGENERATION DID NOT MATCH 'the dog devours the bone'.
 
-The cats chase a {mouse|mouse.}
+The cats chase a {mouse.|mouse|mouse. .}
 
 3:REGENERATION DID NOT MATCH 'the cats chase a mouse'.
 
-The dog {eats|eats.}
+The dog 
+  { eats.
+   |Eats.
+   |eats
+   |Eats
+   |{eats.|Eats.} .}
 
 4:REGENERATION DID NOT MATCH 'the dog eats'.
 
-The cats eat a {treat|treat.}
+The cats {eat|Eat} a {treat.|treat|treat. .}
 
 5:REGENERATION DID NOT MATCH 'the cats eat a treat'.
 
-The girl was seen by the {gorilla|gorilla.}
+The girl was seen by {the|The} {gorilla.|gorilla|gorilla. .}
 
 10:REGENERATION DID NOT MATCH 'the girl was seen by the gorilla'.
 
-The cake was {eaten|eaten.}
+The cake was {eaten.|eaten|eaten. .}
 
 11:REGENERATION DID NOT MATCH 'the cake was eaten'.
 
-The cat was {chased|chased.}
+The cat was {chased.|chased|chased. .}
 
 12:REGENERATION DID NOT MATCH 'the cat was chased'.
 
-The bone was devoured by a {dog|dog.}
+The bone was devoured by a {dog.|dog|dog. .}
 
 13:REGENERATION DID NOT MATCH 'the bone was devoured by a dog'.
 
-The girl gave the dog a {bone|bone.}
+The girl {gave|Gave|put} {the|The} dog a {bone. .|bone.|bone}
 
 17:REGENERATION DID NOT MATCH 'the girl gave the dog a bone'.
 
-The girl gives the gorilla {bananas|bananas.}
+The girl gives {the|The} gorilla {bananas.|bananas|bananas. .}
 
 18:REGENERATION DID NOT MATCH 'the girl gives the gorilla bananas'.
 
-Gorillas devour {bananas|bananas.}
+Gorillas devour {bananas.|bananas|bananas. .}
 
 19:REGENERATION DID NOT MATCH 'gorillas devour bananas'.
 
-A gorilla devours {bananas|bananas.}
+A gorilla devours {bananas.|bananas|bananas. .}
 
 20:REGENERATION DID NOT MATCH 'a gorilla devours bananas'.
 
-The girl gives a bone to the {dog|dog.}
+The girl gives a bone to {the|The} {dog.|dog|dog. .}
 
 25:REGENERATION DID NOT MATCH 'the girl gives a bone to the dog'.
 
-The zookeeper gave a banana to the {gorilla|gorilla.}
+The zookeeper {gave|Gave|put} a banana to {the|The} 
+{gorilla. .|gorilla.|gorilla}
 
 26:REGENERATION DID NOT MATCH 'the zookeeper gave a banana to the gorilla'.
 
-The dog was given a bone by the {girl|girl.}
+The dog was {given|put} a bone by {the|The} {girl. .|girl.|girl}
 
 27:REGENERATION DID NOT MATCH 'the dog was given a bone by the girl'.
 
-A bone was given to the dog by the {girl|girl.}
+A bone was {given|put} to {the|The} dog by {the|The} {girl. .|girl.|girl}
 
 28:REGENERATION DID NOT MATCH 'a bone was given to the dog by the girl'.
 
-The waiter waited on the {table|table.}
+The waiter waited on {the|The} {table.|table|table. .}
 
 31:REGENERATION DID NOT MATCH 'the waiter waited on the table'.
 
-Jordan talked to {Sam|Sam.}
+Jordan talked to {Sam.|Sam|Sam. .}
 
-Alex argued with a {gorilla|gorilla.}
+Alex argued with a {gorilla.|gorilla|gorilla. .}
 
-Sam saw a monkey with a {telescope|telescope.}
+Sam saw a monkey with a {telescope.|telescope|telescope. .}
 
 The dog sat 
-  { on the bench with a {book|book.}
-   |with a book on the {bench|bench.}}
+  { on {the|The} bench with a {book|book.}
+   |with a book on {the|The} {bench|bench.}
+   |  { on {the|The} bench with a book.
+       |with a book on {the|The} bench.} 
+    .}
 
 35:REGENERATION DID NOT MATCH 'the dog sat on the bench with a book'.
 
-The small dog {slept|slept.}
+The small dog {slept.|slept|slept. .}
 
 36:REGENERATION DID NOT MATCH 'the small dog slept'.
 
-The {black small|small black} dog {slept|slept.}
+The {black small|small black} dog {slept.|slept|slept. .}
 
 37:REGENERATION DID NOT MATCH 'the small black dog slept'.
 
@@ -95,84 +104,136 @@ The
    |small {black hungry|hungry black}
    |black small hungry
    |hungry small black} 
-dog ate {bones.|bones}
+dog ate {bones. .|bones.|bones}
 
 38:REGENERATION DID NOT MATCH 'the small black hungry dog ate bones'.
 
-The gorilla devoured the banana {quickly|quickly.}
+The gorilla devoured {the|The} banana {quickly.|quickly|quickly. .}
 
 39:REGENERATION DID NOT MATCH 'the gorilla devoured the banana quickly'.
 
 The 
-  { small {hungry black|black hungry}
+  { small {black hungry|hungry black}
    |{black hungry|hungry black} small
    |black small hungry
    |hungry small black} 
-dog ate bones {quickly.|quickly}
+dog ate bones {quickly. .|quickly.|quickly}
 
 40:REGENERATION DID NOT MATCH 'the small black hungry dog ate bones quickly'.
 
-The very small gorilla {slept|slept.}
+The very small gorilla {slept.|slept|slept. .}
 
 41:REGENERATION DID NOT MATCH 'the very small gorilla slept'.
 
-The very very very small gorilla {slept|slept.}
+The very very very small gorilla {slept.|slept|slept. .}
 
 42:REGENERATION DID NOT MATCH 'the very very very small gorilla slept'.
 
-He {sleeps|sleeps.}
+He {sleeps.|sleeps|sleeps. .}
 
 43:REGENERATION DID NOT MATCH 'he sleeps'.
 
-She devoured {it|it.}
+She devoured {it.|it|it. .}
 
 44:REGENERATION DID NOT MATCH 'she devoured it'.
 
-They devoured {them|them.}
+They devoured {them.|them|them. .}
 
 45:REGENERATION DID NOT MATCH 'they devoured them'.
 
-The dog was given a bone by the {girl|girl.}
+I waited for 
+  { hours for {him|him.}
+   |him for {hours|hours.}
+   |{hours for him.|him for hours.} .}
+
+The dog was {given|put} a bone by {the|The} {girl. .|girl.|girl}
 
 53:REGENERATION DID NOT MATCH 'the dog was given a bone by the girl'.
 
-A bone was given to the dog by the {girl|girl.}
+A bone was {given|put} to {the|The} dog by {the|The} {girl. .|girl.|girl}
 
 54:REGENERATION DID NOT MATCH 'a bone was given to the dog by the girl'.
 
-The gorilla waited on the {bench|bench.}
+The gorilla waited on {the|The} {bench.|bench|bench. .}
 
 55:REGENERATION DID NOT MATCH 'the gorilla waited on the bench'.
 
-The zookeeper waited on the {gorilla|gorilla.}
+The zookeeper waited on {the|The} {gorilla.|gorilla|gorilla. .}
 
 56:REGENERATION DID NOT MATCH 'the zookeeper waited on the gorilla'.
 
-The gorilla put the banana in the {cage|cage.}
+The gorilla {given|put} {the|The} banana in {the|The} {cage. .|cage.|cage}
 
 57:REGENERATION DID NOT MATCH 'the gorilla put the banana in the cage'.
 
-The gorilla in the cage devoured a {banana|banana.}
+The gorilla in {the|The} cage devoured a {banana.|banana|banana. .}
 
 58:REGENERATION DID NOT MATCH 'the gorilla in the cage devoured a banana'.
 
-The gorilla devoured a banana in the {cage|cage.}
+The gorilla devoured a banana in {the|The} {cage.|cage|cage. .}
 
 59:REGENERATION DID NOT MATCH 'the gorilla devoured a banana in the cage'.
 
-A banana was put 
-  { by the gorilla in the {cage.|cage}
-   |in the cage by the {gorilla.|gorilla}}
+A banana was {put|given} in {the|The} cage by {the|The} 
+{gorilla. .|gorilla.|gorilla}
 
 60:REGENERATION DID NOT MATCH 'a banana was put in the cage by the gorilla'.
 
-The zookeeper waited by the {bench|bench.}
+The zookeeper waited by {the|The} {bench.|bench|bench. .}
 
 61:REGENERATION DID NOT MATCH 'the zookeeper waited by the bench'.
 
 The zookeeper waited 
-  { in the garden by the {bench|bench.}
-   |by the bench in the {garden|garden.}}
+  { in {the|The} garden by {the|The} {bench|bench.}
+   |by {the|The} bench in {the|The} {garden|garden.}
+   |  { in {the|The} garden by {the|The} bench.
+       |by {the|The} bench in {the|The} garden.} 
+    .}
 
 62:REGENERATION DID NOT MATCH 'the zookeeper waited by the bench in the garden'.
+
+Eat {the|The} beans!
+
+{Give|Put} {the|The} gorilla a banana!
+
+Think a creative thought!
+
+Sophie educated {the|The} 
+  {   { bright robot and {the|The} intelligent child.
+       |intelligent child and {the|The} bright robot.} 
+    .
+   |bright robot and {the|The} intelligent {child.|child}
+   |intelligent child and {the|The} bright {robot.|robot}}
+
+Sophie educated {the|The} {efficient and bright|bright and efficient} 
+{robot.|robot|robot. .}
+
+{lazy|Lazy} leopards 
+  { {eat|Eat} and {sleep.|sleep}
+   |sleep and {eat.|Eat.|eat|Eat}
+   |  { {eat|Eat} and sleep.
+       |sleep and {eat.|Eat.}} 
+    .}
+
+{ Mary and {the|The} gorilla
+   |The gorilla and Mary} 
+like {bananas. .|bananas.|bananas}
+
+{ The gorilla and I
+   |I and {the|The} gorilla} 
+like {bananas. .|bananas.|bananas}
+
+{ Mary and {you|You}
+   |You and Mary} 
+like {bananas.|bananas|bananas. .}
+
+Sophie implemented a new {grammar.|grammar|grammar. .}
+
+{lazy|Lazy} tigers {yawn. .|yawn.|yawn}
+
+The curious leprechaun stole a goat in {Ireland.|Ireland|Ireland. .}
+
+The house was built by a diligent {worker.|worker|worker. .}
+
+The building houses a happy {family.|family|family. .}
 

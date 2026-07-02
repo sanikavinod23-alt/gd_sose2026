@@ -206,7 +206,7 @@ they devoured they
 
 I waited for she for hours
 
-#53 - 2+4 solutions, which I don't understand why. It should give only 1. The tree remains the same. The only difference that I see is that in one of the results it mentions the case and in the other it doesn't.
+#53 - 2+4 solutions, which I don't understand why. It should give only 1. In the first solution it gives OBJ2 and OBL-AG and in the second solution it gives OBJ and OBJ-TO.
 
 the dog was given a bone by the girl
 
@@ -245,3 +245,67 @@ the zookeeper waited by the bench
 #62 - 1+1 solutions due to OT-marks
 
 the zookeeper waited by the bench in the garden
+
+#63 - 2 solutions because the number of the verb could be either Singular or Plural
+
+Eat the beans!
+
+#64 - 2 solutions because the number of the verb could be either Singular or Plural
+
+Give the gorilla a banana!
+
+#65 - 2 solutions because the number of the verb could be either Singular or Plural
+
+Think a creative thought!
+
+#66 - Wrong because the imperative can exist only in 2nd person
+
+Eats the beans!
+
+#67 - Wrong because the imperative can exist only in Present tense
+
+Gave a bone to the dog!
+
+#68 - 2 solutions (in one the PERIOD is added as a branch of the ROOT and in the other one it is added as a branch of the S)
+
+Sophie educated the bright robot and the intelligent child.
+
+#69 - Same here
+
+Sophie educated the bright and efficient robot.
+
+#70 - Same here
+
+lazy leopards sleep and eat.
+
+#71 - Same here.
+
+Mary and the gorilla like bananas.
+
+#72 - 4 solutions: 2 are the same as the previous ones with the period. The other 2 are about the person of the subject which I don't understand. In one says 1 (I suppose for "I") and in the other says 3 (I suppose for "Mary")
+
+The gorilla and I like bananas.
+
+#73 - 4 solutions: 2 are the same as the previous ones with the period. The other 2 are about the pronoun "you", because it can be either Singular or Plural
+
+You and Mary like bananas.
+
+#74 - 2 solutions (didn't have to add new lexical entries for the new noun and adjective)
+
+Sophie implemented a new grammar.
+
+#75 - Same here
+
+lazy tigers yawn.
+
+#76 - 2+2 solutions (This one was a puzzler! I ended up adding in my grammar the lexical entry "Ireland" as a "PROP" and then it parsed.)
+
+The curious leprechaun stole a goat in Ireland.
+
+#77 - 2+2 solutions (didn't have to add new lexical entries for the new noun and adjective)
+
+The house was built by a diligent worker.
+
+#78 - 2 solutions (didn't have to add new lexical entries for the new noun and adjective)
+
+The building houses a happy family.

@@ -1,21 +1,36 @@
 DEMO   ENGLISH   CONFIG (1.0)
-  ROOTCAT   S.
-  FILES  .
+  ROOTCAT   ROOT.
+  FILES   common.templates.lfg.
   LEXENTRIES   (DEMO ENGLISH).
-  TEMPLATES (DEMO ENGLISH). 
+  TEMPLATES  (DEMO ENGLISH)  (STANDARD COMMON).
   RULES   (DEMO ENGLISH).
+  MORPHOLOGY (DEMO ENGLISH).
   GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
   EPSILON   e.
   OPTIMALITYORDER NOGOOD OBL-OVER-ADJ.
-  ----
+  GENOPTIMALITYORDER GenBadPunct NOGOOD.
+
+----
+
+DEMO ENGLISH MORPHOLOGY (1.0)
+
+TOKENIZE:
+P!basic-parse-tok.fst G!default-gen-tokenizer.fst
+
+----
 
 DEMO ENGLISH RULES (1.0)
 
+ROOT --> { S (PUNC) | Simp (EXCL) }.
+
 S --> NP: (^ SUBJ)=! (! CASE)=nom;
-      VP: ^=!;
-      (PUNC).
+      VP: ^=!.
+
+Simp --> e: (^ SUBJ PRED) = 'pro'
+            (^ SUBJ PERS) = 2;
+         VP: ^=!.
 
 VP --> (AUX) 
        V: ^=! ;
@@ -40,6 +55,30 @@ AP --> (PUNC)
        AdvP*: ! $ (^ ADJUNCT);
        A: ^=!.
 AdvP --> Adv: ^=!.
+
+METARULEMACRO(_CAT _BASECAT _RHS) =
+    { _RHS
+    | e: _CAT $c { NP N };
+      @(NPCOORD _CAT)
+    | e: _CAT ~$ { NP N };
+      @(SCCOORD _CAT)
+    | LB: @(OT-MARK GenBadPunct);
+      _CAT: @PUSHUP;
+      RB }.
+
+NPCOORD(_CAT) =
+    _CAT: @IN-SET
+          @NP-CONJUNCT;
+    CONJnp: @PUSHUP;
+    _CAT: @IN-SET
+          @NP-CONJUNCT.
+
+SCCOORD(_CAT) =
+    _CAT: @IN-SET;
+    (COMMA: @(OT-MARK GenBadPunct))
+    CONJ: @PUSHUP;
+    _CAT: @IN-SET.
+
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
@@ -96,12 +135,23 @@ POSS-PRON(F N Pe) = (^ PRED) = 'F'
                     (^ PRON-TYPE) = poss.
 "OT-Mark Template"
 OT-MARK(M) = M $ o::*.
+
+"Coordination Macros"
+
+NP-CONJUNCT =
+    { (! PERS)=c 1
+      (^ PERS) = 1
+    | (! PERS)=c 2
+      { (^ PERS)=c 1 | (^ PERS)=2 }
+    | (^ PERS)=3 }.
+
 ----
 
 DEMO ENGLISH LEXICON (1.0)
 
 "==== Determiners & Prepositions ===="
 the      D * (^ DEF) = +.
+The      D * (^ DEF) = +.
 a        D * (^ DEF) = -.
 was      AUX * (^ TENSE) = past.
 
@@ -117,10 +167,15 @@ gorilla  N * @(CN gorilla) (^ ANIM) = +.
 gorillas N * @(PL gorilla) (^ ANIM) = +.
 banana   N * @(CN banana) (^ ANIM) = -.
 bananas  N * @(PL banana) (^ ANIM) = -.
+beans N * @(PL bean) (^ ANIM) = -.
 treat    N * @(CN treat) (^ ANIM) = -.
 cake     N * @(CN cake) (^ ANIM) = -.
 girl     N * @(CN girl) (^ ANIM) = +.
+child  N * @(CN child) (^ ANIM) = +.
 girls    N * @(PL girl) (^ ANIM) = +.
+thought N * @(CN thought) (^ ANIM) = -.
+robot N * @(CN robot) (^ ANIM) = -.
+leopards N * @(PL leopard) (^ ANIM) = +.
 
 zookeeper  N * @(CN zookeeper) (^ ANIM) = +.
 waiter     N * @(CN waiter) (^ ANIM) = +.
@@ -133,18 +188,22 @@ hours    N * @(PL hour) (^ ANIM) = -.
 
 "Proper nouns (no determiner needed, so use PL-style or a custom template)"
 
-jordan     N * (^ PRED) = 'jordan' (^ NUM) = sg (^ PERS) = 3 (^ ANIM) = +.
-sam        N * (^ PRED) = 'sam' (^ NUM) = sg (^ PERS) = 3 (^ ANIM) = +.
-alex       N * (^ PRED) = 'alex' (^ NUM) = sg (^ PERS) = 3 (^ ANIM) = +.
-
+Jordan   N * (^ PRED) = 'Jordan' @NSG @(NSYN proper) (^ ANIM) = +.
+Sam      N * (^ PRED) = 'Sam' @NSG @(NSYN proper) (^ ANIM) = +.
+Alex     N * (^ PRED) = 'Alex' @NSG @(NSYN proper) (^ ANIM) = +.
+Mary     N * (^ PRED) = 'Mary' @NSG @(NSYN proper) (^ ANIM) = +.
+Sophie   N * (^ PRED) = 'Sophie' @NSG @(NSYN proper) (^ ANIM) = +.
 "==== Intransitive Verbs ===="
 sleeps   V * @(INTRANS sleep) @VPRES @PRES3SG.
 slept    V * @(INTRANS sleep) (^ TENSE) = past.
 sat      V * (^ PRED) = 'sit<(^ SUBJ)(^ OBL)>'
              (^ TENSE) = past
              (^ OBL PFORM) = on.
+sleep    V * @(INTRANS sleep) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
 
 "==== Transitive Verbs ===="
+educates V * @(TRANS educate) @VPRES @PRES3SG.
+educated V * @(TRANS educate) (^ TENSE) = past.
 devours  V * @(TRANS devour) @VPRES @PRES3SG.
 devour   V * @(TRANS devour) @VPRES @PRES3PL.
 devoured V * @(TRANS devour) { (^ TENSE) = past | (^ PARTICIPLE) = past }.
@@ -156,17 +215,22 @@ chased   V * @(TRANS chase) { (^ TENSE) = past | (^ PARTICIPLE) = past }.
 see      V * @(TRANS see) @VPRES @PRES3PL.
 saw      V * @(TRANS see) (^ TENSE) = past. 
 seen     V * @(TRANS see) (^ PARTICIPLE) = past.
+think    V * @(TRANS think) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
+Think    V * @(TRANS think) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
+like     V * @(TRANS like) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
 
 "==== Optionally Transitive Verbs ===="
 eats     V * @(OPT-TRANS eat) @VPRES @PRES3SG.
 ate      V * @(OPT-TRANS eat) (^ TENSE) = past.
-eat      V * @(OPT-TRANS eat) @VPRES @PRES3PL.
+eat      V * @(OPT-TRANS eat) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
+Eat      V * @(OPT-TRANS eat) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
 eaten     V * @(TRANS eat) (^ PARTICIPLE) = past.
 
 "==== Ditransitive Verbs ===="
 gives    V * @(DITRANS give) @VPRES @PRES3SG.
 gave     V * @(DITRANS give) (^ TENSE) = past.
-give     V * @(DITRANS give) @VPRES @PRES3PL.
+give     V * @(DITRANS give) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
+Give     V * @(DITRANS give) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
 given    V * @(DITRANS give) (^ PARTICIPLE) = past.
 
 "==== Verbs that take OBL as object==="
@@ -205,14 +269,21 @@ for      P * @(PREP for).
 small    A * (^ PRED) = 'small'.
 black    A * (^ PRED) = 'black'.
 hungry   A * (^ PRED) = 'hungry'.
+creative A * (^ PRED) = 'creative'.
+bright   A * (^ PRED) = 'bright'.
+intelligent A * (^ PRED) = 'intelligent'.
+efficient A * (^ PRED) = 'efficient'.
+lazy     A * (^ PRED) = 'lazy'.
 
 "==== Adverbs ===="
 quickly  Adv * (^ PRED) = 'quickly'.
 very     Adv * (^ PRED) = 'very'.
 
+
 "==== Punctuation ===="
 .    PUNC * .
 ,    PUNC * .
+!    EXCL * .
 
 "==== Pronouns ===="
 he       N * @(PRON he sg 3 nom).
@@ -239,10 +310,14 @@ her      D * (^ DEF) = +
              (^ POSS PRED) = 'she'
              (^ POSS NUM) = sg
              (^ POSS PERS) = 3
-             (^ POSS PRON-TYPE) = poss.
-
-her      N * @(PRON she sg 3 acc)
+             (^ POSS PRON-TYPE) = poss;
+    N * @(PRON she sg 3 acc)
              (^ NTYPE) = pron.
 their    D * @(POSS-PRON they pl 3).
 our      D * @(POSS-PRON we pl 1).
+You      N * @(PRON you pl 2 nom).
+
+and      CONJ * (^ COORD-FORM) = and;
+         CONJnp * (^ COORD-FORM) = and
+                  (^ NUM) = pl.
 ----

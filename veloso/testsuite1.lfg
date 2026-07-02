@@ -185,3 +185,68 @@ they devoured they
 
 #62 0
 I waited for she for hours
+
+#63
+the dog was given a bone by the girl
+
+#64
+a bone was given to the dog by the girl
+
+#65
+the gorilla waited on the bench
+
+#66
+the zookeeper waited on the gorilla
+
+#67
+the gorilla put the banana in the cage
+
+#68
+the gorilla in the cage devoured a banana
+
+#69
+the gorilla devoured a banana in the cage
+
+#70
+a banana was put in the cage by the gorilla
+
+#71
+the zookeeper waited by the bench
+
+#72
+the zookeeper waited by the bench in the garden
+
+#73 works
+Eat the beans!
+
+#74 works
+Give the gorilla a banana!
+
+#75 0
+Think a creative thought!
+
+#76 0
+Eats the beans!
+
+#77 works - is not supposed to; past should only work with subj?
+Gave a bone to the dog!
+
+#78 works
+Sophie educated the bright robot and the intelligent child.
+
+#79 works
+Sophie educated the bright and efficient robot.
+
+#80 works
+lazy leopards sleep and eat.
+
+#81 does not work -- subject does not accept coordination.
+Mary and the gorilla like bananas.
+
+#82 does not work -- subject does not accept coordination.
+The gorilla and I like bananas.
+
+#83 does not work -- subject does not accept coordination.
+You and Mary like bananas.
+
+

@@ -1,15 +1,27 @@
 DEMO   ENGLISH   CONFIG (1.0)
   ROOTCAT   ROOT.
-  FILES common.templates.lfg .  
-  LEXENTRIES   (DEMO ENGLISH).
+  FILES  common.templates.lfg .
+  LEXENTRIES   (DEMO ENGLISH) (MORPH ENGLISH).
   TEMPLATES (DEMO ENGLISH) (STANDARD COMMON). 
-  RULES   (DEMO ENGLISH).
+  RULES   (DEMO ENGLISH) (MORPH ENGLISH).
+  MORPHOLOGY (DEMO ENGLISH).
   GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
-  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS STANDARD.
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
   EPSILON   e.
-  OPTIMALITYORDER NOGOOD PPadj +NonAnimOBL +AnimOBL +LocAttach.
-  GENOPTIMALITYORDER GenBadPunct NOGOOD  +CAPITAL +PUNCT.
+  OPTIMALITYORDER NOGOOD  PPadj +NonAnimObl +AnimObl +PPattach +LocAttach +sg-imp. 
+  GENOPTIMALITYORDER  GenBadPunct NOGOOD +PUNCT CAPITAL.
+
+
+----
+
+DEMO ENGLISH MORPHOLOGY (1.0)
+
+TOKENIZE:
+P!basic-parse-tok.fst G!default-gen-tokenizer.fst
+
+ANALYZE:
+english.infl.patch.full.fst
 
 ----
 
@@ -175,6 +187,17 @@ PASS(FRAME) = { FRAME
 	| (^ SUBJ)--> NULL }
 		}. 
 
+PROG = (^ TNS-ASP PROG) = +.
+
+S-AGR = (^ SUBJ PERS) = 3  
+	(^ SUBJ NUM) = sg. 
+
+BARE-AGR = { (^ SUBJ NUM) = pl 
+	    | (^ SUBJ PERS) ~= 3 
+	      (^ SUBJ NUM) = sg
+	      @(OT-MARK sg-imp) 
+	    }.
+
 PRES3SG = (^ TENSE) = pres
 	  (^ SUBJ PERS) = 3
 	(^ MOOD) = indicative
@@ -188,6 +211,12 @@ PRES3PL =  (^ TENSE) = pres
 PASTSIMPLE =  (^ TENSE) = past
 	(^ MOOD) = indicative
 	 { (^ SUBJ NUM) = sg |(^ SUBJ NUM) = pl } .
+
+PASTP = (^ PARTICIPLE) = past.
+
+PRES = (^ TNS-ASP TENSE) = pres.
+
+PAST-BOTH = {@PASTSIMPLE | @PASTP}.
 
 PAST3SG = (^ PARTICIPLE) = past
 	  (^ SUBJ PERS) = 3
@@ -208,7 +237,15 @@ CN-PL = (^ NUM) = pl
 PN =    (^ PERS) = 3
 	(^ NUM) = sg
 	(^ NSYN) = proper
+	(^ CAPITAL) = +
         ~[(^ DEF)]. 
+
+SG = (^ NUM) = sg.
+
+PL = (^ NUM) = pl.
+
+NPOS(N) = (^ NTYPE) = N.
+
 
 INTRANS(P) = (^ PRED)='P<(^ SUBJ)>' 
 		(^ PASSIVE) = -.
@@ -457,41 +494,40 @@ zookeeper   N * (^ PRED) = 'zookeeper'
 Alex 	  N * (^ PRED) = 'Alex'
 	      @PN
 		(^ ANIMATE) = +
-		(^ GEND) = masc
-		(^ CAPITAL) = +.
+		(^ GEND) = masc.
 
 Jordan 	  N * (^ PRED) = 'Jordan'
 	      @PN
 		(^ ANIMATE) = +
-		(^ GEND) = masc
-		(^ CAPITAL) = +.
+		(^ GEND) = masc.
 
 Mary      N * (^ PRED) = 'Mary'
 	    @PN
 		(^ ANIMATE) = +
-		(^ GEND) = fem
-		(^ CAPITAL) = +.
+		(^ GEND) = fem.
 
 Sam 	  N * (^ PRED) = 'Sam'
 	    @PN
 		(^ ANIMATE) = +
-		(^ GEND) = masc
-		(^ CAPITAL) = +.
+		(^ GEND) = masc.
 
 Sophie    N * (^ PRED) = 'Sophie'
 	    @PN
 		(^ ANIMATE) = +
-		(^ GEND) = fem
-		(^ CAPITAL) = +.
+		(^ GEND) = fem.
 
 Sue     N * (^ PRED) = 'Sue'
 	    @PN
 		(^ ANIMATE) = +
-		(^ GEND) = fem
-		(^ CAPITAL) = +.
+		(^ GEND) = fem.
+
+Ireland     N * (^ PRED) = 'Ireland'
+	    @PN
+		(^ ANIMATE) = -.
 
 
-"verbs"
+
+"Fullforms"
 
 argued  V * @(PPTRANS argue)
 	(^ OBL PFORM)=c with
@@ -506,7 +542,7 @@ chase    V * @(TRANS chase)
 chases    V * @(TRANS chase) 
             @PRES3SG.
 
-chased    V * (^ PARTICIPLE)=past 
+chased    V * @PASTP 
              @(TRANS chase).
 
 devours   V * @(TRANS devour) 
@@ -515,11 +551,11 @@ devours   V * @(TRANS devour)
 devour   V * @(TRANS devour)
 		@PRES3PL.
 
-devoured  V * (^ PARTICIPLE)=past
+devoured  V * @PASTP
 	     @(TRANS devour).
 
-eat   V * @(OPT-TRANS eat)
-         @PRES3PL.
+"eat   V * @(OPT-TRANS eat)
+         @PRES3PL."
 
 Eat   V * @(OPT-TRANS eat)
          @IMP
@@ -535,7 +571,7 @@ Eats   V * @(OPT-TRANS eat)
             @PRES3SG
 	(^ CAPITAL) = +.
 
-eaten	V * (^ PARTICIPLE)=past
+eaten	V * @PASTP
 	 @(OPT-TRANS eat).
 
 educated V * @PASTSIMPLE
@@ -558,7 +594,7 @@ Gave  	V * @(DITRANS give)
 	@PASTSIMPLE
 	(^ CAPITAL) = +.
 
-given  V * (^ PARTICIPLE)=past
+given  V * @PASTP
 	 @(DITRANS give).
 
 like  V * @(TRANS like)
@@ -576,7 +612,7 @@ sleep   V * @(INTRANS sleep)
 sleeps   V * @(INTRANS sleep) 
             @PRES3SG.
 
-slept    V * (^ PARTICIPLE)=past 
+slept    V * @PASTP 
         @(INTRANS sleep).
 
 see    V * @(TRANS see) 
@@ -588,7 +624,7 @@ sees    V * @(TRANS see)
 saw     V * @(TRANS see) 
 	@PASTSIMPLE.
 
-seen	V * (^ PARTICIPLE)=past
+seen	V * @PASTP
 	  @(TRANS see).
 
 sent   V * @(DITRANS send)
@@ -607,7 +643,7 @@ talks   V * @(OPT-PPTRANS talk)
 
 talked  V * @(PPTRANS talk)
          (^ OBL PFORM)=c to
-	@PASTSIMPLE.
+	@PASTP.
 
 think   V * @(OPT-TRANS eat)
          @PRES3PL.
@@ -656,7 +692,7 @@ intelligent    A * (^ PRED) = 'intelligent'.
 
 efficient    A * (^ PRED) = 'efficient'.
 
-lazy    A * (^ PRED) = 'lazy'.
+
 
 
 "Adverbs"
@@ -765,10 +801,6 @@ Her    D    *  (^ SPEC POSS PRED) = 'she'
                    (^ SPEC POSS NUM) = sg
                    @PRON-POSS
 		(^ CAPITAL) = +.
-
-
-
-
        
 
 "aux"
@@ -820,5 +852,109 @@ for P * { (^ PRED) = 'for<(^OBJ)>'
         |
           (^ PTYPE) = nosem
           (^ PFORM) = for }.
+
+"verbs"
+
+"Morphologically analyzed"
+
+hate	  V-S XLE @(TRANS %stem).
+
+steal     V-S XLE @(OPT-TRANS %stem); ETC.
+
+eat       V-S XLE @(OPT-TRANS %stem); ETC.
+
+house 	  V-S XLE @(TRANS house);
+	  ETC.
+
+implement V-S XLE @(TRANS %stem).
+
+yawn      V-S XLE @(INTRANS %stem);
+	  ETC.
+
+build 	  V-S XLE @(TRANS %stem);
+	  ETC.
+
+----
+
+MORPH   ENGLISH   RULES (1.0)
+
+"sample rule"
+
+"this deals with verbs.  
+The sublexcial items are the POS assigned to the various tags in morph-lex.lfg" 
+
+   V --> V-S_BASE "verb stem, e.g. run"
+ 	 V-POS_BASE "suffix saying that this is a verb: +Verb"
+ 	 { TNS_BASE "tense suffix, e.g. +Pres" 
+ 	   PERS_BASE "person suffix, e.g. +3sg"
+	 | ASP_BASE}.   "aspectual information"
+   
+ N --> N-S_BASE 
+	 N-POS_BASE
+         (N-NAME_BASE) 
+         (N-GEND_BASE)   
+	 N-NUM_BASE.
+
+ A --> ADJ-S_BASE
+	 ADJ-POS_BASE.
+
+  
+----
+
+MORPH   ENGLISH   LEXICON (1.0)
+
+"this guesses words that are unknown to your lexicon
+ to be either adjectives or nouns"
+-unknown  ADJ-S XLE (^ PRED) = '%stem';
+	  N-S XLE (^ PRED) = '%stem'.
+
+"Verb tags"
+
++Verb	V-POS XLE .
+
++Pres   TNS XLE @PRES.
+
++3Sg	PERS XLE @S-AGR.
+
++PastBoth TNS XLE "past tense or past particle"
+		 @PAST-BOTH. 
+
++123SP	PERS XLE .
+
++Non3sg PERS XLE @BARE-AGR.
+
++Prog	ASP XLE @PROG.
+
++PastTense   TNS XLE @PASTSIMPLE.
+
+"noun tags"
+
++Noun 	  N-POS XLE @(NPOS count)
+		    @(PERS 3).
+
++Prop 	  N-POS XLE @(NPOS name) 
+		    @(PERS 3).
+
++Giv   N-NAME XLE . 
+
++Pl	N-NUM XLE @PL.
+
++Sg     N-NUM XLE @SG.
+
++Fem    N-GEND XLE (^GEND) = fem. 
+
++Masc   N-GEND XLE (^GEND) = masc. 
+
++Place  N-NUM XLE .
+
++Country N-NUM XLE .
+
+"adj tags"
+
++Adj   ADJ-POS XLE .
+
+
+
+
 
 ----

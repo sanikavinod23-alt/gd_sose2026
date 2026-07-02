@@ -1,31 +1,65 @@
 DEMO   ENGLISH   CONFIG (1.0)
-  ROOTCAT   S.
-  FILES  .
-  LEXENTRIES   (DEMO ENGLISH).
-  TEMPLATES (DEMO ENGLISH). 
-  RULES   (DEMO ENGLISH).
+  ROOTCAT   ROOT.
+  FILES  common.templates.lfg.
+  LEXENTRIES   (DEMO ENGLISH)(MORPH ENGLISH).
+  TEMPLATES (DEMO ENGLISH)(STANDARD COMMON). 
+  RULES   (DEMO ENGLISH)(MORPH ENGLISH).
+  MORPHOLOGY (DEMO ENGLISH).
   GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
   EPSILON   e.
   OPTIMALITYORDER NOGOOD PPadj +PPattach.
-  GENOPTIMALITYORDER NOGOOD.
+  GENOPTIMALITYORDER GenBadPunct NOGOOD +PUNCT CAPITAL.
+
+
+----
+
+DEMO ENGLISH MORPHOLOGY (1.0)
+
+TOKENIZE:
+P!basic-parse-tok.fst G!default-gen-tokenizer.fst
+
+ANALYZE:
+english.infl.patch.full.fst
+
 
 ----
 
 DEMO   ENGLISH   RULES (1.0)
+
+   ROOT --> { S
+             (PERIOD: @(OT-MARK Punct))
+              |
+              Simp
+             }.
+
+   Simp --> e: (^ SUBJ PRED) = 'pro'
+                (^ SUBJ PERS) = 2;
+       VP: (^ TENSE) = pres;
+       EXCLAMATION.   
 
    S --> NP: (^ SUBJ)=!
 	     (! CASE)=nom;
  	 VP: ^=!;
       (PERIOD).
 
+SCCOORD(CAT) = CAT: ! $ ^;
+               CONJ
+               CAT: ! $ ^.
+
+NPCOORD(CAT) = CAT: ! $ ^;
+               CONJ: ^ = !
+                      (^ NUM) = pl;
+               CAT: ! $ ^
+                    @NP-CONJUNCT.
+
    VP --> (AUX: ^=!)
           V: ^=!; 
  	  (NP: (^ OBJ)=!
 	       (! CASE)=acc)
        (NP: (^ OBJ2)=!)
-       PP*: { ! $ (^ ADJUNCT) "$ -> this means -in the set of- "
+       PP*: { ! $ (^ ADJUNCT) " $ -> this means -in the set of- "
                   (! PTYPE) =c sem
                   (! OBJ ANIM) =c +
                   @(OT-MARK PPadj) "We have marked the Adjunct. This means that if the noun of the PP is animate e.g. dog, girl, bird etc, the Adjunct will be penalized and xle will choose the unmarked type of PP, which will be the OBL."
@@ -38,31 +72,36 @@ DEMO   ENGLISH   RULES (1.0)
                 @(OT-MARK PPadj)}; "We have marked the OBL. This means that if the noun of the PP is inanimate e.g. chair, bench, bone etc, the OBL will be penalized and xle will choose the unmarked type of PP, which will be the Adjunct."
           (PP: (^ OBL-TO) = !)
           (PP: (^ OBL-AG) = !)
-          Adv*: ! $ (^ ADJUNCT).
+          { Adv*: ! $ (^ ADJUNCT)
+          | @(SCCOORD VP)
+          }.
 
    PP --> { P: ^ = !
                (! PTYPE) =c sem; "semantic type, ADJUNCT"
            NP: (^ OBJ) = !
-               (! CASE) = acc;
+               (! CASE) = acc
                |
            P: ^ = !
               (! PTYPE) =c nosem; "non-semantic type, OBL"
-           NP}.
+           NP
+           | @(SCCOORD PP)
+           }.
 
 
    NP --> { 
           ({D
           | PRON:
-              (^ SPEC POSS) = !})
-"PRON: ^=!
-              (! PRON-TYPE) = poss})"
+              (^ SPEC POSS) = !
+              (^ SPEC POSS PRON-TYPE) =c poss})
            AP*: ! $ (^ ADJUNCT);
            N
            PP*: ! $ (^ ADJUNCT)
                     (! PTYPE) =c sem
                     @(OT-MARK PPadj)
            | PRON: ^=!
-              (! PRON-TYPE) = pers}.
+              (! PRON-TYPE) = pers
+           | @(NPCOORD NP)
+           }.
 
 
     AP --> AdvP*: ! $ (^ ADJUNCT);
@@ -76,6 +115,24 @@ DEMO   ENGLISH   RULES (1.0)
     PRON --> Pron: ^=!
                {(! PRON-TYPE) = pers
                |(! PRON-TYPE) = poss}.
+
+
+    METARULEMACRO(_CAT _BASECAT _RHS) =
+         {
+           _RHS
+         |   "if it is an NP or an N, pass to NP coordination rule"
+           e: _CAT $c { NP N };
+           @(NPCOORD _CAT)
+         |  "if it is any other category, pass it to
+              the same category coordination rule"
+           e: _CAT ~$ { NP N };
+           @(SCCOORD _CAT)
+         |  "allow bracketing around any category"
+            LB: @(OT-MARK GenBadPunct); "preceding quote mark"
+                                        "disprefer in generation"
+            _CAT: @PUSHUP; "this pushes the quotes to the top
+                            to avoid vacuous ambiguity"
+            RB "following quote mark"}.
 
 ----
 
@@ -193,6 +250,17 @@ PRON-POSS(P N C) = (^ DEF) = +
             (^ "SPEC POSS" PERS) = C
             (^ "SPEC POSS" PRON-TYPE) = poss
             (^ "SPEC POSS" ANIM) = +.
+
+NP-CONJUNCT = 
+          {    
+            (! PERS)=c 1
+            (^ PERS)=1
+          |    
+            (! PERS)=c 2
+          { (^ PERS)=c 1 
+          | (^ PERS)=2 } 
+          | (^ PERS)=3
+          }.
 
 ----
 
@@ -333,18 +401,60 @@ garden N * (^ PRED)='garden'
               @SG-3PERS
               (^ ANIM) = -.
 
-Jordan N * (^ PRED)='Jordan'
+beans 	  N * (^ PRED) = 'bean'
+              "@CN"
+	          @PL-3PERS
+               (^ ANIM) = -.
+
+robot N * (^ PRED)='robot'
+              @CN
+              @SG-3PERS
+              (^ ANIM) = -.
+
+child N * (^ PRED)='child'
+              @CN
               @SG-3PERS
               (^ ANIM) = +.
 
-Sam N * (^ PRED)='Sam'
-              @SG-3PERS
-              (^ ANIM) = +.
+leopards 	  N * (^ PRED) = 'leopard'
+              "@CN"
+	          @PL-3PERS
+               (^ ANIM) = +.
 
-Alex N * (^ PRED)='Alex'
+thought N * (^ PRED)='thought'
+              @CN
               @SG-3PERS
-              (^ ANIM) = +.
+              (^ ANIM) = -.
 
+Jordan N * (^ PRED) = 'named'
+           (^ NAME) = 'Jordan'
+           @SG-3PERS
+           (^ ANIM) = +.
+
+Sam N * (^ PRED) = 'named'
+           (^ NAME) = 'Sam'
+           @SG-3PERS
+           (^ ANIM) = +.
+
+Alex N * (^ PRED) = 'named'
+           (^ NAME) = 'Alex'
+           @SG-3PERS
+           (^ ANIM) = +.
+
+Sophie N * (^ PRED) = 'named'
+           (^ NAME) = 'Sophie'
+           @SG-3PERS
+           (^ ANIM) = +.
+
+Mary N * (^ PRED) = 'named'
+           (^ NAME) = 'Mary'
+           @SG-3PERS
+           (^ ANIM) = +.
+
+Ireland N * (^ PRED) = 'named'
+           (^ NAME) = 'Ireland'
+           @SG-3PERS
+           (^ ANIM) = -.
 
 
 "VERBS"
@@ -355,6 +465,12 @@ devours   V *
             @ASPECT-SIMP
             @PRES3SG
 	       @(TRANS devour).
+
+like   V * 
+	       @MOOD-IND
+            @ASPECT-SIMP
+            @PRES-NON3SG
+	       @(TRANS like).
 
 devour     V*
             @MOOD-IND
@@ -410,6 +526,12 @@ eat     V*
             @PRES-NON3SG
             @(OPT-TRANS eat).
 
+think     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PRES-NON3SG
+            @(OPT-TRANS think).
+
 eats   V * 
 	     @MOOD-IND
           @ASPECT-SIMP
@@ -421,6 +543,21 @@ see     V*
             @ASPECT-SIMP
             @PRES-NON3SG
             @(OPT-TRANS see).
+
+yawn  V-S XLE (^ PRED) = 'yawn<(^ SUBJ)>';
+      ETC.
+
+implement  V-S XLE (^ PRED) = 'implement<(^ SUBJ)(^ OBJ)>';
+           ETC.
+
+steal  V-S XLE (^ PRED) = 'steal<(^ SUBJ)(^ OBJ)>';
+       ETC.
+
+build  V-S XLE @(TRANS build);
+       ETC.
+
+house  +V-S XLE @(TRANS house);
+       ETC.
 
 give     V*
             @MOOD-IND
@@ -450,6 +587,9 @@ chased    V* (^ PARTICIPLE) = past
 
 given    V* (^ PARTICIPLE) = past
            @(DITRANS give).
+
+built  V* (^ PARTICIPLE) = past
+          @(TRANS build).
 
 devoured    V* (^ PARTICIPLE) = past
            @(TRANS devour).
@@ -505,13 +645,44 @@ argued     V*
 put  V* { @MOOD-IND
           @ASPECT-SIMP
           @PRES-NON3SG
-          @(LOC-TRANS put)
+          @(DITRANS give)
         | @MOOD-IND
           @ASPECT-SIMP
           @PAST
-          @(LOC-TRANS put)
+          @(DITRANS give)
         | (^ PARTICIPLE) = past
-          @(LOC-TRANS put) }.
+          @(DITRANS give) }.
+
+educated     V*
+            @MOOD-IND
+            @ASPECT-SIMP
+            @PAST
+            @(TRANS educate).
+
+Eat   V* @MOOD-IND
+         @ASPECT-SIMP
+         @PRES-NON3SG
+         @(OPT-TRANS eat).
+
+Eats   V* @MOOD-IND
+         @ASPECT-SIMP
+         @PRES3SG
+         @(OPT-TRANS eat).
+
+Give  V* @MOOD-IND
+         @ASPECT-SIMP
+         @PRES-NON3SG
+         @(DITRANS give).
+
+Think V* @MOOD-IND
+         @ASPECT-SIMP
+         @PRES-NON3SG
+         @(OPT-TRANS think).
+
+Gave  V* @MOOD-IND
+         @ASPECT-SIMP
+         @PAST
+         @(DITRANS give).
 
 
 
@@ -523,6 +694,16 @@ small  A *  (^ PRED) = 'small'.
 black  A *  (^ PRED) = 'black'.
 
 hungry  A *  (^ PRED) = 'hungry'.
+
+bright  A *  (^ PRED) = 'bright'.
+
+intelligent  A *  (^ PRED) = 'intelligent'.
+
+efficient  A *  (^ PRED) = 'efficient'.
+
+lazy  A *  (^ PRED) = 'lazy'.
+
+creative  A *  (^ PRED) = 'creative'.
 
 
 
@@ -573,6 +754,11 @@ you  PRON * { @(PRON-SUBJECT you sg 2)
          | @(PRON-OBJECT you sg 2)
          | @(PRON-OBJECT you pl 2) }.
 
+You  PRON * { @(PRON-SUBJECT you sg 2)
+         | @(PRON-SUBJECT you pl 2)
+         | @(PRON-OBJECT you sg 2)
+         | @(PRON-OBJECT you pl 2) }.
+
 it PRON * { @(PRON-SUBJECT it sg 3)
        | @(PRON-OBJECT it sg 3) }.
 
@@ -580,18 +766,18 @@ it PRON * { @(PRON-SUBJECT it sg 3)
 
 "PRONOUNS - POSSESIVE (they work are DETERMINERS)"
 
-my    Pron * @(PRON-POSS I sg 1).
+my    PRON * @(PRON-POSS I sg 1).
 
-your  Pron * @(PRON-POSS you sg 2).
+your  PRON * @(PRON-POSS you sg 2).
 
-his   Pron * @(PRON-POSS he sg 3).
+his   PRON * @(PRON-POSS he sg 3).
 
-her   Pron * { @(PRON-OBJECT she sg 3)
+her   PRON * { @(PRON-OBJECT she sg 3)
              | @(PRON-POSS she sg 3)}.
 
-our   Pron * @(PRON-POSS we pl 1).
+our   PRON * @(PRON-POSS we pl 1).
 
-their Pron * @(PRON-POSS they pl 3).
+their PRON * @(PRON-POSS they pl 3).
 
 
 
@@ -602,7 +788,16 @@ their Pron * @(PRON-POSS they pl 3).
 
 .   PERIOD * .
 
+!   EXCLAMATION * .
+
+
+
+"PREPOSITIONS"
+
+
 the  D *  (^ DEF) = +.
+
+The  D *  (^ DEF) = +.
 
 a   D *  (^ DEF) = -.
 
@@ -623,5 +818,59 @@ in P * @(PREP in).
 with P * @(PREP with).
 
 for P * @(PREP for).
+
+and CONJ * (^ CONJ-FORM) = and.
+
+----
+
+
+MORPH ENGLISH LEXICON (1.0)
+
+-unknown  ADJ-S XLE (^ PRED) = '%stem';
+          N-S XLE (^ PRED) = '%stem'
+          "@CN".
+
++Noun   N-POS XLE "@CN".
++Sg     N-NUM XLE @SG-3PERS.
++Pl     N-NUM XLE @PL-3PERS.
++Token  N-POS XLE .
++Adj    ADJ-POS XLE .
++Verb   V-POS XLE .
++Pres   TNS XLE (^ TENSE) = pres.
++3sg    PERS XLE (^ SUBJ PERS) = 3
+                 (^ SUBJ NUM) = sg.
++Non3sg PERS XLE (^ SUBJ NUM) = pl
+                 { (^ SUBJ PERS) = 1
+                 | (^ SUBJ PERS) = 2
+                 | (^ SUBJ PERS) = 3 }.
++PastTense TNS XLE @MOOD-IND @ASPECT-SIMP @PAST.
++PastBoth TNS XLE @MOOD-IND @ASPECT-SIMP @PAST.
++123SP  PERS XLE .
++PresPart ASP XLE .
++Prog   ASP XLE .
++Prop  N-POS XLE .
++Giv   N-NUM XLE .
++Fem   N-NUM XLE .
++Masc  N-NUM XLE .
++Place  N-NUM XLE .
++Country N-NUM XLE .
++Fam   N-NUM XLE .
+
+----
+
+MORPH ENGLISH RULES (1.0)
+
+V --> V-S_BASE
+      V-POS_BASE
+      { TNS_BASE
+        PERS_BASE
+      | ASP_BASE }.
+
+N --> N-S_BASE
+      N-POS_BASE
+      N-NUM_BASE.
+
+A --> ADJ-S_BASE
+      ADJ-POS_BASE.
 
 ----

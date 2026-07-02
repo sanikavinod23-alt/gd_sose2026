@@ -1,26 +1,26 @@
 #1 - Intransitive verb
 
-the cat sleeps (1 0.003 8)
+the cat sleeps (6 0.031 40)
 
 #2 - Transitive verb (3rd person singular)
 
-the dog devours the bone (1 0.001 13)
+the dog devours the bone (12 0.013 55)
 
 #3 - Transitive verb (3rd person plural)
 
-the cats chase a mouse (1 0.001 13)
+the cats chase a mouse (6 0.008 56)
 
 #4 - The verb "eat" as intransitive
 
-the dog eats (1 0.001 8)
+the dog eats (12 0.006 43)
 
 #5 - The verb "eat" as transitive
 
-the cats eat a treat (1 0.001 13)
+the cats eat a treat (12 0.005 54)
 
 #6 - Subject and verb don't agree
 
-the girl see the gorilla (0 0.001 13)
+the girl see the gorilla (0 0.001 0)
 
 #7 - I suppose because there is no determiner
 
@@ -36,19 +36,19 @@ gorillas devours banana (0 0.001 0)
 
 #10 - Passive structure with agent
 
-the girl was seen by the gorilla (1+2 0.001 23)
+the girl was seen by the gorilla (12 0.008 63)
 
 #11 - Passive structure without agent
 
-the cake was eaten (1 0.001 10)
+the cake was eaten (6 0.004 43)
 
 #12 - Passive structure without agent
 
-the cat was chased (1 0.001 10)
+the cat was chased (6 0.004 43)
 
 #13 - Passive structure with agent
 
-the bone was devoured by a dog (1+2 0.001 23)
+the bone was devoured by a dog (6 0.005 61)
 
 #14 - Passive structure without past participle
 
@@ -56,35 +56,35 @@ the girl was saw by the gorilla (0 0.001 0)
 
 #15 - Passive structure without past participle
 
-the dog was slept (0 0.000 0)
+the dog was slept (0 0.001 0)
 
 #16 - The lexeme "was" doesn't work as a verb in its past tense but as an auxiliary
 
-the girl was a banana (0 0.000 0)
+the girl was a banana (0 0.001 0)
 
 #17 - Ditransative verb (past tense)
 
-the girl gave the dog a bone (1 0.001 18)
+the girl gave the dog a bone (36 0.006 70)
 
 #18 - Ditransative verb (present tense)
 
-the girl gives the gorilla bananas (1 0.001 16)
+the girl gives the gorilla bananas (12 0.005 66)
 
 #19 - Transitive verb (3rd person plural)
 
-gorillas devour bananas (1 0.001 9)
+gorillas devour bananas (3 0.003 42)
 
 #20 - Transitive verb (3rd person singular)
 
-a gorilla devours bananas (1 0.001 11)
+a gorilla devours bananas (3 0.003 47)
 
 # 21 - Subject and verb don't agree
 
-the girl give the gorilla bananas (0 0.001 16)
+the girl give the gorilla bananas (0 0.001 0)
 
 #22 - Subject and verb don't agree
 
-gorillas devours bananas (0 0.001 9)
+gorillas devours bananas (0 0.001 0)
 
 #23 - Subject and verb don't agree
 
@@ -96,19 +96,19 @@ gorillas devours banana (0 0.000 0)
 
 #25 - Gets 2 solutions (to[2]: OBL & OBL-TO)
 
-the girl gives a bone to the dog (2 0.001 32)
+the girl gives a bone to the dog (12 0.005 79)
 
 #26 - Gets 2 solutions (to[2]: OBL & OBL-TO)
 
-the zookeeper gave a banana to the gorilla (2 0.001 32)
+the zookeeper gave a banana to the gorilla (36 0.006 79)
 
 #27 - Gets 6 solutions (by[2]: OBL-AG & Adjunct, to[3]: OBL & OBL-TO & adjunct, I don't know which is the 6th solution...)
 
-the dog was given a bone by the girl (2+4 0.001 35)
+the dog was given a bone by the girl (24 0.006 78)
 
 #28 - Gets 8 solutions (same as before)
 
-a bone was given to the dog by the girl (2+6 0.001 45)
+a bone was given to the dog by the girl (24 0.007 89)
 
 #29 - The PP isn't at the end
 
@@ -120,130 +120,194 @@ the dog was given by the girl a bone (0 0.001 0)
 
 #31 - Non-semantic PP
 
-the waiter waited on the table (1 0.001 19)
+the waiter waited on the table (12 0.005 61)
 
 #32 - Non-semantic PP
 
-Jordan talked to Sam (1 0.001 15)
+Jordan talked to Sam (3 0.005 57)
 
 #33 - Non-semantic PP
 
-Alex argued with a gorilla (1 0.001 17)
+Alex argued with a gorilla (3 0.005 57)
 
 #34 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
 
-Sam saw a monkey with a telescope (1+1 0.001 26)
+Sam saw a monkey with a telescope (3 0.006 71)
 
 #35 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
 
-the dog sat on the bench with a book (1+1 0.001 37)
+the dog sat on the bench with a book (24 0.008 86)
 
 #36 - Adjective works
 
-the small dog slept (1 0.001 11)
+the small dog slept (6 0.004 50)
 
 #37 - Two adjectives without comma work
 
-the small black dog slept (1 0.001 14)
+the small black dog slept (12 0.005 66)
 
 #38 - Three adjectives without comma work
 
-the small black hungry dog ate bones (1 0.001 20)
+the small black hungry dog ate bones (36 0.009 98)
 
 #39 - Adverb works
 
-the gorilla devoured the banana quickly (1 0.001 15)
+the gorilla devoured the banana quickly (12 0.005 56)
 
 #40 - Many adjectives without comma and an adverb work
 
-the small black hungry dog ate bones quickly (1 0.001 22)
+the small black hungry dog ate bones quickly (36 0.008 100)
 
 #41 - Adjective after adverb works
 
-the very small gorilla slept (1 0.001 14)
+the very small gorilla slept (6 0.005 60)
 
 #42 - I get 4 solutions (one for each type of AdjP)
 
-the very very very small gorilla slept (4 0.001 31)
+the very very very small gorilla slept (6 0.005 67)
 
 #43 - Pronoun as subject works
 
-he sleeps (1 0.000 6)
+he sleeps (3 0.003 35)
 
 #44 - Pronoun as subject and object works
 
-she devoured it (1 0.001 9)
+she devoured it (3 0.004 44)
 
 #45 - Same here
 
-they devoured them (1 0.001 9)
+they devoured them (3 0.003 44)
 
-#46 - I don't understand why this doesn't work????
+#46 - Pronoun in a PP works
 
-I waited for him for hours (1 0.001 24)
+I waited for him for hours (6 0.007 80)
 
 #47 - All the possessive pronouns don't work. I don't know why. The f-structure shows there's a problem with the noun. It says "incomplete" and marks with black background the "c T" on the DEF.
 
-my dog sleeps (0 0.000 9)
+my dog sleeps (0 0.001 0)
 
 #48 - Same here
 
-she gave us her banana (0 0.001 15)
+she gave us her banana (0 0.001 0)
 
-#49 - No results because subject in accusative
+#49 - No solutions because subject in accusative
 
-him sleeps (0 0.000 3)
+him sleeps (0 0.000 0)
 
-#50 - No results because subject in accusative
+#50 - No solutions because subject in accusative
 
-them devoured it (0 0.000 3)
+them devoured it (0 0.001 0)
 
-#51 - No results because object in nominative
+#51 - No solutions because object in nominative
 
-they devoured they (0 0.000 8)
+they devoured they (0 0.000 0)
 
-#52 - No results because PP in nominative
+#52 - No solutions because PP in nominative
 
-I waited for she for hours (0 0.001 13)
+I waited for she for hours (0 0.001 0)
 
-#53 - 2+4 results, which I don't understand why. It should give only 1. The tree remains the same. The only difference that I see is that in one of the results it mentions the case and in the other it doesn't.
+#53 - 2+4 solutions, which I don't understand why. It should give only 1. In the first solution it gives OBJ2 and OBL-AG and in the second solution it gives OBJ and OBJ-TO.
 
-the dog was given a bone by the girl (2+4 0.001 35)
+the dog was given a bone by the girl (24 0.006 78)
 
 #54 - 2+6: Same as the previous one
 
-a bone was given to the dog by the girl (2+6 0.001 45)
+a bone was given to the dog by the girl (24 0.007 89)
 
-#55 - 1 result
+#55 - 1 solution
 
-the gorilla waited on the bench (1 0.001 19)
+the gorilla waited on the bench (12 0.004 61)
 
-#56 - 1 result
+#56 - 1 solution
 
-the zookeeper waited on the gorilla (1 0.001 19)
+the zookeeper waited on the gorilla (12 0.004 61)
 
-#57 - 2 results: In general I have a problem with the verb "put" because it's neither transitive, nor ditransitive or intransitive. It has an object and an OBL which shows the location ("I put something somewhere"). So I created a template for "locative-transatives".
+#57 - 2 solutions: In general I have a problem with the verb "put" because it's neither transitive, nor ditransitive or intransitive. It has an object and an OBL which shows the location ("I put something somewhere"). So I created a template for "locative-transatives".
 
-the gorilla put the banana in the cage (2 0.001 28)
+the gorilla put the banana in the cage (48 0.007 80)
 
-#58 - 1 result
+#58 - 1 solution
 
-the gorilla in the cage devoured a banana (1 0.001 24)
+the gorilla in the cage devoured a banana (12 0.005 80)
 
-#59 - 1+1 results due to OT-marks
+#59 - 1+1 solutions due to OT-marks
 
-the gorilla devoured a banana in the cage (1+1 0.001 28)
+the gorilla devoured a banana in the cage (12 0.005 75)
 
-#60 - 2+3 results: Again a problem with the verb "put" I think.
+#60 - 2+3 solutions: Again a problem with the verb "put" I think.
 
-a banana was put in the cage by the gorilla (2+3 0.001 41)
+a banana was put in the cage by the gorilla (24 0.007 89)
 
-#61 - 1 result
+#61 - 1 solution
 
-the zookeeper waited by the bench (1 0.001 19)
+the zookeeper waited by the bench (12 0.004 61)
 
-#62 - 1+1 results due to OT-marks
+#62 - 1+1 solutions due to OT-marks
 
-the zookeeper waited by the bench in the garden (1+1 0.001 37)
+the zookeeper waited by the bench in the garden (48 0.008 88)
 
-# 62 sentences, 0.045 CPU secs total, 0.003 CPU secs max (06/09/26)
+#63 - 2 solutions because the number of the verb could be either Singular or Plural
+
+Eat the beans! (4 0.003 51)
+
+#64 - 2 solutions because the number of the verb could be either Singular or Plural
+
+Give the gorilla a banana! (6 0.004 57)
+
+#65 - 2 solutions because the number of the verb could be either Singular or Plural
+
+Think a creative thought! (2 0.006 52)
+
+#66 - Wrong because the imperative can exist only in 2nd person
+
+Eats the beans! (0 0.001 0)
+
+#67 - Wrong because the imperative can exist only in Present tense
+
+Gave a bone to the dog! (0 0.001 0)
+
+#68 - 2 solutions (in one the PERIOD is added as a branch of the ROOT and in the other one it is added as a branch of the S)
+
+Sophie educated the bright robot and the intelligent child. (24 0.013 107)
+
+#69 - Same here
+
+Sophie educated the bright and efficient robot. (12 0.007 101)
+
+#70 - Same here
+
+lazy leopards sleep and eat. (24 0.008 110)
+
+#71 - Same here.
+
+Mary and the gorilla like bananas. (12 0.007 86)
+
+#72 - 4 solutions: 2 are the same as the previous ones with the period. The other 2 are about the person of the subject which I don't understand. In one says 1 (I suppose for "I") and in the other says 3 (I suppose for "Mary")
+
+The gorilla and I like bananas. (12 0.005 75)
+
+#73 - 4 solutions: 2 are the same as the previous ones with the period. The other 2 are about the pronoun "you", because it can be either Singular or Plural
+
+You and Mary like bananas. (12 0.006 79)
+
+#74 - 2 solutions (didn't have to add new lexical entries for the new noun and adjective)
+
+Sophie implemented a new grammar. (3 0.007 88)
+
+#75 - Same here
+
+lazy tigers yawn. (6 0.004 66)
+
+#76 - 2+2 solutions (This one was a puzzler! I ended up adding in my grammar the lexical entry "Ireland" as a "PROP" and then it parsed.)
+
+The curious leprechaun stole a goat in Ireland. (6 0.009 118)
+
+#77 - 2+2 solutions (didn't have to add new lexical entries for the new noun and adjective)
+
+The house was built by a diligent worker. (6 0.009 102)
+
+#78 - 2 solutions (didn't have to add new lexical entries for the new noun and adjective)
+
+The building houses a happy family. (6 0.007 98)
+
+# 78 sentences, 0.377 CPU secs total, 0.031 CPU secs max (06/25/26)

@@ -1,95 +1,95 @@
 #11 sentences#
 
-The girl chases the gorilla (1 0.005 18)
+The girl chases the gorilla (4 0.004 18)
 
-The cats chase a mouse (1 0.000 18)
+The cats chase a mouse (4 0.000 18)
 
-The boy devours a cake (1 0.000 18)
+The boy devours a cake (4 0.004 18)
 
-A dog eats a treat (1 0.000 18)
+A dog eats a treat (4 0.000 18)
 
-The boy was seen by the girl (1 0.004 28)
+The boy was seen by the girl (4 0.004 28)
 
-A mouse was devoured by the cats (1 0.000 28)
+A mouse was devoured by the cats (4 0.004 28)
 
-The cake was eaten by the boy (1 0.004 28)
+The cake was eaten by the boy (4 0.000 28)
 
-The treat was eaten (1 0.000 13)
+The treat was eaten (2 0.004 13)
 
-The girl was seen (1 0.004 13)
+The girl was seen (2 0.000 13)
 
-The girl sleeps (1 0.000 11)
+The girl sleeps (2 0.004 11)
 
-The boy appears (1 0.004 11)
+The boy appears (2 0.000 11)
 
 
 #Wrong sentences- 4 sentences#
 
 The girl was slept (0 0.000 11)
 
-The boy was appeared (0 0.000 0)
+The boy was appeared (0 0.004 0)
 
-The girl chase the gorilla (0 0.004 17)
+The girl chase the gorilla (0 0.000 17)
 
 The dogs chases the cat (0 0.000 17)
 
 
 #Ex4- 11 sentences#
 
-The girl gave the dog a bone (1 0.000 25)
+The girl gave the dog a bone (8 0.000 25)
 
-The girl gives the gorilla bananas (1 0.004 21)
+The girl gives the gorilla bananas (4 0.004 21)
 
 Gorillas devour bananas (1 0.000 10)
 
-A gorilla devours bananas (1 0.004 14)
+A gorilla devours bananas (2 0.000 14)
 
-The girl gives a bone to the dog (1 0.000 39)
+The girl gives a bone to the dog (8 0.004 39)
 
-The zookeeper gave a banana to the gorilla (1 0.004 39)
+The zookeeper gave a banana to the gorilla (8 0.004 39)
 
-The dog was given a bone by the girl (1+1 0.004 40)
+The dog was given a bone by the girl (8+8 0.004 40)
 
-A bone was given to the dog by the girl (1 0.004 52)
+A bone was given to the dog by the girl (8 0.004 52)
 
-The waiter waited on the table (1 0.000 24)
+The waiter waited on the table (4 0.000 24)
 
 Jordan talked to Sam (1 0.004 16)
 
-Alex argued with a gorilla (1 0.000 20)
+Alex argued with a gorilla (2 0.004 20)
 
 
 #Wrong sentences- 8 sentences#
 
-The girl give the gorilla bananas (0 0.004 20)
+The girl give the gorilla bananas (0 0.000 20)
 
 Gorillas devours bananas (0 0.000 9)
 
-Gorilla devour bananas (0 0.000 0)
+Gorilla devour bananas (0 0.004 0)
 
-Gorillas devours banana (0 0.004 9)
+Gorillas devours banana (0 0.000 9)
 
-The girl gave to the dog a bone (0 0.000 0)
+The girl gave to the dog a bone (0 0.004 0)
 
 The dog was given by the girl a bone (0 0.000 0)
 
 #Ex 5 - 14 sentences#
 
-The small dog slept (1 0.004 14)
+The small dog slept (2 0.004 14)
 
-The small black dog slept (1 0.000 17)
+The small black dog slept (2 0.000 17)
 
-The small black hungry dog ate bones (1 0.000 23)
+The small black hungry dog ate bones (4 0.004 32)
 
-The gorilla devoured the banana quickly (1 0.004 20)
+The gorilla devoured the banana quickly (4 0.000 20)
 
-The small black hungry dog ate bones quickly (1 0.000 25)
+The small black hungry dog ate bones quickly (4 0.004 34)
 
-The very small gorilla slept (1 0.000 16)
+The very small gorilla slept (2 0.000 16)
 
-The very very very small gorilla slept (1 0.000 20)
+The very very very small gorilla slept (2 0.004 20)
 
-The small, black, hungry dog slept. (1 0.000 26)
+The small, black, hungry dog slept. (2 0.000 26)
 
 He sleeps (1 0.004 7)
 
@@ -97,70 +97,82 @@ She devoured it (1 0.000 10)
 
 They devoured them (1 0.000 10)
 
-I waited for him for hours (1+2 0.000 32)
+I waited for him for hours (2+4 0.004 39)
 
-My dog sleeps (1 0.004 11)
+My dog sleeps (2 0.004 11)
 
-She gave us her banana (1 0.000 17)
+She gave us her banana (2 0.000 17)
 
 #ex 5 errors - 4 sentences#
 
 him sleeps (0 0.000 3)
 
-them devoured it (0 0.000 3)
+them devoured it (0 0.004 3)
 
 they devoured they (0 0.000 8)
 
-I waited for she for hours (0 0.004 24)
+I waited for she for hours (0 0.004 31)
 
 #ex5 OT-Marks#
 
-The dog was given a bone by the girl (1+1 0.000 40)
+The dog was given a bone by the girl (8+8 0.000 40)
 
-A bone was given to the dog by the girl (1 0.004 52)
+A bone was given to the dog by the girl (8 0.004 52)
 
-The gorilla waited on the bench (1 0.000 24)
+The gorilla waited on the bench (4 0.004 24)
 
-The zookeeper waited on the gorilla (1 0.000 24)
+The zookeeper waited on the gorilla (4 0.000 24)
 
-The gorilla put the banana in the cage (1 0.000 35)
+The gorilla put the banana in the cage (8 0.004 35)
 
-The gorilla in the cage devoured a banana (1 0.000 31)
+The gorilla in the cage devoured a banana (8 0.004 31)
 
-The gorilla devoured a banana in the cage (1+1 0.000 35)
+The gorilla devoured a banana in the cage (8+8 0.000 35)
 
-A banana was put in the cage by the gorilla (1+1 0.004 48)
+A banana was put in the cage by the gorilla (8+8 0.004 48)
 
-The zookeeper waited by the bench (1 0.004 24)
+The zookeeper waited by the bench (4 0.004 24)
 
-The zookeeper waited by the bench in the garden (1+1 0.000 44)
+The zookeeper waited by the bench in the garden (8+8 0.004 44)
 
 #ex6 Imperatives and coordination#
 
-Eat the beans! (1 0.000 13)
+Eat the beans! (4 0.000 20)
 
-Give the gorilla a banana! (1 0.000 20)
+Give the gorilla a banana! (4 0.000 20)
 
-Think a creative thought! (1 0.004 16)
+Think a creative thought! (2 0.000 16)
 
-Sophie educated the bright robot and the intelligent child. (1 0.000 32)
+Sophie educated the bright robot and the intelligent child. (4 0.004 32)
 
-Sophie educated the bright and efficient robot. (1 0.004 25)
+Sophie educated the bright and efficient robot. (2 0.000 30)
 
-lazy leopards sleep and eat. (1 0.000 18)
+lazy leopards sleep and eat. (2 0.004 40)
 
-Mary and the gorilla like bananas. (1 0.000 22)
+Mary and the gorilla like bananas. (2 0.004 22)
 
-The gorilla and I like bananas. (1 0.000 22)
+The gorilla and I like bananas. (2 0.000 22)
 
-You and Mary like bananas. (2 0.000 18)
+You and Mary like bananas. (2 0.004 18)
 
 #ex6 errors#
 
-Eats the beans! (0 0.000 10)
+Eats the beans! (0 0.000 17)
 
-Gave a bone to the dog! (0 0.004 31)
+Gave a bone to the dog! (0 0.000 31)
 
-Mary and the Gorilla likes bananas. (0 0.000 0)
+#ex 7#
 
-# 72 sentences, 0.101 CPU secs total, 0.005 CPU secs max (06/17/26)
+Sophie implemented a new grammar. (4 0.004 34)
+
+lazy tigers yawn. (1 0.000 27)
+
+The curious leprechaun stole a goat in Ireland. (4+4 0.004 56)
+
+The house was built by a diligent worker. (8 0.004 53)
+
+#There seems to be a problem just with the third person "houses" 
+
+The building houses a happy family. (0 0.000 0)
+
+# 76 sentences, 0.160 CPU secs total, 0.004 CPU secs max (06/25/26)

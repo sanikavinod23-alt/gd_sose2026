@@ -1,6 +1,6 @@
 #============================================================
 # Testfile for grammar1.lfg - Ahmad Alatrash - SoSe 2026
-# Covers exercises 3, 4, and 5
+# Covers exercises 3, 4, 5, 6
 # Grammatical sentences: should parse (positive tests)
 # Ungrammatical sentences: should give 0 parses (negative tests)
 # ============================================================
@@ -99,6 +99,26 @@ the gorilla waited on the bench
 
 the zookeeper waited on the gorilla
 
+#---- Exercise 6: imperative and coordination----
+
+Eat the beans!
+
+Give the gorilla a banana!
+
+Think a creative thought!
+
+Sophie educated the bright robot and the intelligent child.
+
+Sophie educated the bright and efficient robot.
+
+lazy leopards sleep and eat.
+
+Mary and the gorilla like bananas.
+
+The gorilla and I like bananas.
+
+You and Mary like bananas.
+
 # ============================================================
 # UNGRAMMATICAL SENTENCES - should return 0 parses
 # ============================================================
@@ -131,3 +151,29 @@ them devoured it
 they devoured they
 
 i waited for she for hours
+
+#---- Exercise 6: imperative and coordination----
+
+Eat the beans!
+
+Give the gorilla a banana!
+
+Think a creative thought!
+
+Sophie educated the bright robot and the intelligent child.
+
+Sophie educated the bright and efficient robot.
+
+lazy leopards sleep and eat.
+
+Mary and the gorilla like bananas.
+
+The gorilla and I like bananas.
+
+You and Mary like bananas.
+
+#---- UNGRAMMATICAL SENTENCES for ex6 - should return 0 parses:
+
+Eats the beans!
+
+Gave a bone to the dog!
