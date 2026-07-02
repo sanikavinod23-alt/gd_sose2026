@@ -232,7 +232,7 @@ that     C * (^ COMP-FORM) = that.
 to       P * @(PREP to);
          PARTinf * (^ VFORM) = inf.
 
-"Proper Nouns"
+"Proper Nouns" 
 Jordan   N * (^ PRED) = 'Jordan' @NSG @(NSYN proper) (^ ANIM) = +.
 Sam      N * (^ PRED) = 'Sam' @NSG @(NSYN proper) (^ ANIM) = +.
 Alex     N * (^ PRED) = 'Alex' @NSG @(NSYN proper) (^ ANIM) = +.
