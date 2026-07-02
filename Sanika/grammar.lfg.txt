@@ -41,7 +41,7 @@ Simp --> e: (^ SUBJ PRED) = 'pro'
 
    S --> NP: (^ SUBJ)=!
 	     (! CASE) =nom;
-   	VP: ^=(^ TNS-ASP TENSE).		"require that sentences have tense"
+   	 VP: (^ TNS-ASP TENSE).	"require that sentences have tense"
  	    
  	 
 
@@ -75,9 +75,14 @@ Simp --> e: (^ SUBJ PRED) = 'pro'
 	         @(OT-MARK AnimObl) }
 	       "example of a constraining equation: require a value with =c"
 	       (! PFORM) =c by ) 
-	
-	       
-	 (Adv* : ! $ (^ ADJUNCT)).
+	(Adv* : ! $ (^ ADJUNCT))
+	 ({ CP: (^ COMP) =!;
+	 |VPinf: (^ XCOMP) =!
+		 (^ VFORM) = inf}).
+
+CP --> C S.
+
+VPinf --> PARTinf VP.
 
 
 METARULEMACRO(_CAT _BASECAT _RHS) = "applies to all rules in the grammar"
@@ -229,8 +234,7 @@ DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL-TO)>')).
 
 TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ) (^ OBJ)>').
 
-
-  INTRANS(P) = (^ PRED) = 'P<(^SUBJ)>'.
+INTRANS(P) = (^ PRED) = 'P<(^SUBJ)>'.
 
 INTRANS-OBL(P) = (^ PRED) = 'P<(^SUBJ)(^OBL)>'.
              
@@ -248,9 +252,11 @@ CASE(C) = (^ CASE) = C.
 PRES3SG = @PRES
 	  @S-AGR.
 
-PRES = (^ TENSE) = pres.
+TENSE(T) = (^ TENSE) = T.
 
-PAST = (^ TENSE) = past.
+PRES = (^ TNS-ASP TENSE) = pres.
+
+PAST = (^ TNS-ASP TENSE) = past.
 
 PASTP = (^ PARTICIPLE) = past.
 
@@ -275,9 +281,6 @@ CN(P N) = @(PRED P)
 	           (^ PERS) = 3
 	           (^ NTYPE) = count.
 
-UNK-CN(P) = @(PRED P)
-            (^ PERS) = 3
-            (^ NTYPE) = count.
 
 ANIMATE = (^ ANIMATE) = +.
 
@@ -322,7 +325,9 @@ hate V-S XLE @(TRANS %stem);ETC.		"ETC marks homonymy"
 
 eat V-S XLE @(OPT-TRANS %stem).	
 
-implement V-S XLE @(TRANS %stem).	
+implement V-S XLE @(TRANS %stem).
+
+say       V-S XLE (^PRED) = '%stem<(^SUBJ)(^COMP)>'. 	
 
 yawn V-S XLE @(INTRANS %stem).
 
@@ -334,7 +339,34 @@ build V-S XLE @(TRANS %stem); ETC.
 
 built V * @(TRANS build)
         @PASTP.
-	
+
+rain V-S XLE @(INTRANS rain).
+
+"control verbs"
+promise V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+                          (^ XCOMP SUBJ) = (^SUBJ).
+
+persuade V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+                          (^ XCOMP SUBJ) = (^OBJ).
+
+want V-S XLE{
+  	(^ PRED) = '%stem<(^SUBJ)(^XCOMP)>'
+  	(^ XCOMP SUBJ) = (^SUBJ)
+	|
+  	(^ PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+  	(^ XCOMP SUBJ) = (^OBJ)
+	}.
+
+think V-S XLE (^ PRED) = '%stem<(^ SUBJ)(^ COMP)>'.
+		      
+
+seem V-S XLE (^ PRED) = 'seem<(^XCOMP)>(^SUBJ)'
+         (^ XCOMP SUBJ) = (^ SUBJ).
+
+
+V-S XLE (^ PRED) = '%stem'
+        @PROGRESSIVE.
+
 
 "Full forms"
 
@@ -372,9 +404,9 @@ chased  V *  @(TRANS chase)
 eats    V * @(OPT-TRANS eat)
             @PRES3SG.
 
-eat    V * @(OPT-TRANS eat)
+"eat    V * @(OPT-TRANS eat)
            @BARE-AGR
-	   @PRES.
+	   @PRES."
 
 eaten V * @(OPT-TRANS eat)
           @PASTP.
@@ -403,9 +435,9 @@ waited V *  { @(INTRANS wait) |
 	      (^ OBL PFORM) =c on}
 	      @PAST.
 
-think V * @(OPT-TRANS think)
+"think V * @(OPT-TRANS think)
 	 @BARE-AGR
-	  @PRES. 
+	  @PRES." 
 
 put V * @(TRANS-OBL put)
     	(^ OBL PFORM)=c in
@@ -470,15 +502,18 @@ was 	  AUX * @PAST
 
 "Full form Nouns"
 
+yoghurt N * @(CN Yoghurt sg).
+
 leprechaun N * @(CN leprechaun sg).
 
 beans N * @(CN cat pl).
 
 "cat N * @(CN cat sg)
+	@ANIMATE
 	@DEF."
         
 
-"cats N * @(CN cat pl)."
+cats N * @(CN cat pl).
 
 child N * @(CN child sg)
          @DEF.
@@ -576,6 +611,7 @@ thought N * @(CN thought sg)
 
 
 
+
 "adjectives"
 
 "lazy ADJ-S XLE @(PRED lazy)."
@@ -625,6 +661,15 @@ Sophie N * @(PRED sophie)
 
 Mary N * @(PRED mary)
 	 @ANIMATE.
+
+John N * @(PRED john)
+        @ANIMATE.
+
+Bill N * @(PRED bill)
+        @ANIMATE.
+
+Kim N * @(PRED kim)
+        @ANIMATE.
 
 "personal pronouns"
 
@@ -695,7 +740,7 @@ her	PRON * @(PRON-POSS she 3 sg)
 	@(CASE acc).
 	 
 	        
-
+be	  AUX * (^ TNS-ASP PROG) = +.
 
 "determiners"
 
@@ -712,6 +757,8 @@ a   D *  (^ SPEC PRED) = 'a'
          (^ SPEC DEF) = -.
 
 
+
+
 "prepositions"
 
 
@@ -720,10 +767,9 @@ by   P * { (^ PTYPE) = nosem
          | (^ PRED) = 'by<(^OBJ)>'
            (^ PTYPE) = sem}. 
 	 
-          
 
-
-to 	  P *  @(PREP to).
+to 	  P *  @(PREP to);
+	  PARTinf * (^VFORM) = inf.
 
 on 	  P * {@(PREP on)	    "semantic adjunct reading"
 	      |(^ PTYPE) = nosem    "non-semantic oblique reading"
@@ -740,6 +786,9 @@ for       P * @(PREP for).
 
 and  CONJ * @(COORD-FORM %stem);
      CONJnp * @(COORD-FORM %stem) @(NUM pl).
+
+"Complementizer"
+that C * (^COMP-FORM) = that.
 
 
 "punctuation"
@@ -786,8 +835,7 @@ MORPH   ENGLISH   LEXICON (1.0)
 "this guesses words that are unknown to your lexicon
  to be either adjectives or nouns"
 -unknown ADJ-S XLE @(PRED %stem);
-         N-S XLE @(UNK-CN %stem).
-
+         N-S XLE @(PRED %stem).
 
 	     	 
 
@@ -835,5 +883,6 @@ MORPH   ENGLISH   LEXICON (1.0)
 +Country N-FEAT XLE.
 
 +Fam N-FEAT XLE .
+
 
 ----
