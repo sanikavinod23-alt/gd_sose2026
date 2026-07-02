@@ -268,7 +268,7 @@ INANIMATE = (^ ANIMATE) = -.
 
 LOCATION = (^ LOC) = +.
 
-
+NPOS(N) = (^ NTYPE NSYN) = N.
 
 
 "Pronouns"
@@ -299,7 +299,21 @@ DEMO ENGLISH LEXICON (1.0)
 
 "Morphologically analyzed"
 
+yawn      V-S XLE @(INTRANS %stem).
+
+build	  V-S XLE @(TRANS %stem). 
+
 hate	  V-S XLE @(TRANS %stem).  "using the morphological analyzer"
+
+house     V-S XLE @(TRANS %stem); ETC.
+
+implement     V-S XLE @(TRANS %stem).
+
+love    V-S XLE @(TRANS %stem); ETC.
+
+steal  V-S XLE @(TRANS %stem).
+
+dedicate  V-S XLE @(DITRANS-OBL %stem).
 
 eat       V-S XLE @(OPT-TRANS %stem); ETC. 
 
@@ -707,13 +721,27 @@ The sublexcial items are the POS assigned to the various tags in morph-lex.lfg"
  	   PERS_BASE "person suffix, e.g. +3sg"
 	 | ASP_BASE}.   "aspectual information"
 
+
+   N --> N-S_BASE "noun stem"
+ 	 N-POS_BASE
+ 	 (N-NAME_BASE) "allow for +Giv or +Place in names"
+ 	 (N-GEND_BASE) "allow for gender information" 
+ 	 {N-NUM_BASE |
+	  COUNTRY_BASE}.
+
+   A --> A-S_BASE
+ 	 A-POS_BASE
+ 	 (COUNTRY_BASE)
+ 	 (GRAD_BASE).
+
   
 ----
 MORPH   ENGLISH   LEXICON (1.0)
 
 "this guesses words that are unknown to your lexicon
  to be either adjectives or nouns"
--unknown  ADJ-S XLE (^ PRED) = '%stem';
+ 
+-unknown  A-S XLE (^ PRED) = '%stem';
 	  N-S XLE (^ PRED) = '%stem'.
 
 "lexical entries for tags coming out of the morphological analyzer"
@@ -729,6 +757,8 @@ MORPH   ENGLISH   LEXICON (1.0)
 +PastBoth TNS XLE "past tense or past particle"
 		 @PAST-BOTH. 
 
++PastTense TNS XLE @PAST .
+
 +123SP	PERS XLE .
 
 +Non3sg PERS XLE @BARE-AGR.
@@ -736,6 +766,40 @@ MORPH   ENGLISH   LEXICON (1.0)
 +Prog	ASP XLE @PROG.
 
 
+"nominal/verbal"
+
++Pl 	  N-NUM XLE (^ NUM) = pl.
+
++Sg 	  N-NUM XLE (^ NUM) = sg.
+
+"nominal tags"
+
++Noun 	  N-POS XLE @(NPOS common) "3rd person count noun"
+		    @(PERS 3).
+		       
++Prop 	  N-POS XLE @(NPOS proper) "3rd person name"
+		    @(PERS 3).
+		    
++Place 	  N-NAME XLE . 
+
++Giv 	  N-NAME XLE .   "for given names"
+
++Fem 	  N-GEND XLE (^GEND) = fem. 
+
++Masc 	  N-GEND XLE (^GEND) = masc.
+
+
+"other"
+
++Adj 	  A-POS XLE .
+
++Country COUNTRY XLE .
+
++Comp     GRAD XLE (^ DEGREE) = comparative.
+
++Sup      GRAD XLE (^ DEGREE) = superlative.
+
++Adv 	  ADV-POS XLE .
 
 
 ----
