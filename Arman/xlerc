@@ -9,6 +9,6 @@ set home [file join [pwd] $home]
 return [file normalize [file join $home $path]]
 }
 #specify grammar
-set defaultParser [relpath grammar7.lfg]
+set defaultParser [relpath grammar8.lfg]
 #load parser
 create-parser $defaultParser
