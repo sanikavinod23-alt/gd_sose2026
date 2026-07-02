@@ -1,0 +1,193 @@
+The dog devours {bones.|bones}
+
+1:REGENERATION DID NOT MATCH 'the dog devours bones'.
+
+The dog devours a {bone.|bone}
+
+5:REGENERATION DID NOT MATCH 'the dog devours a bone'.
+
+A dog {sleeps.|sleeps}
+
+7:REGENERATION DID NOT MATCH 'a dog sleeps'.
+
+A dog chases a {bone.|bone}
+
+8:REGENERATION DID NOT MATCH 'a dog chases a bone'.
+
+The cat {sleeps.|sleeps}
+
+9:REGENERATION DID NOT MATCH 'the cat sleeps'.
+
+The dog devours the {bone.|bone}
+
+10:REGENERATION DID NOT MATCH 'the dog devours the bone'.
+
+The cats chase a {mouse.|mouse}
+
+11:REGENERATION DID NOT MATCH 'the cats chase a mouse'.
+
+The dog {eats.|eats}
+
+12:REGENERATION DID NOT MATCH 'the dog eats'.
+
+The cats eat a {treat.|treat}
+
+13:REGENERATION DID NOT MATCH 'the cats eat a treat'.
+
+The girl see the {gorilla.|gorilla}
+
+15:REGENERATION DID NOT MATCH 'the girl see the gorilla'.
+
+The girl was seen by the {gorilla.|gorilla}
+
+18:REGENERATION DID NOT MATCH 'the girl was seen by the gorilla'.
+
+The bone was devoured by a {dog.|dog}
+
+21:REGENERATION DID NOT MATCH 'the bone was devoured by a dog'.
+
+The girl 
+  { was {saw|see}
+   |saw} 
+by the {gorilla.|gorilla}
+
+22:REGENERATION DID NOT MATCH 'the girl was saw by the gorilla'.
+
+The dog 
+  { was {slept.|sleep.|slept|sleep}
+   |slept.
+   |slept}
+
+23:REGENERATION DID NOT MATCH 'the dog was slept'.
+
+The girl 
+  { was {give|gave}
+   |gave} 
+the dog a {bone.|bone}
+
+24:REGENERATION DID NOT MATCH 'the girl gave the dog a bone'.
+
+The girl gives the gorilla {bananas.|bananas}
+
+25:REGENERATION DID NOT MATCH 'the girl gives the gorilla bananas'.
+
+Gorillas devour {bananas.|bananas}
+
+26:REGENERATION DID NOT MATCH 'gorillas devour bananas'.
+
+A gorilla devours {bananas.|bananas}
+
+27:REGENERATION DID NOT MATCH 'a gorilla devours bananas'.
+
+The girl give the gorilla {bananas.|bananas}
+
+28:REGENERATION DID NOT MATCH 'the girl give the gorilla bananas'.
+
+The girl gives a bone to the {dog.|dog}
+
+32:REGENERATION DID NOT MATCH 'the girl gives a bone to the dog'.
+
+The zookeeper 
+  { was {give|gave}
+   |gave} 
+a banana to the {gorilla.|gorilla}
+
+33:REGENERATION DID NOT MATCH 'the zookeeper gave a banana to the gorilla'.
+
+The dog was given a bone by the {girl.|girl}
+
+34:REGENERATION DID NOT MATCH 'the dog was given a bone by the girl'.
+
+A bone was given to the dog by the {girl.|girl}
+
+35:REGENERATION DID NOT MATCH 'a bone was given to the dog by the girl'.
+
+Jordan talked to {Sam.|Sam}
+
+Alex argued with a {gorilla.|gorilla}
+
+Sam 
+  { was {saw|see}
+   |saw} 
+a monkey with a {telescope.|telescope}
+
+The small dog 
+  { was {slept.|sleep.|slept|sleep}
+   |slept.
+   |slept}
+
+43:REGENERATION DID NOT MATCH 'the small dog slept'.
+
+The {black small|small black} dog 
+  { was {slept.|sleep.|slept|sleep}
+   |slept.
+   |slept}
+
+44:REGENERATION DID NOT MATCH 'the small black dog slept'.
+
+The 
+  { {black hungry|hungry black} small
+   |small {black hungry|hungry black}
+   |black small hungry
+   |hungry small black} 
+dog 
+  { was {ate|eat}
+   |ate} 
+{bones.|bones}
+
+45:REGENERATION DID NOT MATCH 'the small black hungry dog ate bones'.
+
+The gorilla devoured the banana {quickly.|quickly}
+
+46:REGENERATION DID NOT MATCH 'the gorilla devoured the banana quickly'.
+
+The 
+  { {black hungry|hungry black} small
+   |small {black hungry|hungry black}
+   |black small hungry
+   |hungry small black} 
+dog 
+  { was {ate|eat}
+   |ate} 
+bones {quickly.|quickly}
+
+47:REGENERATION DID NOT MATCH 'the small black hungry dog ate bones quickly'.
+
+The very small gorilla 
+  { was {slept.|sleep.|slept|sleep}
+   |slept.
+   |slept}
+
+48:REGENERATION DID NOT MATCH 'the very small gorilla slept'.
+
+The very very very small gorilla 
+  { was {slept.|sleep.|slept|sleep}
+   |slept.
+   |slept}
+
+49:REGENERATION DID NOT MATCH 'the very very very small gorilla slept'.
+
+The 
+  { {black hungry|hungry black} small
+   |small {black hungry|hungry black}
+   |black small hungry
+   |hungry small black} 
+dog 
+  { was {slept.|sleep.|slept|sleep}
+   |slept.
+   |slept}
+
+50:REGENERATION DID NOT MATCH 'the small, black, hungry dog slept.'.
+
+He {sleeps.|sleeps}
+
+51:REGENERATION DID NOT MATCH 'he sleeps'.
+
+She devoured {it.|it}
+
+52:REGENERATION DID NOT MATCH 'she devoured it'.
+
+They devoured {them.|them}
+
+53:REGENERATION DID NOT MATCH 'they devoured them'.
+

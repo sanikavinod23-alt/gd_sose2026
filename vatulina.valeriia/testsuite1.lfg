@@ -1,24 +1,275 @@
-#show how it works
-the dog devours bones
+#correct sentence 1 - intransitive verb
 
-# unification failure, subject-verb agreement (consistency)
-the dogs devours bones
+the cat sleeps
 
-# coherence violation
-the dog appears bones 
+#correct sentence 2 - transitive verb
 
-# completeness violation
-the dog devours 
+the dog devours the bone
 
-# missing PRED value, completeness violation
-the dog devours a bone
+#correct sentence 3 - transitive verb
 
-#missing rules, unknown words
-the dog devours bones in the park
+the cats chase a mouse
 
-#new verbs --- intrans
-a dog sleeps
+#correct sentence 4 - optionally transitive verb
 
-#new verbs -- trans
-a dog chases a bone
+the dog eats
 
+#correct sentence 5 - optionally transitive verb
+
+the cats eat a treat
+
+#incorrect sentence 6 - subject-verb agreement violation
+
+the girl see the gorilla
+
+#incorrect sentence 7 - count noun without determiner
+
+cat chases dogs
+
+#incorrect sentence 8 - subject-verb agreement violation
+
+gorilla devour bananas
+
+#incorrect sentence 9 - subject-verb agreement violation
+
+gorillas devours banana
+
+#correct sentence 10
+
+the girl was seen by the gorilla
+
+#correct sentence 11
+
+the cake was eaten
+
+#correct sentence 12
+
+the cat was chased
+
+#correct sentence 13
+
+the bone was devoured by a dog
+
+# incorrect sentence 14 - passivisation rule violation
+
+the girl was saw by the gorilla
+
+#incorrect sentence 15 - passivisation rule violation
+
+the dog was slept
+
+#correct sentence 16
+
+the girl gave the dog a bone
+
+#correct sentence 17
+
+the girl gives the gorilla bananas
+
+#correct sentence 18
+
+gorillas devour bananas
+
+#correct sentence 19
+
+a gorilla devours bananas
+
+#incorrect sentence 20
+
+the girl give the gorilla bananas
+
+#incorrect sentence 21
+
+gorillas devours bananas
+
+#incorrect sentence 22
+
+gorilla devour bananas
+
+#incorrect sentence 23
+
+gorillas devours banana
+
+#correct sentence 24
+
+the girl gives a bone to the dog
+
+#correct sentence 25
+
+the zookeeper gave a banana to the gorilla
+
+#correct sentence 26
+
+the dog was given a bone by the girl
+
+#correct sentence 27
+
+a bone was given to the dog by the girl
+
+#incorrect sentence 28
+
+the girl gave to the dog a bone
+
+#incorrect sentence 29
+
+the dog was given by the girl a bone
+
+#correct sentence 30
+
+the waiter waited on the table
+
+#correct sentence 31
+
+Jordan talked to Sam
+
+#correct sentence 32
+
+Alex argued with a gorilla
+
+#correct sentence 33
+
+Sam saw a monkey with a telescope
+
+#correct sentence 34
+
+the dog sat on the bench with a book
+
+#correct sentence 35
+
+the small dog slept
+
+#correct sentence 36
+
+the small black dog slept
+
+#correct sentence 37
+
+the small black hungry dog ate bones
+
+#correct sentence 38
+
+the gorilla devoured the banana quickly
+
+#correct sentence 39
+
+the small black hungry dog ate bones quickly
+
+#correct sentence 40
+
+the very small gorilla slept
+
+#correct sentence 41
+
+the very very very small gorilla slept
+
+#correct sentence 42
+
+the small, black, hungry dog slept.
+
+#correct sentence 43
+
+he sleeps
+
+#correct sentence 44
+
+she devoured it
+
+#correct sentence 45
+
+they devoured them
+
+#correct sentence 46
+
+I waited for him for hours
+
+#correct sentence 47
+
+my dog sleeps
+
+#correct sentence 48
+
+she gave us her banana
+
+#OT mark test
+
+the dog was given a bone by the girl
+
+#OT mark test
+
+a bone was given to the dog by the girl
+
+#OT mark test
+
+the gorilla waited on the bench
+
+#OT mark test
+
+the zookeeper waited on the gorilla
+
+#OT mark test
+
+the gorilla put the banana in the cage
+
+#OT mark test
+
+the gorilla in the cage devoured a banana
+
+#OT mark test
+
+the gorilla devoured a banana in the cage
+
+#OT mark test
+
+a banana was put in the cage by the gorilla
+
+#OT mark test
+
+the zookeeper waited by the bench
+
+#OT mark test
+
+the zookeeper waited by the bench in the garden
+
+#imperative correct sentence 49
+
+eat the beans!
+
+#imperative correct sentence 50
+
+give the gorilla a banana!
+
+#imperative correct sentence 51
+
+think a creative thought!
+
+#imperative incorrect sentence 52
+
+eats the beans!
+
+#imperative incorrect sentence 53
+
+gave a bone to the dog!
+
+#coordination correct sentence 54
+
+Sophie educated the bright robot and the intelligent child.
+
+#coordination correct sentence 55
+
+Sophie educated the bright and efficient robot.
+
+#coordination correct sentence 56
+
+lazy leopards sleep and eat.
+
+#coordination correct sentence 57
+
+Mary and the gorilla like bananas.
+
+#coordination correct sentence 58
+
+the gorilla and I like bananas.
+
+#coordination correct sentence 59
+
+you and Mary like bananas.

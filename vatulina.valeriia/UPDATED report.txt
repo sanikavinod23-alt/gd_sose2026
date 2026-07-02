@@ -1,0 +1,37 @@
+PRACTICAL WORK 6
+I have encountered several problems in this practical work.
+
+The line (^ TENSE) ~= past in the imperative rule seems redundant, and we did not have it in the original rule, but I could not find another way to ensure the sentence "gave a bone to the dog!" is ruled out as ungrammatical.
+I also tried to realise the animacy constraint similarly to the reference grammar via the OT-Mark "+AnimObl", but it did not work out.
+
+PRACTICAL WORK 5
+The two sentences below appear to be parsed accurately after adding another OT-mark before +PPattach to give preference to the OBL-AG reading.
+
+the dog was given a bone by the girl
+a bone was given to the dog by the girl
+
+I added an ANIM feature to nouns and a constraint in the lexical entry of the verb wait to ensure the OBL reading only when the preposition is non-semantic and the object of the PP has ANIM+.
+Since the lexical entry now looks bulky, it appears not to be the most efficient solution, but I could not achieve better results by making other changes.
+
+the gorilla waited on the bench
+the zookeeper waited on the gorilla
+
+Both sentences below receive accurate readings with by being read as ADJUNCTs.
+
+the zookeeper waited by the bench
+the zookeeper waited by the bench in the garden
+
+The sentences below receive accurate readings too.
+
+the gorilla in the cage devoured a banana
+the gorilla devoured a banana in the cage
+
+The sentences below have one accurate reading. But similarly to the verb "waited", the lexical entry of "put" stores a lot of information. I could not think of the way to organise it in a different way.
+
+the gorilla put the banana in the cage
+a banana was put in the cage by the gorilla
+regenerate-testfile filename.lfg,
+
+Regeneration revealed a problem in the grammar. Many of the regenerated sentences had the optional auxiliary {was|}, even though it had not been present in the source sentence.
+I also noticed that after all the changes in the grammar, sentences like "The dog was slept" became marked as correct, even though the lexical entry of the word "slept" only contained its past tense form and not the past participle.
+Adding (^ PASSIVE) = + to the lexical entries of the auxiliaries fixed both problems, but it does not appear efficient as they will have to be rewritten again to ensure they can be used in non-passive sentences.

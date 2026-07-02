@@ -1,0 +1,244 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES  .
+  RULES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH).
+    LEXENTRIES   (DEMO ENGLISH).
+   
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+   S --> NP: (^ SUBJ)=!;
+ 	 VP: ^=!.
+
+
+   NP --> (D)  
+ 	  N. 
+
+   
+   VP --> { V: ^=!;
+          (NP: (^ OBJ)=!)
+          (NP: (^ OBJ2)=!)
+          (PP: (^ OBL-AG)=!)
+
+       | AUX: (^ AUX)=!;
+          V: (^ XCOMP)=!;
+          (PP: (^ OBL-AG)=!)
+       }.
+
+   PP --> P: ^=!;
+       NP: (^ OBJ)=!.
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)
+
+INTRANS(P) = (^ PRED) = 'P<(^ SUBJ)>'.
+
+TRANS(P) = (^ PRED)='P<(^ SUBJ)(^ OBJ)>'.
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+DITRANS(P) = (^ PRED) = 'P<(^ SUBJ)(^ OBJ)(^ OBJ2)>'.
+
+PERS3 = (^ PERS) = 3.
+
+PL = (^ NUM) = pl.
+
+SG = (^ NUM) = sg.
+
+PRES3SG = (^ TENSE) = pres
+          (^ SUBJ PERS) = 3 
+          (^ SUBJ NUM) = sg.
+
+PRES3PL = (^ TENSE) = pres
+          (^ SUBJ PERS) = 3 
+          (^ SUBJ NUM) = pl.
+
+PAST = (^ TENSE) = past.
+
+INDIC = (^ MOOD) = indicative.
+
+PASS(FRAME) = { FRAME "no passive, just give back subcat frame"
+		(^ PASSIVE) = - "no passive"
+		| FRAME "passive"
+		(^ PASSIVE) = + "mark as such"
+		(^ PARTICIPLE) =c past "make sure to have a past participle"
+		(^ OBJ)-->(^ SUBJ) "obj goes to subj; only (at least) transitives"
+		{ (^ SUBJ)-->(^ OBL-AG) "either make subj obl-ag"
+		| (^ SUBJ)--> NULL "or delete"
+		}
+	}. 
+
+PARTICIP = (^ PARTICIPLE) = past.
+
+PASSIV = (^ PASSIVE) = +.
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+bones 	  N * (^ PRED) = 'bone'
+	      @PL
+	      @PERS3.
+
+banana	  N * (^ PRED) = 'banana'
+	      @SG
+	      @PERS3
+	           (^ DEF).
+ 
+
+bananas	  N * (^ PRED) = 'banana'
+	      @PL
+	      @PERS3.
+
+girl	  N * (^ PRED) = 'girl'
+	      @SG
+	      @PERS3
+	           (^ DEF).
+
+gorilla	  N * (^ PRED) = 'gorilla'
+	      @SG
+	      @PERS3
+	           (^ DEF).
+
+gorillas  N * (^ PRED) = 'gorilla'
+	      @PL
+	      @PERS3.
+
+bone 	  N * (^ PRED) = 'bone'
+	      @SG
+	      @PERS3
+	           (^ DEF). 
+
+dog 	  N * (^ PRED) = 'dog'
+	      @SG
+	      @PERS3
+	           (^ DEF). 
+
+cat       N * (^ PRED) = 'cat'
+	      @SG
+	      @PERS3
+	           (^ DEF). 
+
+mouse	  N * (^ PRED) = 'mouse'
+	      @SG
+	      @PERS3
+	           (^ DEF). 
+
+treat	   N * (^ PRED) = 'treat'
+	      @SG
+	      @PERS3
+	           (^ DEF).
+
+dogs 	  N * (^ PRED) = 'dog'
+	      @PL
+	      @PERS3.
+
+cats 	  N * (^ PRED) = 'cat'
+	      @PL
+	      @PERS3.
+
+cake	  N * (^ PRED) = 'cake'
+                   @SG
+                   @PERS3
+                   (^ DEF).
+
+
+devours   V * @(TRANS devour)
+	      @PRES3SG
+	      @INDIC.
+
+devour	  V * @(TRANS devour)
+	       @PRES3PL
+	       @INDIC.
+
+sleeps	  V * @(INTRANS sleep)
+	      @INDIC
+	      @PRES3SG.
+
+chase     V * @(TRANS chase)
+	      @INDIC
+	      @PRES3PL.
+
+chases	  V * @(TRANS chase)
+	      @INDIC
+	      @PRES3SG.
+
+see	  V * @(TRANS see)
+	      @INDIC
+	      @PRES3PL.
+
+appears   V * (^ PRED) = 'appear<(^ SUBJ)>'
+	      @INDIC
+	      @PRES3SG.
+
+eats	  V * @(OPT-TRANS eat)
+	      @INDIC
+	      @PRES3SG.
+
+eat	  V * @(OPT-TRANS eat)
+	      @INDIC
+	      @PRES3PL.
+
+was	 AUX * (^ TENSE) = past
+	       @INDIC
+	       (^ XCOMP PARTICIPLE) =c past.
+
+sees     V * @(TRANS see)
+             @PRES3SG
+             @INDIC.
+
+saw	 V * @(TRANS see)
+             @PAST
+	     @INDIC.
+
+seen     V * @(TRANS see)
+             @PARTICIP
+	     @PASSIV.
+
+slept	 V * @(INTRANS sleep)
+             @PAST
+             @INDIC.
+
+eaten    V * @OPT-TRANS eat)
+             @PARTICIP
+	     @PASSIV.
+
+
+chased   V * @(TRANS chase)
+             @PARTICIP
+	     @PASSIV.
+
+devoured V * @(TRANS devour)
+             @PARTICIP
+	     @PASSIV.
+
+
+
+the  D *  (^ DEF) = +.
+
+a   D *  (^ DEF) = -.
+
+by  P * (^ PRED) = 'by'.
+
+
+
+
+
+
+
+
+
+
+
+
+
+----
