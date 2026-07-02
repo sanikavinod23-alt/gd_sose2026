@@ -41,9 +41,18 @@ VP --> (AUX)
        (NP: (^ OBJ2)=!) 
        AdvP*: ! $ (^ ADJUNCT);
        PP*: { ! $ (^ ADJUNCT) (! PTYPE) =c sem @(OT-MARK OBL-OVER-ADJ) 
-     | (^ OBL) =! };
+            | (^ OBL) =! };
        (PP: (^ OBL-TO) =! (! PFORM) =c to) 
-       (PP: (^ OBL-AG) =! (! PFORM) =c by).
+       (PP: (^ OBL-AG) =! (! PFORM) =c by)
+       ({ CP: (^ COMP) = ! 
+        | VPinf: (^ XCOMP) = ! }).
+
+CP --> C: ^=! ;
+       S: ^=! .
+
+VPinf --> PARTinf: ^=! ;
+          VP: ^=! .
+
 NP --> (D) 
        AP*: ! $ (^ ADJUNCT);
        N: ^=! ; 
@@ -175,6 +184,8 @@ MORPH ENGLISH LEXICON (1.0)
 +Non3sg  PERS XLE .
 +123SP   PERS XLE .
 +PastParticiple ASP XLE (^ PARTICIPLE) = past.
++Prog        ASP XLE (^ PARTICIPLE) = prog.
++PresPart    ASP XLE (^ PARTICIPLE) = prog.
 
 +Noun    N-POS XLE (^ PERS) = 3.
 +Sg      NUM XLE (^ NUM) = sg.
@@ -197,9 +208,11 @@ the      D * (^ DEF) = +.
 The      D * (^ DEF) = +.
 a        D * (^ DEF) = -.
 was      AUX * (^ TENSE) = past.
+be  AUX * (^ PARTICIPLE) =c prog
+          (^ VFORM) = inf.
 
 by       P * @(PREP by).
-to       P * @(PREP to).
+
 on       P * @(PREP on).
 in       P * @(PREP in).
 with     P * @(PREP with).
@@ -212,6 +225,13 @@ very     Adv * (^ PRED) = 'very'.
 ,    PUNC * .
 !    EXCL * .
 
+" Complementizers and Particles "
+
+that     C * (^ COMP-FORM) = that.
+
+to       P * @(PREP to);
+         PARTinf * (^ VFORM) = inf.
+
 "Proper Nouns"
 Jordan   N * (^ PRED) = 'Jordan' @NSG @(NSYN proper) (^ ANIM) = +.
 Sam      N * (^ PRED) = 'Sam' @NSG @(NSYN proper) (^ ANIM) = +.
@@ -219,10 +239,15 @@ Alex     N * (^ PRED) = 'Alex' @NSG @(NSYN proper) (^ ANIM) = +.
 Mary     N * (^ PRED) = 'Mary' @NSG @(NSYN proper) (^ ANIM) = +.
 Sophie   N * (^ PRED) = 'Sophie' @NSG @(NSYN proper) (^ ANIM) = +.
 Ireland  N * (^ PRED) = 'Ireland' @NSG @(NSYN proper) (^ ANIM) = -.
+John     N * (^ PRED) = 'John' @NSG @(NSYN proper) (^ ANIM) = +.
+Bill     N * (^ PRED) = 'Bill' @NSG @(NSYN proper) (^ ANIM) = +.
+Kim      N * (^ PRED) = 'Kim' @NSG @(NSYN proper) (^ ANIM) = +.
 
 "nouns"
 
 zookeeper  N * @(CN zookeeper) (^ ANIM) = +.
+
+yoghurt  N * (^ PRED) = 'yoghurt' (^ NUM) = sg (^ PERS) = 3 (^ ANIM) = -.
 
 "Pronouns"
 he       N * @(PRON he sg 3 nom).
@@ -237,7 +262,8 @@ him      N * @(PRON he sg 3 acc).
 me       N * @(PRON I sg 1 acc).
 them     N * @(PRON they pl 3 acc).
 us       N * @(PRON we pl 1 acc).
-it       N * @(PRON it sg 3 acc).
+It   N * { @(PRON it sg 3 nom) | (^ PRED) = 'it' (^ FORM) = it (^ NUM) = sg (^ PERS) = 3 }; ONLY.
+it   N * { @(PRON it sg 3 acc) | (^ PRED) = 'it' (^ FORM) = it (^ NUM) = sg (^ PERS) = 3 }; ONLY.
 
 my   D * (^ DEF) = + (^ POSS PRED) = 'I' (^ POSS NUM) = sg (^ POSS PERS) = 1 (^ POSS PRON-TYPE) = poss.
 his      D * @(POSS-PRON he sg 3).
@@ -250,6 +276,8 @@ and      CONJ * (^ COORD-FORM) = and;
          CONJnp * (^ COORD-FORM) = and (^ NUM) = pl.
 
 "Verbs (Stem Forms)"
+rain  V-S XLE (^ PRED) = 'rain<(^ SUBJ)>'
+              (^ SUBJ FORM) = it.
 
 sleep    V-S XLE @(INTRANS sleep).
 yawn     V-S XLE @(INTRANS yawn).
@@ -258,7 +286,6 @@ educate  V-S XLE @(TRANS educate).
 devour   V-S XLE @(TRANS devour).
 chase    V-S XLE @(TRANS chase).
 see      V-S XLE @(TRANS see).
-think    V-S XLE @(TRANS think).
 like     V-S XLE @(TRANS like).
 implement V-S XLE @(TRANS implement).
 steal    V-S XLE @(TRANS steal).
@@ -278,4 +305,27 @@ argue    V-S XLE (^ PRED) = 'argue<(^ SUBJ)(^ OBL)>' (^ OBL PFORM) = with.
 
 house    V-S XLE @(TRANS house);
          ETC.
+
+"Clausal Complement and Control Verbs"
+
+think    V-S XLE { @(TRANS think) 
+                 | (^ PRED) = 'think<(^ SUBJ)(^ COMP)>' }.
+
+say      V-S XLE { @(TRANS say) 
+                 | (^ PRED) = 'say<(^ SUBJ)(^ COMP)>' }.
+
+persuade V-S XLE (^ PRED) = 'persuade<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+                 (^ XCOMP SUBJ) = (^ OBJ).
+
+promise  V-S XLE (^ PRED) = 'promise<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+                 (^ XCOMP SUBJ) = (^ SUBJ).
+
+want     V-S XLE { (^ PRED) = 'want<(^ SUBJ)(^ XCOMP)>'
+                   (^ XCOMP SUBJ) = (^ SUBJ)
+                 | (^ PRED) = 'want<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+                   (^ XCOMP SUBJ) = (^ OBJ) }.
+
+seem  V-S XLE (^ PRED) = 'seem<(^ XCOMP)>(^ SUBJ)'
+              (^ XCOMP SUBJ) = (^ SUBJ)
+              (^ XCOMP VFORM) =c inf.
 ----
