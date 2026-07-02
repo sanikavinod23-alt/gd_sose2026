@@ -40,8 +40,7 @@ DEMO   ENGLISH   RULES (1.0)
 
    S --> NP: (^ SUBJ)=!
 	      (! CASE)=nom;
- 	 VP: (^ TNS-ASP TENSE); 
-        (VPinf).  
+ 	 VP: (^ TNS-ASP TENSE).  
 
    VP --> (AUX) 
  	  V: ^=!;   
@@ -245,7 +244,8 @@ PASTP = (^ PARTICIPLE) = past.
 
 PAST-BOTH = {@PAST | @ PASTP}. 
 
-PROG = (^ TNS-ASP PROG) = +.
+PROG = "(^AUX) =c + "
+       (^ TNS-ASP PROG) = +.
 
 
 "templates for nouns"
@@ -286,6 +286,7 @@ PRON(P Z N T) = @(PRED P)
 	  (^ PRON-TYPE) = T
 	  (^ NTYPE) = pron.
 
+EXPL = (^ VFORM) =c seem. 
 
 "function words"
 
@@ -308,6 +309,8 @@ hate	  V-S XLE @(TRANS %stem).  E @(OPT-TRANS %stem); ETC.
 implement V-S XLE @(TRANS %stem).
 
 yawn     V-S XLE @(INTRANS %stem).
+
+rain     V-S XLE @(INTRANS %stem).
 
 steal    V-S XLE @(TRANS %stem).
 
@@ -335,14 +338,17 @@ try 	  V-S XLE (^ PRED) ='try<(^ SUBJ)(^ XCOMP)>'
 want   V-S XLE { (^ PRED) ='want<(^ SUBJ)(^OBJ)(^XCOMP)>'
                             (^ XCOMP SUBJ) = (^OBJ)
                 |
-	         (^ PRED) ='try<(^ SUBJ)(^ XCOMP)>'
+	         (^ PRED) ='want<(^ SUBJ)(^ XCOMP)>'
 	         (^ SUBJ) = (^ XCOMP SUBJ)}.
+
+seem   V-S XLE (^ PRED) = 'seem<(^XCOMP)>(^SUBJ)'
+               (^ XCOMP SUBJ) = (^ SUBJ).
 
 
 "full-form entries"
 
 appears   V *  (^ PRED) = 'appear<(^SUBJ)>'
-       	    @PRES3SG.
+       	                 @PRES3SG.
 
 sleep   V *  @(INTRANS sleep)
        	    @BARE-AGR
@@ -506,6 +512,8 @@ is      AUX * .
 
 are     AUX * .
 
+be     AUX * .
+
 
 "adjectives"
 
@@ -561,7 +569,11 @@ She 	  PRON * @(PRON she 3 sg pers)
 she 	  PRON * @(PRON she 3 sg pers)
 		 @(CASE nom).
 
-it	  PRON * @(PRON it 3 sg pers). 
+it	  PRON * {@(PRON it 3 sg pers)
+                 |@(EXPL)}. 
+
+It        PRON * {@(PRON it 3 sg pers)
+                 |@(EXPL)}.
 
 We 	  PRON * @(PRON we 1 pl pers)
 		 @(CASE nom).
@@ -807,8 +819,9 @@ The sublexical items are the POS assigned to the various tags in morph-lex.lfg"
 
    N --> N-S_BASE
          N-POS_BASE
+         N-SFX_BASE*
          N-NUM_BASE
-         N-SFX_BASE*.
+         .
 
   A   --> ADJ-S_BASE
           ADJ-POS_BASE.
@@ -831,6 +844,8 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 +Pres   TNS XLE @PRES.
 
++PresPart ASP XLE.
+
 +3sg	PERS XLE @S-AGR.
 
 +PastBoth TNS XLE @PAST-BOTH. 
@@ -840,6 +855,8 @@ MORPH   ENGLISH   LEXICON (1.0)
 +Non3sg PERS XLE @BARE-AGR.
 
 +Prog	ASP XLE @PROG.
+
++Inf    ASP XLE.
 
 
 "noun tags"
@@ -852,6 +869,8 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 +Nom N-SFX XLE @(CASE nom).
 
++NomAcc N-S XLE.
+
 +Acc N-SFX XLE @(CASE acc).
 
 +Gen N-SFX XLE @(CASE gen).
@@ -860,16 +879,29 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 +3P N-SFX XLE @(PERS 3).
 
-+Pronoun  N-SFX XLE @(PRON-TYPE pers) "personal pronoun"
-		    ~(^ SPEC) "no determiner allowed".
 
 +Place N-SFX XLE "@(LOCATION)".
 
-+Prop N-SFX XLE "@(PROPER %stem)".
++Prop N-POS XLE "@(PROPER %stem)".
 
 +Fam N-SFX XLE.
 
 +Country N-SFX XLE.
+
++Misc N-SFX XLE.
+
++Giv N-SFX XLE.
+
++Masc N-SFX XLE.
+
++Fem N-SFX XLE.
+
+"+Pronoun  N-SFX XLE @(PRON-TYPE pers) "personal pronoun"
+		    ~(^ SPEC) "no determiner allowed"."
+
++Pron  N-S XLE.
+
++Expl N-S XLE.
 
 
 "adj tags"
