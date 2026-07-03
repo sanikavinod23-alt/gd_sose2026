@@ -64,7 +64,11 @@ DEMO   ENGLISH   RULES (1.0)
               {(! ANIMATE) =c +
               @(OT-MARK AnimObl)}
                (! PFORM) =c by)
-          (ADV: ! $ (^ ADJUNCT)).
+          (ADV: ! $ (^ ADJUNCT))
+         
+    CP -->  C  S. 
+
+    VPinf --> PARTinf VP.
 
    NP --> {({D | PRON: (^ SPEC POSS) = !
                        (^ SPEC POSS PRON-TYPE) =c poss})	"optional determiner, can leave out ^=!"
@@ -475,9 +479,14 @@ very		Adv * (^ PRED) = 'very'.
 
 "morphologically analyzed"
 
-hate	  V-S XLE @(TRANS %stem).  "using the morphological analyzer"
+hate	  V-S XLE @(TRANS %stem); ETC.  "using the morphological analyzer"
 
-eat       V-S XLE @(OPT-TRANS %stem); ETC. 
+eat       V-S XLE @(OPTTRANS %stem). 
+
+think       V-S XLE (^PRED) = '%stem<(^SUBJ)(^COMP)>'.
+
+convince  V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+                            (^ XCOMP SUBJ) = (^OBJ).
 
 "Full-form version"
 
@@ -507,7 +516,7 @@ devoured  V * @(TRANS devour)
                (^ MOOD) = ind
               | @PASTP}.
 
-eat       V * @(OPTTRANS eat) @PRES.
+"eat       V * @(OPTTRANS eat) @PRES."
 eats      V * @(OPTTRANS eat) @PRES3SG.
 ate       V * @(TRANS eat)
                (^ TNS-ASP TENSE) = past
@@ -678,6 +687,13 @@ and  CONJ * @(COORD-FORM %stem);
 , COMMA *.
 ! EXCL *.
 
+"complementizers"
+
+that  C * (^COMP-FORM) = that.
+
+to    P * @(PREP to); 
+      PARTinf * (^ VFORM) =c inf.
+
 ----
 
 MORPH   ENGLISH   RULES (1.0)
@@ -714,7 +730,8 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 +Verb	V-POS XLE .
 
-+Pres   TNS XLE @PRES.
++Pres   TNS XLE @PRES
+		@PRES3SG.
 
 +3sg	PERS XLE @S-AGR.
 
@@ -726,6 +743,8 @@ MORPH   ENGLISH   LEXICON (1.0)
 +Non3sg PERS XLE @BARE-AGR.
 
 +Prog	ASP XLE @PROG.
+
++Token	TOKEN XLE.
 
 +Noun	N-POS XLE.
 
