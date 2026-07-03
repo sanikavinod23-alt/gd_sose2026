@@ -275,3 +275,40 @@ Sophie implemented a new grammar.
 Lazy tigers yawn.
 
 The curious leprechaun stole a goat in Ireland.
+
+The house was built by a diligent worker.
+
+The building houses a happy family.
+
+#ex. 8
+
+John promised the cat to eat yogurt.
+
+John persuaded the cat to eat yogurt.
+
+John wanted to eat yogurt.
+
+John wanted the cat to eat yogurt.
+
+John thought that the cat ate the yogurt.
+
+John persuaded Mary to want to eat beans.
+
+#getting 6 solutions for these last two
+
+John wanted Mary to think that Bill persuaded Kim to eat beans.
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans.
+
+#raising works
+
+It seems to rain.
+
+Mary seems to eat a banana.
+
+#progressive does not work
+
+It seems to be raining.
+
+Mary seems to be eating a banana.
+

@@ -30,8 +30,8 @@ DEMO   ENGLISH   RULES (1.0)
   ROOT --> { S
             (PERIOD: @(OT-MARK Punct))
              |
-            Simp
-             }.
+            Simp}
+             .
 
    Simp --> e: (^ SUBJ PRED) = 'pro'
                 (^ SUBJ PERS) = 2;
@@ -39,9 +39,8 @@ DEMO   ENGLISH   RULES (1.0)
                 EXCL. 
 
    S --> NP: (^ SUBJ)=!
-	         (! CASE)=nom;
- 	     VP: (^ TNS-ASP TENSE); 
- 	     (PERIOD: @(OT-MARK Punct)).  
+	      (! CASE)=nom;
+ 	 VP: (^ TNS-ASP TENSE).  
 
    VP --> (AUX) 
  	  V: ^=!;   
@@ -67,7 +66,17 @@ DEMO   ENGLISH   RULES (1.0)
 	       { (! ANIMATE) =c +
 	         @(OT-MARK AnimObl) }
 	       (! PFORM) =c by )
-	 (ADV: ! $ (^ ADJUNCT)). 
+	 (ADV: ! $ (^ ADJUNCT))
+        ({ CP: (^ COMP) = !;
+          |
+          VPinf: (^XCOMP) = !
+                 (! VFORM) = inf}).
+
+   CP --> C
+          S.
+  
+   VPinf --> PARTinf
+             VP. 
 
 
    NP --> {
@@ -225,7 +234,9 @@ PRED(P) = (^ PRED) = 'P'.
 PRES3SG = @PRES
 	  @S-AGR.
 
-PRES = (^ TNS-ASP TENSE) = pres.
+PRES = { (^VFORM) ~= inf
+         (^ TNS-ASP TENSE) = pres
+       | (^VFORM) =c inf}.
 
 PAST = (^ TNS-ASP TENSE) = past.
 
@@ -233,16 +244,18 @@ PASTP = (^ PARTICIPLE) = past.
 
 PAST-BOTH = {@PAST | @ PASTP}. 
 
-PROG = (^ TNS-ASP PROG) = +.
+PROG = "(^AUX) =c + "
+       (^ TNS-ASP PROG) = +.
 
 
 "templates for nouns"
 
-BARE-AGR = { (^ SUBJ NUM) = pl           "either it is plural"
+BARE-AGR = { (^VFORM) ~= inf            "when v is not infinitive -> normal agreement"
+           {(^ SUBJ NUM) = pl           "either it is plural"
 	  | (^ SUBJ PERS) ~= 3           "or singular and not 3rd person"
 	    (^ SUBJ NUM) = sg
-	    @(OT-MARK sg-imp)            "prefer a singular imperative"
-	  }.
+	    @(OT-MARK sg-imp)}            "prefer a singular imperative"
+	 | (^VFORM) = inf}.            
 
 S-AGR = (^ SUBJ PERS) = 3                "for verbs in -s"
 	(^ SUBJ NUM) = sg. 
@@ -262,7 +275,7 @@ LOCATION = (^ LOC) = +.
 
 PROPER(P) = @(PRED P)
           (^PROPER-TYPE)= name
-          @(ANIMATE).
+          "@(ANIMATE)".
 
 
 "Pronouns"
@@ -273,6 +286,7 @@ PRON(P Z N T) = @(PRED P)
 	  (^ PRON-TYPE) = T
 	  (^ NTYPE) = pron.
 
+EXPL = (^ VFORM) =c seem. 
 
 "function words"
 
@@ -290,23 +304,51 @@ DEMO ENGLISH LEXICON (1.0)
 
 "Verbs"
 
-hate	  V-S XLE @(TRANS %stem).  
-
-eat       V-S XLE @(OPT-TRANS %stem); ETC. 
+hate	  V-S XLE @(TRANS %stem).  E @(OPT-TRANS %stem); ETC. 
 
 implement V-S XLE @(TRANS %stem).
 
 yawn     V-S XLE @(INTRANS %stem).
 
+rain     V-S XLE @(INTRANS %stem).
+
 steal    V-S XLE @(TRANS %stem).
 
 house 	  V-S XLE @(TRANS house); ETC.
+
+build     V-S XLE @(TRANS %stem).
+
+think     V-S XLE (^PRED) = '%stem<(^SUBJ)(^COMP)>'.
+
+convince  V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+                            (^ XCOMP SUBJ) = (^OBJ).
+
+persuade V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+                            (^ XCOMP SUBJ) = (^OBJ).
+
+promise V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+                            (^ XCOMP SUBJ) = (^SUBJ).
+
+say     V-S XLE { (^ PRED) ='say<(^ SUBJ)(^ COMP)>'
+	        |(^ PRED) = 'say<(^ SUBJ)(^ OBJ)>'}.
+
+try 	  V-S XLE (^ PRED) ='try<(^ SUBJ)(^ XCOMP)>'
+	         (^ SUBJ) = (^ XCOMP SUBJ).
+
+want   V-S XLE { (^ PRED) ='want<(^ SUBJ)(^OBJ)(^XCOMP)>'
+                            (^ XCOMP SUBJ) = (^OBJ)
+                |
+	         (^ PRED) ='want<(^ SUBJ)(^ XCOMP)>'
+	         (^ SUBJ) = (^ XCOMP SUBJ)}.
+
+seem   V-S XLE (^ PRED) = 'seem<(^XCOMP)>(^SUBJ)'
+               (^ XCOMP SUBJ) = (^ SUBJ).
 
 
 "full-form entries"
 
 appears   V *  (^ PRED) = 'appear<(^SUBJ)>'
-       	    @PRES3SG.
+       	                 @PRES3SG.
 
 sleep   V *  @(INTRANS sleep)
        	    @BARE-AGR
@@ -377,8 +419,7 @@ liked  V * @(TRANS like)
              @PAST-BOTH.
 
 
-
-think V * @(OPT-TRANS think)
+"think V * @(OPT-TRANS think)
            @BARE-AGR
 	   @PRES.
 
@@ -390,7 +431,7 @@ thinks  V * @(OPT-TRANS think)
             @PRES3SG.
 
 thought  V * @(OPT-TRANS think)
-             @PAST-BOTH.
+             @PAST-BOTH."
 
 
 "Obliques"
@@ -462,6 +503,17 @@ was 	  AUX * @PAST
                 }
                 (^ SUBJ NUM) = sg.
 
+were     AUX * @PAST
+                (^ PASSIVE) =c +
+                (^ SUBJ NUM) = pl.
+
+
+is      AUX * .
+
+are     AUX * .
+
+be     AUX * .
+
 
 "adjectives"
 
@@ -517,7 +569,11 @@ She 	  PRON * @(PRON she 3 sg pers)
 she 	  PRON * @(PRON she 3 sg pers)
 		 @(CASE nom).
 
-it	  PRON * @(PRON it 3 sg pers). 
+it	  PRON * {@(PRON it 3 sg pers)
+                 |@(EXPL)}. 
+
+It        PRON * {@(PRON it 3 sg pers)
+                 |@(EXPL)}.
 
 We 	  PRON * @(PRON we 1 pl pers)
 		 @(CASE nom).
@@ -656,7 +712,6 @@ robot N * @(COUNT-NOUN robot sg)
 robots N * @(COUNT-NOUN robot pl).
 
 
-
 table N * @(COUNT-NOUN table sg)
           @DEF
 	  {@ANIMATE | @INANIMATE @LOCATION}.
@@ -715,10 +770,10 @@ a   D *  (^ SPEC PRED) = 'a'
 
 "prepositions"
 
-
 by 	  P * @(PREP by). 
 
-to 	  P *  @(PREP to).
+to 	  P *  @(PREP to);
+          PARTinf * (^ VFORM) =c inf.
 
 on 	  P * @(PREP on). 
 
@@ -727,6 +782,12 @@ in 	  P * @(PREP in).
 with 	  P * @(PREP with).
 
 for 	  P * @(PREP for). 
+
+
+"complementizers"
+
+that C * (^COMP-FORM) = that.
+
 
 "Coordination"
 
@@ -758,10 +819,11 @@ The sublexical items are the POS assigned to the various tags in morph-lex.lfg"
 
    N --> N-S_BASE
          N-POS_BASE
-         NUM
-         N-SFX_BASE+.
+         N-SFX_BASE*
+         N-NUM_BASE
+         .
 
-  ADJ --> ADJ-S_BASE
+  A   --> ADJ-S_BASE
           ADJ-POS_BASE.
         
   
@@ -782,6 +844,8 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 +Pres   TNS XLE @PRES.
 
++PresPart ASP XLE.
+
 +3sg	PERS XLE @S-AGR.
 
 +PastBoth TNS XLE @PAST-BOTH. 
@@ -792,25 +856,53 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 +Prog	ASP XLE @PROG.
 
++Inf    ASP XLE.
+
 
 "noun tags"
 
 +Noun N-POS XLE "@(PERS 3) @(NSYN common)".
 
-+Sg NUM XLE @(NUM sg).
++Sg N-NUM XLE @(NUM sg).
 
-+Pl NUM XLE @(NUM pl).
++Pl N-NUM XLE @(NUM pl).
 
 +Nom N-SFX XLE @(CASE nom).
 
++NomAcc N-S XLE.
+
 +Acc N-SFX XLE @(CASE acc).
 
-+1Pers N-SFX XLE @(PERS 1).
++Gen N-SFX XLE @(CASE gen).
 
-+3Pers N-SFX XLE @(PERS 3).
++1P N-SFX XLE @(PERS 1).
 
-+Pronoun  N-SFX XLE @(PRON-TYPE pers) "personal pronoun"
-		    ~(^ SPEC) "no determiner allowed".
++3P N-SFX XLE @(PERS 3).
+
+
++Place N-SFX XLE "@(LOCATION)".
+
++Prop N-POS XLE "@(PROPER %stem)".
+
++Fam N-SFX XLE.
+
++Country N-SFX XLE.
+
++Misc N-SFX XLE.
+
++Giv N-SFX XLE.
+
++Masc N-SFX XLE.
+
++Fem N-SFX XLE.
+
+"+Pronoun  N-SFX XLE @(PRON-TYPE pers) "personal pronoun"
+		    ~(^ SPEC) "no determiner allowed"."
+
++Pron  N-S XLE.
+
++Expl N-S XLE.
+
 
 "adj tags"
 
