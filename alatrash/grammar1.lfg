@@ -1,9 +1,9 @@
 DEMO   ENGLISH   CONFIG (1.0)
   ROOTCAT   ROOT.
   FILES   common.templates.lfg.
-  LEXENTRIES   (DEMO ENGLISH).
+  LEXENTRIES   (DEMO ENGLISH) (MORPH ENGLISH).
   TEMPLATES  (DEMO ENGLISH)  (STANDARD COMMON).
-  RULES   (DEMO ENGLISH).
+  RULES   (DEMO ENGLISH) (MORPH ENGLISH).
   MORPHOLOGY (DEMO ENGLISH).
   GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
@@ -18,6 +18,9 @@ DEMO ENGLISH MORPHOLOGY (1.0)
 
 TOKENIZE:
 P!basic-parse-tok.fst G!default-gen-tokenizer.fst
+
+ANALYZE:
+english.infl.patch.full.fst
 
 ----
 
@@ -38,9 +41,18 @@ VP --> (AUX)
        (NP: (^ OBJ2)=!) 
        AdvP*: ! $ (^ ADJUNCT);
        PP*: { ! $ (^ ADJUNCT) (! PTYPE) =c sem @(OT-MARK OBL-OVER-ADJ) 
-     | (^ OBL) =! };
+            | (^ OBL) =! };
        (PP: (^ OBL-TO) =! (! PFORM) =c to) 
-       (PP: (^ OBL-AG) =! (! PFORM) =c by).
+       (PP: (^ OBL-AG) =! (! PFORM) =c by)
+       ({ CP: (^ COMP) = ! 
+        | VPinf: (^ XCOMP) = ! }).
+
+CP --> C: ^=! ;
+       S: ^=! .
+
+VPinf --> PARTinf: ^=! ;
+          VP: ^=! .
+
 NP --> (D) 
        AP*: ! $ (^ ADJUNCT);
        N: ^=! ; 
@@ -146,178 +158,174 @@ NP-CONJUNCT =
     | (^ PERS)=3 }.
 
 ----
+MORPH   ENGLISH   RULES (1.0)
+
+V --> V-S_BASE                                       "verb stem, e.g. run"
+      V-POS_BASE                                    "This is a verb: +Verb"
+      { TNS_BASE PERS_BASE                 "person suffix, e.g. +3sg"
+      | TNS_BASE                                      "Standalone tense for past verbs"
+      | ASP_BASE }.                                  "aspectual information"N --> N-S_BASE
+      N-POS_BASE
+      NUM_BASE.
+
+A --> A-S_BASE
+      A-POS_BASE
+      (DEG_BASE).
+----
+
+MORPH ENGLISH LEXICON (1.0)
+
+" Morpholgical Tags"
++Verb    V-POS XLE .
++Pres    TNS XLE (^ TENSE) = pres.
++PastTense TNS XLE (^ TENSE) = past.
++PastBoth     TNS XLE { (^ TENSE) = past | (^ PARTICIPLE) = past }.
++3sg     PERS XLE (^ SUBJ PERS) = 3 (^ SUBJ NUM) = sg.
++Non3sg  PERS XLE .
++123SP   PERS XLE .
++PastParticiple ASP XLE (^ PARTICIPLE) = past.
++Prog        ASP XLE (^ PARTICIPLE) = prog.
++PresPart    ASP XLE (^ PARTICIPLE) = prog.
+
++Noun    N-POS XLE (^ PERS) = 3.
++Sg      NUM XLE (^ NUM) = sg.
++Pl      NUM XLE (^ NUM) = pl.
+
++Adj     A-POS XLE .
++Base    DEG XLE .
+
+"The Unknown Guesser"
+-unknown N-S XLE (^ PRED) = '%stem';
+         A-S XLE (^ PRED) = '%stem'.
+
+----
 
 DEMO ENGLISH LEXICON (1.0)
 
-"==== Determiners & Prepositions ===="
+"Determiners, Prepositions, Adverbs & Punctuation"
+
 the      D * (^ DEF) = +.
 The      D * (^ DEF) = +.
 a        D * (^ DEF) = -.
 was      AUX * (^ TENSE) = past.
+be  AUX * (^ PARTICIPLE) =c prog
+          (^ VFORM) = inf.
 
-"==== Nouns ===="
-cat      N * @(CN cat) (^ ANIM) = +.
-cats     N * @(PL cat) (^ ANIM) = +.
-dog      N * @(CN dog) (^ ANIM) = +.
-dogs     N * @(PL dog) (^ ANIM) = +.
-bone     N * @(CN bone) (^ ANIM) = -.
-bones    N * @(PL bone) (^ ANIM) = -.
-mouse    N * @(CN mouse) (^ ANIM) = +.
-gorilla  N * @(CN gorilla) (^ ANIM) = +.
-gorillas N * @(PL gorilla) (^ ANIM) = +.
-banana   N * @(CN banana) (^ ANIM) = -.
-bananas  N * @(PL banana) (^ ANIM) = -.
-beans N * @(PL bean) (^ ANIM) = -.
-treat    N * @(CN treat) (^ ANIM) = -.
-cake     N * @(CN cake) (^ ANIM) = -.
-girl     N * @(CN girl) (^ ANIM) = +.
-child  N * @(CN child) (^ ANIM) = +.
-girls    N * @(PL girl) (^ ANIM) = +.
-thought N * @(CN thought) (^ ANIM) = -.
-robot N * @(CN robot) (^ ANIM) = -.
-leopards N * @(PL leopard) (^ ANIM) = +.
-
-zookeeper  N * @(CN zookeeper) (^ ANIM) = +.
-waiter     N * @(CN waiter) (^ ANIM) = +.
-table      N * @(CN table) (^ ANIM) = -.
-bench      N * @(CN bench) (^ ANIM) = -.
-book       N * @(CN book) (^ ANIM) = -.
-monkey     N * @(CN monkey) (^ ANIM) = +.
-telescope  N * @(CN telescope) (^ ANIM) = -.
-hours    N * @(PL hour) (^ ANIM) = -.
-
-"Proper nouns (no determiner needed, so use PL-style or a custom template)"
-
-Jordan   N * (^ PRED) = 'Jordan' @NSG @(NSYN proper) (^ ANIM) = +.
-Sam      N * (^ PRED) = 'Sam' @NSG @(NSYN proper) (^ ANIM) = +.
-Alex     N * (^ PRED) = 'Alex' @NSG @(NSYN proper) (^ ANIM) = +.
-Mary     N * (^ PRED) = 'Mary' @NSG @(NSYN proper) (^ ANIM) = +.
-Sophie   N * (^ PRED) = 'Sophie' @NSG @(NSYN proper) (^ ANIM) = +.
-"==== Intransitive Verbs ===="
-sleeps   V * @(INTRANS sleep) @VPRES @PRES3SG.
-slept    V * @(INTRANS sleep) (^ TENSE) = past.
-sat      V * (^ PRED) = 'sit<(^ SUBJ)(^ OBL)>'
-             (^ TENSE) = past
-             (^ OBL PFORM) = on.
-sleep    V * @(INTRANS sleep) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
-
-"==== Transitive Verbs ===="
-educates V * @(TRANS educate) @VPRES @PRES3SG.
-educated V * @(TRANS educate) (^ TENSE) = past.
-devours  V * @(TRANS devour) @VPRES @PRES3SG.
-devour   V * @(TRANS devour) @VPRES @PRES3PL.
-devoured V * @(TRANS devour) { (^ TENSE) = past | (^ PARTICIPLE) = past }.
-
-chases   V * @(TRANS chase) @VPRES @PRES3SG.
-chase    V * @(TRANS chase) @VPRES @PRES3PL.
-chased   V * @(TRANS chase) { (^ TENSE) = past | (^ PARTICIPLE) = past }.
-
-see      V * @(TRANS see) @VPRES @PRES3PL.
-saw      V * @(TRANS see) (^ TENSE) = past. 
-seen     V * @(TRANS see) (^ PARTICIPLE) = past.
-think    V * @(TRANS think) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
-Think    V * @(TRANS think) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
-like     V * @(TRANS like) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
-
-"==== Optionally Transitive Verbs ===="
-eats     V * @(OPT-TRANS eat) @VPRES @PRES3SG.
-ate      V * @(OPT-TRANS eat) (^ TENSE) = past.
-eat      V * @(OPT-TRANS eat) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
-Eat      V * @(OPT-TRANS eat) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
-eaten     V * @(TRANS eat) (^ PARTICIPLE) = past.
-
-"==== Ditransitive Verbs ===="
-gives    V * @(DITRANS give) @VPRES @PRES3SG.
-gave     V * @(DITRANS give) (^ TENSE) = past.
-give     V * @(DITRANS give) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
-Give     V * @(DITRANS give) @VPRES { @PRES3PL | (^ SUBJ PERS) = 2 }.
-given    V * @(DITRANS give) (^ PARTICIPLE) = past.
-
-"==== Verbs that take OBL as object==="
-waited   V * (^ PRED) = 'wait<(^ SUBJ)(^ OBL)>' 
-             (^ TENSE) = past
-             (^ OBL PFORM) = on
-             (^ OBL PTYPE) = nosem.
-
-"waited   V * (^ PRED) = 'wait<(^ SUBJ)(^ OBL)>' 
-             (^ TENSE) = past
-             (^ OBL PFORM) = on
-             (^ OBL PTYPE) = nosem
-             (^ OBL ANIM) = +."
-
-"waited   V * (^ PRED) = 'wait<(^ SUBJ)>'
-             (^ TENSE) = past."
-
-talked   V * (^ PRED) = 'talk<(^ SUBJ)(^ OBL)>' 
-             (^ TENSE) = past
-             (^ OBL PFORM) = to.
-
-argued   V * (^ PRED) = 'argue<(^ SUBJ)(^ OBL)>' 
-             (^ TENSE) = past
-             (^ OBL PFORM) = with.
-
-
-"==== Prepositions ===="
 by       P * @(PREP by).
-to       P * @(PREP to).
+
 on       P * @(PREP on).
 in       P * @(PREP in).
 with     P * @(PREP with).
 for      P * @(PREP for).
 
-"==== Adjectives ===="
-small    A * (^ PRED) = 'small'.
-black    A * (^ PRED) = 'black'.
-hungry   A * (^ PRED) = 'hungry'.
-creative A * (^ PRED) = 'creative'.
-bright   A * (^ PRED) = 'bright'.
-intelligent A * (^ PRED) = 'intelligent'.
-efficient A * (^ PRED) = 'efficient'.
-lazy     A * (^ PRED) = 'lazy'.
-
-"==== Adverbs ===="
 quickly  Adv * (^ PRED) = 'quickly'.
 very     Adv * (^ PRED) = 'very'.
 
-
-"==== Punctuation ===="
 .    PUNC * .
 ,    PUNC * .
 !    EXCL * .
 
-"==== Pronouns ===="
+" Complementizers and Particles "
+
+that     C * (^ COMP-FORM) = that.
+
+to       P * @(PREP to);
+         PARTinf * (^ VFORM) = inf.
+
+"Proper Nouns" 
+Jordan   N * (^ PRED) = 'Jordan' @NSG @(NSYN proper) (^ ANIM) = +.
+Sam      N * (^ PRED) = 'Sam' @NSG @(NSYN proper) (^ ANIM) = +.
+Alex     N * (^ PRED) = 'Alex' @NSG @(NSYN proper) (^ ANIM) = +.
+Mary     N * (^ PRED) = 'Mary' @NSG @(NSYN proper) (^ ANIM) = +.
+Sophie   N * (^ PRED) = 'Sophie' @NSG @(NSYN proper) (^ ANIM) = +.
+Ireland  N * (^ PRED) = 'Ireland' @NSG @(NSYN proper) (^ ANIM) = -.
+John     N * (^ PRED) = 'John' @NSG @(NSYN proper) (^ ANIM) = +.
+Bill     N * (^ PRED) = 'Bill' @NSG @(NSYN proper) (^ ANIM) = +.
+Kim      N * (^ PRED) = 'Kim' @NSG @(NSYN proper) (^ ANIM) = +.
+
+"nouns"
+
+zookeeper  N * @(CN zookeeper) (^ ANIM) = +.
+
+yoghurt  N * (^ PRED) = 'yoghurt' (^ NUM) = sg (^ PERS) = 3 (^ ANIM) = -.
+
+"Pronouns"
 he       N * @(PRON he sg 3 nom).
 she      N * @(PRON she sg 3 nom).
-I       N * @(PRON I sg 1 nom).
+I        N * @(PRON I sg 1 nom).
 i        N * @(PRON I sg 1 nom).
 they     N * @(PRON they pl 3 nom).
 we       N * @(PRON we pl 1 nom).
+You      N * @(PRON you pl 2 nom).
 
 him      N * @(PRON he sg 3 acc).
 me       N * @(PRON I sg 1 acc).
 them     N * @(PRON they pl 3 acc).
 us       N * @(PRON we pl 1 acc).
-it       N * @(PRON it sg 3 acc).
+It   N * { @(PRON it sg 3 nom) | (^ PRED) = 'it' (^ FORM) = it (^ NUM) = sg (^ PERS) = 3 }; ONLY.
+it   N * { @(PRON it sg 3 acc) | (^ PRED) = 'it' (^ FORM) = it (^ NUM) = sg (^ PERS) = 3 }; ONLY.
 
-"==== Possessive Pronouns ===="
-my   D * (^ DEF) = +
-         (^ POSS PRED) = 'I'
-         (^ POSS NUM) = sg
-         (^ POSS PERS) = 1
-         (^ POSS PRON-TYPE) = poss.
+my   D * (^ DEF) = + (^ POSS PRED) = 'I' (^ POSS NUM) = sg (^ POSS PERS) = 1 (^ POSS PRON-TYPE) = poss.
 his      D * @(POSS-PRON he sg 3).
-her      D * (^ DEF) = +
-             (^ POSS PRED) = 'she'
-             (^ POSS NUM) = sg
-             (^ POSS PERS) = 3
-             (^ POSS PRON-TYPE) = poss;
-    N * @(PRON she sg 3 acc)
-             (^ NTYPE) = pron.
+her      D * (^ DEF) = + (^ POSS PRED) = 'she' (^ POSS NUM) = sg (^ POSS PERS) = 3 (^ POSS PRON-TYPE) = poss;
+         N * @(PRON she sg 3 acc) (^ NTYPE) = pron.
 their    D * @(POSS-PRON they pl 3).
 our      D * @(POSS-PRON we pl 1).
-You      N * @(PRON you pl 2 nom).
 
 and      CONJ * (^ COORD-FORM) = and;
-         CONJnp * (^ COORD-FORM) = and
-                  (^ NUM) = pl.
+         CONJnp * (^ COORD-FORM) = and (^ NUM) = pl.
+
+"Verbs (Stem Forms)"
+rain  V-S XLE (^ PRED) = 'rain<(^ SUBJ)>'
+              (^ SUBJ FORM) = it.
+
+sleep    V-S XLE @(INTRANS sleep).
+yawn     V-S XLE @(INTRANS yawn).
+
+educate  V-S XLE @(TRANS educate).
+devour   V-S XLE @(TRANS devour).
+chase    V-S XLE @(TRANS chase).
+see      V-S XLE @(TRANS see).
+like     V-S XLE @(TRANS like).
+implement V-S XLE @(TRANS implement).
+steal    V-S XLE @(TRANS steal).
+build    V-S XLE @(TRANS build).
+
+eat      V-S XLE @(OPT-TRANS eat).
+
+give     V-S XLE @(DITRANS give).
+
+wait     V-S XLE (^ PRED) = 'wait<(^ SUBJ)(^ OBL)>' (^ OBL PFORM) = on (^ OBL PTYPE) = nosem.
+
+talk     V-S XLE (^ PRED) = 'talk<(^ SUBJ)(^ OBL)>' (^ OBL PFORM) = to.
+
+argue    V-S XLE (^ PRED) = 'argue<(^ SUBJ)(^ OBL)>' (^ OBL PFORM) = with.
+
+"Ambiguous Entries, they can mean more than one thing, and also have diffrent part of speech" 
+
+house    V-S XLE @(TRANS house);
+         ETC.
+
+"Clausal Complement and Control Verbs"
+
+think    V-S XLE { @(TRANS think) 
+                 | (^ PRED) = 'think<(^ SUBJ)(^ COMP)>' }.
+
+say      V-S XLE { @(TRANS say) 
+                 | (^ PRED) = 'say<(^ SUBJ)(^ COMP)>' }.
+
+persuade V-S XLE (^ PRED) = 'persuade<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+                 (^ XCOMP SUBJ) = (^ OBJ).
+
+promise  V-S XLE (^ PRED) = 'promise<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+                 (^ XCOMP SUBJ) = (^ SUBJ).
+
+want     V-S XLE { (^ PRED) = 'want<(^ SUBJ)(^ XCOMP)>'
+                   (^ XCOMP SUBJ) = (^ SUBJ)
+                 | (^ PRED) = 'want<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+                   (^ XCOMP SUBJ) = (^ OBJ) }.
+
+seem  V-S XLE (^ PRED) = 'seem<(^ XCOMP)>(^ SUBJ)'
+              (^ XCOMP SUBJ) = (^ SUBJ)
+              (^ XCOMP VFORM) =c inf.
 ----

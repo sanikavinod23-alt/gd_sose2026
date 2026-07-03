@@ -1,6 +1,6 @@
 #============================================================
 # Testfile for grammar1.lfg - Ahmad Alatrash - SoSe 2026
-# Covers exercises 3, 4, 5, 6
+# Covers exercises 3, 4, 5, 6, 7, 8
 # Grammatical sentences: should parse (positive tests)
 # Ungrammatical sentences: should give 0 parses (negative tests)
 # ============================================================
@@ -119,6 +119,44 @@ The gorilla and I like bananas.
 
 You and Mary like bananas.
 
+# ---- Exercise 7: Morphology ----
+
+Sophie implemented a new grammar .
+
+Lazy tigers yawn.
+
+The curious leprechaun stole a goat in Ireland.
+
+The house was built by a diligent worker.
+
+The building houses a happy family.
+
+# ---- Exercise 8: Control, Complementation, and Raising ----
+
+John promised the cat to eat yoghurt.
+
+John persuaded the cat to eat yoghurt.
+
+John wanted to eat yoghurt.
+
+John wanted the cat to eat yoghurt.
+
+John thought that the cat ate the yoghurt.
+
+# ---- Exercise 8: Recursive Embedding ----
+
+John persuaded Mary to want to eat beans.
+
+John wanted Mary to think that Bill persuaded Kim to eat beans.
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans.
+
+# ---- Exercise 8: Control vs. Raising ----
+
+It seems to be raining.
+
+Mary seems to be eating a banana.
+
 # ============================================================
 # UNGRAMMATICAL SENTENCES - should return 0 parses
 # ============================================================
@@ -151,26 +189,6 @@ them devoured it
 they devoured they
 
 i waited for she for hours
-
-#---- Exercise 6: imperative and coordination----
-
-Eat the beans!
-
-Give the gorilla a banana!
-
-Think a creative thought!
-
-Sophie educated the bright robot and the intelligent child.
-
-Sophie educated the bright and efficient robot.
-
-lazy leopards sleep and eat.
-
-Mary and the gorilla like bananas.
-
-The gorilla and I like bananas.
-
-You and Mary like bananas.
 
 #---- UNGRAMMATICAL SENTENCES for ex6 - should return 0 parses:
 
