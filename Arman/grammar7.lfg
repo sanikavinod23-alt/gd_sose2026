@@ -1,0 +1,593 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   ROOT.
+  FILES common.templates.lfg .
+   LEXENTRIES   (DEMO ENGLISH) (MORPH ENGLISH).
+   TEMPLATES (DEMO ENGLISH).
+  RULES   (DEMO ENGLISH) (MORPH ENGLISH).
+  MORPHOLOGY (DEMO ENGLISH) .
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD  PPadj +NonAnimObl +AnimObl +PPattach +LocAttach +sg-imp. 
+  GENOPTIMALITYORDER  GenBadPunct NOGOOD +PUNCT CAPITAL.
+
+
+----
+
+DEMO ENGLISH MORPHOLOGY (1.0)
+
+TOKENIZE:
+P!basic-parse-tok.fst G!default-gen-tokenizer.fst
+
+ANALYZE:
+english.infl.patch.full.fst
+----
+
+
+DEMO   ENGLISH   RULES (1.0)
+
+
+METARULEMACRO(_CAT _BASECAT _RHS) =
+{ 
+_RHS
+|
+e: _CAT $c { NP N };
+@(NPCOORD _CAT)
+|
+e: _CAT ~$ { NP N };
+@(SCCOORD _CAT)
+|
+LB: @(OT-MARK GenBadPunct);
+_CAT: @PUSHUP; 
+RB "following quote mark"}.
+
+
+   ROOT --> { S 
+	(PERIOD: @(OT-MARK Punct))
+	|
+	Simp
+	}.
+
+
+   Simp--> e: (^ SUBJ PRED) = 'pro' 
+	       (^ SUBJ PERS) = 2; 
+	 	  VP
+		  EXCL.  "obligatory exclamation mark"
+   
+
+
+
+      S --> NP: (^ SUBJ)=!
+	     (! CASE)=nom;
+	 VP: ^=!;
+	 (PERIOD).  
+
+
+   NP --> {  (D)
+  	     AP*: ! $ (^ ADJUNCT);
+             N
+             PP*: ! $ (^ ADJUNCT)
+         	  (! PTYPE) =c sem
+
+ 	   | PRON: ^ = !
+	   }.
+
+   AP --> Adv*: ! $ (^ ADJUNCT);
+	  A
+	  (COMMA).
+
+   VP --> {(AUX: ^ = !)   
+          V: ^=!; 
+          (NP: (^ OBJ)=!   
+               (! CASE)=acc)
+          (NP: (^ OBJ2)=!) 
+          
+	  PP*: { ! $ (^ ADJUNCT)
+          	     (! PTYPE) =c sem
+		     @(OT-MARK PPadj)
+		     (! ANIM) =c -
+                     |
+          	     (^ OBL) = !
+		     (! ANIM) =c +
+		     |
+		     (^ OBL) = !
+		     (! PFORM)=c for
+		     (! ANIM)=c +
+          	       }; 
+
+          (PP: (^ OBL-TO) = !
+ 	              (! PFORM)=c to)
+
+          (PP: (^ OBL-AG) = !
+	              (! PFORM)=c by)
+
+	  Adv*: ! $ (^ ADJUNCT)
+	|
+         VP: @IN-SET;
+         CONJ: @PUSHUP;
+         VP: @IN-SET
+       }.
+
+   PP --> { P: ^ = !
+               (! PTYPE) =c sem;
+           NP: (^ OBJ) = !
+               (! CASE) = acc
+	       (^ ANIM) = (! ANIM)
+               |
+           P: ^ = !
+              (! PTYPE) =c nosem;
+           NP: (^ OBJ) = !
+	       (^ ANIM) = (! OBJ ANIM)
+          }.  
+  
+
+NPCOORD(_CAT) = 
+  _CAT: @IN-SET  
+	@NP-CONJUNCT; 
+  CONJnp: @PUSHUP; "conjunction" 
+  _CAT: @IN-SET "second nominal"
+	@NP-CONJUNCT.
+
+
+SCCOORD(_CAT) = 
+  _CAT: @IN-SET; "first constituent"
+  (COMMA: @(OT-MARK GenBadPunct)) 
+  CONJ: @PUSHUP; "conjunction" 
+  _CAT: @IN-SET "second constituent".
+
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)
+
+NP-CONJUNCT = 
+{ 
+"EX: the boys and me}"
+(! PERS)=c 1
+(^ PERS)=1
+|
+(! PERS)=c 2
+{ (^ PERS)=c 1 
+|(^ PERS)=2 }
+"EX: you and the boys}"
+|
+"EX: the boys and her}"
+(^ PERS)=3}.
+
+
+
+
+CN-SG(P) = (^ PRED) = 'P'
+           (^ NUM)  = sg
+           (^ PERS) = 3
+	   (^ DEF).
+
+CN-PL(P) = (^ PRED) = 'P'
+           (^ NUM)  = pl
+           (^ PERS) = 3.
+
+
+SG = (^ NUM) = sg
+     (^ PERS) = 3.
+
+PL = (^ NUM) = pl
+     (^ PERS) = 3.
+
+
+PRES3SG = (^ TENSE) = pres
+          (^ SUBJ PERS) =c 3
+          (^ SUBJ NUM) =c sg.
+
+PRES3PL = (^ TENSE) = pres
+          (^ SUBJ PERS) =c 3 
+          (^ SUBJ NUM) =c pl.
+
+PRES = (^ TNS-ASP TENSE) = pres.
+
+PAST = (^ TENSE) = past.		"کلا برای اقعال زمان گذشته"
+
+PST = (^ TENSE) = past			"برای تو بی ورب مجهول تعریف شده فقط- یک بار هم با PAST امتحان کن ببین جواب میده یا نه"
+      (^ SUBJ PERS) = 3
+      (^ SUBJ NUM) = sg.
+
+INTRANS(P) = (^ PRED) = 'P<(^ SUBJ)>'.
+
+TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ)(^ OBJ)>').
+
+DITRANS(P) =
+   @(PASS
+      @(DAT-SHIFT
+         (^ PRED) = 'P<(^ SUBJ)(^ OBJ)(^ OBL-TO)>'
+      )
+   ).
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+INDIC = (^ MOOD) = indicative.
+
+DAT-SHIFT(FRAME) =
+   { FRAME
+   | FRAME
+     (^ OBJ) --> (^ OBJ2)
+     (^ OBL-TO) --> (^ OBJ)
+   }.
+
+
+PASS(FRAME) =
+   { FRAME
+   | FRAME
+     (^ SUBJ) --> (^ OBL-AG)
+     (^ OBJ) --> (^ SUBJ)
+     (^ PASSIVE) = +
+   }.
+
+
+PARTICIP = (^ PARTICIPLE) = past.
+
+PAST-BOTH = {@PAST | @PARTICIP}.
+
+PASSIV = (^ PASSIVE) = +.
+
+PREP(P) = { (^ PRED) = 'P<(^ OBJ)>'
+	    (^ PTYPE) = sem
+	    (^ PFORM) = P
+	  | (^ PTYPE) = nosem
+	    (^ PFORM) = P }.
+
+ADJ(P) = (^ PRED) = 'P'.
+
+OT-MARK(MARK) = (^ OT-MARK MARK) = +.
+
+BARE-AGR = { (^ SUBJ NUM) = pl "either it is plural"
+	  | (^ SUBJ PERS) ~= 3 "or singular and not 3rd person"
+	    (^ SUBJ NUM) = sg
+	    @(OT-MARK sg-imp) "prefer a singular imperative"
+	  }.
+
+S-AGR = (^ SUBJ PERS) = 3  "for verbs in -s"
+	(^ SUBJ NUM) = sg. 
+
+
+ANIMATE =   (^ ANIM) = +.
+
+INANIMATE =   (^ ANIM) = -.
+
+   PUSHUP = "used by METARULEMACRO to push up application"
+	  
+	  { (* MOTHER LEFT_SISTER) "cannot push higher due 
+	    to left branch above"
+	   |(* MOTHER RIGHT_SISTER) "cannot push higher due 
+	    to right branch above"
+	    ~(* MOTHER LEFT_SISTER)
+	   |~(* MOTHER MOTHER) "already high"}.
+
+
+   IN-SET = "member of a coordinate set"
+	  
+	  ! $<h>s ^.
+
+PROG = (^ TNS-ASP PROG) = +.
+
+COORD-FORM(P) = (^ COORD-FORM) = P.
+
+NUM(N) = (^ NUM) = N.
+
+COMPARATIVE = (^ DEGREE) = comp.
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+"NOUNS & PROPER NOUNS"
+
+zookeeper N * @(CN-SG zookeeper)
+	      @ANIMATE.
+
+cat       N * @(CN-SG cat)
+	      @ANIMATE.
+
+waiter  N * @(CN-SG waiter) @ANIMATE.
+
+table   N * @(CN-SG table)  @INANIMATE.
+
+Jordan	  N * (^ PRED) = 'jordan'
+	      @ANIMATE.
+
+Sam	  N * (^ PRED) = 'sam'
+	      @ANIMATE.
+
+gorilla N * @(CN-SG gorilla) @ANIMATE.
+
+bench   N * @(CN-SG bench)  @INANIMATE.
+
+book    N * @(CN-SG book)   @INANIMATE.
+
+banana  N * @(CN-SG banana) @INANIMATE.
+
+cage    N * @(CN-SG cage)   @INANIMATE.
+
+garden  N * @(CN-SG garden) @INANIMATE.
+
+hours   N * @(CN-PL hours)  @INANIMATE.
+
+dog     N * @(CN-SG dog)    @ANIMATE.
+
+him  PRON * (^ PRED) = 'pro'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+            (^ GEND) = masc
+            (^ CASE) = acc
+            @ANIMATE.
+
+"VERBS"
+
+see       V-S XLE @(TRANS %stem).
+
+like      V-S XLE @(TRANS %stem).
+
+appear    V-S XLE (^ PRED) = 'appear<(^ SUBJ)>'.
+
+eat       V-S XLE @(OPT-TRANS %stem).
+
+think     V-S XLE @(TRANS %stem).
+	      
+was       AUX * "(^ PRED) = 'be'"
+                @PST
+	        @INDIC
+                (^ PARTICIPLE) =c past
+                (^ PASSIVE) =c +.
+
+sit       V-S XLE @(INTRANS %stem).
+
+give      V-S XLE @(DITRANS %stem).
+
+put       V-S XLE @(TRANS %stem).
+
+talk      V-S XLE { (^ PRED) = 'talk<(^ SUBJ)>'
+         	   | (^ PRED) = 'talk<(^ SUBJ)(^ OBL-TO)>' }.
+
+educate   V-S XLE @(TRANS %stem).
+
+wait	 V-S XLE  { (^ PRED) = 'wait<(^ SUBJ)>'
+                  | (^ PRED) = 'wait<(^ SUBJ)(^ OBL)>' }.
+
+argue     V-S XLE { (^ PRED) = 'argue<(^ SUBJ)>'
+                  | (^ PRED) = 'argue<(^ SUBJ)(^ OBL)>' }.
+
+hate     V-S XLE @(TRANS %stem). "%stem == baseform"
+
+implement  V-S XLE @(TRANS %stem).
+
+yawn       V-S XLE @(INTRANS %stem).
+
+steal      V-S XLE @(TRANS %stem).
+
+build      V-S XLE @(TRANS %stem).
+
+house      +V-S XLE @(TRANS house);
+           ETC.
+
+sleep     V-S XLE @(INTRANS %stem).
+
+devour	 V-S XLE @(OPT-TRANS %stem).
+
+chase     V-S XLE @(OPT-TRANS %stem).
+
+
+
+"IMPERATIVES"
+
+Eat   V * @(OPT-TRANS eat).
+
+Give   V * @(DITRANS give).
+
+Think  V * @(TRANS think).
+
+
+
+"PUNCTS & DETS"
+
+.	PERIOD * .
+
+,	COMMA * .
+
+! EXCL * .
+
+the  D *  (^ DEF) = +.
+
+The  D *  (^ DEF) = +.
+
+a   D *  (^ DEF) = -.
+
+
+
+
+"PREPOSITIONS & CONJ"
+
+to P * @(PREP to).
+
+by P * @(PREP by).
+
+with P * @(PREP with).
+
+on P * @(PREP on).
+
+in P * @(PREP in).
+
+for P * @(PREP for).
+
+and CONJ * @(COORD-FORM %stem);
+    CONJnp * @(COORD-FORM %stem) @(NUM pl).
+
+
+
+"ADJECTIVES"
+Lazy    A * (^ PRED) = 'lazy'.   "seperate entry because of capital l"
+
+
+
+"ADVERBS"
+
+very Adv * (^ PRED) = 'very'.
+
+quickly Adv * (^ PRED) = 'quickly'.
+
+
+
+"POSSESSIVE ADJECTIVES & PRONOUNS"
+
+my   D * (^ POSS PRED) = 'pro'
+         (^ POSS PERS) = 1
+         (^ POSS NUM)  = sg
+         (^ DEF) = +.
+
+I   PRON * (^ PRED) = 'pro'
+           (^ NUM)  = sg
+           (^ PERS) = 1
+           (^ CASE) = nom.
+
+You PRON * (^ PRED) = 'pro'
+           (^ NUM)  = sg
+           (^ PERS) = 2
+           (^ CASE) = nom.
+
+he   PRON * (^ PRED) = 'pro'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+            (^ CASE) = nom
+	        (^ GEND)=masc.
+
+she  PRON * (^ PRED) = 'pro'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+            (^ CASE) = nom
+	        (^ GEND)=fem.
+
+they PRON * (^ PRED) = 'pro'
+            (^ NUM)  = pl
+            (^ PERS) = 3
+            (^ CASE) = nom.
+
+them PRON * (^ PRED) = 'pro'
+            (^ NUM)  = pl
+            (^ PERS) = 3
+            (^ CASE) = acc.
+
+him  PRON * (^ PRED) = 'pro'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+	    (^ GEND)= masc
+            (^ CASE) = acc.
+
+her  D * (^ POSS PRED) = 'pro'
+         (^ POSS PERS) = 3
+         (^ POSS NUM)  = sg
+         (^ POSS GEND) = fem
+         (^ DEF) = +.
+
+us   PRON * (^ PRED) = 'pro'
+            (^ NUM)  = pl
+            (^ PERS) = 1
+            (^ CASE) = acc.
+
+it   PRON * (^ PRED) = 'pro'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+	    (^ CASE) = acc.
+
+----
+
+MORPH   ENGLISH   RULES (1.0)
+
+"sample rule"
+
+"this deals with verbs.  
+The sublexcial items are the POS assigned to the various tags in morph-lex.lfg" 
+
+   V --> V-S_BASE "verb stem, e.g. run"
+ 	 V-POS_BASE "suffix saying that this is a verb: +Verb"
+ 	 { TNS_BASE "tense suffix, e.g. +Pres" 
+ 	   PERS_BASE "person suffix, e.g. +3sg"
+	 | ASP_BASE}.   "aspectual information"
+
+   N --> N-S_BASE
+         N-POS_BASE
+         { PROP-TYPE_BASE | e }
+         { PROP-SUBTYPE_BASE | e }
+         { GEND_BASE | e }
+         { NUM_BASE | e }.
+
+
+   A --> A-S_BASE
+         A-POS_BASE
+         { DEG_BASE | e }.
+
+
+----
+
+
+MORPH   ENGLISH   LEXICON (1.0)
+
+
+"Verb tags"
+
++Verb    V-POS XLE .
+
++Pres     TNS XLE @PRES.
+
++3sg     PERS XLE @S-AGR.
+
++PastBoth TNS XLE "past tense or past particle"
+	  @PAST-BOTH. 
+
++PastTense    TNS    XLE @PAST.
+
++PastPerf    TNS    XLE @PARTICIP.
+
++123SP    PERS XLE .
+
++Non3sg   PERS XLE @BARE-AGR.
+
++Prog    ASP XLE @PROG.
+
+
+
+
+
+"Noun tags"
+
++Prop      N-POS        XLE .
+
++Noun      N-POS        XLE .
+
++Sg        NUM          XLE @SG.
+
++Pl        NUM          XLE @PL.
+
++Giv       PROP-TYPE    XLE .
+
++Fam       PROP-TYPE    XLE .
+
++Place     PROP-TYPE    XLE .
+
++Country   PROP-SUBTYPE XLE .
+
++Fem       GEND         XLE (^ GEND) = fem.
+
+
+
+"Adjective tags"
+
++Adj    A-POS   XLE .
+
+
+
+
+"this guesses words that are unknown to your lexicon
+to be either adjectives or nouns"
+
+-unknown  A-S XLE (^ PRED) = '%stem';
+	  N-S XLE (^ PRED) = '%stem'.
+
+----
