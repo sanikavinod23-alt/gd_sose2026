@@ -1,22 +1,22 @@
 #1 - Intransitive verb
 
-the cat sleeps (6 0.031 40)
+the cat sleeps (6 0.024 40)
 
 #2 - Transitive verb (3rd person singular)
 
-the dog devours the bone (12 0.013 55)
+the dog devours the bone (12 0.008 55)
 
 #3 - Transitive verb (3rd person plural)
 
-the cats chase a mouse (6 0.008 56)
+the cats chase a mouse (6 0.009 56)
 
 #4 - The verb "eat" as intransitive
 
-the dog eats (12 0.006 43)
+the dog eats (12 0.005 43)
 
 #5 - The verb "eat" as transitive
 
-the cats eat a treat (12 0.005 54)
+the cats eat a treat (12 0.007 54)
 
 #6 - Subject and verb don't agree
 
@@ -60,7 +60,7 @@ the dog was slept (0 0.001 0)
 
 #16 - The lexeme "was" doesn't work as a verb in its past tense but as an auxiliary
 
-the girl was a banana (0 0.001 0)
+the girl was a banana (0 0.000 0)
 
 #17 - Ditransative verb (past tense)
 
@@ -68,7 +68,7 @@ the girl gave the dog a bone (36 0.006 70)
 
 #18 - Ditransative verb (present tense)
 
-the girl gives the gorilla bananas (12 0.005 66)
+the girl gives the gorilla bananas (12 0.006 66)
 
 #19 - Transitive verb (3rd person plural)
 
@@ -96,11 +96,11 @@ gorillas devours banana (0 0.000 0)
 
 #25 - Gets 2 solutions (to[2]: OBL & OBL-TO)
 
-the girl gives a bone to the dog (12 0.005 79)
+the girl gives a bone to the dog (0 0.001 0)
 
 #26 - Gets 2 solutions (to[2]: OBL & OBL-TO)
 
-the zookeeper gave a banana to the gorilla (36 0.006 79)
+the zookeeper gave a banana to the gorilla (0 0.001 0)
 
 #27 - Gets 6 solutions (by[2]: OBL-AG & Adjunct, to[3]: OBL & OBL-TO & adjunct, I don't know which is the 6th solution...)
 
@@ -108,7 +108,7 @@ the dog was given a bone by the girl (24 0.006 78)
 
 #28 - Gets 8 solutions (same as before)
 
-a bone was given to the dog by the girl (24 0.007 89)
+a bone was given to the dog by the girl (0 0.001 0)
 
 #29 - The PP isn't at the end
 
@@ -124,15 +124,15 @@ the waiter waited on the table (12 0.005 61)
 
 #32 - Non-semantic PP
 
-Jordan talked to Sam (3 0.005 57)
+Jordan talked to Sam (0 0.001 0)
 
 #33 - Non-semantic PP
 
-Alex argued with a gorilla (3 0.005 57)
+Alex argued with a gorilla (3 0.006 57)
 
 #34 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
 
-Sam saw a monkey with a telescope (3 0.006 71)
+Sam saw a monkey with a telescope (3 0.008 71)
 
 #35 - Semantic contentful prepositions usually appear as ADJUNCTS (ambiguity)
 
@@ -148,7 +148,7 @@ the small black dog slept (12 0.005 66)
 
 #38 - Three adjectives without comma work
 
-the small black hungry dog ate bones (36 0.009 98)
+the small black hungry dog ate bones (36 0.008 98)
 
 #39 - Adverb works
 
@@ -212,7 +212,7 @@ the dog was given a bone by the girl (24 0.006 78)
 
 #54 - 2+6: Same as the previous one
 
-a bone was given to the dog by the girl (24 0.007 89)
+a bone was given to the dog by the girl (0 0.001 0)
 
 #55 - 1 solution
 
@@ -220,7 +220,7 @@ the gorilla waited on the bench (12 0.004 61)
 
 #56 - 1 solution
 
-the zookeeper waited on the gorilla (12 0.004 61)
+the zookeeper waited on the gorilla (12 0.005 61)
 
 #57 - 2 solutions: In general I have a problem with the verb "put" because it's neither transitive, nor ditransitive or intransitive. It has an object and an OBL which shows the location ("I put something somewhere"). So I created a template for "locative-transatives".
 
@@ -236,7 +236,7 @@ the gorilla devoured a banana in the cage (12 0.005 75)
 
 #60 - 2+3 solutions: Again a problem with the verb "put" I think.
 
-a banana was put in the cage by the gorilla (24 0.007 89)
+a banana was put in the cage by the gorilla (24 0.008 89)
 
 #61 - 1 solution
 
@@ -248,7 +248,7 @@ the zookeeper waited by the bench in the garden (48 0.008 88)
 
 #63 - 2 solutions because the number of the verb could be either Singular or Plural
 
-Eat the beans! (4 0.003 51)
+Eat the beans! (4 0.004 51)
 
 #64 - 2 solutions because the number of the verb could be either Singular or Plural
 
@@ -256,7 +256,7 @@ Give the gorilla a banana! (6 0.004 57)
 
 #65 - 2 solutions because the number of the verb could be either Singular or Plural
 
-Think a creative thought! (2 0.006 52)
+Think a creative thought! (0 0.001 0)
 
 #66 - Wrong because the imperative can exist only in 2nd person
 
@@ -276,7 +276,7 @@ Sophie educated the bright and efficient robot. (12 0.007 101)
 
 #70 - Same here
 
-lazy leopards sleep and eat. (24 0.008 110)
+lazy leopards sleep and eat. (24 0.007 112)
 
 #71 - Same here.
 
@@ -284,7 +284,7 @@ Mary and the gorilla like bananas. (12 0.007 86)
 
 #72 - 4 solutions: 2 are the same as the previous ones with the period. The other 2 are about the person of the subject which I don't understand. In one says 1 (I suppose for "I") and in the other says 3 (I suppose for "Mary")
 
-The gorilla and I like bananas. (12 0.005 75)
+The gorilla and I like bananas. (12 0.006 75)
 
 #73 - 4 solutions: 2 are the same as the previous ones with the period. The other 2 are about the pronoun "you", because it can be either Singular or Plural
 
@@ -304,10 +304,50 @@ The curious leprechaun stole a goat in Ireland. (6 0.009 118)
 
 #77 - 2+2 solutions (didn't have to add new lexical entries for the new noun and adjective)
 
-The house was built by a diligent worker. (6 0.009 102)
+The house was built by a diligent worker. (6 0.008 102)
 
 #78 - 2 solutions (didn't have to add new lexical entries for the new noun and adjective)
 
-The building houses a happy family. (6 0.007 98)
+The building houses a happy family. (6 0.008 98)
 
-# 78 sentences, 0.377 CPU secs total, 0.031 CPU secs max (06/25/26)
+#79 - 
+
+John promised the cat to eat yoghurt. (0 0.001 0)
+
+#80 - 
+
+John persuaded the cat to eat yoghurt. (0 0.001 0)
+
+#81 - 
+
+John wanted to eat yoghurt. (0 0.001 0)
+
+#82 - 
+
+John wanted the cat to eat yoghurt. (0 0.001 0)
+
+#83 - 
+
+John thought that the cat ate the yoghurt. (0 0.001 0)
+
+#84 - 
+
+John persuaded Mary to want to eat beans. (0 0.001 0)
+
+#85 - 
+
+John wanted Mary to think that Bill persuaded Kim to eat beans. (0 0.001 0)
+
+#86 - 
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans. (0 0.002 0)
+
+#87 - 
+
+It seems to be raining. (0 0.001 0)
+
+#88 - 
+
+Mary seems to be eating a banana. (12 0.007 81)
+
+# 88 sentences, 0.355 CPU secs total, 0.024 CPU secs max (07/03/26)

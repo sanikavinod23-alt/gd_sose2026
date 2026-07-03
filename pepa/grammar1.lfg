@@ -59,6 +59,9 @@ NPCOORD(CAT) = CAT: ! $ ^;
  	  (NP: (^ OBJ)=!
 	       (! CASE)=acc)
        (NP: (^ OBJ2)=!)
+       ({VPinf: (^ XCOMP) = !
+        |CP: (^ COMP) = !
+        })
        PP*: { ! $ (^ ADJUNCT) " $ -> this means -in the set of- "
                   (! PTYPE) =c sem
                   (! OBJ ANIM) =c +
@@ -75,6 +78,12 @@ NPCOORD(CAT) = CAT: ! $ ^;
           { Adv*: ! $ (^ ADJUNCT)
           | @(SCCOORD VP)
           }.
+
+   VPinf --> PARTinf
+             VP: ^=!.
+
+   CP --> C
+          S: ^=!.
 
    PP --> { P: ^ = !
                (! PTYPE) =c sem; "semantic type, ADJUNCT"
@@ -451,6 +460,21 @@ Mary N * (^ PRED) = 'named'
            @SG-3PERS
            (^ ANIM) = +.
 
+John N * (^ PRED) = 'named'
+           (^ NAME) = 'John'
+           @SG-3PERS
+           (^ ANIM) = +.
+
+Bill N * (^ PRED) = 'named'
+           (^ NAME) = 'Bill'
+           @SG-3PERS
+           (^ ANIM) = +.
+
+Kim N * (^ PRED) = 'named'
+           (^ NAME) = 'Kim'
+           @SG-3PERS
+           (^ ANIM) = +.
+
 Ireland N * (^ PRED) = 'named'
            (^ NAME) = 'Ireland'
            @SG-3PERS
@@ -526,17 +550,47 @@ eat     V*
             @PRES-NON3SG
             @(OPT-TRANS eat).
 
-think     V*
-            @MOOD-IND
-            @ASPECT-SIMP
-            @PRES-NON3SG
-            @(OPT-TRANS think).
-
 eats   V * 
 	     @MOOD-IND
           @ASPECT-SIMP
           @PRES3SG
 	     @(OPT-TRANS eat).
+
+think     V*
+            { @MOOD-IND
+              @ASPECT-SIMP
+              @PRES-NON3SG
+              @(OPT-TRANS think)
+            | (^ PRED) = 'think<(^ SUBJ)(^ COMP)>' }.
+
+thought   V*
+            { @MOOD-IND
+              @ASPECT-SIMP
+              @PAST
+              @(OPT-TRANS think)
+            | @MOOD-IND
+              @ASPECT-SIMP
+              @PAST
+              (^ PRED) = 'think<(^ SUBJ)(^ COMP)>' }.
+
+promise   V-S XLE (^ PRED) = 'promise<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+                  (^ SUBJ) = (^ XCOMP SUBJ);
+          ETC.
+
+persuade  V-S XLE (^ PRED) = 'persuade<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+                  (^ OBJ) = (^ XCOMP SUBJ);
+          ETC.
+
+want      V-S XLE { (^ PRED) = 'want<(^ SUBJ)(^ XCOMP)>'
+                     (^ SUBJ) = (^ XCOMP SUBJ)
+                   | (^ PRED) = 'want<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+                     (^ OBJ) = (^ XCOMP SUBJ) };
+          ETC.
+
+seem     V-S XLE (^ PRED) = 'seem<(^ XCOMP)>(^ SUBJ)'
+                  (^ XCOMP SUBJ) = (^ SUBJ)
+                  @PRES3SG;
+          ETC.
 
 see     V*
             @MOOD-IND
@@ -575,6 +629,14 @@ was   AUX * "(^ PRED) = 'be'"
             @MOOD-IND
             @PAST-BE-3SG
             (^ PARTICIPLE) =c past.
+
+be    AUX * (^ PARTICIPLE) =c pres.
+
+raining V* (^ PARTICIPLE) = pres
+           @(INTRANS rain).
+
+eating  V* (^ PARTICIPLE) = pres
+           @(OPT-TRANS eat).
 
 seen    V* (^ PARTICIPLE) = past
            @(TRANS see).
@@ -811,6 +873,8 @@ by P * { (^ PRED) = 'by<(^ OBJ)>'
 
 to P * @(PREP to).
 
+to PARTinf * .
+
 on P * @(PREP on).
 
 in P * @(PREP in).
@@ -820,6 +884,8 @@ with P * @(PREP with).
 for P * @(PREP for).
 
 and CONJ * (^ CONJ-FORM) = and.
+
+that C * .
 
 ----
 
