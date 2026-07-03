@@ -55,28 +55,13 @@ A gorilla devours {bananas.|bananas|bananas. .}
 
 20:REGENERATION DID NOT MATCH 'a gorilla devours bananas'.
 
-The girl gives a bone to {the|The} {dog.|dog|dog. .}
-
-25:REGENERATION DID NOT MATCH 'the girl gives a bone to the dog'.
-
-The zookeeper {gave|Gave|put} a banana to {the|The} 
-{gorilla. .|gorilla.|gorilla}
-
-26:REGENERATION DID NOT MATCH 'the zookeeper gave a banana to the gorilla'.
-
 The dog was {given|put} a bone by {the|The} {girl. .|girl.|girl}
 
 27:REGENERATION DID NOT MATCH 'the dog was given a bone by the girl'.
 
-A bone was {given|put} to {the|The} dog by {the|The} {girl. .|girl.|girl}
-
-28:REGENERATION DID NOT MATCH 'a bone was given to the dog by the girl'.
-
 The waiter waited on {the|The} {table.|table|table. .}
 
 31:REGENERATION DID NOT MATCH 'the waiter waited on the table'.
-
-Jordan talked to {Sam.|Sam|Sam. .}
 
 Alex argued with a {gorilla.|gorilla|gorilla. .}
 
@@ -150,10 +135,6 @@ The dog was {given|put} a bone by {the|The} {girl. .|girl.|girl}
 
 53:REGENERATION DID NOT MATCH 'the dog was given a bone by the girl'.
 
-A bone was {given|put} to {the|The} dog by {the|The} {girl. .|girl.|girl}
-
-54:REGENERATION DID NOT MATCH 'a bone was given to the dog by the girl'.
-
 The gorilla waited on {the|The} {bench.|bench|bench. .}
 
 55:REGENERATION DID NOT MATCH 'the gorilla waited on the bench'.
@@ -196,8 +177,6 @@ Eat {the|The} beans!
 
 {Give|Put} {the|The} gorilla a banana!
 
-Think a creative thought!
-
 Sophie educated {the|The} 
   {   { bright robot and {the|The} intelligent child.
        |intelligent child and {the|The} bright robot.} 
@@ -236,4 +215,6 @@ The curious leprechaun stole a goat in {Ireland.|Ireland|Ireland. .}
 The house was built by a diligent {worker.|worker|worker. .}
 
 The building houses a happy {family.|family|family. .}
+
+Mary {seeming|seems} to {be|} eating a {banana. .|banana.|banana}
 
