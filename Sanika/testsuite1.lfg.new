@@ -1,10 +1,10 @@
 #show how it works
 
-the dog devours bones (1 0.012 12)
+the dog devours bones (1 0.007 17)
 
 # unification failure, subject-verb agreement (consistency)
 
-the dogs devours bones (0 0.002 11)
+the dogs devours bones (0 0.003 16)
 
 # coherence violation
 
@@ -12,51 +12,51 @@ the dog appears bones  (0 0.002 0)
 
 # completeness violation
 
-the dog devours  (0 0.002 9)
+the dog devours  (0 0.002 14)
 
 # missing PRED value, completeness violation
 
-the dog devours a bone (1 0.002 14)
+the dog devours a bone (1 0.003 19)
 
 #missing rules, unknown words
 
-the dog devours bones in the park (0 0.002 0)
+the dog devours bones in the park (1+1 0.004 37)
 
 #new verbs --- intrans
 
-a dog sleeps (1 0.002 9)
+a dog sleeps (1 0.002 14)
 
 #new verbs -- trans
 
-a dog chases a bone (1 0.001 14)
+a dog chases a bone (1 0.002 19)
 
 #intransitive
 
-the cat sleeps (1 0.001 9)
+the cat sleeps (1 0.002 14)
 
 #transitive
 
-the dog devours the bone (1 0.001 14)
+the dog devours the bone (1 0.002 19)
 
 #unification failure, sv agreement
 
-the cat chase a mouse (0 0.002 13)
+the cat chase a mouse (1 0.002 19)
 
 #missing objects for transitive verb
 
-the dog eats (1 0.002 9)
+the dog eats (2 0.002 23)
 
 #grammatical, sv agreement
 
-the cats eat a treat (1 0.002 14)
+the cats eat a treat (2 0.002 28)
 
 #unfication failure, sv agreement
 
-the girl see the gorilla (0 0.001 13)
+the girl see the gorilla (0 0.002 13)
 
 #determiners missing
 
-cat chases dogs (0 0.001 0)
+cat chases dogs (1 0.002 20)
 
 #plural object noun
 
@@ -72,27 +72,27 @@ the girl was seen by the gorilla (1+1 0.002 24)
 
 #passive
 
-the cake was eaten (1 0.001 11)
+the cake was eaten (1 0.002 11)
 
 #completness violation
 
-the cat was chased (1 0.001 11)
+the cat was chased (2 0.002 16)
 
 # grammatical
 
-the bone was devoured by the dog (1+1 0.002 24)
+the bone was devoured by the dog (1+1 0.002 29)
 
 #coherence violation
 
-the girl was saw happy by the gorilla (0 0.001 0)
+the girl was saw happy by the gorilla (0 0.002 0)
 
 #coherence violation
 
 the dog was slept (0 0.001 0)
 
-the girl gave the dog a bone (1 0.001 19)
+the girl gave the dog a bone (1 0.002 24)
 
-the girl gave the gorilla bananas (1 0.001 17)
+the girl gave the gorilla bananas (1 0.002 17)
 
 gorillas devour bananas (1 0.001 10)
 
@@ -106,19 +106,19 @@ gorilla devour bananas (0 0.001 0)
 
 gorilla devour banana (0 0.001 0)
 
-the girl gives a bone to the dog (1 0.002 33)
+the girl gives a bone to the dog (1 0.002 38)
 
-the zookeeper gave a banana to the gorilla (1 0.001 33)
+the zookeeper gave a banana to the gorilla (1 0.002 33)
 
-the dog was given a bone by the girl (2+1 0.002 34)
+the dog was given a bone by the girl (4+2 0.002 39)
 
-a bone was given to the dog by the girl (2 0.002 46)
+a bone was given to the dog by the girl (2 0.002 51)
 
 the girl gave to the dog a bone (0 0.001 0)
 
 the dog was given by the girl a bone (0 0.001 0)
 
-The waiter waited on the table (0 0.001 0)
+The waiter waited on the table (0 0.002 20)
 
 Jordan talked to Sam (1+2 0.001 16)
 
@@ -126,33 +126,33 @@ Alex argued with a gorilla (1+1 0.001 18)
 
 Sam saw a monkey with a telescope (1+1 0.001 27)
 
-The dog sat on the bench with a book (2+2 0.002 38)
+The dog sat on the bench with a book (2+2 0.002 43)
 
-the small dog slept (1 0.001 12)
+the small dog slept (1 0.001 17)
 
-the small black dog slept (1 0.001 15)
+the small black dog slept (1 0.001 20)
 
-the small black hungry dog ate bones (1 0.001 21)
+the small black hungry dog ate bones (1 0.001 35)
 
-the gorilla devoured the banana quickly (2 0.001 16)
+the gorilla devoured the banana quickly (1 0.001 16)
 
-the small black hungry dog ate bones quickly (1 0.001 23)
+the small black hungry dog ate bones quickly (1 0.001 37)
 
 the very small gorilla slept (1 0.001 14)
 
 the very very very small gorilla slept (1 0.001 18)
 
-he sleeps (1 0.001 7)
+he sleeps (1 0.002 7)
 
 she devours it  (1 0.001 10)
 
-they devoured them (2 0.001 10)
+they devoured them (1 0.001 10)
 
-I waited for him for hours (1 0.001 25)
+I waited for him for hours (2 0.001 32)
 
-my dog sleeps (0 0.001 9)
+my dog sleeps (1 0.001 14)
 
-she gave us her banana (0 0.001 15)
+she gave us her banana (1 0.001 15)
 
 him sleeps (0 0.001 3)
 
@@ -162,52 +162,91 @@ they devoured they (0 0.001 8)
 
 I waited for she for hours (0 0.001 13)
 
-the dog was given a bone by the girl (2+1 0.002 34)
+the dog was given a bone by the girl (4+2 0.002 39)
 
-a bone was given to the dog by the girl (2 0.002 46)
+a bone was given to the dog by the girl (2 0.002 51)
 
 the gorilla waited on the bench (1+2 0.001 20)
 
 the zookeeper waited on the gorilla (2+1 0.001 20)
 
-the gorilla put the banana in the cage (2 0.001 29)
+the gorilla put the banana in the cage (1 0.002 29)
 
-the gorilla in the cage devoured a banana (2 0.001 25)
+the gorilla in the cage devoured a banana (1 0.001 25)
 
-the gorilla devoured a banana in the cage (2+2 0.001 29)
+the gorilla devoured a banana in the cage (1+1 0.001 29)
 
 a banana was put in the cage by the gorilla (2+1 0.002 42)
 
 the zookeeper waited by the bench (1 0.001 20)
 
-the zookeeper waited by the bench in the garden (1+1 0.001 38)
+the zookeeper waited by the bench in the garden (1+1 0.002 38)
 
-eat the beans! (2 0.001 11)
+eat the beans! (4 0.001 25)
 
 give the gorilla a banana! (2 0.001 16)
 
-think a creative thought! (2 0.001 14)
+think a creative thought! (0 0.001 0)
 
-eats the beans! (0 0.001 8)
+eats the beans! (0 0.001 24)
 
-gave a bone to the dog! (0 0.001 27)
+gave a bone to the dog! (1 0.002 35)
 
-Sophie educated the bright robot and the intelligent child (1 0.002 26)
+Sophie educated the bright robot and the intelligent child (0 0.001 0)
 
-Sophie educated the bright and efficient robot. (2 0.001 27)
+Sophie educated the bright and efficient robot. (0 0.001 0)
 
-lazy leopards sleep and eat. (2 0.001 22)
+lazy leopards sleep and eat. (1 0.001 33)
 
-Mary and the gorilla like bananas. (2 0.001 24)
+Mary and the gorilla like bananas. (1 0.001 20)
 
-The gorilla and I like bananas. (2 0.001 24)
+The gorilla and I like bananas. (1 0.001 20)
 
-You and Mary like bananas. (4 0.001 22)
+You and Mary like bananas. (2 0.001 18)
+
+#sentences with morphological anyzer
+
+Sophie implemented a new grammar. (1 0.001 32)
+
+lazy tigers yawn. (1 0.001 27)
+
+The curious leprechaun stole a goat in Ireland. (1+1 0.002 54)
+
+#sentences with etc flags
+
+The house was built by a diligent worker. (4+4 0.002 51)
+
+The house was built by a diligent worker. (4+4 0.002 51)
+
+#COMPs and XCOMPs
+
+John promised the cat to eat yoghurt. (2 0.001 42)
+
+John persuaded the cat to eat yoghurt. (1 0.001 42)
+
+John wanted to eat yoghurt. (2 0.001 32)
+
+John wanted the cat to eat yoghurt. (1 0.001 42)
+
+John thought that the cat ate the yoghurt. (1 0.002 47)
+
+#recursive emebedding
+
+John persuaded Mary to want to eat beans. (4 0.002 55)
+
+John wanted Mary to think that Bill persuaded Kim to eat beans. (8 0.002 75)
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans. (0 0.002 89)
+
+
+
+#control_rasing
+
+it seems to be raining. (1 0.001 29)
+
+Mary seems to be eating a banana. (1 0.001 34)
 
 
 
 
-
-
-
-# 80 sentences, 0.107 CPU secs total, 0.012 CPU secs max (06/19/26)
+# 95 sentences, 0.152 CPU secs total, 0.007 CPU secs max (07/02/26)

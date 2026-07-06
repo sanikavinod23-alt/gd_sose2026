@@ -204,8 +204,47 @@ The gorilla and I like bananas.
 
 You and Mary like bananas.
 
+#sentences with morphological anyzer
+
+Sophie implemented a new grammar.
+
+lazy tigers yawn.
+
+The curious leprechaun stole a goat in Ireland.
+
+#sentences with etc flags
+
+The house was built by a diligent worker.
+
+The house was built by a diligent worker.
+
+#COMPs and XCOMPs
+
+John promised the cat to eat yoghurt.
+
+John persuaded the cat to eat yoghurt.
+
+John wanted to eat yoghurt.
+
+John wanted the cat to eat yoghurt.
+
+John thought that the cat ate the yoghurt.
+
+#recursive emebedding
+
+John persuaded Mary to want to eat beans.
+
+John wanted Mary to think that Bill persuaded Kim to eat beans.
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans.
 
 
+
+#control_rasing
+
+it seems to be raining.
+
+Mary seems to be eating a banana.
 
 
 
