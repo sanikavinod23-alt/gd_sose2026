@@ -74,8 +74,14 @@ DEMO   ENGLISH   RULES (1.0)
 	       "example of a constraining equation: require a value with =c"
 	       (! PFORM) =c by 
 	       (! PASSIVE) =c + ) 
-	 (ADV: ! $ (^ ADJUNCT)). 
+	 (ADV: ! $ (^ ADJUNCT))
+	({ CP: (^ COMP) = !;
+ 	   | VPinf: (^XCOMP) = !
+		    (^ VFORM) = inf}). 
 
+   CP -->  C  S. 
+
+   VPinf --> PARTinf VP. 
 
    NP -->  { PRON: ^=! "could be a pronoun"
           | { (D: ^=!) 
@@ -187,16 +193,24 @@ PASS(FRAME) = { FRAME
 	| (^ SUBJ)--> NULL }
 		}. 
 
-PROG = (^ TNS-ASP PROG) = +.
+"PROG = (^ TNS-ASP PROG +)."
+
+TENSE(T) = (^ TENSE) = T.  
+
+CASE(C) = (^ CASE) = C.   
+
+MOOD(M) = (^ MOOD) = M.
 
 S-AGR = (^ SUBJ PERS) = 3  
 	(^ SUBJ NUM) = sg. 
 
-BARE-AGR = { (^ SUBJ NUM) = pl 
+BARE-AGR = { (^VFORM) ~= inf 
+	    { (^ SUBJ NUM) = pl 
 	    | (^ SUBJ PERS) ~= 3 
 	      (^ SUBJ NUM) = sg
 	      @(OT-MARK sg-imp) 
-	    }.
+	    }
+	  | (^VFORM) = inf}.
 
 PRES3SG = (^ TENSE) = pres
 	  (^ SUBJ PERS) = 3
@@ -208,13 +222,16 @@ PRES3PL =  (^ TENSE) = pres
 	(^ MOOD) = indicative
 	  (^ SUBJ NUM) = pl.
 
-PASTSIMPLE =  (^ TENSE) = past
-	(^ MOOD) = indicative
+PASTSIMPLE =  @(TENSE past) 
+	@(MOOD indicative)
 	 { (^ SUBJ NUM) = sg |(^ SUBJ NUM) = pl } .
 
 PASTP = (^ PARTICIPLE) = past.
 
-PRES = (^ TNS-ASP TENSE) = pres.
+PRES = { (^VFORM) ~= inf
+	    @(TENSE pres) 
+	    @(MOOD indicative)
+	  | (^VFORM) = inf}. 
 
 PAST-BOTH = {@PASTSIMPLE | @PASTP}.
 
@@ -234,15 +251,17 @@ CN-SG = (^ NUM) = sg
 CN-PL = (^ NUM) = pl
         (^ PERS) = 3.
 
+MASS-NOUN = (^ PERS) = 3
+	    (^ NSYN) = mass
+	    ~[(^ DEF) = -].
+
+
 PN =    (^ PERS) = 3
 	(^ NUM) = sg
 	(^ NSYN) = proper
 	(^ CAPITAL) = +
+	(^ ANIMATE) = +
         ~[(^ DEF)]. 
-
-SG = (^ NUM) = sg.
-
-PL = (^ NUM) = pl.
 
 NPOS(N) = (^ NTYPE) = N.
 
@@ -489,41 +508,35 @@ zookeeper   N * (^ PRED) = 'zookeeper'
 	       @CN-SG
 		(^ ANIMATE) = +.
 
+yoghurt    N * (^ PRED) = 'yoghurt'
+		@MASS-NOUN
+		(^ ANIMATE) = -.
+
 "Proper nouns"
 
 Alex 	  N * (^ PRED) = 'Alex'
 	      @PN
-		(^ ANIMATE) = +
 		(^ GEND) = masc.
 
 Jordan 	  N * (^ PRED) = 'Jordan'
 	      @PN
-		(^ ANIMATE) = +
 		(^ GEND) = masc.
 
 Mary      N * (^ PRED) = 'Mary'
 	    @PN
-		(^ ANIMATE) = +
 		(^ GEND) = fem.
 
 Sam 	  N * (^ PRED) = 'Sam'
 	    @PN
-		(^ ANIMATE) = +
 		(^ GEND) = masc.
 
 Sophie    N * (^ PRED) = 'Sophie'
 	    @PN
-		(^ ANIMATE) = +
 		(^ GEND) = fem.
 
 Sue     N * (^ PRED) = 'Sue'
 	    @PN
-		(^ ANIMATE) = +
 		(^ GEND) = fem.
-
-Ireland     N * (^ PRED) = 'Ireland'
-	    @PN
-		(^ ANIMATE) = -.
 
 
 
@@ -592,6 +605,7 @@ gave  	V * @(DITRANS give)
 
 Gave  	V * @(DITRANS give)
 	@PASTSIMPLE
+	(^ MOOD) = indicative
 	(^ CAPITAL) = +.
 
 given  V * @PASTP
@@ -645,8 +659,6 @@ talked  V * @(PPTRANS talk)
          (^ OBL PFORM)=c to
 	@PASTP.
 
-think   V * @(OPT-TRANS eat)
-         @PRES3PL.
 
 Think   V * @(OPT-TRANS eat)
          @IMP
@@ -758,14 +770,21 @@ him    PRON * (^ PRED) = 'he'
 		(^ ANIMATE) = +
                @PRON-ACC.
 
+
 it     PRON * (^ PRED) = 'it'
                @CN-SG
                { @PRON-NOM | @PRON-ACC }.
 
-It     PRON * (^ PRED) = 'it'
-               @CN-SG
-               { @PRON-NOM | @PRON-ACC }
-		(^ CAPITAL) = +.
+It     PRON *	 {
+   		(^ PRED) = 'pro'
+   		(^ PRON-TYPE) = pers
+   		{ @PRON-NOM | @PRON-ACC }	
+	|              
+		(^ PRON-TYPE) = expl_
+                (^ PRON-FORM) = it 
+		@CN-SG
+		(^ CASE) = nom
+              (^ CAPITAL) = +}.
 
 them   PRON * (^ PRED) = 'they'
                @CN-PL
@@ -808,6 +827,12 @@ Her    D    *  (^ SPEC POSS PRED) = 'she'
 was  AUX * (^ PASSIVE) = +
 	@PAST3SG.
 
+be   AUX * (^ VFORM) = inf
+         (^ TNS-ASP PROG) =c +.
+
+is AUX * @PRES3SG
+         (^ TNS-ASP PROG) =c +.
+
 "det"
 
 the  D *  (^ DEF) = +.
@@ -827,6 +852,12 @@ a   D *  (^ DEF) = -
 and  CONJ * @(COORD-FORM %stem);
      CONJnp * @(COORD-FORM %stem) (^NUM) = pl.
 
+"complementizers"
+
+that  C * (^COMP-FORM) = that. 
+
+
+
 "punctuation"
 
 . PERIOD * (^ STMT-TYPE) = declarative. 
@@ -839,7 +870,8 @@ and  CONJ * @(COORD-FORM %stem);
 
 by P * @(PREP by).
 
-to P * @(PREP to).
+to P * @(PREP to);
+   PARTinf * (^ VFORM) =c inf.
 
 on P * @(PREP on).
 
@@ -871,8 +903,40 @@ implement V-S XLE @(TRANS %stem).
 yawn      V-S XLE @(INTRANS %stem);
 	  ETC.
 
+rain      V-S XLE (^ PRED) = 'rain<>(^SUBJ)';
+	  ETC.
+
 build 	  V-S XLE @(TRANS %stem);
 	  ETC.
+
+think     V-S XLE (^PRED) = '%stem<(^SUBJ)(^COMP)>'.
+
+convince  V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+	   (^ XCOMP SUBJ) = (^OBJ).
+
+want V-S XLE
+{
+  (^ PRED) = '%stem<(^SUBJ)(^XCOMP)>'
+  (^ XCOMP SUBJ) = (^ SUBJ)
+|
+  (^ PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+  (^ XCOMP SUBJ) = (^ OBJ)
+};
+ETC.
+
+persuade  V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+	  (^ XCOMP SUBJ) = (^OBJ).
+
+promise   V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+	  (^ XCOMP SUBJ) = (^OBJ); ETC.
+
+try       V-S XLE (^PRED) = '%stem<(^SUBJ)(^XCOMP)>'
+                             (^ XCOMP SUBJ) = (^SUBJ); ETC.
+
+say       V-S XLE (^PRED) = '%stem<(^SUBJ)(^COMP)>'; ETC. 
+
+seem      V-S XLE (^ PRED) = 'seem<(^XCOMP)>(^SUBJ)'
+           (^ XCOMP SUBJ) = (^ SUBJ).
 
 ----
 
@@ -892,11 +956,14 @@ The sublexcial items are the POS assigned to the various tags in morph-lex.lfg"
  N --> N-S_BASE 
 	 N-POS_BASE
          (N-NAME_BASE) 
-         (N-GEND_BASE)   
-	 N-NUM_BASE.
+         (N-GEND_BASE)
+	{N-NUM_BASE |
+	  COUNTRY_BASE}.
 
  A --> ADJ-S_BASE
-	 ADJ-POS_BASE.
+	 ADJ-POS_BASE
+	 (COUNTRY_BASE)
+ 	 (GRAD_BASE).
 
   
 ----
@@ -914,7 +981,7 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 +Pres   TNS XLE @PRES.
 
-+3Sg	PERS XLE @S-AGR.
++3sg	PERS XLE @S-AGR.
 
 +PastBoth TNS XLE "past tense or past particle"
 		 @PAST-BOTH. 
@@ -923,31 +990,41 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 +Non3sg PERS XLE @BARE-AGR.
 
-+Prog	ASP XLE @PROG.
++Prog	ASP XLE @(PROG +).
 
 +PastTense   TNS XLE @PASTSIMPLE.
 
++PresPart  TNS XLE (^ PARTICIPLE) = pres.
+
 "noun tags"
 
-+Noun 	  N-POS XLE @(NPOS count)
-		    @(PERS 3).
++Noun 	  N-POS XLE @(NPOS count).
 
-+Prop 	  N-POS XLE @(NPOS name) 
-		    @(PERS 3).
++Prop 	  N-POS XLE @PN.
 
 +Giv   N-NAME XLE . 
 
-+Pl	N-NUM XLE @PL.
++Pl	N-NUM XLE (^ NUM) = pl.
 
-+Sg     N-NUM XLE @SG.
++Sg     N-NUM XLE (^ NUM) = sg.
 
 +Fem    N-GEND XLE (^GEND) = fem. 
 
 +Masc   N-GEND XLE (^GEND) = masc. 
 
-+Place  N-NUM XLE .
++Place  N-NAME XLE (^ PROPER-TYPE) = location.
+
++Country COUNTRY XLE .
+
++Comp     GRAD XLE (^ DEGREE) = comparative.
+
++Sup      GRAD XLE (^ DEGREE) = superlative.
+
++Adv 	  ADV-POS XLE .
 
 +Country N-NUM XLE .
+
++Expl PRON XLE (^ PRON-TYPE) = expl.
 
 "adj tags"
 
