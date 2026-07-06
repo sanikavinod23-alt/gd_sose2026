@@ -1,7 +1,15 @@
+PRACTICAL WORK 7
+One of the biggest problems in the current version of the grammar is the presence of lexical entries for animate nouns. Since in the previous assignment, I could not implement the animacy constraint via the OT-Mark, I did it through constraining equations in the verbal lexical entries. And since the morphological analyser does not provide an animacy tag, I cannot for now delete the animacy template without making some passive sentences ungrammatical.
+
+Secondly, the words like Jordan and Ireland are now a source of ambiguity, as they can be both locations and surnames.
+
+I could not find a way to fix any of the above problems yet.
+
 PRACTICAL WORK 6
 I have encountered several problems in this practical work.
 
 The line (^ TENSE) ~= past in the imperative rule seems redundant, and we did not have it in the original rule, but I could not find another way to ensure the sentence "gave a bone to the dog!" is ruled out as ungrammatical.
+
 I also tried to realise the animacy constraint similarly to the reference grammar via the OT-Mark "+AnimObl", but it did not work out.
 
 PRACTICAL WORK 5

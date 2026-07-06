@@ -1,10 +1,10 @@
 #correct sentence 1 - intransitive verb
 
-the cat sleeps (1 0.008 9)
+the cat sleeps (1 0.005 16)
 
 #correct sentence 2 - transitive verb
 
-the dog devours the bone (1 0.002 14)
+the dog devours the bone (1 0.002 26)
 
 #correct sentence 3 - transitive verb
 
@@ -12,15 +12,15 @@ the cats chase a mouse (1 0.002 14)
 
 #correct sentence 4 - optionally transitive verb
 
-the dog eats (1 0.001 9)
+the dog eats (1 0.001 16)
 
 #correct sentence 5 - optionally transitive verb
 
-the cats eat a treat (1 0.001 14)
+the cats eat a treat (1 0.002 26)
 
 #incorrect sentence 6 - subject-verb agreement violation
 
-the girl see the gorilla (0 0.001 13)
+the girl see the gorilla (0 0.002 13)
 
 #incorrect sentence 7 - count noun without determiner
 
@@ -32,7 +32,7 @@ gorilla devour bananas (0 0.001 0)
 
 #incorrect sentence 9 - subject-verb agreement violation
 
-gorillas devours banana (0 0.001 0)
+gorillas devours banana (0 0.001 21)
 
 #correct sentence 10
 
@@ -40,47 +40,47 @@ the girl was seen by the gorilla (1+1 0.002 24)
 
 #correct sentence 11
 
-the cake was eaten (1 0.001 11)
+the cake was eaten (0 0.001 0)
 
 #correct sentence 12
 
-the cat was chased (1 0.001 11)
+the cat was chased (1 0.002 11)
 
 #correct sentence 13
 
-the bone was devoured by a dog (1+1 0.002 24)
+the bone was devoured by a dog (1+1 0.002 36)
 
 # incorrect sentence 14 - passivisation rule violation
 
-the girl was saw by the gorilla (0 0.001 9)
+the girl was saw by the gorilla (0 0.002 9)
 
 #incorrect sentence 15 - passivisation rule violation
 
-the dog was slept (0 0.001 9)
+the dog was slept (0 0.002 18)
 
 #correct sentence 16
 
-the girl gave the dog a bone (1 0.001 19)
+the girl gave the dog a bone (1 0.002 24)
 
 #correct sentence 17
 
-the girl gives the gorilla bananas (1 0.001 17)
+the girl gives the gorilla bananas (1 0.002 22)
 
 #correct sentence 18
 
-gorillas devour bananas (1 0.001 10)
+gorillas devour bananas (1 0.001 22)
 
 #correct sentence 19
 
-a gorilla devours bananas (1 0.001 12)
+a gorilla devours bananas (1 0.001 24)
 
 #incorrect sentence 20
 
-the girl give the gorilla bananas (0 0.001 16)
+the girl give the gorilla bananas (0 0.002 21)
 
 #incorrect sentence 21
 
-gorillas devours bananas (0 0.001 9)
+gorillas devours bananas (0 0.001 21)
 
 #incorrect sentence 22
 
@@ -88,190 +88,210 @@ gorilla devour bananas (0 0.001 0)
 
 #incorrect sentence 23
 
-gorillas devours banana (0 0.001 0)
+gorillas devours banana (0 0.001 21)
 
 #correct sentence 24
 
-the girl gives a bone to the dog (1 0.002 33)
+the girl gives a bone to the dog (1 0.002 38)
 
 #correct sentence 25
 
-the zookeeper gave a banana to the gorilla (1 0.002 33)
+the zookeeper gave a banana to the gorilla (1 0.002 38)
 
 #correct sentence 26
 
-the dog was given a bone by the girl (1+2 0.002 34)
+the dog was given a bone by the girl (1+2 0.003 39)
 
 #correct sentence 27
 
-a bone was given to the dog by the girl (1+1 0.003 46)
+a bone was given to the dog by the girl (1+1 0.003 51)
 
 #incorrect sentence 28
 
-the girl gave to the dog a bone (0 0.001 0)
+the girl gave to the dog a bone (0 0.002 0)
 
 #incorrect sentence 29
 
-the dog was given by the girl a bone (0 0.001 0)
+the dog was given by the girl a bone (0 0.002 0)
 
 #correct sentence 30
 
-the waiter waited on the table (1 0.002 20)
+the waiter waited on the table (1 0.002 25)
 
 #correct sentence 31
 
-Jordan talked to Sam (1+1 0.002 16)
+Jordan talked to Sam (8+8 0.003 46)
 
 #correct sentence 32
 
-Alex argued with a gorilla (1 0.001 18)
+Alex argued with a gorilla (2 0.002 29)
 
 #correct sentence 33
 
-Sam saw a monkey with a telescope (1+1 0.002 27)
+Sam saw a monkey with a telescope (2+2 0.002 43)
 
 #correct sentence 34
 
-the dog sat on the bench with a book (1+1 0.002 38)
+the dog sat on the bench with a book (1+1 0.003 48)
 
 #correct sentence 35
 
-the small dog slept (1 0.001 12)
+the small dog slept (2 0.002 24)
 
 #correct sentence 36
 
-the small black dog slept (1 0.001 15)
+the small black dog slept (2 0.002 30)
 
 #correct sentence 37
 
-the small black hungry dog ate bones (1 0.001 21)
+the small black hungry dog ate bones (1 0.002 42)
 
 #correct sentence 38
 
-the gorilla devoured the banana quickly (1 0.001 16)
+the gorilla devoured the banana quickly (1 0.002 28)
 
 #correct sentence 39
 
-the small black hungry dog ate bones quickly (1 0.001 23)
+the small black hungry dog ate bones quickly (1 0.002 44)
 
 #correct sentence 40
 
-the very small gorilla slept (1 0.001 14)
+the very small gorilla slept (2 0.002 26)
 
 #correct sentence 41
 
-the very very very small gorilla slept (1 0.001 18)
+the very very very small gorilla slept (2 0.002 30)
 
 #correct sentence 42
 
-the small, black, hungry dog slept. (1 0.001 24)
+the small, black, hungry dog slept. (2 0.002 42)
 
 #correct sentence 43
 
-he sleeps (1 0.001 7)
+he sleeps (1 0.001 14)
 
 #correct sentence 44
 
-she devoured it (1 0.001 10)
+she devoured it (1 0.002 17)
 
 #correct sentence 45
 
-they devoured them (1 0.001 10)
+they devoured them (1 0.002 17)
 
 #correct sentence 46
 
-I waited for him for hours (1+1 0.002 25)
+I waited for him for hours (1+1 0.002 30)
 
 #correct sentence 47
 
-my dog sleeps (1 0.001 9)
+my dog sleeps (1 0.001 16)
 
 #correct sentence 48
 
-she gave us her banana (1 0.001 15)
+she gave us her banana (1 0.002 20)
 
 #OT mark test
 
-the dog was given a bone by the girl (1+2 0.002 34)
+the dog was given a bone by the girl (1+2 0.003 39)
 
 #OT mark test
 
-a bone was given to the dog by the girl (1+1 0.002 46)
+a bone was given to the dog by the girl (1+1 0.003 51)
 
 #OT mark test
 
-the gorilla waited on the bench (1 0.002 20)
+the gorilla waited on the bench (1 0.002 25)
 
 #OT mark test
 
-the zookeeper waited on the gorilla (1+1 0.001 20)
+the zookeeper waited on the gorilla (1+1 0.002 20)
 
 #OT mark test
 
-the gorilla put the banana in the cage (1 0.002 29)
+the gorilla put the banana in the cage (1 0.003 39)
 
 #OT mark test
 
-the gorilla in the cage devoured a banana (1 0.002 25)
+the gorilla in the cage devoured a banana (1 0.002 42)
 
 #OT mark test
 
-the gorilla devoured a banana in the cage (1+1 0.002 29)
+the gorilla devoured a banana in the cage (1+1 0.002 46)
 
 #OT mark test
 
-a banana was put in the cage by the gorilla (1+2 0.002 42)
+a banana was put in the cage by the gorilla (1+2 0.003 52)
 
 #OT mark test
 
-the zookeeper waited by the bench (1 0.001 20)
+the zookeeper waited by the bench (1 0.002 25)
 
 #OT mark test
 
-the zookeeper waited by the bench in the garden (1+1 0.002 38)
+the zookeeper waited by the bench in the garden (1+1 0.002 48)
 
 #imperative correct sentence 49
 
-eat the beans! (1+1 0.001 11)
+eat the beans! (1+1 0.002 23)
 
 #imperative correct sentence 50
 
-give the gorilla a banana! (1+1 0.001 16)
+give the gorilla a banana! (1+1 0.002 21)
 
 #imperative correct sentence 51
 
-think a creative thought! (1+1 0.001 14)
+think a creative thought! (1+1 0.002 22)
 
 #imperative incorrect sentence 52
 
-eats the beans! (0 0.002 8)
+eats the beans! (0 0.001 20)
 
 #imperative incorrect sentence 53
 
-gave a bone to the dog! (0 0.002 27)
+gave a bone to the dog! (0 0.002 32)
 
 #coordination correct sentence 54
 
-Sophie educated the bright robot and the intelligent child. (1 0.003 28)
+Sophie educated the bright robot and the intelligent child. (1 0.003 48)
 
 #coordination correct sentence 55
 
-Sophie educated the bright and efficient robot. (1 0.002 23)
+Sophie educated the bright and efficient robot. (2 0.003 62)
 
 #coordination correct sentence 56
 
-lazy leopards sleep and eat. (1 0.002 18)
+lazy leopards sleep and eat. (1 0.002 40)
 
 #coordination correct sentence 57
 
-Mary and the gorilla like bananas. (1 0.002 20)
+Mary and the gorilla like bananas. (1 0.002 34)
 
 #coordination correct sentence 58
 
-the gorilla and I like bananas. (1 0.002 20)
+the gorilla and I like bananas. (1 0.002 25)
 
 #coordination correct sentence 59
 
-you and Mary like bananas. (2 0.002 18)
+you and Mary like bananas. (2 0.002 32)
 
-# 69 sentences, 0.113 CPU secs total, 0.008 CPU secs max (06/19/26)
+#correct sentence 60
+
+Sophie implemented a new grammar. (1 0.002 41)
+
+#correct sentence 61
+
+lazy tigers yawn. (1 0.001 27)
+
+#correct sentence 62
+
+the curious leprechaun stole a goat in Ireland. (2+2 0.003 64)
+
+#correct sentence 63
+
+the house was built by a diligent worker. (1+1 0.003 49)
+
+#correct sentence 64
+
+the building houses a happy family. (1 0.002 39)
+
+# 74 sentences, 0.150 CPU secs total, 0.005 CPU secs max (06/25/26)
