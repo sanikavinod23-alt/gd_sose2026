@@ -1,0 +1,136 @@
+the girl gives a bone to the dog (1 0.001 33)
+
+# MISMATCH ON: 24 (1 -> 2)
+
+the zookeeper gave a banana to the gorilla (1 0.001 33)
+
+# MISMATCH ON: 25 (1 -> 2)
+
+the dog was given a bone by the girl (1+3 0.001 34)
+
+# MISMATCH ON: 26 (1+3 -> 2+4)
+
+a bone was given to the dog by the girl (1+2 0.002 46)
+
+# MISMATCH ON: 27 (1+2 -> 2+6)
+
+The waiter waited on the table. (1+4 0.002 22)
+
+# MISMATCH ON: 28 (1+4 -> 2)
+
+Jordan talked to Sam. (1+2 0.001 18)
+
+# MISMATCH ON: 29 (1+2 -> 2)
+
+Alex argued with a gorilla. (1+2 0.001 20)
+
+# MISMATCH ON: 30 (1+2 -> 2)
+
+Sam saw a monkey with a telescope. (1+1 0.001 29)
+
+# MISMATCH ON: 31 (1+1 -> 2+2)
+
+The dog sat on the bench with a book. (1+1 0.001 40)
+
+# MISMATCH ON: 32 (1+1 -> 2+2)
+
+the small black hungry dog ate bones (1 0.001 21)
+
+# MISMATCH ON: 35 (1 -> 0)
+
+the small black hungry dog ate bones quickly (1 0.001 23)
+
+# MISMATCH ON: 37 (1 -> 0)
+
+the very very very small gorilla slept (1 0.001 18)
+
+# MISMATCH ON: 39 (1 -> 4)
+
+the dog was given a bone by the girl (1+3 0.001 34)
+
+# MISMATCH ON: 40 (1+3 -> 2+4)
+
+a bone was given to the dog by the girl (1+2 0.002 46)
+
+# MISMATCH ON: 41 (1+2 -> 2+6)
+
+he sleeps. (1 0.001 9)
+
+# MISMATCH ON: 42 (1 -> 2)
+
+she devoured it. (1 0.001 12)
+
+# MISMATCH ON: 43 (1 -> 2)
+
+they devoured them. (1 0.001 12)
+
+# MISMATCH ON: 44 (1 -> 2)
+
+my dog sleeps (1 0.001 9)
+
+# MISMATCH ON: 46 (1 -> 0)
+
+she gave us her banana (1 0.001 15)
+
+# MISMATCH ON: 47 (1 -> 0)
+
+the dog was given a bone by the girl (1+3 0.001 34)
+
+# MISMATCH ON: 52 (1+3 -> 2+4)
+
+a bone was given to the dog by the girl (1+2 0.001 46)
+
+# MISMATCH ON: 53 (1+2 -> 2+6)
+
+the gorilla waited on the bench (1+1 0.001 20)
+
+# MISMATCH ON: 54 (1+1 -> 1)
+
+the zookeeper waited on the gorilla (1+2 0.001 20)
+
+# MISMATCH ON: 55 (1+2 -> 1)
+
+the gorilla put the banana in the cage (1+2 0.001 29)
+
+# MISMATCH ON: 56 (1+2 -> 2)
+
+a banana was put in the cage by the gorilla (1+14 0.001 42)
+
+# MISMATCH ON: 59 (1+14 -> 2+3)
+
+Eat the beans! (2 0.001 11)
+
+# MISMATCH ON: 62 (2 -> 0)
+
+Give the gorilla a banana! (2 0.001 16)
+
+# MISMATCH ON: 63 (2 -> 0)
+
+Think a creative thought!  (2 0.001 14)
+
+# MISMATCH ON: 64 (2 -> 0)
+
+Sophie educated the bright robot and the intelligent child. (1 0.001 28)
+
+# MISMATCH ON: 67 (1 -> 2)
+
+Sophie educated the bright and efficient robot. (1 0.001 23)
+
+# MISMATCH ON: 68 (1 -> 2)
+
+lazy leopards sleep and eat. (1 0.001 18)
+
+# MISMATCH ON: 69 (1 -> 2)
+
+Mary and the gorilla like bananas. (1 0.001 20)
+
+# MISMATCH ON: 70 (1 -> 2)
+
+The gorilla and I like bananas. (1 0.001 20)
+
+# MISMATCH ON: 71 (1 -> 2)
+
+You and Mary like bananas.  (2 0.001 18)
+
+# MISMATCH ON: 72 (2 -> 0)
+

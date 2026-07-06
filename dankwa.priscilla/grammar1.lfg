@@ -35,7 +35,8 @@ DEMO   ENGLISH   RULES (1.0)
 
   Simp --> e: (^ SUBJ PRED) = 'pro'
              (^ SUBJ PERS) = 2;
-         VP: (^ TENSE) ~= past;
+         VP: ^=!
+             (^ TENSE) ~= past;
          EXCLAMATION. 
        
 S --> NP: (^ SUBJ)=!
@@ -44,8 +45,12 @@ S --> NP: (^ SUBJ)=!
          (PERIOD: @(OT-MARK NoPunct)).
 
 VP --> (AUX: ^=!)
-          V: ^=!; 
- 	  (NP: (^ OBJ)=!
+          V: ^=!;
+        ({ CP: (^ COMP) = !;
+    | 
+         VPinf: (^XCOMP) = !
+         (! VFORM) = inf})
+        (NP: (^ OBJ)=!
 	       (! CASE)=acc)
        (NP: (^ OBJ2)=!)
        PP*: { ! $ (^ ADJUNCT) " $ -> this means -in the set of- "
@@ -61,9 +66,17 @@ VP --> (AUX: ^=!)
                 @(OT-MARK PPadj)}; "We have marked the OBL. This means that if the noun of the PP is inanimate e.g. chair, bench, bone etc, the OBL will be penalized and xle will choose the unmarked type of PP, which will be the Adjunct."
           (PP: (^ OBL-TO) = !)
           (PP: (^ OBL-AG) = !)
+          ({ CP: (^ COMP) = !
+           |
+             VPinf: (^ XCOMP) = !
+                    (! VFORM) = inf})
           { Adv*: ! $ (^ ADJUNCT)
           | @(SCCOORD VP)
           }.
+
+CP --> C S.
+
+VPinf --> PARTinf VP: ^=!.
 
    PP --> { P: ^ = !
                (! PTYPE) =c sem; "semantic type, ADJUNCT"
@@ -290,6 +303,8 @@ PRES = (^ TENSE) = pres.
 
 PROG = (^ ASPECT) = progressive.
 
+
+
 "templates for nouns"
 
 BARE-AGR = { (^ SUBJ NUM) = pl "either it is plural"
@@ -353,6 +368,18 @@ Alex   N * (^ PRED) = 'Alex'
               (^ ANIM) = +.
 
 Mary   N * (^ PRED) = 'Mary'
+              @3RD_PSG
+              (^ ANIM) = +.
+
+John   N * (^ PRED) = 'John'
+              @3RD_PSG
+              (^ ANIM) = +.
+
+Bill   N * (^ PRED) = 'Bill'
+              @3RD_PSG
+              (^ ANIM) = +.
+
+Kim    N * (^ PRED) = 'Kim'
               @3RD_PSG
               (^ ANIM) = +.
 
@@ -423,6 +450,45 @@ cats 	  N * (^ PRED) = 'cat'
               (^ ANIM) = +.
 
 dog  N * (^ PRED) = 'dog'
+         @CN
+	     @3RD_PSG
+         (^ ANIM) = +.
+
+grammar  N * (^ PRED) = 'grammar'
+         @CN
+	     @3RD_PSG
+         (^ ANIM) = -.
+
+tiger  N * (^ PRED) = 'tiger'
+         @CN
+	     @3RD_PSG
+         (^ ANIM) = +.
+
+tigers 	  N * (^ PRED) = 'tiger'
+	          @3RD_PPL
+              (^ ANIM) = +.
+
+goat  N * (^ PRED) = 'goat'
+         @CN
+	     @3RD_PSG
+         (^ ANIM) = +.
+
+leprechaun  N * (^ PRED) = 'leprechaun'
+         @CN
+	     @3RD_PSG
+         (^ ANIM) = +.
+
+worker  N * (^ PRED) = 'worker'
+         @CN
+	     @3RD_PSG
+         (^ ANIM) = +.
+
+building  N * (^ PRED) = 'building'
+         @CN
+	     @3RD_PSG
+         (^ ANIM) = -.
+
+family  N * (^ PRED) = 'family'
          @CN
 	     @3RD_PSG
          (^ ANIM) = +.
@@ -601,7 +667,9 @@ chased    V* (^ PARTICIPLE) = past
 eat     V*  @MOOD_IND
             @ASP_SIMP
             @PRESNON3SG 
-            @(OPT-TRANS eat).
+            @(OPT-TRANS eat);
+        V* @(OPT-TRANS eat);
+        V-S XLE @(OPT-TRANS eat); ETC.
 
 eats   V *  @MOOD_IND
             @ASP_SIMP
@@ -697,12 +765,6 @@ Gave     V* @MOOD_IND
 given    V*  (^ PARTICIPLE) = past
             @(DITRANS give).
 
-think    V*  @MOOD_IND
-            @ASP_SIMP
-            @PRESNON3SG 
-            @(OPT-TRANS think).
-
-
 educate   V * @MOOD_IND
               @ASP_SIMP
               @PRESNON3SG
@@ -723,8 +785,6 @@ put  V* { @MOOD_IND
           @(LOC-TRANS put) }.
 
 
-
-
 "Determiners"
 
 The  D *  (^ DEF) = +.
@@ -740,8 +800,6 @@ by P * { (^ PRED) = 'by<(^ OBJ)>'
          (^ PFORM) = by }.
 
 "by P * @(PREP by)."
-
-to P * @(PREP to).
 
 on P * @(PREP on). 
 
@@ -792,6 +850,14 @@ very  Adv *  (^ PRED) = 'very'.
 
 and  CONJ * @(COORD-FORM %stem);
      CONJnp * @(COORD-FORM %stem) @(NUM pl).
+     
+
+"complementizers"
+
+that C * (^COMP-FORM) = that.
+
+to P * @(PREP to); 
+PARTinf * (^ VFORM) =c inf.
 
 
 "Punctuation"
@@ -881,32 +947,85 @@ The sublexcial items are the POS assigned to the various tags in morph-lex.lfg"
       N-POS_BASE    "+Noun tag"
       NUM-S_BASE.   "+Sg or +Pl tag"
 
+ADJ --> ADJ-S_BASE      
+      ADJ-POS_BASE.    
+        
       
 ----
 MORPH   ENGLISH   LEXICON (1.0)
 
 implement  V-S XLE @(TRANS implement).
 
-yawn  V-S XLE @(INTRANS yawn).
+yawn  V* @MOOD_IND @ASP_SIMP @PRESNON3SG @(INTRANS yawn);
+      V-S XLE @(INTRANS yawn); ETC.
 
-steal  V-S XLE @(TRANS steal).
+steal  V-S XLE @(TRANS steal); ETC.
 
-house  V-S XLE @(TRANS house).
+stole  V*  @MOOD_IND @PAST @(TRANS steal).
 
-build  V-S XLE @(TRANS build).
+house  V-S XLE @(TRANS house); ETC.
 
-built  V-S XLE @(TRANS build)
-               (^ PARTICIPLE) = past.
-               
-hate V-S XLE @(TRANS hate).
+build  V-S XLE @(TRANS build); ETC.
+                             
+hate V-S XLE @(TRANS hate); ETC.
                
 "this guesses words that are unknown to your lexicon
  to be either adjectives or nouns"
+ 
 -unknown  ADJ-S XLE (^ PRED) = '%stem';
 	  N-S XLE (^ PRED) = '%stem'.
 
-"lexical entries for tags coming out of the morphological analyzer"
+think V-S XLE (^PRED) = '%stem<(^SUBJ)(^COMP)>';
+      V* @MOOD_IND @ASP_SIMP @PRESNON3SG
+        { (^ PRED) = 'think<(^ SUBJ)(^ COMP)>'
+         | @(OPT-TRANS think)};
+      V* { (^ PRED) = 'think<(^ SUBJ)(^ COMP)>'
+         | @(OPT-TRANS think)}.
 
+
+say   V-S XLE { (^ PRED) ='say<(^ SUBJ)(^ COMP)>'
+	       |(^ PRED) = 'say<(^ SUBJ)(^ OBJ)>'}.
+
+convince  V-S XLE (^ PRED) = 'convince<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+	      (^ OBJ) = (^ XCOMP SUBJ).
+
+try 	  V-S XLE (^ PRED) ='try<(^ SUBJ)(^ XCOMP)>'
+	      (^ SUBJ) = (^ XCOMP SUBJ).
+
+persuade  V-S XLE (^ PRED) = 'persuade<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+	      (^ OBJ) = (^ XCOMP SUBJ).
+
+seems V-S XLE (^ PRED) = 'seems<(^ XCOMP)>'
+         (^ XCOMP SUBJ) = (^ SUBJ).
+
+rain  V-S XLE (^ PRED) = 'rain<(^ SUBJ)>'.
+
+be  AUX * (^ PRED) = 'be'.
+
+thought  V*  @MOOD_IND @PAST (^ PRED) = 'think<(^ SUBJ)(^ COMP)>'.
+
+want      V-S XLE { (^ PRED) = 'want<(^ SUBJ)(^ XCOMP)>'
+	       (^ SUBJ) = (^ XCOMP SUBJ)
+	      |(^ PRED) = 'want<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+	       (^ OBJ) = (^ XCOMP SUBJ)};
+          V* @MOOD_IND @ASP_SIMP @PRESNON3SG
+        { (^ PRED) = 'want<(^ SUBJ)(^ XCOMP)>'
+	       (^ SUBJ) = (^ XCOMP SUBJ)
+	      |(^ PRED) = 'want<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+	       (^ OBJ) = (^ XCOMP SUBJ)};
+          V* { (^ PRED) = 'want<(^ SUBJ)(^ XCOMP)>'
+	       (^ SUBJ) = (^ XCOMP SUBJ)
+	      |(^ PRED) = 'want<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+	       (^ OBJ) = (^ XCOMP SUBJ)}.
+
+promise   V-S XLE { (^ PRED) = 'promise<(^ SUBJ)(^ XCOMP)>'
+	       (^ SUBJ) = (^ XCOMP SUBJ)
+	      |(^ PRED) = 'promise<(^ SUBJ)(^ OBJ)(^ XCOMP)>'
+	       (^ SUBJ) = (^ XCOMP SUBJ)
+	      |(^ PRED) = 'promise<(^ SUBJ)(^ COMP)>'}.
+
+
+          
 "Noun tags"
 
 +Noun   N-POS XLE .
@@ -938,5 +1057,7 @@ hate V-S XLE @(TRANS hate).
 
 +Prog   ASP XLE @(PROG +).
 
+"Verb tags"
 
++ADJ ADJ-POS XLE.
 ----

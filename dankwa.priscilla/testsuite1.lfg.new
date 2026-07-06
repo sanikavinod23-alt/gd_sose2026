@@ -1,6 +1,6 @@
 #1
 
-a dog devours the bone (1 0.012 14)
+a dog devours the bone (1 0.017 14)
 
 #2
 
@@ -8,23 +8,23 @@ a dog sleeps (1 0.005 9)
 
 #3
 
-the dog chases a bone        (1 0.003 14)
+the dog chases a bone        (1 0.004 14)
 
 #4
 
-the girls like the cake (1 0.005 14)
+the girls like the cake (1 0.006 14)
 
 #5
 
-the gorillas see the girl (1 0.005 14)
+the gorillas see the girl (1 0.004 14)
 
 #6
 
-the bone was devoured by a dog (1+2 0.006 24)
+the bone was devoured by a dog (1+2 0.009 24)
 
 #7 
 
-a boy was chased by the gorilla (1+2 0.004 24)
+a boy was chased by the gorilla (1+2 0.005 24)
 
 #8 
 
@@ -32,11 +32,11 @@ the boys like the girl (1 0.004 14)
 
 #9 
 
-a girl likes the boy (1 0.003 14)
+a girl likes the boy (1 0.005 14)
 
 #10
 
-the boy slept (1 0.003 9)
+the boy slept (1 0.005 9)
 
 #11 
 
@@ -44,11 +44,11 @@ the cats devoured the mice (1 0.005 14)
 
 #12 
 
-a cat eats the mouse (1 0.003 14)
+a cat eats the mouse (2 0.007 23)
 
 #13 
 
-the girl gave the dog a bone (1 0.004 19)
+the girl gave the dog a bone (1 0.006 19)
 
 #14 
 
@@ -60,11 +60,11 @@ gorillas devour bananas (1 0.003 10)
 
 #16 
 
-a gorilla devours bananas (1 0.003 12)
+a gorilla devours bananas (1 0.004 12)
 
 #17
 
-the girl give the gorilla bananas (0 0.003 16)
+the girl give the gorilla bananas (0 0.005 16)
 
 #18 
 
@@ -72,55 +72,55 @@ gorillas devours bananas (0 0.004 9)
 
 #19
 
-gorilla devour bananas (0 0.003 9)
+gorilla devour bananas (0 0.004 9)
 
 #20 
 
-gorillas devours banana (0 0.002 0)
+gorillas devours banana (0 0.005 0)
 
 #21 
 
-the girl gives a bone to the dog (2 0.003 33)
+the girl gives a bone to the dog (2 0.015 33)
 
 #22 
 
-the zookeeper gave a banana to the gorilla (2 0.008 33)
+the zookeeper gave a banana to the gorilla (2 0.013 33)
 
 #23 
 
-the dog was given a bone by the girl (2+4 0.006 36)
+the dog was given a bone by the girl (2+4 0.012 36)
 
 #24 
 
-a bone was given to the dog by the girl (2+6 0.007 46)
+a bone was given to the dog by the girl (2+6 0.009 46)
 
 #25
 
-the girl gave to the dog a bone  (0 0.003 0)
+the girl gave to the dog a bone  (0 0.004 0)
 
 #26 
 
-the dog was given by the girl a bone  (0 0.003 0)
+the dog was given by the girl a bone  (0 0.005 0)
 
 #27 
 
-the waiter waited on the table (1 0.005 20)
+the waiter waited on the table (1 0.006 20)
 
 #28 
 
-Jordan talked to Sam (1 0.003 16)
+Jordan talked to Sam (1 0.006 16)
 
 #29
 
-Alex argued with a gorilla (1 0.005 18)
+Alex argued with a gorilla (1 0.006 18)
 
 #30 
 
-Sam saw a monkey with a telescope (1+1 0.005 27)
+Sam saw a monkey with a telescope (1+1 0.006 27)
 
 #31
 
-the dog sat on the bench with a book (1+1 0.005 38)
+the dog sat on the bench with a book (1+1 0.007 38)
 
 #32
 
@@ -128,94 +128,114 @@ the gorilla waited on the bench (1 0.005 20)
 
 #33
 
-the zookeeper waited on the gorilla (1 0.004 20)
+the zookeeper waited on the gorilla (1 0.005 20)
 
 #34
 
-the gorilla put the banana in the cage (2 0.006 29)
+the gorilla put the banana in the cage (2 0.008 29)
 
 #35
 
-the gorilla in the cage devoured a banana (1 0.005 25)
+the gorilla in the cage devoured a banana (1 0.006 25)
 
 #36
 
-the gorilla devoured a banana in the cage (1+1 0.005 29)
+the gorilla devoured a banana in the cage (1+1 0.006 29)
 
 #37
 
-a banana was put in the cage by the gorilla (2+3 0.007 42)
+a banana was put in the cage by the gorilla (2+3 0.015 42)
 
 #38
 
-the zookeeper waited by the bench (1 0.004 20)
+the zookeeper waited by the bench (1 0.009 20)
 
 #39
 
-the zookeeper waited by the bench in the garden (1+1 0.006 38)
+the zookeeper waited by the bench in the garden (1+1 0.010 38)
 
 #40
 
-Sophie educated the bright robot and the intelligent child. (2 0.006 32)
+Sophie educated the bright robot and the intelligent child. (2 0.012 32)
 
 #41
 
-Sophie educated the bright and efficient robot. (2 0.005 27)
+Sophie educated the bright and efficient robot. (2 0.009 27)
 
 #42
 
-lazy leopards sleep and eat. (2 0.005 27)
+lazy leopards sleep and eat. (6 0.010 36)
 
 #43
 
-Mary and the gorilla like bananas. (2 0.005 24)
+Mary and the gorilla like bananas. (2 0.010 24)
 
 #44
 
-The gorilla and I like bananas. (2 0.004 24)
+The gorilla and I like bananas. (2 0.009 24)
 
 #45
 
-you and Mary like bananas. (4 0.005 22)
+you and Mary like bananas. (4 0.007 22)
 
 #46
 
-eat the beans! (4 0.004 18)
+eat the beans! (10 0.007 27)
 
 #47
 
-give the gorilla a banana! (2 0.006 16)
+give the gorilla a banana! (2 0.045 16)
 
 #48
 
-think a creative thought! (2 0.004 14)
+think a creative thought! (0 0.010 0)
 
 #49
 
-eats the beans! (0 0.005 15)
+eats the beans! (0 0.012 24)
 
 #50
 
-gave a bone to the dog! (0 0.004 27)
+gave a bone to the dog! (0 0.009 27)
 
 #51
 
-Sophie implemented a new grammar. (4 0.008 33)
+Sophie implemented a new grammar. (4 0.007 28)
 
 #52
 
-lazy tigers yawn. (2 0.003 28)
+lazy tigers yawn. (4 0.007 25)
 
 #53
 
-the curious leprechaun stole a goat in Ireland. (2+2 0.007 53)
+the curious leprechaun stole a goat in Ireland. (4+4 0.010 45)
 
 #54
 
-the house was built by a diligent worker. (0 0.004 0)
+the house was built by a diligent worker. (2+4 0.007 45)
 
 #55
 
-the building houses a happy family. (2 0.005 40)
+the building houses a happy family. (2 0.006 30)
 
-# 55 sentences, 0.256 CPU secs total, 0.012 CPU secs max (06/26/26)
+#56
+
+John persuaded Mary to want to eat beans. (40 0.013 69)
+
+#57
+
+John wanted Mary to think that Bill persuaded Kim to eat beans. (48 0.012 95)
+
+#58
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans. (960 0.018 135)
+
+#59
+
+it seems to be raining. (0 0.003 0)
+
+#60
+
+Mary seems to be eating a banana. (0 0.003 0)
+
+# 60 sentences, 0.490 CPU secs total, 0.045 CPU secs max (07/03/26)
