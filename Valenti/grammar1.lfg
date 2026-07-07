@@ -9,7 +9,7 @@ DEMO   ENGLISH   CONFIG (1.0)
   SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS STANDARD.
   NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
   EPSILON   e.
-  OPTIMALITYORDER NOGOOD  PPadj +NonAnimObl +AnimObl +PPattach +LocAttach +sg-imp. 
+  OPTIMALITYORDER NOGOOD  PPadj +NonAnimOBL +AnimOBL +PPattach +LocAttach +sg-imp. 
   GENOPTIMALITYORDER  GenBadPunct NOGOOD +PUNCT CAPITAL.
 
 
@@ -31,6 +31,7 @@ DEMO   ENGLISH   RULES (1.0)
 	(PERIOD: @(OT-MARK PUNCT))
 	|
 	Simp
+	| Stop
 	}.
 
    Simp --> e: (^ SUBJ PRED) = 'pro'
@@ -45,6 +46,11 @@ DEMO   ENGLISH   RULES (1.0)
  	 VP: ^=!;
 	(PUNCT: (! PFORM) =c period 
 	         @(OT-MARK PUNCT)).
+
+ Stop --> NP: (^ TOPIC) = !
+	(^ {XCOMP|COMP}* {OBJ|OBJ2}) = !;
+	(COMMA)
+	S. 
 
   VP --> (AUX)  
  	  V: ^=!;   "head of VP"
@@ -154,6 +160,9 @@ SCCOORD(_CAT) = "coordination of non-nominals"
          COM{EX RULES S: boys walk and sleep.}" 
 
    _CAT: @IN-SET "second constituent".
+
+GF = {SUBJ | OBJ | OBJ2 | COMP | XCOMP | OBL | OBL-TO | OBL-AG
+| ADJUNCT }.
 
 ----
 
@@ -307,6 +316,14 @@ LOCATION = (^ LOC) = +.
 IMP = (^ TENSE) = pres
       (^ MOOD) = imperative
       (^ SUBJ PERS) = 2.
+
+REFL(P N G) = (^ PRED) = 'pro'
+(^ NUM) = N
+(^ PERS) = P
+(^ GEND) = G
+(^ PRON-TYPE) = reflexive
+(^ NTYPE) = pron
+((@GF+ ^) SUBJ GEND) = G.
 	
 ----
 
@@ -890,6 +907,8 @@ for P * { (^ PRED) = 'for<(^OBJ)>'
 "Morphologically analyzed"
 
 hate	  V-S XLE @(TRANS %stem).
+
+like	V-S XLE @(TRANS %stem).
 
 steal     V-S XLE @(OPT-TRANS %stem); ETC.
 
