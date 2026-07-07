@@ -29,16 +29,22 @@ DEMO   ENGLISH   RULES (1.0)
 
   ROOT --> { S
             (PERIOD: @(OT-MARK Punct))
-             |
-            Simp}
-             .
+             | Simp
+              (PERIOD: @(OT-MARK Punct))
+	     | Stop
+             (PERIOD: @(OT-MARK Punct))}.
 
    Simp --> e: (^ SUBJ PRED) = 'pro'
                 (^ SUBJ PERS) = 2;
                  VP: (^TNS-ASP TENSE) =c pres;
                 EXCL. 
+  
+   Stop -->  NP: (^ TOPIC) = !
+		(^ {XCOMP|COMP}* {OBJ|OBJ2}) = !;
+		(COMMA)
+		S. 
 
-   S --> NP: (^ SUBJ)=!
+   S -->  NP: (^ SUBJ)=!
 	      (! CASE)=nom;
  	 VP: (^ TNS-ASP TENSE).  
 
@@ -100,6 +106,8 @@ DEMO   ENGLISH   RULES (1.0)
  	  | P: ^ = !  
 	       (! PTYPE) =c nosem; 
  	    NP}. 
+
+GF = {SUBJ | OBJ | OBJ2 | COMP | XCOMP | OBL | OBL-TO | OBL-AG | ADJUNCT }.
 
 METARULEMACRO(_CAT _BASECAT _RHS) = "applies to all rules in the grammar"
 
@@ -244,10 +252,6 @@ PASTP = (^ PARTICIPLE) = past.
 
 PAST-BOTH = {@PAST | @ PASTP}. 
 
-PROG = "(^AUX) =c + "
-       (^ TNS-ASP PROG) = +.
-
-
 "templates for nouns"
 
 BARE-AGR = { (^VFORM) ~= inf            "when v is not infinitive -> normal agreement"
@@ -277,6 +281,14 @@ PROPER(P) = @(PRED P)
           (^PROPER-TYPE)= name
           "@(ANIMATE)".
 
+"Template for reflexives"
+REFL(P N G) = (^ PRED) = 'pro'
+	      (^ NUM) = N
+		(^ PERS) = P
+		(^ GEND) = G
+		(^ PRON-TYPE) = reflexive
+		(^ NTYPE) = pron
+		((@GF+ ^) SUBJ GEND) = G. "Antecedent must match pronoun gender"
 
 "Pronouns"
 
@@ -308,13 +320,19 @@ hate	  V-S XLE @(TRANS %stem).  E @(OPT-TRANS %stem); ETC.
 
 implement V-S XLE @(TRANS %stem).
 
+eat     V-S XLE @(OPT-TRANS eat).
+
 yawn     V-S XLE @(INTRANS %stem).
 
-rain     V-S XLE @(INTRANS %stem).
+rain     V-S XLE @(INTRANS %stem); ETC.
 
 steal    V-S XLE @(TRANS %stem).
 
+like     V-S XLE @(TRANS %stem).
+
 house 	  V-S XLE @(TRANS house); ETC.
+
+sleep    V-S XLE @(INTRANS %stem); ETC.
 
 build     V-S XLE @(TRANS %stem).
 
@@ -350,16 +368,6 @@ seem   V-S XLE (^ PRED) = 'seem<(^XCOMP)>(^SUBJ)'
 appears   V *  (^ PRED) = 'appear<(^SUBJ)>'
        	                 @PRES3SG.
 
-sleep   V *  @(INTRANS sleep)
-       	    @BARE-AGR
-	    @PRES.
-
-
-sleeps V * @(INTRANS sleep) 
-           @PRES3SG.
-
-slept V * @(INTRANS sleep) 
-          @PAST.
 
 devours   V *  @(TRANS devour)
        	    @PRES3SG.
@@ -381,23 +389,6 @@ chase  V *  @(TRANS devour)
 chased  V *  @(TRANS devour)
        	     @PAST-BOTH.
 
-eats    V * @(OPT-TRANS eat)
-            @PRES3SG.
-
-eat    V * @(OPT-TRANS eat)
-           @BARE-AGR
-	   @PRES.
-
-Eat    V * @(OPT-TRANS eat)
-           @BARE-AGR
-	   @PRES.
-
-ate    V * @(OPT-TRANS eat)
-	   @PAST.
-
-eaten V * @(OPT-TRANS eat)
-          @PASTP.
-
 educate V * @(TRANS educate)
            @BARE-AGR
 	   @PRES.
@@ -407,32 +398,6 @@ educates  V * @(TRANS educate)
 
 educated  V * @(TRANS educate)
              @PAST-BOTH.
-
-like   V * @(TRANS like)
-           @BARE-AGR
-	   @PRES.
-
-likes  V * @(TRANS like)
-            @PRES3SG.
-
-liked  V * @(TRANS like)
-             @PAST-BOTH.
-
-
-"think V * @(OPT-TRANS think)
-           @BARE-AGR
-	   @PRES.
-
-Think  V * @(OPT-TRANS think)
-           @BARE-AGR
-	   @PRES.
-
-thinks  V * @(OPT-TRANS think)
-            @PRES3SG.
-
-thought  V * @(OPT-TRANS think)
-             @PAST-BOTH."
-
 
 "Obliques"
 
@@ -508,9 +473,9 @@ were     AUX * @PAST
                 (^ SUBJ NUM) = pl.
 
 
-is      AUX * .
+is      AUX * @PRES.
 
-are     AUX * .
+are     AUX * @PRES.
 
 be     AUX * .
 
@@ -854,7 +819,7 @@ MORPH   ENGLISH   LEXICON (1.0)
 
 +Non3sg PERS XLE @BARE-AGR.
 
-+Prog	ASP XLE @PROG.
++Prog	ASP XLE @(PROG +).
 
 +Inf    ASP XLE.
 

@@ -1,0 +1,25 @@
+((1) (0 0.010 0) (3 words))
+((2) (0 0.001 0) (3 words))
+((3) (0 0.002 0) (5 words))
+((4) (0 0.001 0) (4 words))
+((5) (0 0.002 0) (5 words))
+((6) (0 0.001 0) (5 words))
+((7) (0 0.001 0) (7 words))
+((8) (0 0.002 0) (7 words))
+
+XLE release of Mar 17, 2017 21:12.
+Grammar = /mnt/c/Users/kassi/OneDrive/Έγγραφα/master/(3) sose 26/Grammar Development/dimou.kalypso/dimou/grammar for ex.9/grammar9.lfg.
+Grammar last modified on Jul 07, 2026 13:48.
+Host machine is KD.
+8 sentences, 0 errors, 0 mismatches
+8 sentences had 0 parses
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 23 (#7)
+tokens = 0.0%, morph = 0.0%, multiword = 0.0%, lex = 46.0%, chart = 0.0%,
+unifier = 54.0%, completer = 0.0%, solver = 0.0%, output = 0.0%
+max_alloc_mem = 54.04 MB
+0.019 CPU secs total, 0.010 CPU secs max
+elapsed time = 0 seconds
