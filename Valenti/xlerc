@@ -12,9 +12,9 @@ return [file normalize [file join $home $path]]
 }
 
 #specify grammar
-set defaultParser [relpath grammar1.lfg]
+set defaultParser [relpath grammar_ex9.lfg]
 
 #load parser
 create-parser $defaultParser
 
-parse-testfile Testfile1.lfg
+parse-testfile Testfile_ex9.lfg
