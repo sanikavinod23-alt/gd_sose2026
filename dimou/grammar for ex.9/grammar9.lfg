@@ -1,0 +1,147 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES .
+  LEXENTRIES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH). 
+  RULES   (DEMO ENGLISH).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD PPadj +PPattach.
+  GENOPTIMALITYORDER NOGOOD .
+
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+ 
+   S --> NP: (^ SUBJ)=!
+	      (! CASE)=nom;
+        (NP: (^ OBJ)=! 
+	       (! CASE)=acc)
+ 	  (NP: (^ OBJ2) = !), PP*
+ 	 VP.
+
+   
+   VP -->  V.
+
+   NP --> N": {(^SUBJ)=!
+             (! CASE)=nom
+	      | (^ OBJ)=! 
+	       (! CASE)=acc
+ 	      | (^ OBJ2) = !}". 
+              	 
+
+   PP --> { P: ^ = !             "semantic PP IN"
+	    (! PFORM)=c in    
+             @(OT-MARK PPadj)  
+	   |
+	   P: ^ = !             "oblique for give sth TO sb"
+	  (^ OBL-TO) = !
+          (! PFORM)=c to}
+          NP: (^ OBJ) = !
+	      (! CASE) = acc.  
+
+	         
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)
+
+  OT-MARK(_mark)= 
+                    _mark $ o::*.                                       
+
+
+"Passive lexical rule"
+PASS(FRAME) = { FRAME                   "no passive, just give back subcat frame"
+	(^ PASSIVE) = -                  "no passive"
+	| FRAME                          "passive"
+	(^ PASSIVE) = +                  "mark as such"
+	(^ PARTICIPLE) =c past            "make sure to have a past participle"
+	(^ OBJ)-->(^ SUBJ)               "obj goes to subj; only (at least) transitives"
+	{ (^ SUBJ)-->(^ OBL-AG)           "either make subj obl-ag"
+	| (^ SUBJ)--> NULL                "or delete"
+	}
+		}. 
+
+
+
+"Dative shift rule"
+DAT-SHIFT(FRAME) = { FRAME
+			| FRAME
+			(^ OBJ)-->(^ OBJ2)
+			(^ OBL-TO)-->(^ OBJ)
+			}.
+
+
+
+"Parameterised template for count nouns"
+CN(P) = (^PRED)='P'
+	(^ NUM)=sg
+	(^ DEF).
+
+"Count plural nouns"
+CNPL(P) = (^PRED)='P'
+	  (^ NUM)=pl
+	  {(^ DEF)}.
+
+
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'.
+
+TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ) (^ OBJ)>').
+
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }. 
+
+
+DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ)(^ OBL-TO)>')).
+
+
+"template for prepositions"
+PREP(P) =  (^ PRED) = 'P<(^OBJ)>'
+	   (^ PFORM) = P.
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+
+taotao       V *  (^MOOD) = indicative
+               @(OPT-TRANS taotao).           "eat"
+
+
+guagua      V *  (^MOOD) = indicative
+		@(DITRANS give).
+
+
+
+"NOUNS"
+
+
+tam    N * @(CN garden).
+
+
+plim   N * @(CN gorilla)
+              (^ANIM)=+.
+
+tipf    N * @(CN banana).
+
+
+bobo 	  N *  @(CN baboon)
+                (^ANIM)=+.
+
+
+
+
+"PREPOSITIONS"
+
+
+di 	P * @(PREP to).
+
+
+ya 	P * @(PREP in).
+
+
+
+----
