@@ -1,99 +1,110 @@
-((1) (1 0.006 21) (3 words))
+((1) (1 0.003 21) (3 words))
 ((2) (1 0.002 31) (5 words))
-((3) (1 0.002 24) (5 words))
+((3) (2 0.002 31) (5 words))
 ((4) (1 0.002 21) (3 words))
-((5) (1 0.002 31) (5 words))
-((6) (1 0.003 24) (5 words))
-((7) (1 0.002 20) (3 words))
-((8) (1 0.002 27) (3 words))
-((9) (0 0.002 26) (3 words))
-((10) (2+2 0.003 34) (7 words))
+((5) (2 0.002 31) (5 words))
+((6) (1 0.002 24) (5 words))
+((7) (0 0.001 0) (3 words))
+((8) (0 0.001 0) (3 words))
+((9) (0 0.001 0) (3 words))
+((10) (1+2 0.002 34) (7 words))
 ((11) (0 0.001 0) (4 words))
-((12) (2 0.002 16) (4 words))
-((13) (1+1 0.003 41) (7 words))
-((14) (0 0.002 14) (7 words))
-((15) (0 0.001 23) (4 words))
+((12) (1 0.001 23) (4 words))
+((13) (1+2 0.002 41) (7 words))
+((14) (0 0.001 14) (7 words))
+((15) (0 0.001 0) (4 words))
 ((16) (1 0.002 34) (7 words))
-((17) (1 0.002 32) (6 words))
-((18) (1 0.001 27) (3 words))
-((19) (1 0.002 29) (4 words))
-((20) (1 0.002 32) (6 words))
-((21) (0 0.001 26) (3 words))
-((22) (1 0.001 27) (3 words))
-((23) (0 0.001 26) (3 words))
+((17) (0 0.001 32) (6 words))
+((18) (0 0.001 0) (3 words))
+((19) (0 0.001 29) (4 words))
+((20) (0 0.001 32) (6 words))
+((21) (0 0.001 0) (3 words))
+((22) (0 0.001 0) (3 words))
+((23) (0 0.001 0) (3 words))
 ((24) (1 0.002 48) (8 words))
-((25) (0 0.002 0) (8 words))
-((26) (2+4 0.003 49) (9 words))
-((27) (1+1 0.003 61) (10 words))
-((28) (0 0.002 0) (8 words))
-((29) (0 0.002 0) (9 words))
-((30) (1 0.002 30) (6 words))
+((25) (0 0.001 0) (8 words))
+((26) (1+3 0.002 49) (9 words))
+((27) (1+2 0.003 61) (10 words))
+((28) (0 0.001 0) (8 words))
+((29) (0 0.001 0) (9 words))
+((30) (2+4 0.002 37) (6 words))
 ((31) (8+8 0.002 46) (4 words))
-((32) (2 0.002 34) (5 words))
+((32) (2+4 0.001 34) (5 words))
 ((33) (2+2 0.002 48) (7 words))
-((34) (1+1 0.003 53) (9 words))
-((35) (2 0.002 29) (4 words))
-((36) (2 0.002 35) (5 words))
-((37) (1 0.002 47) (7 words))
-((38) (1 0.002 33) (6 words))
-((39) (1 0.002 49) (8 words))
-((40) (2 0.002 31) (5 words))
-((41) (2 0.002 35) (7 words))
-((42) (2 0.002 47) (6 words))
-((43) (1 0.001 14) (2 words))
-((44) (1 0.002 17) (3 words))
-((45) (1 0.002 17) (3 words))
-((46) (1+1 0.002 30) (6 words))
-((47) (1 0.001 21) (3 words))
-((48) (1 0.002 20) (5 words))
-((49) (2+4 0.003 49) (9 words))
-((50) (1+1 0.003 61) (10 words))
-((51) (1 0.002 30) (6 words))
+((34) (0 0.001 0) (9 words))
+((35) (1 0.001 27) (4 words))
+((36) (1 0.001 33) (5 words))
+((37) (1 0.001 47) (7 words))
+((38) (0 0.001 0) (6 words))
+((39) (0 0.001 0) (8 words))
+((40) (1 0.001 29) (5 words))
+((41) (1 0.001 33) (7 words))
+((42) (1 0.001 45) (6 words))
+((43) (0 0.001 0) (2 words))
+((44) (0 0.001 0) (3 words))
+((45) (0 0.001 0) (3 words))
+((46) (0 0.001 0) (6 words))
+((47) (0 0.001 21) (3 words))
+((48) (0 0.001 0) (5 words))
+((49) (1+3 0.002 49) (9 words))
+((50) (1+2 0.002 61) (10 words))
+((51) (2 0.001 37) (6 words))
 ((52) (0 0.001 0) (6 words))
 ((53) (1 0.002 44) (8 words))
-((54) (1 0.002 47) (8 words))
+((54) (1 0.001 47) (8 words))
 ((55) (1+1 0.002 51) (8 words))
-((56) (1+2 0.003 57) (10 words))
+((56) (1+3 0.002 57) (10 words))
 ((57) (0 0.001 0) (6 words))
-((58) (0 0.002 0) (9 words))
-((59) (1+1 0.002 23) (3 words))
-((60) (1+1 0.002 26) (5 words))
-((61) (1+1 0.002 22) (4 words))
+((58) (0 0.001 0) (9 words))
+((59) (1+2 0.001 23) (3 words))
+((60) (1+2 0.001 26) (5 words))
+((61) (1+2 0.001 29) (4 words))
 ((62) (0 0.001 20) (3 words))
-((63) (0 0.002 37) (6 words))
-((64) (1 0.003 53) (9 words))
-((65) (2 0.003 62) (7 words))
-((66) (1 0.002 45) (5 words))
-((67) (1 0.003 39) (6 words))
-((68) (1 0.002 30) (6 words))
-((69) (2 0.002 32) (5 words))
-((70) (1 0.002 41) (5 words))
-((71) (1 0.001 27) (3 words))
-((72) (2+2 0.003 64) (8 words))
-((73) (1+1 0.003 49) (8 words))
-((74) (1 0.002 39) (6 words))
+((63) (0 0.001 0) (6 words))
+((64) (1 0.002 53) (9 words))
+((65) (1 0.002 62) (7 words))
+((66) (0 0.001 0) (5 words))
+((67) (0 0.001 39) (6 words))
+((68) (0 0.001 0) (6 words))
+((69) (0 0.001 0) (5 words))
+((70) (1 0.001 41) (5 words))
+((71) (2 0.001 27) (3 words))
+((72) (2+2 0.002 64) (8 words))
+((73) (1+2 0.002 49) (8 words))
+((74) (1 0.001 39) (6 words))
+((75) (1 0.001 51) (7 words))
+((76) (1 0.001 51) (7 words))
+((77) (1 0.001 41) (5 words))
+((78) (1 0.001 51) (7 words))
+((79) (1 0.001 54) (8 words))
+((80) (1 0.002 71) (8 words))
+((81) (6 0.002 117) (12 words))
+((82) (6 0.002 131) (14 words))
+((83) (0 0.001 0) (5 words))
+((84) (1 0.001 48) (7 words))
 
 XLE release of Sep 25, 2017 21:02.
 Grammar = /Users/valeriiavatulina/Desktop/GD/grammar/gd_sose2026/vatulina.valeriia/grammar1.lfg.
-Grammar last modified on Jun 25, 2026 19:15.
+Grammar last modified on Jul 03, 2026 00:25.
 Host machine is MacBook-Air-Valeriia.local.
-74 sentences, 0 errors, 0 mismatches
-14 sentences had 0 parses
-60 good sentences
-45 sentences had exactly one grammatical parse
+84 sentences, 0 errors, 0 mismatches
+35 sentences had 0 parses
+49 good sentences
+38 sentences had exactly one grammatical parse
 timeout = 15
 max_xle_scratch_storage = 100 MB
 prune_subtree_location = 1
 max_new_events_per_graph_when_skimming = 500
-maximum raw subtrees per sentence = 182 (#64)
-maximum event count per sentence = 4633
-average event count per graph = 36.936
-tokens = 4.7%, morph = 22.9%, multiword = 0.2%, lex = 13.0%, chart = 32.5%,
-unifier = 19.5%, completer = 2.4%, solver = 4.8%, output = 0.0%
-max_alloc_mem = 401.09 MB
-0.154 CPU secs total, 0.006 CPU secs max
+maximum raw subtrees per sentence = 375 (#82)
+maximum event count per sentence = 6215
+average event count per graph = 45.638
+tokens = 4.8%, morph = 22.5%, multiword = 0.1%, lex = 12.6%, chart = 33.4%,
+unifier = 19.6%, completer = 2.4%, solver = 4.5%, output = 0.0%
+max_alloc_mem = 677.41 MB
+0.116 CPU secs total, 0.003 CPU secs max
 elapsed time = 1 seconds
   range parsed failed  words   seconds  subtrees     optimal
-   1-10     60     14   5.77     0.002     35.93        1.35
-    all     60     14   5.77     0.002     35.93        1.35
-0.18 of the variance in seconds is explained by the number of subtrees
+   1-10     47     35   6.38     0.002     41.57        1.32
+  11-20      2      0  13.00     0.002    124.00        6.00
+    all     49     35   6.65     0.002     44.94        1.51
+0.11 of the variance in seconds is explained by the number of subtrees
