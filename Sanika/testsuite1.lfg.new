@@ -1,10 +1,10 @@
 #show how it works
 
-the dog devours bones (1 0.008 17)
+the dog devours bones (1 0.005 17)
 
 # unification failure, subject-verb agreement (consistency)
 
-the dogs devours bones (0 0.002 16)
+the dogs devours bones (0 0.003 16)
 
 # coherence violation
 
@@ -16,11 +16,11 @@ the dog devours  (0 0.002 14)
 
 # missing PRED value, completeness violation
 
-the dog devours a bone (1 0.002 19)
+the dog devours a bone (1 0.003 19)
 
 #missing rules, unknown words
 
-the dog devours bones in the park (1+1 0.004 37)
+the dog devours bones in the park (1+1 0.003 37)
 
 #new verbs --- intrans
 
@@ -56,7 +56,7 @@ the girl see the gorilla (0 0.002 13)
 
 #determiners missing
 
-cat chases dogs (1 0.001 20)
+cat chases dogs (1 0.002 20)
 
 #plural object noun
 
@@ -68,11 +68,11 @@ gorilla devours banana (0 0.001 0)
 
 #passive
 
-the girl was seen by the gorilla (1+1 0.002 24)
+the girl was seen by the gorilla (1+1 0.003 24)
 
 #passive
 
-the cake was eaten (1 0.001 11)
+the cake was eaten (1 0.002 11)
 
 #completness violation
 
@@ -92,7 +92,7 @@ the dog was slept (0 0.001 0)
 
 the girl gave the dog a bone (1 0.002 24)
 
-the girl gave the gorilla bananas (1 0.001 17)
+the girl gave the gorilla bananas (1 0.002 17)
 
 gorillas devour bananas (1 0.001 10)
 
@@ -118,21 +118,21 @@ the girl gave to the dog a bone (0 0.001 0)
 
 the dog was given by the girl a bone (0 0.001 0)
 
-The waiter waited on the table (0 0.002 20)
+The waiter waited on the table (0 0.001 20)
 
-Jordan talked to Sam (1+2 0.002 16)
+Jordan talked to Sam (1+2 0.001 16)
 
-Alex argued with a gorilla (1+1 0.002 18)
+Alex argued with a gorilla (1+1 0.001 18)
 
-Sam saw a monkey with a telescope (1+1 0.002 27)
+Sam saw a monkey with a telescope (1+1 0.001 27)
 
 The dog sat on the bench with a book (2+2 0.002 43)
 
 the small dog slept (1 0.001 17)
 
-the small black dog slept (1 0.002 20)
+the small black dog slept (1 0.001 20)
 
-the small black hungry dog ate bones (1 0.002 35)
+the small black hungry dog ate bones (1 0.001 35)
 
 the gorilla devoured the banana quickly (1 0.001 16)
 
@@ -148,7 +148,7 @@ she devours it  (1 0.001 10)
 
 they devoured them (1 0.001 10)
 
-I waited for him for hours (2 0.002 32)
+I waited for him for hours (2 0.001 32)
 
 my dog sleeps (1 0.001 14)
 
@@ -174,7 +174,7 @@ the gorilla put the banana in the cage (1 0.002 29)
 
 the gorilla in the cage devoured a banana (1 0.001 25)
 
-the gorilla devoured a banana in the cage (1+1 0.002 29)
+the gorilla devoured a banana in the cage (1+1 0.001 29)
 
 a banana was put in the cage by the gorilla (2+1 0.002 42)
 
@@ -190,7 +190,7 @@ think a creative thought! (0 0.001 0)
 
 eats the beans! (0 0.001 24)
 
-gave a bone to the dog! (1 0.001 35)
+gave a bone to the dog! (1 0.002 35)
 
 Sophie educated the bright robot and the intelligent child (0 0.001 0)
 
@@ -220,13 +220,13 @@ The house was built by a diligent worker. (4+4 0.002 51)
 
 #COMPs and XCOMPs
 
-John promised the cat to eat yoghurt. (2 0.002 42)
+John promised the cat to eat yoghurt. (2 0.001 42)
 
-John persuaded the cat to eat yoghurt. (1 0.001 42)
+John persuaded the cat to eat yoghurt. (1 0.002 42)
 
 John wanted to eat yoghurt. (2 0.001 32)
 
-John wanted the cat to eat yoghurt. (1 0.002 42)
+John wanted the cat to eat yoghurt. (1 0.001 42)
 
 John thought that the cat ate the yoghurt. (1 0.002 47)
 
@@ -247,7 +247,8 @@ it seems to be raining. (1 0.001 29)
 Mary seems to be eating a banana. (1 0.001 34)
 
 #Long Distance Dependencies
-Sophie likes hoppers.
+
+Sophie likes hoppers. (1 0.001 17)
 
 hoppers, Sophie likes. (1 0.001 20)
 
@@ -262,4 +263,4 @@ hoppers, John thought that Mary wanted Bill to think that Kim wants to eat. (2 0
 
 
 
-# 100 sentences, 0.160 CPU secs total, 0.008 CPU secs max (07/08/26)
+# 101 sentences, 0.160 CPU secs total, 0.005 CPU secs max (07/09/26)
