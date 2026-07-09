@@ -1,0 +1,19 @@
+#sentences that work
+
+plim tipf taotao (4 0.007 8)
+
+tipf plim taotao (4 0.002 8)
+
+tipf ya tam plim taotao (9 0.002 14)
+
+ya tam tipf taotao (4 0.002 11)
+
+plim di bobo tipf guagua (6 0.002 14)
+
+di bobo plim tipf guagua (6 0.002 14)
+
+bobo ya tam tipf di plim guagua (24 0.003 20)
+
+tipf di bobo ya tam plim guagua (24 0.003 20)
+
+# 8 sentences, 0.022 CPU secs total, 0.007 CPU secs max (07/09/26)

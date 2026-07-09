@@ -1,0 +1,86 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES .
+  LEXENTRIES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH). 
+  RULES   (DEMO ENGLISH).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS.
+  EPSILON   e.
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+S --> NP*:@GF, PP*:@GF;
+	 V. 
+NP --> N. 
+
+PP --> P 
+   NP:(^ OBJ)=!.
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)
+
+PRED(P) = (^ PRED) = 'P'.
+
+TRANS(P) = (^ PRED)='P<(^ SUBJ)(^ OBJ)>'.
+
+INTRANS(P) = (^ PRED) = 'P<(^SUBJ)>'.
+
+OPT-TRANS(P) = { @(TRANS P)
+	       | @(INTRANS P) }.
+
+DITRANS(P) = (^ PRED) = 'P<(^ SUBJ)(^ OBJ)(^ OBJ2)>'.
+
+CN(P) = (^PRED)='P'
+	(^ NUM)=sg.
+
+ANIMATE = (^ ANIMATE) = +.
+
+INANIMATE = (^ ANIMATE) = -.
+
+LOCATION = (^ LOC) = +.
+
+PREP(P) = (^ PRED) = 'P<(^OBJ)>' 
+	  (^ PFORM) = P.
+
+GF = {(^ SUBJ) = ! | (^ OBJ) = ! | (^ OBJ2) = ! | (^ OBL) = ! | !  $ (^ ADJUNCT)}.
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+"Nouns"
+
+tam N *@(CN garden)
+	  @LOCATION.
+
+plim N *@(CN gorilla)
+	@ANIMATE.
+
+tipf N * @(CN banana)
+	@INANIMATE.
+
+bobo N *@(CN baboon)
+     	@ANIMATE.
+
+"Verbs"
+
+taotao V* @(OPT-TRANS eat).
+
+guagua V* @(DITRANS give).
+
+
+"Prepositions"
+
+ya P* @(PREP in).
+
+di P* @(PREP to).
+
+
+
+----
+
+

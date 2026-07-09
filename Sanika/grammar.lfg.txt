@@ -26,17 +26,27 @@ ANALYZE:
 
 
 DEMO   ENGLISH   RULES (1.0)
+
+"GF macro (must be in rule section)"
+GF = {SUBJ | OBJ | OBJ2 | COMP | XCOMP | OBL | OBL-TO | OBL-AG| ADJUNCT }.
    
-  ROOT  --> { S
+  ROOT --> "can have other things here as well"
+	{ S
+	(PERIOD: @(OT-MARK Punct)) "prefer for generation"
+	| Simp
+	| Stop
 	(PERIOD: @(OT-MARK Punct))
-	|
-	Simp
 	}.
 
 Simp --> e: (^ SUBJ PRED) = 'pro'
 	(^ SUBJ PERS) = 2;
 	VP: (^ TENSE) = pres;			"Blocks past tense form"
 	EXCL. 					"obligatory exclamation mark"
+
+Stop --> NP: (^ TOPIC) = !
+	(^ {XCOMP|COMP}* {OBJ|OBJ2}) = !;
+	(COMMA)
+	S.
    
 
    S --> NP: (^ SUBJ)=!
@@ -313,6 +323,16 @@ PREP(P) = "template for most prepositions"
 	     	 (^ NUM) = N
 	       	(^ PRON-TYPE) = poss
 	     	(^ NTYPE) = pron.	      
+
+
+"Template for reflexives"
+REFL(P N G) = (^ PRED) = 'pro'
+(^ NUM) = N
+(^ PERS) = P
+(^ GEND) = G
+(^ PRON-TYPE) = reflexive
+(^ NTYPE) = pron
+((@GF+ ^) SUBJ GEND) = G.
 
 ----
 DEMO ENGLISH LEXICON (1.0)

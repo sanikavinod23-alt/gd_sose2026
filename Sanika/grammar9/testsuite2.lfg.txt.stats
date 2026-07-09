@@ -1,0 +1,31 @@
+((1) (4 0.007 8) (3 words))
+((2) (4 0.002 8) (3 words))
+((3) (9 0.002 14) (5 words))
+((4) (4 0.002 11) (4 words))
+((5) (6 0.002 14) (5 words))
+((6) (6 0.002 14) (5 words))
+((7) (24 0.003 20) (7 words))
+((8) (24 0.003 20) (7 words))
+
+XLE release of Sep 25, 2017 21:02.
+Grammar = /Users/sanikavinod/Desktop/xle/grammar9.lfg.txt.
+Grammar last modified on Jul 09, 2026 22:08.
+Host machine is Sanikas-MacBook-Air.local.
+8 sentences, 0 errors, 0 mismatches
+8 good sentences
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 20 (#7)
+maximum event count per sentence = 6333
+average event count per graph = 213.275
+tokens = 7.6%, morph = 4.8%, multiword = 0.3%, lex = 9.5%, chart = 31.3%,
+unifier = 30.8%, completer = 2.7%, solver = 13.1%, output = 0.0%
+max_alloc_mem = 203.65 MB
+0.022 CPU secs total, 0.007 CPU secs max
+elapsed time = 0 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10      8      0   4.88     0.003     13.62       10.12
+    all      8      0   4.88     0.003     13.62       10.12
+0.07 of the variance in seconds is explained by the number of subtrees
