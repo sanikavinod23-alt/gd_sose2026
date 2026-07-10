@@ -30,14 +30,19 @@ DEMO   ENGLISH   RULES (1.0)
    ROOT --> "can have other things here as well, imperatives, etc." 
  	  { S 
  	    (PERIOD: @(OT-MARK Punct)) "prefer for generation" 
-	  | Simp}. 
+	  | Simp
+	  | Stop
+	  }.
 
   Simp --> e: (^ SUBJ PRED) = 'pro'
 	       (^ SUBJ PERS) = 2; 
  	  VP: (^TNS-ASP TENSE) =c pres;
  	  EXCL.  "obligatory exclamation mark"
 
-   S --> NP: (^ SUBJ)=!
+ S -->  (NP: (^ TOPIC) = !
+             (^ {XCOMP|COMP}* {OBJ|OBJ2}) = !;
+         (COMMA))	     
+         NP: (^ SUBJ)=!
 	     (! CASE)=nom;
  	 VP: (^ TNS-ASP TENSE). "require that sentences have tense"
  
@@ -68,8 +73,14 @@ DEMO   ENGLISH   RULES (1.0)
 	         @(OT-MARK AnimObl) }
 	       "example of a constraining equation: require a value with =c"
 	       (! PFORM) =c by )
-	 (ADV: ! $ (^ ADJUNCT)). 
+	 (ADV: ! $ (^ ADJUNCT))
+	  ({ CP: (^ COMP) = !;
+ 	   | VPinf: (^XCOMP) = !
+		    (! VFORM) = inf}).
 
+   CP -->  C  S. 
+
+   VPinf --> PARTinf VP. 
 
    NP --> "either a full NP or a PRON"
  	  { ({D | PRON: (^ SPEC POSS) = !
@@ -79,7 +90,8 @@ DEMO   ENGLISH   RULES (1.0)
  	    PP*: ! $ (^ ADJUNCT) "PPs modifying NPs" 
 		 (! PTYPE) =c sem "have to be semantic" 
 		 "@(OT-MARK PPattach) replace general PPattach with finegrained attach"
- 	  | PRON: (^ PRON-TYPE) =c pers}. 
+ 	  | PRON: (^ PRON-TYPE) ~= poss
+	  }. 
  
 
    AP --> ADV*: ! $ (^ ADJUNCT);
@@ -94,6 +106,7 @@ DEMO   ENGLISH   RULES (1.0)
 	       (! PTYPE) =c nosem; "non-semantic type, OBL"
  	    NP
  	  }.
+
 
 
 "Coordination rules"
@@ -166,6 +179,8 @@ SCCOORD(_CAT) = "coordination of non-nominals"
 
    _CAT: @IN-SET "second constituent".
 
+GF = { OBJ | OBJ2 | COMP | XCOMP | OBL | OBL-TO | OBL-AG | ADJUNCT }.
+
 ----
 
 DEMO ENGLISH TEMPLATES (1.0)
@@ -235,16 +250,16 @@ OPT-TRANS(P) = { @(TRANS P)   "P is a variable"
 PRES3SG = @PRES
 	  @S-AGR.
 
-PRES = (^ TNS-ASP TENSE) = pres.
+PRES = { (^VFORM) ~= inf
+	    @(TENSE pres) 
+	    @(MOOD indicative)
+	  | (^VFORM) = inf}. 
 
 PAST = (^ TNS-ASP TENSE) = past.
 
 PASTP = (^ PARTICIPLE) = past.
 
 PAST-BOTH = {@PAST | @ PASTP}.
-
-PROG = (^ TNS-ASP PROG) = +.
-
 
 "templates for nouns"
 
@@ -261,6 +276,11 @@ COUNT-NOUN(P N) = @(PRED P)
 	           (^ NUM) = N
 	           (^ PERS) = 3
 	           (^ NTYPE) = count.
+
+MASS-NOUN(P) = @(PRED P)
+	           (^ NUM) = sg
+	           (^ PERS) = 3
+	           (^ NTYPE) = mass.
 
 ANIMATE = (^ ANIMATE) = +.
 
@@ -279,6 +299,20 @@ PRON(P Z   N T) = (^ PRED) = 'P'
 	  (^ PRON-TYPE) = T
 	  (^ NTYPE) = pron.
 
+EXPL    = (^ PRED) = 'nullpro'
+          (^ NUM) = sg
+	  (^ PERS) = 3
+	  (^ PRON-TYPE) = expl
+	  (^ NTYPE) = pron.
+
+REFL(P N G) = (^ PRED) = 'pro'
+          (^ NUM) = N
+	  (^ PERS) = P
+	  (^ GEND) = G
+	  (^ PRON-TYPE) = reflexive
+	  (^ NTYPE) = pron
+	  ((@GF+ ^) SUBJ GEND) = G.  
+	  
 
 "function words"
 
@@ -290,32 +324,65 @@ PREP(P) = "template for most prepositions"
 	  | (^ PTYPE) = nosem
 	    (^ PFORM) = P}.
 
-
 ----
-
 DEMO ENGLISH LEXICON (1.0)
 
 "Verbs"
 
+"verbs with clausal complements"
+
+say       V-S XLE (^PRED) = '%stem<(^SUBJ)(^COMP)>'.
+
+think       V-S XLE (^PRED) = '%stem<(^SUBJ)(^COMP)>'.
+
+convince  V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+                             (^ XCOMP SUBJ) = (^OBJ).
+
+persuade  V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+                             (^ XCOMP SUBJ) = (^OBJ). 
+
+promise V-S XLE (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+                             (^ XCOMP SUBJ) = (^SUBJ). 
+
+try   V-S XLE (^PRED) = '%stem<(^SUBJ)(^XCOMP)>'
+                             (^ XCOMP SUBJ) = (^SUBJ).
+
+want   V-S XLE { (^PRED) = '%stem<(^SUBJ)(^XCOMP)>'
+                             (^ XCOMP SUBJ) = (^SUBJ) |
+	         (^PRED) = '%stem<(^SUBJ)(^OBJ)(^XCOMP)>'
+		           (^ XCOMP SUBJ) = (^OBJ) }.
+
+seem V-S XLE (^ PRED) = 'seem<(^XCOMP)>(^SUBJ)'
+         (^ XCOMP SUBJ) = (^ SUBJ).
+		 
 "Morphologically analyzed"
+
+rain      V-S XLE @(INTRANS %stem).
 
 yawn      V-S XLE @(INTRANS %stem).
 
-build	  V-S XLE @(TRANS %stem). 
-
 hate	  V-S XLE @(TRANS %stem).  "using the morphological analyzer"
 
-house     V-S XLE @(TRANS %stem); ETC.
+house     V-S XLE @(TRANS %stem).
 
 implement     V-S XLE @(TRANS %stem).
 
-love    V-S XLE @(TRANS %stem); ETC.
+steal     V-S XLE @(TRANS %stem).
 
-steal  V-S XLE @(TRANS %stem).
+like    V-S XLE @(TRANS %stem).
+
+love    V-S XLE @(TRANS %stem); ETC.
 
 dedicate  V-S XLE @(DITRANS-OBL %stem).
 
-eat       V-S XLE @(OPT-TRANS %stem); ETC. 
+eat       V-S XLE @(OPT-TRANS %stem); ETC.
+
+Eats    V * @(OPT-TRANS eat)
+            @PRES3SG.
+
+Eat    V * @(OPT-TRANS eat)
+           @BARE-AGR
+	   @PRES.
 
 "Fullforms"
 
@@ -330,15 +397,9 @@ sleeps V * @(INTRANS sleep) @PRES3SG.
 
 slept V * @(INTRANS sleep) @PAST.
 
-devours   V *  @(TRANS devour)
-       	    @PRES3SG.
 
-devour   V *  @(TRANS devour)
-       	    @BARE-AGR
-	    @PRES.
+devour   V-S XLE  @(TRANS devour).
 
-devoured   V *  @(TRANS devour)
-       	    @PAST-BOTH.
 
 chases  V *  @(TRANS chase)
        	    @PRES3SG.
@@ -353,33 +414,9 @@ chased  V *  @(TRANS chase)
 educated  V *  @(TRANS educate)
        	     @PAST-BOTH.
 
-like  V *  @(TRANS like)
-       	    @BARE-AGR
-	    @PRES.
-
 Think  V *  @(TRANS think)
        	    @BARE-AGR
 	    @PRES.
-
-Eats    V * @(OPT-TRANS eat)
-            @PRES3SG.
-
-eats    V * @(OPT-TRANS eat)
-            @PRES3SG.
-
-Eat    V * @(OPT-TRANS eat)
-           @BARE-AGR
-	   @PRES.
-
-eat    V * @(OPT-TRANS eat)
-           @BARE-AGR
-	   @PRES.
-	   
-ate    V * @(OPT-TRANS eat)
-	   @PAST.
-
-eaten V * @(OPT-TRANS eat)
-          @PASTP.
 
 "Obliques"
 
@@ -446,11 +483,22 @@ put 	  V * @(DITRANS-OBL give)
 "auxiliaries"
 
 was 	  AUX * @PAST
-                (^ PASSIVE) =c +
+                { (^ PASSIVE) =c + |
+		  (^ TNS-ASP PROG) =c +
+		  }
 		{ (^ SUBJ PERS) = 1
                 | (^ SUBJ PERS) = 3
                 }
                 (^ SUBJ NUM) = sg.
+
+is 	  AUX * @PRES3SG
+                { (^ PASSIVE) =c + |
+		  (^ TNS-ASP PROG) =c +}.
+
+be 	  AUX * { (^ PASSIVE) =c + |
+		  (^ TNS-ASP PROG) =c +}.
+
+
 
 "adjectives"
 
@@ -503,7 +551,9 @@ She 	  PRON * @(PRON she 3 sg pers)
 she 	  PRON * @(PRON she 3 sg pers)
 		 @(CASE nom).
 
-it	  PRON * @(PRON it 3 sg pers). 
+it	  PRON * @(PRON it 3 sg pers).
+
+It	  PRON * @EXPL. 
 
 We 	  PRON * @(PRON we 1 pl pers)
 		 @(CASE nom).
@@ -543,6 +593,9 @@ Him 	  PRON * @(PRON he 3 sg pers)
 him 	  PRON * @(PRON he 3 sg pers)
 		 @(CASE acc).
 
+herself  PRON * @(REFL 3 sg fem).
+
+himself  PRON * @(REFL 3 sg masc).
 
 
 "Nouns"
@@ -640,6 +693,8 @@ telescope N * @(COUNT-NOUN telescope sg)
 thought N * @(COUNT-NOUN thought sg)
               @DEF.
 
+yoghurt N * @(MASS-NOUN yoghurt)
+	      @INANIMATE.
 
 zookeeper N * @(COUNT-NOUN zookeeper sg)
               @DEF
@@ -662,7 +717,6 @@ Mary N * @(PRED mary)
 Sophie N * @(PRED sophie)
          @ANIMATE.
 
-
 "determiners"
 
 "Lexical entries are case sensitive"
@@ -682,7 +736,8 @@ a   D *  (^ SPEC PRED) = 'a'
 
 by 	  P * @(PREP by). 
 
-to 	  P *  @(PREP to).
+to 	  P * @(PREP to); 
+	  PARTinf * (^ VFORM) =c inf. 
 
 on 	  P * @(PREP on). 
 
@@ -697,6 +752,10 @@ for 	  P * @(PREP for).
 and  CONJ * @(COORD-FORM %stem);
      CONJnp * @(COORD-FORM %stem) @(NUM pl).
 
+"complementizers"
+
+that  C * (^COMP-FORM) = that. 
+
 "punctuation"
 
 . PERIOD * (^ STMT-TYPE) = declarative. 
@@ -704,6 +763,7 @@ and  CONJ * @(COORD-FORM %stem);
 , COMMA  * . 
 
 !  EXCL * (^ STMT-TYPE) = exclamation. 
+
 
 
 ----
@@ -725,9 +785,13 @@ The sublexcial items are the POS assigned to the various tags in morph-lex.lfg"
    N --> N-S_BASE "noun stem"
  	 N-POS_BASE
  	 (N-NAME_BASE) "allow for +Giv or +Place in names"
- 	 (N-GEND_BASE) "allow for gender information" 
- 	 {N-NUM_BASE |
-	  COUNTRY_BASE}.
+ 	 (N-GEND_BASE) "allow for gender information"
+ 	 {N-LOC_BASE "allow for locative information"
+ 	  {N-LOC-TYPE_BASE "allow for locative type information"
+ 	  |
+ 	  COUNTRY_BASE
+ 	  } |
+ 	 N-NUM_BASE}.
 
    A --> A-S_BASE
  	 A-POS_BASE
@@ -736,11 +800,11 @@ The sublexcial items are the POS assigned to the various tags in morph-lex.lfg"
 
   
 ----
+
 MORPH   ENGLISH   LEXICON (1.0)
 
 "this guesses words that are unknown to your lexicon
  to be either adjectives or nouns"
- 
 -unknown  A-S XLE (^ PRED) = '%stem';
 	  N-S XLE (^ PRED) = '%stem'.
 
@@ -755,15 +819,17 @@ MORPH   ENGLISH   LEXICON (1.0)
 +3sg	PERS XLE @S-AGR.
 
 +PastBoth TNS XLE "past tense or past particle"
-		 @PAST-BOTH. 
+		 @PAST-BOTH.
 
-+PastTense TNS XLE @PAST .
++PastTense TNS XLE @PAST . 
 
 +123SP	PERS XLE .
 
-+Non3sg PERS XLE @BARE-AGR.
++Non3sg PERS XLE .
 
-+Prog	ASP XLE @PROG.
++Prog	ASP XLE @(PROG +).
+
++PastPerf TNS XLE @PASTP.
 
 
 "nominal/verbal"
@@ -778,15 +844,15 @@ MORPH   ENGLISH   LEXICON (1.0)
 		    @(PERS 3).
 		       
 +Prop 	  N-POS XLE @(NPOS proper) "3rd person name"
-		    @(PERS 3).
-		    
-+Place 	  N-NAME XLE . 
+		    @(PERS 3).   
 
 +Giv 	  N-NAME XLE .   "for given names"
 
 +Fem 	  N-GEND XLE (^GEND) = fem. 
 
 +Masc 	  N-GEND XLE (^GEND) = masc.
+
++Place    N-LOC XLE (^ PROPER-TYPE) = location.
 
 
 "other"
