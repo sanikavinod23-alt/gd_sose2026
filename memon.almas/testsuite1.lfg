@@ -1,0 +1,212 @@
+# transitive
+
+the dog devours bones (1 0.005 11)
+
+# intransitive
+
+the cat sleeps (1 0.003 8)
+
+# transitive plural
+
+the cats chase a mouse (1 0.002 13)
+
+# opt-trans without object
+
+the dog eats (1 0.002 8)
+
+# opt-trans with object
+
+the cats eat a treat (1 0.001 13)
+
+# passive with agent
+
+the girl was seen by the gorilla (1 0.002 18)
+
+# passive without agent
+
+the cake was eaten (1 0.002 10)
+
+# passive without agent
+
+the cat was chased (1 0.001 10)
+
+# passive with agent
+
+the bone was devoured by a dog (1 0.001 18)
+
+# agreement mismatch 
+
+the girl see the gorilla (0 0.001 13)
+
+# missing determiner on singular noun
+
+cat chases dogs (0 0.001 0)
+
+# missing determiner on singular noun 
+
+gorilla devour bananas (0 0.001 0)
+
+# agreement mismatch + missing determiner
+
+gorillas devours banana (0 0.001 0)
+
+# saw is not a past participle
+
+the girl was saw by the gorilla (0 0.001 0)
+
+# sleep cannot be passivized
+
+the dog was slept  (0 0.001 0)
+
+# unification failure, subject-verb agreement
+
+the dogs devours bones (0 0.001 11)
+
+# coherence violation
+
+the dog appears bones (0 0.001 0)
+
+# completeness violation
+
+the dog devours (0 0.001 8)
+
+# working sentence for demo
+
+a sheep devours a banana (1 0.001 13)
+
+# positive
+
+the sheep devours the banana (1 0.001 13)
+
+# positive 
+
+a dog devours a bone (1 0.001 13)
+
+# positive 
+
+the dogs devour a banana (1 0.001 13)
+
+# agreement mismatch
+
+the dogs devours a bone (0 0.001 13)
+
+# completeness violation
+
+a sheep devours (0 0.001 8)
+
+# Ditransitive 
+
+the girl gave the dog a bone 
+
+# Ditransitive with sub-verb agreement
+
+the girl gives the gorilla bananas
+
+# sub-verb agreement
+
+gorillas devour bananas
+
+# det rule
+
+a gorilla devours bananas
+
+# should not work
+
+the girl give the gorilla bananas
+
+# should not work
+
+gorillas devours bananas
+
+# should not parse
+
+gorilla devour bananas
+
+# should not parse
+
+gorillas devours banana
+
+# Dative shift (should work)
+
+the girl gives a bone to the dog
+
+# Dative shift (should work)
+
+the zookeeper gave a banana to the gorilla
+
+# Dative shift (passive should work)
+
+the dog was given a bone by the girl
+
+# Ditransitive passive (should work)
+
+a bone was given to the dog by the girl
+
+# word order violation
+
+the girl gave to the dog a bone
+
+# word order violation
+
+the dog was given by the girl a bone
+
+# PP obliques (non-sem prepositions)
+
+the waiter waited on the table
+
+# PP obliques (non-sem prepositions)
+
+jordan talked to sam
+
+# PP obliques (non-sem prepositions)
+
+alex argued with a gorilla
+
+# PP adjuncts (multiple solutions)
+
+sam saw a monkey with a telescope
+
+# PP adjuncts (multiple solutions)
+
+the dog sat on the bench with a book
+
+the small dog slept
+
+the small black dog slept
+
+the small black hungry dog ate bones
+
+the gorilla devoured the banana quickly
+
+the small black hungry dog ate bones quickly
+
+the very small gorilla slept
+
+the very very very small gorilla slept
+
+he sleeps
+
+she devoured it
+
+they devoured them
+
+I waited for him for hours
+
+my dog sleeps
+
+she gave us her banana
+
+# bad cases
+
+him sleeps
+
+them devoured it
+
+they devoured they
+
+
+
+# 2 mismatches, 13 sentences, 0.022 CPU secs total, 0.009 CPU secs max (04/23/26)
+
+
+# 4 mismatches, 24 sentences, 0.032 CPU secs total, 0.005 CPU secs max (05/08/26)

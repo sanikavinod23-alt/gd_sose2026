@@ -1,0 +1,329 @@
+#show how it works
+
+the dog devours bones (1 0.013 12)
+
+# unification failure, subject-verb agreement (consistency)
+
+the dogs devours bones (0 0.004 11)
+
+# coherence violation
+
+the dog appears bones (0 0.004 0)
+
+# completeness violation
+
+the dog devours (0 0.004 9)
+
+# missing PRED value, completeness violation
+
+the dog devours a bone (1 0.005 14)
+
+#missing rules, unknown words
+
+the dog devours bones in the park (1+1 0.006 32)
+
+#new verbs --- intrans
+
+a dog sleeps (1 0.005 16)
+
+#new verbs -- trans
+
+a dog chases a bone (1 0.004 14)
+
+# 8 sentences, 0.023 CPU secs total, 0.004 CPU secs max (04/24/26)
+
+# 2 mismatches, 8 sentences, 0.046 CPU secs total, 0.017 CPU secs max (05/08/26)
+
+# 8 sentences, 0.044 CPU secs total, 0.018 CPU secs max (05/10/26)
+
+# 8 sentences, 0.024 CPU secs total, 0.008 CPU secs max (05/15/26)
+
+#sentences from ex 3 that work
+
+the cat sleeps (1 0.004 16)
+
+#transitive verb1
+
+the dog devours the bone (1 0.003 14)
+
+#transitive verb2
+
+the cats chase a mouse (1 0.004 14)
+
+#subj-verb agreement
+
+the dog eats (1 0.005 16)
+
+#plural
+
+the cats eat a treat (1 0.004 21)
+
+#sentences from ex 3 that do not work
+
+cat chases dogs  (0 0.003 0)
+
+#no subj-verb agreement
+
+the girl see the gorilla (0 0.004 14)
+
+#singular nouns need articles
+
+gorilla devour bananas (0 0.004 0)
+
+#article not necessary for plural nouns
+
+gorillas devours banana (0 0.004 0)
+
+#passive constructions that work
+
+the girl was seen by the gorilla (1+2 0.006 24)
+
+#new lexicon items
+
+the cake was eaten (0 0.004 0)
+
+#passive without oblique agent
+
+the cat was chased (1 0.004 11)
+
+#passive with oblique agent
+
+the bone was devoured by a dog (1+2 0.004 24)
+
+#passive construction that do not work
+
+the girl was saw by the gorilla (0 0.005 9)
+
+#no agreement between auxiliary and main verb
+
+the dog was slept (0 0.003 0)
+
+#sentences from ex 4 that work
+
+the girl gave the dog a bone (1 0.005 19)
+
+#ditransitive verb
+
+the girl gives the gorilla bananas (1 0.006 17)
+
+#plural nouns do not need articles
+
+gorillas devour bananas (1 0.003 10)
+
+#but singular nouns do
+
+a gorilla devours bananas (1 0.003 12)
+
+#sentences from ex 4 that do not work
+
+the girl give the gorilla bananas (0 0.006 17)
+
+#no agreement
+
+gorillas devours bananas (0 0.004 9)
+
+#no agreement
+
+gorilla devour bananas (0 0.003 0)
+
+#no agreement
+
+gorillas devours banana (0 0.003 0)
+
+#dative shift
+
+the girl gives a bone to the dog (1 0.005 33)
+
+#pp as indirect object
+
+the zookeeper gave a banana to the gorilla (1 0.005 33)
+
+#passive with ditransitive verb
+
+the dog was given a bone by the girl (1+3 0.005 34)
+
+#dative passive
+
+a bone was given to the dog by the girl (1+2 0.005 46)
+
+#dative shifts that do not work
+
+the girl gave to the dog a bone (0 0.003 0)
+
+#no right word order
+
+the dog was given by the girl a bone (0 0.004 0)
+
+#no sem pps
+
+The waiter waited on the table. (1+4 0.005 22)
+
+#pp as oblique
+
+Jordan talked to Sam. (1+2 0.007 18)
+
+#no sem pps do not have a pred value, only pform
+
+Alex argued with a gorilla. (1+2 0.005 20)
+
+#sem pps
+
+Sam saw a monkey with a telescope. (1+1 0.005 29)
+
+#pps as adjuncts
+
+The dog sat on the bench with a book. (1+1 0.007 40)
+
+#sentences from ex. 5 that work
+
+the small dog slept (1 0.005 34)
+
+the small black dog slept (1 0.006 53)
+
+the small black hungry dog ate bones (0 0.003 0)
+
+the gorilla devoured the banana quickly (1 0.005 16)
+
+the small black hungry dog ate bones quickly (0 0.005 0)
+
+the very small gorilla slept (1 0.004 24)
+
+the very very very small gorilla slept (1 0.005 28)
+
+the small, black, hungry dog slept. (1 0.008 69)
+
+#working with pronouns
+
+he sleeps (1 0.004 14)
+
+she devoured it (1 0.004 10)
+
+they devoured them (1 0.005 10)
+
+I waited for him for hours (2 0.006 32)
+
+#possessives
+
+my dog sleeps (1 0.003 16)
+
+she gave us her banana (1 0.004 15)
+
+#not working 
+
+him sleeps (0 0.002 3)
+
+them devoured it (0 0.002 3)
+
+they devoured they (0 0.002 8)
+
+I waited for she for hours (0 0.002 13)
+
+#work (sometimes with many solutions)
+
+the gorilla put the banana in the cage (1+2 0.006 29)
+
+the gorilla in the cage devoured a banana (1 0.005 25)
+
+the gorilla devoured a banana in the cage (1+1 0.004 29)
+
+the dog was given a bone by the girl (1+3 0.006 34)
+
+a bone was given to the dog by the girl (1+2 0.003 46)
+
+the zookeeper waited on the gorilla (1+2 0.002 20)
+
+a banana was put in the cage by the gorilla (1+14 0.004 42)
+
+the gorilla waited on the bench (1+1 0.005 20)
+
+the zookeeper waited by the bench (1 0.002 20)
+
+the zookeeper waited by the bench in the garden (1+1 0.004 38)
+
+#imperatives (ex. 6)
+
+Eat the beans! (0 0.004 0)
+
+Give the gorilla a banana! (1+1 0.003 16)
+
+Think a creative thought! (0 0.003 0)
+
+#wrong imperatives
+
+Eats the beans! (0 0.003 0)
+
+Gave a bone to the dog! (0 0.002 0)
+
+#should work
+
+Sophie educated the bright robot and the intelligent child. (1 0.007 34)
+
+Sophie educated the bright and efficient robot. (1 0.005 48)
+
+lazy leopards sleep and eat. (1 0.006 40)
+
+Mary and the gorilla like bananas. (1 0.004 27)
+
+The gorilla and I like bananas. (1 0.002 27)
+
+You and Mary like bananas. (2 0.005 25)
+
+#ex. 7 
+
+Sophie implemented a new grammar. (1 0.003 32)
+
+Lazy tigers yawn. (0 0.003 0)
+
+The curious leprechaun stole a goat in Ireland. (0 0.004 0)
+
+The house was built by a diligent worker. (2+2 0.004 49)
+
+The building houses a happy family. (1 0.004 39)
+
+#ex. 8
+
+John promised the cat to eat yogurt. (1 0.005 51)
+
+John persuaded the cat to eat yogurt. (1 0.004 51)
+
+John wanted to eat yogurt. (1 0.003 46)
+
+John wanted the cat to eat yogurt. (1 0.003 51)
+
+John thought that the cat ate the yogurt. (0 0.004 0)
+
+John persuaded Mary to want to eat beans. (1 0.005 57)
+
+#getting 6 solutions for these last two
+
+John wanted Mary to think that Bill persuaded Kim to eat beans. (6 0.006 102)
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans. (6 0.008 116)
+
+#raising works
+
+It seems to rain. (1 0.003 44)
+
+Mary seems to eat a banana. (1 0.002 34)
+
+It seems to be raining. (1 0.004 29)
+
+Mary seems to be eating a banana. (1 0.003 34)
+
+#ex. 9
+
+Sophie likes hoppers. (1 0.003 24)
+
+hoppers, Sophie likes. (1 0.004 27)
+
+hoppers, Sophie wants Mary to like. (1 0.003 43)
+
+#parsing with many solutions
+
+hoppers, John persuaded Mary to want to eat. (2 0.006 65)
+
+hoppers, John wanted Mary to think that Bill persuaded Kim to eat. (6 0.006 110)
+
+hoppers, John thought that Mary wanted Bill to think that Kim wants to eat. (12 0.007 124)
+
+# 1 mismatches, 104 sentences, 0.456 CPU secs total, 0.013 CPU secs max (07/05/26)

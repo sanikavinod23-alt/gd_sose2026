@@ -1,0 +1,125 @@
+Exercise 5 Report - Ahmad Alatrash - SoSe 2026
+===============================================
+
+
+1. ADJECTIVES AND ADVERBS
+--------------------------
+Adjectives and adverbs were implemented by introducing AP and AdvP rules:
+
+  AP  --> AdvP*: ! $ (^ ADJUNCT); A: ^=!.
+  AdvP --> Adv: ^=!.
+
+Adverbs modifying adjectives (e.g. "very small") are handled via AdvP* inside AP.
+Adverbs modifying verbs (e.g. "quickly") are handled via AdvP* inside VP.
+All target sentences parse correctly.
+
+
+2. PUNCTUATION
+---------------
+Sentence-final punctuation (.) and comma separation between adjectives (,) were
+implemented by introducing a PUNC category. The S rule allows optional PUNC at the
+end, and the AP rule allows optional PUNC before each adjective:
+
+  S  --> NP: ...; VP: ^=!; (PUNC).
+  AP --> (PUNC) AdvP*: ! $ (^ ADJUNCT); A: ^=!.
+
+Both "the small black hungry dog slept" and "the small, black, hungry dog slept."
+parse correctly.
+
+
+3. PRONOUNS
+------------
+Pronouns were implemented using a PRON template with PRED, NUM, PERS, CASE, and
+PRON-TYPE features. Nominative pronouns (he, she, they, I, we) are marked CASE=nom
+and only appear as subjects. Accusative pronouns (him, her, them, me, us, it) are
+marked CASE=acc and only appear as objects.
+
+Possessive pronouns (my, his, her, their, our) were implemented as D entries with
+DEF=+ and possessor features stored under POSS. The SPEC POSS structure suggested
+in the exercise caused unification failures because the CN template requires (^ DEF),
+which was not satisfied via SPEC POSS. The simplified POSS structure was used instead.
+
+For "her", two separate lexical entries were needed (N for accusative, D for
+possessive). Entry order matters in XLE -- placing the D entry before the N entry
+resolved a shadowing conflict where "her" as object was not being recognized.
+
+All grammatical pronoun sentences parse correctly except "she gave us her banana"
+and sentences with "his" as possessive D inside OBJ2. This is due to a feature clash
+between the 3rd person possessive (POSS PERS=3) and the subject NP (also PERS=3)
+during unification in ditransitive constructions. This could not be resolved without
+adding a NTYPE feature to block pronouns from appearing in D positions, which caused
+rule parsing errors in XLE. This issue is documented but left unresolved.
+
+All ungrammatical sentences (him sleeps, them devoured it, they devoured they,
+I waited for she for hours) correctly return 0 parses due to CASE constraints.
+
+
+4. OT-MARKS
+------------
+The goal was to disambiguate PP readings using OT-marks and ANIM features:
+- "the gorilla waited on the bench" -> ADJUNCT (bench is inanimate)
+- "the zookeeper waited on the gorilla" -> OBL (gorilla is animate)
+
+ANIM features were added to all nouns (ANIM=+ for animate, ANIM=- for inanimate).
+Several approaches were attempted for the "waited" lexical entries:
+
+Attempt 1 - ANIM constraint + intransitive fallback entry:
+  "waited   V * (^ PRED) = 'wait<(^ SUBJ)(^ OBL)>'
+               (^ TENSE) = past
+               (^ OBL PFORM) = on
+               (^ OBL PTYPE) = nosem
+               (^ OBL ANIM) = +."
+
+  "waited   V * (^ PRED) = 'wait<(^ SUBJ)>'
+               (^ TENSE) = past."
+
+This approach failed because the intransitive entry always won regardless of ANIM,
+since it had no constraints that could fail and no OT-mark penalty was effective.
+
+Attempt 2 - PTYPE=nosem constraint only (final solution):
+  waited   V * (^ PRED) = 'wait<(^ SUBJ)(^ OBL)>'
+               (^ TENSE) = past
+               (^ OBL PFORM) = on
+               (^ OBL PTYPE) = nosem.
+
+This produces a single OBL parse for both animate and inanimate objects. While
+"waited on the bench" ideally should be ADJUNCT, the grammar correctly produces
+one unambiguous parse for both cases. This is the final implemented solution.
+
+A complete solution would require OT-marks ranking OBL over ADJUNCT for animate
+objects. The VP rule's PP* adjunct slot cannot be constrained by the animacy of
+the PP's object without OT-marks. Lexical semantic information or world knowledge
+beyond what the syntax encodes would be needed for a fully correct solution.
+
+
+5. GENERATION
+--------------
+Generation was tested using regenerate-testfile. The TOKENIZE configuration entry
+required for full generation support is not supported in the installed XLE version
+(March 2017), so basic generation was used.
+
+Results:
+
+- Simple sentences (e.g. "the cat sleeps", "he sleeps") regenerate correctly but
+  produce two outputs due to optional sentence-final punctuation: {sleeps.|sleeps}.
+  This is expected given the optional PUNC in the S rule.
+
+- Past tense verbs (e.g. "gave", "waited", "talked", "sat", "ate") generate with
+  {was|} because the PASS template allows both active and passive readings for
+  transitive verbs. This is a known limitation of the PASS template design.
+
+- "slept" was fixed to only allow (^ TENSE) = past with no PARTICIPLE reading,
+  correctly blocking "the dog was slept". However, due to XLE caching the previous
+  grammar version, "the dog was slept" still parsed in the same session after the
+  fix. After reloading the grammar from scratch the fix takes effect correctly.
+
+- Sentences with multiple adjectives (e.g. "the small black hungry dog slept")
+  generate many outputs because adjectives are stored in an unordered ADJUNCT set
+  in the f-structure. LFG f-structures do not encode word order, so the generator
+  produces all possible orderings. This is expected behavior in LFG.
+
+- "she gave us her banana" and sentences with "his/her" as possessive D inside OBJ2
+  did not parse and therefore could not be regenerated (see Pronouns section above).
+
+- All regeneration mismatches are due to optional punctuation or {was|} alternation,
+  not incorrect generation. The generator produces the correct words in all cases.

@@ -1,0 +1,622 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES  .
+  LEXENTRIES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH). 
+  RULES   (DEMO ENGLISH).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD  PPadj +NonAnimObl +AnimObl +PPattach +LocAttach. 
+  GENOPTIMALITYORDER  GenBadPunct NOGOOD +PUNCT CAPITAL.
+
+
+----
+
+DEMO ENGLISH MORPHOLOGY (1.0)
+
+TOKENIZE:
+P!/Users/almasmemon/Almasfiles/XLE/xle_intelmac64_2017-09-25/doc/PargramStarterGrammar/basic-parse-tok.fst
+G!/Users/almasmemon/Almasfiles/XLE/xle_intelmac64_2017-09-25/doc/PargramStarterGrammar/default-gen-tokenizer.fst
+-----
+
+
+DEMO   ENGLISH   RULES (1.0) 
+
+   S --> NP: (^ SUBJ)=!
+	     (! CASE)=nom;
+ 	 VP: ^=!
+             (^ TNS-ASP TENSE); 
+ 	     (PERIOD: @(OT-MARK Punct)).
+
+   "VP rule: PP* only for adjuncts, specific positions for obliques"
+   
+    VP --> (AUX: ^=!)
+          V: ^=!;
+         (NP: (^ OBJ2) = !)
+         (NP: (^ OBJ)=!
+              (! CASE)=acc)
+         PP*: { ! $ (^ ADJUNCT)
+             (! PTYPE)=c sem
+             {
+               @(OT-MARK LocAttach)
+               (! OBJ LOC)=c +
+             |
+               @(OT-MARK PPadj)
+               (! OBJ LOC) ~= +
+             }
+           | (^ OBL)=!
+             { @(OT-MARK NonAnimObl)
+               (! PTYPE)=c sem }
+           };
+      (PP: (^ OBL-TO)=!
+           (! PFORM)=c to)
+      (PP: (^ OBL-AG)=!
+           { (! OBJ ANIMATE)=c +
+             @(OT-MARK AnimObl) }
+           (! PFORM)=c by )
+      ADV*: ! $ (^ ADJUNCT).
+
+
+   "NP rule with pronouns, optional determiner, adjectives, head noun, and PP adjuncts"
+   NP --> 
+           { ({D | PRON: (^ SPEC POSS) = !
+	                (^ SPEC POSS PRON-TYPE) =c poss}) 
+ 	    AP*: ! $ (^ ADJUNCT); 
+ 	    N "head of NP"
+ 	    PP*: ! $ (^ ADJUNCT) 
+		 (! PTYPE) =c sem 
+ 	  | PRON: (^ PRON-TYPE) =c pers}.
+
+  AP --> ADV*: ! $ (^ ADJUNCT);
+ 	  A
+ 	  (COMMA).
+   
+   "PP rule distinguishing semantic from non-semantic prepositions"
+   PP --> { P: ^ = !
+             (! PTYPE) =c sem;
+           NP: (^ OBJ) = !
+               (! CASE) = acc
+            | P: ^ = !
+              (! PTYPE) =c nosem;
+              NP
+           }.
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)
+
+OT-MARK(_mark) = "assigns an OT mark, from common templates"
+       _mark $ o::*.
+
+"Passive lexical rule - maps OBJ to SUBJ, SUBJ to OBL-AG or NULL"
+PASS(FRAME) =  { FRAME
+                 (^ PASSIVE) = - "no passive"
+             | FRAME "passive"
+              (^ PASSIVE) = +
+              (^ PARTICIPLE) =c past
+              (^ OBJ)-->(^ SUBJ)
+              { (^ SUBJ)-->(^ OBL-AG)
+              | (^ SUBJ)--> NULL
+              }
+            }.
+              
+
+"Dative shift lexical rule - maps OBJ to OBJ2, OBL-TO to OBJ"
+DAT-SHIFT(FRAME) = { FRAME
+                   | FRAME
+                     (^ OBJ)-->(^ OBJ2)
+                     (^ OBL-TO)-->(^ OBJ)
+                   }.
+
+"Subcategorization templates"
+
+DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL-TO)>')).
+
+DITRANS-OBL(P) = @(PASS (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL)>').
+
+"transitives can passivize"
+TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ) (^ OBJ)>').
+
+INTRANS(P) = (^ PRED) = 'P<(^SUBJ)>'.
+
+INTRANS-OBL(P) = (^ PRED) = 'P<(^SUBJ)(^OBL)>'.
+             
+OPT-TRANS(P) = { @(TRANS P)
+	       | @(INTRANS P) }.
+
+PRED(P) = (^ PRED) = 'P'.
+
+
+"verb agreement templates"
+
+PRES3SG = @PRES
+	  @S-AGR.
+
+PRES = (^ TNS-ASP TENSE) = pres.
+
+PAST = (^ TNS-ASP TENSE) = past.
+
+PASTP = (^ PARTICIPLE) = past.
+
+PAST-BOTH = {@PAST | @PASTP}. 
+
+BARE-AGR = { (^ SUBJ NUM) = pl
+	  | (^ SUBJ PERS) ~= 3
+	    (^ SUBJ NUM) = sg
+	    @(OT-MARK sg-imp)
+	  }.
+
+S-AGR = (^ SUBJ PERS) = 3
+	(^ SUBJ NUM) = sg. 
+
+"DEF: existential constraint requiring SPEC to be present on the NP"
+
+DEF = (^ SPEC).
+
+CASE(A) = (^ CASE) = A.
+
+ANIMATE = (^ ANIMATE) = +.
+
+INANIMATE = (^ ANIMATE) = -.
+
+LOCATION = (^ LOC) = +.
+
+
+"Noun templates"
+"CN: count nouns sg n pl - require a determiner via existential constraint"
+CN(P N) = @(PRED P) 
+          (^ NUM) = N
+          (^ PERS) = 3
+          (^ NTYPE) = count.
+
+"Proper names - no determiner required"
+NODET(P) = (^ PRED) = 'P'
+           (^ NUM) = sg
+           (^ PERS)= 3.
+
+"Pronoun templates"
+
+PRON(P Z N T) = @(PRED P)
+	        (^ NUM) = N
+	        (^ PERS) = Z
+	        (^ PRON-TYPE) = T
+	        (^ NTYPE) = pron.
+
+"Preposition template - can be semantic or non-semantic"
+PREP(P) = { (^ PRED) = 'P<(^OBJ)>'
+                (^ PTYPE) = sem
+              | (^ PFORM) = P
+                (^ PTYPE) = nosem
+              }.
+
+"Adjective and adverb templates"
+
+ADJ(P) = (^ PRED) = 'P'.
+
+ADV(P) = (^ PRED) = 'P'.
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+"Singular Count nouns - require a determiner via @DEF existential"
+
+bone      N * @(CN bone sg)
+          @DEF
+          @INANIMATE.
+
+dog       N * @(CN dog sg)
+          @DEF
+          @ANIMATE.
+
+cat       N * @(CN cat sg)
+          @DEF 
+          @ANIMATE.
+
+sheep     N * @(CN sheep sg)
+          @DEF 
+          @ANIMATE.
+
+mouse     N * @(CN mouse sg)
+          @DEF 
+          @ANIMATE.
+
+banana    N * @(CN banana sg)
+          @DEF
+          @INANIMATE.
+          
+
+treat     N * @(CN treat sg)
+          @DEF. 
+          
+
+cake      N * @(CN cake sg)
+          @DEF 
+          @INANIMATE.
+
+girl      N * @(CN girl sg)
+          @DEF 
+          @ANIMATE.
+
+gorilla   N * @(CN gorilla sg)
+          @DEF 
+          @ANIMATE.
+
+meadow    N * @(CN meadow sg)
+          @DEF 
+          @LOCATION.
+
+park      N * @(CN park sg)
+          @DEF
+          @LOCATION.
+
+book      N * @(CN book sg) 
+          @DEF 
+          @INANIMATE.
+
+
+table     N * @(CN table sg)
+          @DEF
+          @INANIMATE 
+          @LOCATION.
+
+bench     N * @(CN bench sg)
+              @DEF
+              @INANIMATE
+              @LOCATION.
+
+telescope N * @(CN telescope sg)
+              @DEF.
+
+monkey    N * @(CN monkey sg)
+              @DEF
+              @ANIMATE.
+
+cage      N * @(CN cage sg)
+              @DEF
+              @INANIMATE
+              @LOCATION.
+
+garden    N * @(CN garden sg)
+              @DEF
+              @LOCATION.
+
+hour      N * @(CN hour sg)
+              @DEF.
+
+waiter    N * @(CN waiter sg)
+              @DEF
+              @ANIMATE.
+
+zookeeper N * @(CN zookeeper sg)
+              @DEF
+              @ANIMATE.
+
+"Plural count nouns - no determiner required"
+
+bones     N * @(CN bone pl).
+
+dogs      N * @(CN dog pl)
+              @ANIMATE.
+
+cats      N * @(CN cat pl).
+
+bananas   N * @(CN banana pl).
+
+gorillas  N * @(CN gorilla pl)
+              @ANIMATE.
+
+hours     N * @(CN hour pl).
+
+
+"Proper names - no determiner required"
+
+jordan    N * @(PRED jordan)
+              @ANIMATE.
+
+sam       N * @(PRED sam)
+              @ANIMATE.
+
+alex      N * @(PRED alex)
+              @ANIMATE.
+
+
+"Verbs - 3rd person singular present"
+
+devours   V * @(TRANS devour)
+              @PRES3SG.
+
+chases    V * @(TRANS chase)
+              @PRES3SG.
+
+eats      V * @(OPT-TRANS eat)
+              @PRES3SG.
+
+sleeps    V * @(INTRANS sleep)
+              @PRES3SG.
+
+appears   V * @(INTRANS appear)
+              @PRES3SG.
+
+sees      V * @(TRANS see)
+              @PRES3SG.
+
+gives     V * @(DITRANS give)
+              @PRES3SG.
+
+waits     V * { @(INTRANS wait)
+              | @(INTRANS-OBL wait)
+                { (^ OBL ANIMATE) =c +
+                  @(OT-MARK AnimObl) }
+                { (^ OBL PFORM) =c on
+                | (^ OBL PFORM) =c for } }
+              @PRES3SG.
+
+talks     V * { @(INTRANS talk)
+              | @(INTRANS-OBL talk)
+                { (^ OBL ANIMATE) =c +
+                  @(OT-MARK AnimObl) }
+                { (^ OBL PFORM) =c to
+                | (^ OBL PFORM) =c with } }
+              @PRES3SG.
+
+
+argues    V * { @(INTRANS argue)
+              | @(INTRANS-OBL argue)
+                { (^ OBL ANIMATE) =c +
+                  @(OT-MARK AnimObl) }
+                (^ OBL PFORM) =c with }
+              @PRES3SG.
+
+
+"Verbs - plural present / base form"
+
+appear    V * @(INTRANS appear)
+              @BARE-AGR
+              @PRES.
+
+sleep     V * @(INTRANS sleep)
+              @BARE-AGR
+              @PRES.
+
+devour    V * @(TRANS devour)
+              @BARE-AGR
+              @PRES.
+
+chase     V * @(TRANS chase)
+              @BARE-AGR
+              @PRES.
+
+eat       V * @(OPT-TRANS eat)
+              @BARE-AGR
+              @PRES.
+
+see       V * @(TRANS see)
+              @BARE-AGR
+              @PRES.
+
+give      V * @(DITRANS give)
+              @BARE-AGR
+              @PRES.
+
+wait      V * { @(INTRANS wait)
+              | @(INTRANS-OBL wait)
+                { (^ OBL ANIMATE) =c +
+                  @(OT-MARK AnimObl) }
+                { (^ OBL PFORM) =c on
+                | (^ OBL PFORM) =c for } }
+              @BARE-AGR
+              @PRES.
+
+talk      V * { @(INTRANS talk)
+              | @(INTRANS-OBL talk)
+                { (^ OBL ANIMATE) =c +
+                  @(OT-MARK AnimObl) }
+                { (^ OBL PFORM) =c to
+                | (^ OBL PFORM) =c with } }
+              @BARE-AGR
+              @PRES.
+
+argue     V * { @(INTRANS argue)
+              | @(INTRANS-OBL argue)
+                { (^ OBL ANIMATE) =c +
+                  @(OT-MARK AnimObl) }
+                (^ OBL PFORM) =c with }
+              @BARE-AGR
+              @PRES.
+
+puts            V * @(DITRANS-OBL put)
+                @PRES3SG.
+
+put              V * @(DITRANS-OBL put)
+                 @BARE-AGR
+                 @PRES.
+
+
+"Past Participles - for passive constructions"
+devoured  V * @(TRANS devour)
+              @PASTP.
+
+chased    V * @(TRANS chase)
+              @PASTP.
+
+eaten     V * @(TRANS eat)
+              @PASTP.
+
+seen      V * @(TRANS see)
+              @PASTP.
+
+
+given     V * @(DITRANS give)
+              @PASTP.
+
+"Verb past form"
+
+slept     V * @(INTRANS sleep)
+              @PAST-BOTH.
+
+devoured  V * @(TRANS devour)
+              @PAST-BOTH.
+
+chased    V * @(TRANS chase)
+              @PAST-BOTH.
+
+ate       V * @(OPT-TRANS eat)
+              @PAST.
+
+saw       V * @(TRANS see)
+              @PAST.
+
+gave      V * @(DITRANS give)
+              @PAST.
+
+waited    V * { @(INTRANS wait)
+              | @(INTRANS-OBL wait)
+                { (^ OBL ANIMATE) =c +
+                  @(OT-MARK AnimObl) }
+                { (^ OBL PFORM) =c on
+                | (^ OBL PFORM) =c for 
+                | (^ OBL PFORM) =c by } }
+              @PAST.
+
+talked    V * { @(INTRANS talk)
+              | @(INTRANS-OBL talk)
+                { (^ OBL ANIMATE) =c +
+                  @(OT-MARK AnimObl) }
+                { (^ OBL PFORM) =c to
+                | (^ OBL PFORM) =c with } }
+              @PAST.
+
+argued    V * { @(INTRANS argue)
+              | @(INTRANS-OBL argue)
+                { (^ OBL ANIMATE) =c +
+                  @(OT-MARK AnimObl) }
+                (^ OBL PFORM) =c with }
+              @PAST.
+
+sat       V * @(INTRANS-OBL sit)
+              (^ OBL PFORM) =c on
+              @PAST.
+
+put       V * @(DITRANS-OBL put)
+          @PAST-BOTH.
+
+"Adjectives"
+
+small     A * @(ADJ small).
+
+black     A * @(ADJ black).
+
+hungry    A * @(ADJ hungry).
+
+smart     A * @(ADJ smart).
+
+grey      A * @(ADJ grey).
+
+"Adverbs"
+
+quickly   ADV * @(ADV quickly).
+
+very      ADV * @(ADV very).
+
+"Personal pronouns - subject (nominative)"
+
+I         PRON * @(PRON I 1 sg pers)
+                 @(CASE nom).
+
+he        PRON * @(PRON he 3 sg pers)
+                 @(CASE nom).
+
+she       PRON * @(PRON she 3 sg pers)
+                 @(CASE nom).
+
+we        PRON * @(PRON we 1 pl pers)
+                 @(CASE nom).
+
+they      PRON * @(PRON they 3 pl pers)
+                 @(CASE nom).
+
+you       PRON * { @(PRON you 2 sg pers)
+                 | @(PRON you 2 pl pers) }.
+
+it        PRON * @(PRON it 3 sg pers).
+
+"Personal pronouns - object (accusative)"
+
+him       PRON * @(PRON he 3 sg pers)
+                 @(CASE acc).
+
+her       PRON * @(PRON her 3 sg pers)
+                 @(CASE acc).
+
+them      PRON * @(PRON them 3 pl pers)
+                 @(CASE acc).
+
+us        PRON * @(PRON us 1 pl pers)
+                 @(CASE acc).
+
+"Possessive pronouns - category PRON, routed via (^ SPEC POSS)=! in NP rule"
+
+my        PRON * @(PRON my 1 sg poss).
+
+My        PRON * @(PRON my 1 sg poss).
+
+her       PRON * @(PRON her 3 sg poss).
+
+Her       PRON * @(PRON her 3 sg poss).
+
+his       PRON * @(PRON his 3 sg poss).
+
+His       PRON * @(PRON his 3 sg poss).
+
+their     PRON * @(PRON their 3 pl poss).
+
+our       PRON * @(PRON our 1 pl poss).
+
+your      PRON * { @(PRON your 2 sg poss)
+                 | @(PRON your 2 pl poss) }.
+
+
+"Determiners"
+the       D * (^ SPEC PRED) = 'the'
+              (^ SPEC DEF) = +.
+
+a        D * (^ SPEC PRED) = 'a'
+              (^ SPEC DEF) = -.
+
+"Auxiliary"
+
+was       AUX * (^ TNS-ASP TENSE) = past
+                (^ MOOD) = indicative
+                (^ PASSIVE) = +
+                { (^ SUBJ PERS) = 1
+                | (^ SUBJ PERS) = 3 }
+                (^ SUBJ NUM) = sg.
+
+were      AUX * (^ TNS-ASP TENSE) = past
+                (^ MOOD) = indicative
+                (^ PASSIVE) = +
+                (^ SUBJ NUM) = pl.
+
+
+"Prepositions"
+"by and to are non-semantic (oblique markers)"
+by        P * (^ PTYPE) = nosem
+              (^ PFORM) = by.
+
+to        P * (^ PTYPE) = nosem
+              (^ PFORM) = to.
+
+"on, in, with can be semantic adjuncts or non-semantic obliques"
+on        P * @(PREP on).
+
+in        P * @(PREP in).
+
+with      P * @(PREP with).
+
+for       P * @(PREP for).
+
+----
+

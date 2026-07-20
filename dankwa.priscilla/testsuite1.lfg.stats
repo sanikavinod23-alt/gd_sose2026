@@ -1,0 +1,87 @@
+((1) (1 0.017 14) (5 words))
+((2) (1 0.005 9) (3 words))
+((3) (1 0.004 14) (5 words))
+((4) (1 0.006 14) (5 words))
+((5) (1 0.004 14) (5 words))
+((6) (1+2 0.009 24) (7 words))
+((7) (1+2 0.005 24) (7 words))
+((8) (1 0.004 14) (5 words))
+((9) (1 0.005 14) (5 words))
+((10) (1 0.005 9) (3 words))
+((11) (1 0.005 14) (5 words))
+((12) (2 0.007 23) (5 words))
+((13) (1 0.006 19) (7 words))
+((14) (1 0.005 17) (6 words))
+((15) (1 0.003 10) (3 words))
+((16) (1 0.004 12) (4 words))
+((17) (0 0.005 16) (6 words))
+((18) (0 0.004 9) (3 words))
+((19) (0 0.004 9) (3 words))
+((20) (0 0.005 0) (3 words))
+((21) (2 0.015 33) (8 words))
+((22) (2 0.013 33) (8 words))
+((23) (2+4 0.012 36) (9 words))
+((24) (2+6 0.009 46) (10 words))
+((25) (0 0.004 0) (8 words))
+((26) (0 0.005 0) (9 words))
+((27) (1 0.006 20) (6 words))
+((28) (1 0.006 16) (4 words))
+((29) (1 0.006 18) (5 words))
+((30) (1+1 0.006 27) (7 words))
+((31) (1+1 0.007 38) (9 words))
+((32) (1 0.005 20) (6 words))
+((33) (1 0.005 20) (6 words))
+((34) (2 0.008 29) (8 words))
+((35) (1 0.006 25) (8 words))
+((36) (1+1 0.006 29) (8 words))
+((37) (2+3 0.015 42) (10 words))
+((38) (1 0.009 20) (6 words))
+((39) (1+1 0.010 38) (9 words))
+((40) (2 0.012 32) (9 words))
+((41) (2 0.009 27) (7 words))
+((42) (6 0.010 36) (5 words))
+((43) (2 0.010 24) (6 words))
+((44) (2 0.009 24) (6 words))
+((45) (4 0.007 22) (5 words))
+((46) (10 0.007 27) (3 words))
+((47) (2 0.045 16) (5 words))
+((48) (0 0.010 0) (4 words))
+((49) (0 0.012 24) (3 words))
+((50) (0 0.009 27) (6 words))
+((51) (4 0.007 28) (5 words))
+((52) (4 0.007 25) (3 words))
+((53) (4+4 0.010 45) (8 words))
+((54) (2+4 0.007 45) (8 words))
+((55) (2 0.006 30) (6 words))
+((56) (40 0.013 69) (8 words))
+((57) (48 0.012 95) (12 words))
+((58) (960 0.018 135) (14 words))
+((59) (0 0.003 0) (5 words))
+((60) (0 0.003 0) (7 words))
+
+XLE release of Mar 17, 2017 21:12.
+Grammar = /home/sapphpearson/grammar/gd_sose2026/dankwa.priscilla/grammar1.lfg.
+Grammar last modified on Jul 03, 2026 09:40.
+Host machine is penguin.
+60 sentences, 0 errors, 0 mismatches
+11 sentences had 0 parses
+49 good sentences
+26 sentences had exactly one grammatical parse
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum scratch storage per sentence = 1.00 MB (#58)
+maximum raw subtrees per sentence = 486 (#58)
+maximum event count per sentence = 25655
+average event count per graph = 112.640
+tokens = 3.5%, morph = 14.3%, multiword = 0.0%, lex = 13.7%, chart = 22.3%,
+unifier = 37.7%, completer = 2.6%, solver = 5.9%, output = 0.0%
+max_alloc_mem = 1320.76 MB
+0.490 CPU secs total, 0.045 CPU secs max
+elapsed time = 1 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10     47     11   6.19     0.008     25.21        2.68
+  11-20      2      0  13.00     0.015    115.00      504.00
+    all     49     11   6.47     0.009     28.88       23.14
+0.08 of the variance in seconds is explained by the number of subtrees

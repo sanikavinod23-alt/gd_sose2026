@@ -1,0 +1,50 @@
+PRACTICAL WORK 8
+I implemented the control and raising verbs in the grammar, but because of the solutions made previously to implement passive, all the new sentences in the past tense had two different readings. I changed the rules and verb templates to make them similar to the reference grammar. It fixed the passive readings in the new sentences but broke a bunch of sentences from the previous assignments. I could not fix some of them.
+
+I also made changes to the pronoun rules and lexical entries and organised them according to the reference grammar. Some of the pronouns stopped working, and I could not find a solution.
+
+PRACTICAL WORK 7
+One of the biggest problems in the current version of the grammar is the presence of lexical entries for animate nouns. Since in the previous assignment, I could not implement the animacy constraint via the OT-Mark, I did it through constraining equations in the verbal lexical entries. And since the morphological analyser does not provide an animacy tag, I cannot for now delete the animacy template without making some passive sentences ungrammatical.
+
+Secondly, the words like Jordan and Ireland are now a source of ambiguity, as they can be both locations and surnames.
+
+I could not find a way to fix any of the above problems yet.
+
+PRACTICAL WORK 6
+I have encountered several problems in this practical work.
+
+The line (^ TENSE) ~= past in the imperative rule seems redundant, and we did not have it in the original rule, but I could not find another way to ensure the sentence "gave a bone to the dog!" is ruled out as ungrammatical.
+
+I also tried to realise the animacy constraint similarly to the reference grammar via the OT-Mark "+AnimObl", but it did not work out.
+
+PRACTICAL WORK 5
+The two sentences below appear to be parsed accurately after adding another OT-mark before +PPattach to give preference to the OBL-AG reading.
+
+the dog was given a bone by the girl
+a bone was given to the dog by the girl
+
+I added an ANIM feature to nouns and a constraint in the lexical entry of the verb wait to ensure the OBL reading only when the preposition is non-semantic and the object of the PP has ANIM+.
+Since the lexical entry now looks bulky, it appears not to be the most efficient solution, but I could not achieve better results by making other changes.
+
+the gorilla waited on the bench
+the zookeeper waited on the gorilla
+
+Both sentences below receive accurate readings with by being read as ADJUNCTs.
+
+the zookeeper waited by the bench
+the zookeeper waited by the bench in the garden
+
+The sentences below receive accurate readings too.
+
+the gorilla in the cage devoured a banana
+the gorilla devoured a banana in the cage
+
+The sentences below have one accurate reading. But similarly to the verb "waited", the lexical entry of "put" stores a lot of information. I could not think of the way to organise it in a different way.
+
+the gorilla put the banana in the cage
+a banana was put in the cage by the gorilla
+regenerate-testfile filename.lfg,
+
+Regeneration revealed a problem in the grammar. Many of the regenerated sentences had the optional auxiliary {was|}, even though it had not been present in the source sentence.
+I also noticed that after all the changes in the grammar, sentences like "The dog was slept" became marked as correct, even though the lexical entry of the word "slept" only contained its past tense form and not the past participle.
+Adding (^ PASSIVE) = + to the lexical entries of the auxiliaries fixed both problems, but it does not appear efficient as they will have to be rewritten again to ensure they can be used in non-passive sentences.

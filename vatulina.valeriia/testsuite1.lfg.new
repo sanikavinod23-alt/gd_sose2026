@@ -1,0 +1,337 @@
+#correct sentence 1 - intransitive verb
+
+the cat sleeps (1 0.003 21)
+
+#correct sentence 2 - transitive verb
+
+the dog devours the bone (1 0.002 31)
+
+#correct sentence 3 - transitive verb
+
+the cats chase a mouse (2 0.002 31)
+
+#correct sentence 4 - optionally transitive verb
+
+the dog eats (1 0.002 21)
+
+#correct sentence 5 - optionally transitive verb
+
+the cats eat a treat (2 0.002 31)
+
+#incorrect sentence 6 - subject-verb agreement violation
+
+the girl see the gorilla (1 0.002 24)
+
+#incorrect sentence 7 - count noun without determiner
+
+cat chases dogs (0 0.001 0)
+
+#incorrect sentence 8 - subject-verb agreement violation
+
+gorilla devour bananas (0 0.001 0)
+
+#incorrect sentence 9 - subject-verb agreement violation
+
+gorillas devours banana (0 0.001 0)
+
+#correct sentence 10
+
+the girl was seen by the gorilla (1+2 0.002 34)
+
+#correct sentence 11
+
+the cake was eaten (0 0.001 0)
+
+#correct sentence 12
+
+the cat was chased (1 0.001 23)
+
+#correct sentence 13
+
+the bone was devoured by a dog (1+2 0.002 41)
+
+# incorrect sentence 14 - passivisation rule violation
+
+the girl was saw by the gorilla (0 0.001 14)
+
+#incorrect sentence 15 - passivisation rule violation
+
+the dog was slept (0 0.001 0)
+
+#correct sentence 16
+
+the girl gave the dog a bone (1 0.002 34)
+
+#correct sentence 17
+
+the girl gives the gorilla bananas (0 0.001 32)
+
+#correct sentence 18
+
+gorillas devour bananas (0 0.001 0)
+
+#correct sentence 19
+
+a gorilla devours bananas (0 0.001 29)
+
+#incorrect sentence 20
+
+the girl give the gorilla bananas (0 0.001 32)
+
+#incorrect sentence 21
+
+gorillas devours bananas (0 0.001 0)
+
+#incorrect sentence 22
+
+gorilla devour bananas (0 0.001 0)
+
+#incorrect sentence 23
+
+gorillas devours banana (0 0.001 0)
+
+#correct sentence 24
+
+the girl gives a bone to the dog (1 0.002 48)
+
+#correct sentence 25
+
+the zookeeper gave a banana to the gorilla (0 0.001 0)
+
+#correct sentence 26
+
+the dog was given a bone by the girl (1+3 0.002 49)
+
+#correct sentence 27
+
+a bone was given to the dog by the girl (1+2 0.003 61)
+
+#incorrect sentence 28
+
+the girl gave to the dog a bone (0 0.001 0)
+
+#incorrect sentence 29
+
+the dog was given by the girl a bone (0 0.001 0)
+
+#correct sentence 30
+
+the waiter waited on the table (2+4 0.002 37)
+
+#correct sentence 31
+
+Jordan talked to Sam (8+8 0.002 46)
+
+#correct sentence 32
+
+Alex argued with a gorilla (2+4 0.001 34)
+
+#correct sentence 33
+
+Sam saw a monkey with a telescope (2+2 0.002 48)
+
+#correct sentence 34
+
+the dog sat on the bench with a book (0 0.001 0)
+
+#correct sentence 35
+
+the small dog slept (1 0.001 27)
+
+#correct sentence 36
+
+the small black dog slept (1 0.001 33)
+
+#correct sentence 37
+
+the small black hungry dog ate bones (1 0.001 47)
+
+#correct sentence 38
+
+the gorilla devoured the banana quickly (0 0.001 0)
+
+#correct sentence 39
+
+the small black hungry dog ate bones quickly (0 0.001 0)
+
+#correct sentence 40
+
+the very small gorilla slept (1 0.001 29)
+
+#correct sentence 41
+
+the very very very small gorilla slept (1 0.001 33)
+
+#correct sentence 42
+
+the small, black, hungry dog slept. (1 0.001 45)
+
+#correct sentence 43
+
+he sleeps (0 0.001 0)
+
+#correct sentence 44
+
+she devoured it (0 0.001 0)
+
+#correct sentence 45
+
+they devoured them (0 0.001 0)
+
+#correct sentence 46
+
+I waited for him for hours (0 0.001 0)
+
+#correct sentence 47
+
+my dog sleeps (0 0.001 21)
+
+#correct sentence 48
+
+she gave us her banana (0 0.001 0)
+
+#OT mark test
+
+the dog was given a bone by the girl (1+3 0.002 49)
+
+#OT mark test
+
+a bone was given to the dog by the girl (1+2 0.002 61)
+
+#OT mark test
+
+the gorilla waited on the bench (2 0.001 37)
+
+#OT mark test
+
+the zookeeper waited on the gorilla (0 0.001 0)
+
+#OT mark test
+
+the gorilla put the banana in the cage (1 0.002 44)
+
+#OT mark test
+
+the gorilla in the cage devoured a banana (1 0.001 47)
+
+#OT mark test
+
+the gorilla devoured a banana in the cage (1+1 0.002 51)
+
+#OT mark test
+
+a banana was put in the cage by the gorilla (1+3 0.002 57)
+
+#OT mark test
+
+the zookeeper waited by the bench (0 0.001 0)
+
+#OT mark test
+
+the zookeeper waited by the bench in the garden (0 0.001 0)
+
+#imperative correct sentence 49
+
+eat the beans! (1+2 0.001 23)
+
+#imperative correct sentence 50
+
+give the gorilla a banana! (1+2 0.001 26)
+
+#imperative correct sentence 51
+
+think a creative thought! (1+2 0.001 29)
+
+#imperative incorrect sentence 52
+
+eats the beans! (0 0.001 20)
+
+#imperative incorrect sentence 53
+
+gave a bone to the dog! (0 0.001 0)
+
+#coordination correct sentence 54
+
+Sophie educated the bright robot and the intelligent child. (1 0.002 53)
+
+#coordination correct sentence 55
+
+Sophie educated the bright and efficient robot. (1 0.002 62)
+
+#coordination correct sentence 56
+
+lazy leopards sleep and eat. (0 0.001 0)
+
+#coordination correct sentence 57
+
+Mary and the gorilla like bananas. (0 0.001 39)
+
+#coordination correct sentence 58
+
+the gorilla and I like bananas. (0 0.001 0)
+
+#coordination correct sentence 59
+
+you and Mary like bananas. (0 0.001 0)
+
+#correct sentence 60
+
+Sophie implemented a new grammar. (1 0.001 41)
+
+#correct sentence 61
+
+lazy tigers yawn. (2 0.001 27)
+
+#correct sentence 62
+
+the curious leprechaun stole a goat in Ireland. (2+2 0.002 64)
+
+#correct sentence 63
+
+the house was built by a diligent worker. (1+2 0.002 49)
+
+#correct sentence 64
+
+the building houses a happy family. (1 0.001 39)
+
+#correct sentence 65
+
+John promised the cat to eat yoghurt. (1 0.001 51)
+
+#correct sentence 66
+
+John persuaded the cat to eat yoghurt. (1 0.001 51)
+
+#correct sentence 67
+
+John wanted to eat yoghurt. (1 0.001 41)
+
+#correct sentence 68
+
+John wanted the cat to eat yoghurt. (1 0.001 51)
+
+#correct sentence 69
+
+John thought that the cat ate the yoghurt. (1 0.001 54)
+
+#correct sentence 70
+
+John persuaded Mary to want to eat beans. (1 0.002 71)
+
+#correct sentence 71
+
+John wanted Mary to think that Bill persuaded Kim to eat beans. (6 0.002 117)
+
+#correct sentence 72
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans. (6 0.002 131)
+
+#correct sentence 73
+
+it seems to be raining. (0 0.001 0)
+
+#correct sentence 74
+
+Mary seems to be eating a banana. (1 0.001 48)
+
+# 84 sentences, 0.116 CPU secs total, 0.003 CPU secs max (07/03/26)

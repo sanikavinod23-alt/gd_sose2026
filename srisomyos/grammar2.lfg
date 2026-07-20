@@ -1,0 +1,244 @@
+DEMO	ENGLISH		CONFIG	(1.0)
+	ROOTCAT		S.
+  	FILES	.
+	LEXENTRIES	(DEMO ENGLISH).
+	TEMPLATES	(DEMO ENGLISH). 
+	RULES	(DEMO ENGLISH).
+	GOVERNABLERELATIONS		SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+	SEMANTICFUNCTIONS	ADJUNCT  TOPIC FOCUS POSS STANDARD.
+	NONDISTRIBUTIVES	NUM PERS CONJ-FORM.
+	EPSILON		e.
+	OPTIMALITYORDER		NOGOOD.
+
+----
+
+DEMO	ENGLISH		RULES	(1.0)
+
+	S	-->		NP:	(^ SUBJ)=!
+	          		(! CASE)=nom;
+ 	      		VP: ^=!.
+
+	VP	-->		(AUX)
+				(V:	^=!) 
+ 	  			(NP:	(^ OBJ)=!
+	       				(! CASE)=acc)
+				(NP:	(^ OBJ2)=!)
+				(PP: (^ OBL-AG) = !).
+
+	NP	-->		(D)
+ 	  			N. 
+
+	PP	-->		P
+				NP.
+
+----
+
+DEMO	ENGLISH		TEMPLATES	(1.0)
+
+	TENSE(T)	= (^ TENSE) = T.
+
+	VPRES	=	@(TENSE pres)
+				(^ MOOD) = indicative.
+
+	VPAST	=	@(TENSE past)
+				(^ MOOD) = indicative.
+
+	PRED(P) = (^ PRED) = 'P'. 
+
+	CN(P N)	=	@(PRED P)
+	            (^ NUM) = N
+	            (^ PERS) = 3
+	            (^ NTYPE) = count
+				{ (^ NUM) =c sg (^ DEF) | (^ NUM) =c pl }. 
+	
+	INTRANS(P)	=	(^ PRED) = 'P<(^ SUBJ)>'
+					(^ PASSIVE) = -.
+	TRANS(P)	=	@(PASS (^ PRED) = 'P<(^ SUBJ) (^ OBJ)>').
+	DITRANS(P)	=	@(PASS (^ PRED) = 'P<(^ SUBJ) (^ OBJ) (^ OBJ2)>').
+
+	OPT-TRANS(P)	=	{ @(INTRANS P) | @(TRANS P) }.
+
+	PASS(FRAME)	=	{ 	FRAME
+						(^ PASSIVE) = - | 
+						FRAME
+						(^ PASSIVE) = +
+						(^ PARTICIPLE) =c past
+						(^ OBJ)	-->	(^ SUBJ) 
+						{ (^ SUBJ) --> (^ OBL-AG) | (^ SUBJ) --> NULL }
+					}.
+
+	PASTP = (^ PARTICIPLE) = past. 
+
+	SG-AGR	= 	(^ SUBJ PERS) = 3
+	   			(^ SUBJ NUM) = sg. 
+	
+	BARE-AGR 	=	{ (^ SUBJ NUM) = pl | 
+					  (^ SUBJ NUM) = sg 
+					  (^ SUBJ PERS) ~= 3 }.
+
+	BE	=	{ (^ PARTICIPLE) =c past (^ PASSIVE) =c + | (^ PRED) = 'be<(^ SUBJ)(^ OBJ)>' }.
+
+----
+
+DEMO	ENGLISH		LEXICON	(1.0)
+
+"Noun"
+
+	bone		N	*	@(CN bone sg).
+	bones		N	*	@(CN bone pl).
+
+	dog 		N	*	@(CN dog sg).
+	dogs 		N	*	@(CN dog pl).
+
+	cat 		N	*	@(CN cat sg).
+	cats 		N	*	@(CN cat pl).
+
+	mouse 		N	*	@(CN mouse sg).
+	mice 		N	*	@(CN mouse pl).
+
+	treat 		N	*	@(CN treat sg).
+	treats 		N	*	@(CN treat pl).
+
+	boy 		N	*	@(CN boy sg).
+	boys 		N	*	@(CN boy pl).
+
+	girl 		N	*	@(CN girl sg).
+	girls 		N	*	@(CN girl pl).
+
+	cake 		N	*	@(CN cake sg).
+	cakes 		N	*	@(CN cake pl).
+
+	banana 		N	*	@(CN banana sg).
+	bananas 	N	*	@(CN banana pl).
+	
+	gorilla 	N	*	@(CN gorilla sg).
+	gorillas 	N	*	@(CN gorilla pl).
+	
+
+"Verb"
+
+	devours 	V 	*  	@(TRANS devour)
+						@VPRES
+						@SG-AGR.
+
+	devour		V 	*  	@(TRANS devour)
+						@VPRES
+						@BARE-AGR.
+	
+	devoured 	V 	*  	@(TRANS devour)
+						{ @PASTP | @VPAST }.
+
+	appears 	V 	*  	@(INTRANS appear)
+						@VPRES
+						@SG-AGR.
+
+	appear 		V 	*  	@(INTRANS appear)
+						@VPRES
+						@BARE-AGR.
+	
+	appeared 	V 	*  	@(INTRANS appear)
+						{ @PASTP | @VPAST }.
+
+	eats 		V 	*	@(OPT-TRANS eat)
+						@VPRES
+						@SG-AGR.
+	
+	eat 		V	*	@(OPT-TRANS eat)
+						@VPRES
+						@BARE-AGR.
+	
+	ate 		V 	*	@(OPT-TRANS eat)
+						@VPAST.
+
+	eaten 		V 	*	@(OPT-TRANS eat)
+						@PASTP.
+
+	sees 		V 	*  	@(TRANS see)
+						@VPRES
+						@SG-AGR.
+
+	see 		V 	*  	@(TRANS see)
+						@VPRES
+						@BARE-AGR.
+
+	saw 		V 	*	@(TRANS see)
+						@VPAST.
+	
+	seen 		V 	*	@(TRANS see)
+						@PASTP.
+	
+	chases 		V 	*	@(TRANS chase)
+						@VPRES
+						@SG-AGR.
+	
+	chase 		V	*	@(TRANS chase)
+						@VPRES
+						@BARE-AGR.
+	
+	chased 		V	*	@(TRANS chase)
+						{ @PASTP | @VPAST }.
+
+	sleeps 		V 	*  	@(INTRANS sleep)
+						@VPRES
+						@SG-AGR.
+	
+	sleep 		V 	*  	@(INTRANS sleep)
+						@VPRES
+						@BARE-AGR.
+
+	slept 		V 	*  	@(INTRANS sleep)
+						@VPAST.
+
+	gives 		V 	*	@(DITRANS give)
+						@VPRES
+						@SG-AGR.
+
+	give 		V 	*	@(DITRANS give)
+						@VPRES
+						@BARE-AGR.
+
+	gave 		V 	*	@(DITRANS give)
+						@VPAST.
+
+	given 		V 	*	@(DITRANS give)
+						@PASTP.
+
+"Auxiliary"
+
+	is		AUX		*	@(TENSE pres)
+						(^ SUBJ PERS) = 3
+						(^ SUBJ NUM) = sg
+						@BE.
+
+	am		AUX		*	@(TENSE pres)
+						(^ SUBJ PERS) = 1
+						(^ SUBJ NUM) = sg
+						@BE.
+	
+	are		AUX		*	@(TENSE pres)
+						{ (^ SUBJ PERS) = 2 | (^ SUBJ PERS) = 3 }
+						(^ SUBJ NUM) = pl
+						@BE.
+
+	was		AUX		*	@(TENSE past)
+						{ (^ SUBJ PERS) = 1 | (^ SUBJ PERS) = 3 }
+						(^ SUBJ NUM) = sg
+						@BE.
+
+	were	AUX		*	@(TENSE past)
+						{ (^ SUBJ PERS) = 2 | (^ SUBJ PERS) = 3 }
+						(^ SUBJ NUM) = pl
+						@BE.
+
+"Preposition"
+
+	by 	  P 	* (^ PFORM) = by.
+
+"Determiner"
+
+	the		D	* 	(^ DEF) = +.
+
+	a   	D	* 	(^ DEF) = -
+					(^ NUM) = sg.
+
+----

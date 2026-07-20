@@ -1,0 +1,421 @@
+% regenerate-testfile testsuite4.lfg
+parsing sentences 1 to end in testsuite4.lfg...
+
+Regenerating 'the dog devours bones'
+
+The dog devours bones.
+
+1:REGENERATION DID NOT MATCH 'the dog devours bones'.
+((1) (1 0.009 37) (4 words))
+((2) (0 0.002 0) (4 words))
+((3) (0 0.001 0) (4 words))
+((4) (0 0.001 0) (3 words))
+
+Regenerating 'the dog devours a bone'
+
+The dog devours a bone.
+
+5:REGENERATION DID NOT MATCH 'the dog devours a bone'.
+((5) (1 0.006 41) (5 words))
+
+ Chart unconnected because of unknown words
+ Word possibly causing problem: park 
+((6) (0 0.001 0) (7 words))
+
+Regenerating 'a dog sleeps'
+
+A dog sleeps.
+
+7:REGENERATION DID NOT MATCH 'a dog sleeps'.
+((7) (1 0.004 29) (3 words))
+
+Regenerating 'a dog chases a bone'
+
+A dog chases a bone.
+
+8:REGENERATION DID NOT MATCH 'a dog chases a bone'.
+((8) (1 0.003 41) (5 words))
+
+Regenerating 'the cat sleeps'
+
+The cat sleeps.
+
+9:REGENERATION DID NOT MATCH 'the cat sleeps'.
+((9) (1 0.003 29) (3 words))
+
+Regenerating 'the dog devours the bone'
+
+The dog devours the bone.
+
+10:REGENERATION DID NOT MATCH 'the dog devours the bone'.
+((10) (1 0.004 41) (5 words))
+
+Regenerating 'the cats chase a mouse'
+
+The cats chase a mouse.
+
+11:REGENERATION DID NOT MATCH 'the cats chase a mouse'.
+((11) (1 0.003 40) (5 words))
+
+Regenerating 'the dog eats'
+
+The dog eats.
+
+12:REGENERATION DID NOT MATCH 'the dog eats'.
+((12) (1 0.002 29) (3 words))
+
+Regenerating 'the cats eat a treat'
+
+The cats eat a treat.
+
+13:REGENERATION DID NOT MATCH 'the cats eat a treat'.
+((13) (1 0.003 40) (5 words))
+((14) (0 0.001 0) (5 words))
+((15) (0 0.001 0) (3 words))
+((16) (0 0.001 0) (3 words))
+((17) (0 0.001 0) (3 words))
+
+Regenerating 'the girl was seen by the gorilla'
+
+The girl was seen by the gorilla.
+
+18:REGENERATION DID NOT MATCH 'the girl was seen by the gorilla'.
+((18) (1 0.003 49) (7 words))
+
+Regenerating 'the cake was eaten'
+
+The cake was eaten.
+
+19:REGENERATION DID NOT MATCH 'the cake was eaten'.
+((19) (1 0.002 32) (4 words))
+
+Regenerating 'the cat was chased'
+
+The cat was chased.
+
+20:REGENERATION DID NOT MATCH 'the cat was chased'.
+((20) (1 0.002 32) (4 words))
+
+Regenerating 'the bone was devoured by a dog'
+
+The bone was devoured by a dog.
+
+21:REGENERATION DID NOT MATCH 'the bone was devoured by a dog'.
+((21) (1 0.003 49) (7 words))
+((22) (0 0.001 0) (7 words))
+((23) (0 0.001 0) (4 words))
+
+Regenerating 'the girl gave the dog a bone'
+
+The girl gave the dog a bone.
+
+24:REGENERATION DID NOT MATCH 'the girl gave the dog a bone'.
+((24) (1 0.002 52) (7 words))
+
+Regenerating 'the girl gives the gorilla bananas'
+
+The girl gives the gorilla bananas.
+
+25:REGENERATION DID NOT MATCH 'the girl gives the gorilla bananas'.
+((25) (1 0.002 49) (6 words))
+
+Regenerating 'gorillas devour bananas'
+
+Gorillas devour bananas.
+
+26:REGENERATION DID NOT MATCH 'gorillas devour bananas'.
+((26) (1 0.002 32) (3 words))
+
+Regenerating 'a gorilla devours bananas'
+
+A gorilla devours bananas.
+
+27:REGENERATION DID NOT MATCH 'a gorilla devours bananas'.
+((27) (1 0.004 37) (4 words))
+((28) (0 0.001 0) (6 words))
+((29) (0 0.001 0) (3 words))
+((30) (0 0.001 0) (3 words))
+((31) (0 0.001 0) (3 words))
+
+Regenerating 'the girl gives a bone to the dog'
+
+The girl gives a bone to the dog.
+
+32:REGENERATION DID NOT MATCH 'the girl gives a bone to the dog'.
+((32) (1 0.005 58) (8 words))
+
+Regenerating 'the zookeeper gave a banana to the gorilla'
+
+The zookeeper gave a banana to the gorilla.
+
+33:REGENERATION DID NOT MATCH 'the zookeeper gave a banana to the gorilla'.
+((33) (1 0.004 57) (8 words))
+
+Regenerating 'the dog was given a bone by the girl'
+
+The dog was given a bone by the girl.
+
+34:REGENERATION DID NOT MATCH 'the dog was given a bone by the girl'.
+((34) (1 0.003 66) (9 words))
+
+Regenerating 'a bone was given to the dog by the girl'
+
+A bone was given to the dog by the girl.
+
+35:REGENERATION DID NOT MATCH 'a bone was given to the dog by the girl'.
+((35) (1 0.004 73) (10 words))
+((36) (0 0.001 0) (8 words))
+((37) (0 0.001 0) (9 words))
+
+Regenerating 'the waiter waited on the table'
+
+The waiter waited on the table.
+
+38:REGENERATION DID NOT MATCH 'the waiter waited on the table'.
+((38) (1 0.002 47) (6 words))
+
+Regenerating 'Jordan talked to Sam'
+
+Jordan talked to Sam.
+
+((39) (1 0.002 39) (4 words))
+
+Regenerating 'Alex argued with a gorilla'
+
+Alex argued with a gorilla.
+
+((40) (1 0.002 43) (5 words))
+
+Regenerating 'Sam saw a monkey with a telescope'
+
+Sam saw a monkey with a telescope.
+
+((41) (1 0.004 58) (7 words))
+
+Regenerating 'the dog sat on the bench with a book'
+
+The dog sat on the bench with a book.
+
+42:REGENERATION DID NOT MATCH 'the dog sat on the bench with a book'.
+((42) (1 0.004 66) (9 words))
+
+Regenerating 'the small dog slept'
+
+The small dog slept.
+
+43:REGENERATION DID NOT MATCH 'the small dog slept'.
+((43) (1 0.002 38) (4 words))
+
+Regenerating 'the small black dog slept'
+
+The {black small|small black} dog slept.
+
+44:REGENERATION DID NOT MATCH 'the small black dog slept'.
+((44) (2 0.003 53) (5 words))
+
+Regenerating 'the small black hungry dog ate bones'
+
+The 
+  { {black hungry|hungry black} small
+   |small {black hungry|hungry black}
+   |black small hungry
+   |hungry small black} 
+dog ate bones.
+
+45:REGENERATION DID NOT MATCH 'the small black hungry dog ate bones'.
+((45) (6 0.004 83) (7 words))
+
+Regenerating 'the gorilla devoured the banana quickly'
+
+The gorilla devoured the banana quickly.
+
+46:REGENERATION DID NOT MATCH 'the gorilla devoured the banana quickly'.
+((46) (1 0.003 42) (6 words))
+
+Regenerating 'the small black hungry dog ate bones quickly'
+
+The 
+  { small {hungry black|black hungry}
+   |{black hungry|hungry black} small
+   |black small hungry
+   |hungry small black} 
+dog ate bones quickly.
+
+47:REGENERATION DID NOT MATCH 'the small black hungry dog ate bones quickly'.
+((47) (6 0.005 85) (8 words))
+
+Regenerating 'the very small gorilla slept'
+
+The very small gorilla slept.
+
+48:REGENERATION DID NOT MATCH 'the very small gorilla slept'.
+((48) (1 0.004 40) (5 words))
+
+Regenerating 'the very very very small gorilla slept'
+
+The very very very small gorilla slept.
+
+49:REGENERATION DID NOT MATCH 'the very very very small gorilla slept'.
+((49) (1 0.003 57) (7 words))
+(parsing testsuite4.lfg)
+
+Regenerating 'the small, black, hungry dog slept.'
+
+The 
+  { {black hungry|hungry black} small
+   |small {black hungry|hungry black}
+   |black small hungry
+   |hungry small black} 
+dog slept.
+
+50:REGENERATION DID NOT MATCH 'the small, black, hungry dog slept.'.
+((50) (6 0.004 75) (6 words))
+
+Regenerating 'he sleeps'
+
+He sleeps.
+
+51:REGENERATION DID NOT MATCH 'he sleeps'.
+((51) (1 0.003 25) (2 words))
+
+Regenerating 'she devoured it'
+
+She devoured it.
+
+52:REGENERATION DID NOT MATCH 'she devoured it'.
+((52) (1 0.003 32) (3 words))
+
+Regenerating 'they devoured them'
+
+They devoured them.
+
+53:REGENERATION DID NOT MATCH 'they devoured them'.
+((53) (1 0.003 32) (3 words))
+
+Regenerating 'I waited for him for hours'
+
+I waited for {hours for him.|him for hours.}
+
+54:REGENERATION DID NOT MATCH 'I waited for him for hours'.
+((54) (2 0.004 53) (6 words))
+
+Regenerating 'my dog sleeps'
+
+My dog sleeps.
+
+55:REGENERATION DID NOT MATCH 'my dog sleeps'.
+((55) (1 0.002 28) (3 words))
+
+Regenerating 'she gave us her banana'
+
+She gave us her banana.
+
+56:REGENERATION DID NOT MATCH 'she gave us her banana'.
+((56) (1 0.002 43) (5 words))
+((57) (0 0.001 0) (2 words))
+((58) (0 0.001 0) (3 words))
+((59) (0 0.001 0) (3 words))
+((60) (0 0.001 0) (6 words))
+
+Regenerating 'the dog was given a bone by the girl'
+
+The dog was given a bone by the girl.
+
+61:REGENERATION DID NOT MATCH 'the dog was given a bone by the girl'.
+((61) (1 0.003 66) (9 words))
+
+Regenerating 'a bone was given to the dog by the girl'
+
+A bone was given to the dog by the girl.
+
+62:REGENERATION DID NOT MATCH 'a bone was given to the dog by the girl'.
+((62) (1 0.005 73) (10 words))
+
+Regenerating 'the gorilla waited on the bench'
+
+The gorilla waited on the bench.
+
+63:REGENERATION DID NOT MATCH 'the gorilla waited on the bench'.
+((63) (1 0.003 47) (6 words))
+
+Regenerating 'the zookeeper waited on the gorilla'
+
+The zookeeper waited on the gorilla.
+
+64:REGENERATION DID NOT MATCH 'the zookeeper waited on the gorilla'.
+((64) (1 0.003 47) (6 words))
+
+Regenerating 'the gorilla put the banana in the cage'
+
+The gorilla put the banana in the cage.
+
+65:REGENERATION DID NOT MATCH 'the gorilla put the banana in the cage'.
+((65) (1 0.003 62) (8 words))
+
+Regenerating 'the gorilla in the cage devoured a banana'
+
+The gorilla in the cage devoured a banana.
+
+66:REGENERATION DID NOT MATCH 'the gorilla in the cage devoured a banana'.
+((66) (1 0.003 62) (8 words))
+
+Regenerating 'the gorilla devoured a banana in the cage'
+
+The gorilla devoured a banana in the cage.
+
+67:REGENERATION DID NOT MATCH 'the gorilla devoured a banana in the cage'.
+((67) (1 0.003 62) (8 words))
+
+Regenerating 'a banana was put in the cage by the gorilla'
+
+A banana was put in the cage by the gorilla.
+
+68:REGENERATION DID NOT MATCH 'a banana was put in the cage by the gorilla'.
+((68) (1 0.005 70) (10 words))
+
+Regenerating 'the zookeeper waited by the bench'
+
+The zookeeper waited by the bench.
+
+69:REGENERATION DID NOT MATCH 'the zookeeper waited by the bench'.
+((69) (1 0.003 47) (6 words))
+
+Regenerating 'the zookeeper waited by the bench in the garden'
+
+The zookeeper waited by the bench in the garden.
+
+70:REGENERATION DID NOT MATCH 'the zookeeper waited by the bench in the garden'.
+((70) (1 0.004 66) (9 words))
+done parsing testsuite4.lfg
+XLE release of Sep 25, 2017 21:02.
+Grammar = /Users/pt.spencer/gd_sose2026/srisomyos/grammar4.lfg.
+Grammar last modified on Jun 12, 2026 03:07.
+Host machine is Clarendon.
+70 sentences, 0 errors, 0 mismatches
+20 sentences had 0 parses
+50 good sentences
+45 sentences had exactly one grammatical parse
+timeout = 100
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 61 (#35)
+maximum event count per sentence = 4900
+average event count per graph = 28.248
+tokens = 7.3%, morph = 6.9%, multiword = 0.3%, lex = 18.0%, chart = 38.7%,
+unifier = 22.0%, completer = 2.5%, solver = 4.3%, output = 0.0%
+max_alloc_mem = 420.16 MB
+0.183 CPU secs total, 0.009 CPU secs max
+elapsed time = 1 seconds
+the stats of the following exclude failed sentences:
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10     50     20   5.92     0.003     49.08        1.34
+    all     50     20   5.92     0.003     49.08        1.34
+0.12 of the variance in seconds is explained by the number of subtrees
+new testfile printed on testsuite4.lfg.new.
+statistics printed on testsuite4.lfg.stats.
+50 regenerations printed on testsuite4.lfg.regen.
+47 regenerations did not match input.
+Generator: 0.097571 CPU secs total, 0.006082 CPU secs max
+0
+% 

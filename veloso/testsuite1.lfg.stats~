@@ -1,0 +1,12 @@
+
+XLE release of Mar 17, 2017 21:12.
+Grammar = /mnt/c/GD/gd_sose2026/veloso/grammar1.lfg.
+Grammar last modified on Jun 26, 2026 10:18.
+Host machine is PengPeng.
+0 sentences, 0 errors, 0 mismatches
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+0.000 CPU secs total, 0.000 CPU secs max
+elapsed time = 0 seconds

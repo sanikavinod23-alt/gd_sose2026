@@ -1,0 +1,32 @@
+((1) (2 0.009 8) (3 words))
+((2) (2 0.000 8) (3 words))
+((3) (0 0.004 19) (5 words))
+((4) (4 0.000 11) (4 words))
+((5) (36 0.004 19) (5 words))
+((6) (18 0.004 14) (5 words))
+((7) (0 0.008 30) (7 words))
+((8) (0 0.004 30) (7 words))
+
+XLE release of Mar 17, 2017 21:12.
+Grammar = /home/ilaria/grammars/gd_sose2026/Valenti/grammar_ex9.lfg.
+Grammar last modified on Jul 07, 2026 15:46.
+Host machine is DESKTOP-KAR20M4.
+8 sentences, 0 errors, 0 mismatches
+3 sentences had 0 parses
+5 good sentences
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 31 (#7)
+maximum event count per sentence = 57406
+average event count per graph = 1005.043
+tokens = 0.0%, morph = 0.0%, multiword = 0.0%, lex = 0.0%, chart = 0.0%,
+unifier = 100.0%, completer = 0.0%, solver = 0.0%, output = 0.0%
+max_alloc_mem = 722.51 MB
+0.033 CPU secs total, 0.009 CPU secs max
+elapsed time = 0 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10      5      3   4.00     0.003     12.00       12.40
+    all      5      3   4.00     0.003     12.00       12.40
+0.00 of the variance in seconds is explained by the number of subtrees

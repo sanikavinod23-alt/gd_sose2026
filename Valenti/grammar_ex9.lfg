@@ -1,0 +1,181 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES common.templates.lfg .
+  LEXENTRIES   (DEMO ENGLISH).
+  TEMPLATES (DEMO ENGLISH). 
+  RULES   (DEMO ENGLISH).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD  PPadj +NonAnimOBL +AnimOBL +PPattach +LocAttach +sg-imp. 
+  GENOPTIMALITYORDER  GenBadPunct NOGOOD +PUNCT CAPITAL.
+
+
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+
+S --> NP* , PP*, V.
+ 
+VP --> 	  V: ^=!,   "head of VP"
+ 	  PP*: { ! $ (^ ADJUNCT) 
+		 (! PTYPE) =c sem "only semantic PPs here"
+	       | (^ OBL) = ! "or a a general oblique"
+	         	       },
+ 	  (PP: (^ OBL-TO) = ! "special obl for ditransitives"
+	       "example of a constraining equation: require a value with =c"
+	       (! PFORM) =c to).
+
+PP --> P : @GF, NP.
+
+   NP --> N : @GF. 
+
+----
+
+DEMO ENGLISH TEMPLATES (1.0)
+
+GF = {(^ SUBJ) = ! | (^ OBJ) = ! | (^ OBJ2) = ! | (^ OBL) = ! | (^ ADJUNCT) = ! }.
+
+DAT-SHIFT(FRAME) = { FRAME 
+		| FRAME (^ OBJ)-->(^ OBJ2) 
+		(^ OBL-TO)-->(^ OBJ)}.
+
+PASS(FRAME) = { FRAME
+	(^ PASSIVE) = - "no passive"
+	| FRAME "passive"
+	(^ PASSIVE) =c + 
+	(^ PARTICIPLE) =c past
+	(^ OBJ)-->(^ SUBJ)
+	{ (^ SUBJ)-->(^ OBL-AG)
+	| (^ SUBJ)--> NULL }
+		}. 
+
+TENSE(T) = (^ TENSE) = T.  
+
+CASE(C) = (^ CASE) = C.   
+
+MOOD(M) = (^ MOOD) = M.
+
+PRES3SG = (^ TENSE) = pres
+	  (^ SUBJ PERS) = 3
+	(^ MOOD) = indicative
+	  (^ SUBJ NUM) = sg.
+
+PRES3PL =  (^ TENSE) = pres
+	  { (^ SUBJ PERS) = 1 | (^ SUBJ PERS) = 2 | (^ SUBJ PERS) = 3 }
+	(^ MOOD) = indicative
+	  (^ SUBJ NUM) = pl.
+
+PASTSIMPLE =  @(TENSE past) 
+	@(MOOD indicative)
+	 { (^ SUBJ NUM) = sg |(^ SUBJ NUM) = pl } .
+
+PASTP = (^ PARTICIPLE) = past.
+
+PRES = 	    @(TENSE pres) 
+	    @(MOOD indicative). 
+
+PAST-BOTH = {@PASTSIMPLE | @PASTP}.
+
+PAST3SG = (^ PARTICIPLE) = past
+	  (^ SUBJ PERS) = 3
+	  (^ SUBJ NUM) = sg.
+
+1-pers-SG = (^ PERS) = 1
+        (^ NUM)= sg.
+
+1-pers-PL = (^ PERS) = 1
+        (^ NUM)= pl.
+
+CN-SG = (^ NUM) = sg
+        (^ PERS) = 3.
+
+CN-PL = (^ NUM) = pl
+        (^ PERS) = 3.
+
+MASS-NOUN = (^ PERS) = 3
+	    (^ NSYN) = mass
+	    ~[(^ DEF) = -].
+
+
+PN =    (^ PERS) = 3
+	(^ NUM) = sg
+	(^ NSYN) = proper
+	(^ CAPITAL) = +
+	(^ ANIMATE) = +
+        ~[(^ DEF)]. 
+
+NPOS(N) = (^ NTYPE) = N.
+
+
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>' 
+		(^ PASSIVE) = -.
+
+TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ)(^ OBJ)>').
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+OPT-PPTRANS(P) = { @(INTRANS P) | @(PPTRANS P) }.
+
+DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL-TO)>')).
+
+LOC-TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBL)>').
+
+PPTRANS (P) = (^ PRED)='P<(^ SUBJ)(^ OBL)>'.
+
+PREP(P) = "template for most prepositions"
+	{ (^ PRED) = 'P<(^OBJ)>'
+	(^ PTYPE) = sem
+	| (^ PTYPE) = nosem
+	(^ PFORM) = P}.
+
+PRON-PERS(P) = (^ PRED) = '_pred'
+		(^ PERS) = _pers
+		(^ NUM) = _num
+		(^ CASE) = _case
+		(^ PRON-TYPE) = pers.
+
+----
+
+DEMO ENGLISH LEXICON (1.0)
+
+tipf 	  N * (^ PRED) = 'banana'
+	      (^ NUM) = sg
+	      (^ PERS) = 3. 
+
+tam  	  N * (^ PRED) = 'garden'
+	      (^ NUM) = sg
+	      (^ PERS) = 3. 
+
+plim 	  N * (^ PRED) = 'gorilla'
+	      (^ NUM) = sg
+	      (^ PERS) = 3. 
+
+bobo 	  N * (^ PRED) = 'baboon'
+	      (^ NUM) = sg
+	      (^ PERS) = 3. 
+
+taotao   V *  @(OPT-TRANS eat) 
+       	    @PRES.
+
+guagua     V * @(DITRANS give)
+	  @PRES.
+
+
+"punctuation"
+
+. PERIOD * (^ STMT-TYPE) = declarative. 
+
+
+
+"prep"
+
+
+di P * @(PREP to).
+
+ya P * @(PREP in).
+
+
+----
