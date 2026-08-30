@@ -1,0 +1,31 @@
+((1) (2 0.015 38) (3 words))
+((2) (2 0.005 38) (3 words))
+((3) (6 0.005 90) (5 words))
+((4) (2 0.005 43) (4 words))
+((5) (6 0.004 90) (5 words))
+((6) (6 0.003 90) (5 words))
+((7) (24 0.006 206) (7 words))
+((8) (24 0.006 206) (7 words))
+
+XLE release of Sep 25, 2017 21:02.
+Grammar = /Users/joanna.pepa/Desktop/madeup/madeup.lfg.
+Grammar last modified on Jul 10, 2026 09:50.
+Host machine is Mac.fritz.box.
+8 sentences, 0 errors, 0 mismatches
+8 good sentences
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum raw subtrees per sentence = 20 (#7)
+maximum event count per sentence = 9043
+average event count per graph = 39.467
+tokens = 4.7%, morph = 4.8%, multiword = 0.2%, lex = 8.5%, chart = 36.9%,
+unifier = 28.3%, completer = 2.3%, solver = 14.3%, output = 0.0%
+max_alloc_mem = 247.26 MB
+0.048 CPU secs total, 0.015 CPU secs max
+elapsed time = 0 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10      8      0   4.88     0.006    100.12        9.00
+    all      8      0   4.88     0.006    100.12        9.00
+0.05 of the variance in seconds is explained by the number of subtrees

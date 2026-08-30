@@ -1,0 +1,124 @@
+DEMO	SOV		CONFIG	(1.0)
+	ROOTCAT	 S.
+  	FILES .
+	LEXENTRIES	(DEMO SOV).
+	TEMPLATES	(DEMO SOV). 
+	RULES	(DEMO SOV).
+    MORPHOLOGY .
+	GOVERNABLERELATIONS		SUBJ OBJ OBJ2 COMP XCOMP XCOMP-PRED OBL OBL-?+.
+	SEMANTICFUNCTIONS	ADJUNCT  TOPIC FOCUS POSS STANDARD.
+	NONDISTRIBUTIVES	NUM PERS CONJ-FORM.
+	EPSILON		e.
+	OPTIMALITYORDER NOGOOD.
+
+----
+
+DEMO	SOV		RULES	(1.0)
+
+	S	-->		PP*: {   (^ OBL-TO) = !
+	                    (! PFORM) =c di |
+	                    ! $ (^ ADJUNCT)
+	                    (! PTYPE) =c sem
+	                },
+                NP+: @GF;
+ 	      		V: ^=!.
+
+	NP	--> 	N: ^=!.
+
+	PP 	--> 	{	P: ^ = !
+						(! PTYPE) =c sem;
+					NP: (^ OBJ) = !;
+					|
+					P: ^ = ! 
+						(! PTYPE) =c nosem;
+					NP
+				}.
+----
+
+DEMO	SOV		TEMPLATES	(1.0)
+
+    GF = { (^ SUBJ) = ! | (^ OBJ) = ! }.
+
+    PRED(P) = (^ PRED) = 'P'. 
+
+	CN(P N)	=	@(PRED P)
+	            (^ NUM) = N
+	            (^ PERS) = 3
+	            (^ NTYPE) = count
+				{ (^ NUM) =c sg | (^ NUM) =c pl }.
+    
+    TENSE(T)	= (^ TENSE) = T.
+
+	ANIMATE = (^ ANIMATE) = +.
+
+	INANIMATE = (^ ANIMATE) = -.
+
+	LOCATION = (^ LOC) = +.
+
+    VPRES	=	@(TENSE pres)
+				(^ MOOD) = indicative. 
+
+    INTRANS(P)	=	(^ PRED) = 'P<(^ SUBJ)>'.
+    
+	TRANS(P)	=	@(PASS(^ PRED) = 'P<(^ SUBJ) (^ OBJ)>').
+
+    OPT-TRANS(P)	=	{ @(INTRANS P) | @(TRANS P) }.
+
+    DITRANS(P)	=	@(PASS@(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL-TO)>')).
+
+    DAT-SHIFT(FRAME)	=	{ FRAME | FRAME
+							(^ OBJ) --> (^ OBJ2)
+							(^ OBL-TO) --> (^ OBJ)
+						}.
+
+    PASS(FRAME)	=	{ 	FRAME
+						(^ SUBJ ANIMATE) =c +
+                        (^ PASSIVE) = - | 
+						FRAME
+						(^ PASSIVE) = +
+                        (^ SUBJ ANIMATE) =c +
+						(^ OBJ)	-->	(^ SUBJ) 
+						{ (^ SUBJ) --> (^ OBL-AG) | (^ SUBJ) --> NULL } | 
+                        FRAME
+						(^ PASSIVE) = +
+                        (^ SUBJ ANIMATE) =c -
+						(^ OBJ)	-->	(^ SUBJ) 
+					}.
+
+----
+
+DEMO	SOV		LEXICON	(1.0)
+
+"Nouns"
+
+    tam        N	*	@(CN tam sg)
+                        @INANIMATE
+                        @LOCATION.
+
+    plim       N	*	@(CN plim sg)
+                        @ANIMATE.
+
+    tipf       N	*	@(CN tipf sg)
+                        @INANIMATE.
+
+    bobo       N	*	@(CN bobo sg)
+                        @ANIMATE.
+
+"Verbs"
+
+    taotao     V	*	@(TRANS taotao)
+                        @VPRES.
+    
+    guagua     V    *	@(DITRANS guagua)
+                        @VPRES.
+
+"Prepositions"
+
+    ya 	    P   *   (^ PRED) = 'ya<(^ OBJ)>' 
+	                (^ PTYPE) = sem.
+
+    di 	    P   *   (^ PFORM) = 'di'
+	                (^ PTYPE) = nosem.
+
+
+----

@@ -1,0 +1,252 @@
+#1 Is working-ish. the problem seems to be the sg noun template.
+the dog devours bones 
+
+#2 +template(trans) seems to be working perf. no template for plural yet
+the dogs devour a bone 
+
+#3 unification failure, subject-verb agreement (consistency)
+the dogs devours bones
+
+#4 coherence violation
+the dog appears bones 
+
+#5 completeness violation
+the dog devours 
+
+#6 Same as nmr1
+the dog devours a bone 
+
+#7 missing rules, unknown words
+the dog devours bones in the park
+
+#8 new verbs --- intrans
+a dog sleeps
+
+#9 new verbs -- trans
+a dog chases a bone
+
+#10 is working-ish + template(CN and INTRANS)
+the cat sleeps
+
+#11 is working-ish + template(CN and INTRANS)
+the dog devours the bone
+
+#12 works perf +templates(TRANS)
+the cats chase a mouse
+
+#13 is working-ish +templates(CN and OPTTRANS)
+the dog eats
+
+#14 works perf +template(TRANS)
+the cats eat a treat
+
+#15 0
+the girl see the gorilla
+
+#16 0
+cat chases dogs
+
+#17 0
+gorilla devour bananas
+
+#18 0
+gorillas devours banana
+
+#19 works perf +temp(CN and INTRANS)
+the dog appears
+
+#20 works
+the girl was seen by the gorilla
+
+#21 works
+the cake was eaten
+
+#22 works
+the cat was chased
+
+#23 works
+the bone was devoured by a dog
+
+#24 0
+the girl was saw by the gorilla
+
+#25 not working
+the dog was slept
+
+#PW4
+
+#26 works
+the girl gave the dog a bone
+
+#27 works
+the girl gives the gorilla bananas
+
+#28 works
+gorillas devour bananas
+
+#29 works
+a gorilla devours bananas
+
+#30 0
+the girl give the gorilla bananas
+
+#31 0
+gorillas devours bananas
+
+#32 0
+gorilla devour bananas
+
+#33 0
+gorillas devours banana
+
+#34 works
+the girl gives a bone to the dog
+
+#35 works
+the zookeeper gave a banana to the gorilla
+
+#36 works
+the dog was given a bone by the girl
+
+#37 works
+a bone was given to the dog by the girl
+
+#38 0
+the girl gave to the dog a bone
+
+#39 0
+the dog was given by the girl a bone
+
+#40 works
+the waiter waited on the table
+
+#41 works
+Jordan talked to Sam
+
+#42 works
+Alex argued with a gorilla
+
+#43 works
+Sam saw a monkey with a telescope
+
+#44 works
+the dog sat on the bench with a book
+
+#45 works
+the small dog slept
+
+#46 works
+the small black dog slept
+
+#47 works
+the small black hungry dog ate bones
+
+#48 works
+the gorilla devoured the banana quickly
+
+#49 works
+the small black hungry dog ate bones quickly
+
+#50 works
+the very small gorilla slept
+
+#51 works
+the very very very small gorilla slept
+
+#52 not figured out commas
+the small, black, hungry dog slept.
+
+#53 works
+he sleeps
+
+#54 works
+she devoured it
+
+#55 works
+they devoured them
+
+#56 works
+I waited for him for hours
+
+#57 no - prob with poss
+my dog sleeps
+
+#58 no - prob with poss
+she gave us her banana
+
+#59 0
+him sleeps
+
+#60 0
+them devoured it
+
+#61 0
+they devoured they
+
+#62 0
+I waited for she for hours
+
+#63
+the dog was given a bone by the girl
+
+#64
+a bone was given to the dog by the girl
+
+#65
+the gorilla waited on the bench
+
+#66
+the zookeeper waited on the gorilla
+
+#67
+the gorilla put the banana in the cage
+
+#68
+the gorilla in the cage devoured a banana
+
+#69
+the gorilla devoured a banana in the cage
+
+#70
+a banana was put in the cage by the gorilla
+
+#71
+the zookeeper waited by the bench
+
+#72
+the zookeeper waited by the bench in the garden
+
+#73 works
+Eat the beans!
+
+#74 works
+Give the gorilla a banana!
+
+#75 0
+Think a creative thought!
+
+#76 0
+Eats the beans!
+
+#77 works - is not supposed to; past should only work with subj?
+Gave a bone to the dog!
+
+#78 works
+Sophie educated the bright robot and the intelligent child.
+
+#79 works
+Sophie educated the bright and efficient robot.
+
+#80 works
+lazy leopards sleep and eat.
+
+#81 does not work -- subject does not accept coordination.
+Mary and the gorilla like bananas.
+
+#82 does not work -- subject does not accept coordination.
+The gorilla and I like bananas.
+
+#83 does not work -- subject does not accept coordination.
+You and Mary like bananas.
+
+

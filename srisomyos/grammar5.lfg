@@ -1,0 +1,772 @@
+DEMO	ENGLISH		CONFIG	(1.0)
+	ROOTCAT	 ROOT.
+  	FILES	common.templates.lfg.
+	LEXENTRIES	(DEMO ENGLISH).
+	TEMPLATES	(DEMO ENGLISH) (STANDARD COMMON). 
+	RULES	(DEMO ENGLISH).
+	MORPHOLOGY	(DEMO ENGLISH).
+	GOVERNABLERELATIONS		SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+	SEMANTICFUNCTIONS	ADJUNCT  TOPIC FOCUS POSS STANDARD.
+	NONDISTRIBUTIVES	NUM PERS CONJ-FORM.
+	EPSILON		e.
+	OPTIMALITYORDER NOGOOD  PPadj +NonAnimObl +AnimObl +PPattach +LocAttach +sg-imp.
+	GENOPTIMALITYORDER  GenBadPunct NOGOOD +PUNCT CAPITAL.
+
+----
+
+DEMO ENGLISH MORPHOLOGY (1.0)
+
+TOKENIZE:
+P!basic-parse-tok.fst G!default-gen-tokenizer.fst
+
+----
+
+DEMO	ENGLISH		RULES	(1.0)
+
+	ROOT -->	{ S | Simp }.
+
+	Simp --> 	e: (^ SUBJ PRED) = 'pro'
+	       		(^ SUBJ PERS) = 2; 
+ 	  			VP: (^ TNS-ASP TENSE) =c pres;
+ 	  			EXCL.
+
+	S	-->		NP:	(^ SUBJ)=!
+	          		(! CASE)=nom;
+ 	      		VP: (^ TNS-ASP TENSE);
+				(PERIOD: @(OT-MARK Punct)).
+
+	VP	-->		(AUX)
+				V:	^=!;
+ 	  			(NP:(^ OBJ)=!
+	       			(! CASE)=acc)
+				(NP: (^ OBJ2)=! )
+				PP*: { ! $ (^ ADJUNCT)
+					(! PTYPE) =c sem 
+					{
+					@(OT-MARK LocAttach)
+					(! OBJ LOC) =c +
+					|
+					@(OT-MARK PPadj)
+					(! OBJ LOC) ~= +
+							}
+					| (^ OBL) = !
+						{@(OT-MARK NonAnimObl)
+					(! PTYPE) =c sem }
+					};
+				(PP: (^ OBL-TO) = !
+					 (! PFORM) =c to)
+				(PP: (^ OBL-AG) = !
+					{ (! ANIMATE) =c +
+					@(OT-MARK AnimObl) }
+					 (! PFORM) =c by )
+				(ADV*: ! $ (^ ADJUNCT)).
+
+	NP	--> 	{	(D)
+					AP*: ! $ (^ ADJUNCT); 
+					N
+					PP*: ! $ (^ ADJUNCT)
+							 (! PTYPE) =c sem
+							 @(OT-MARK PPattach)
+					| PRON: (^ PRON-TYPE) =c pers		 
+				}.
+
+	PP 	--> 	{	P: ^ = !
+						(! PTYPE) =c sem;
+					NP: (^ OBJ) = !
+						(! CASE) = acc;
+					|
+					P: ^ = ! 
+						(! PTYPE) =c nosem; 
+					NP
+				}.
+
+	AP --> 		ADV*: ! $ (^ ADJUNCT);
+      			A
+				(COMMA).
+
+	METARULEMACRO(_CAT _BASECAT _RHS) = "applies to all rules in the grammar"
+
+    { "just use the rule as stated"
+      "don't do anything to it; ALWAYS include this option"
+
+      _RHS
+
+     |"if it is an NP or an N, pass it to the NP
+      coordination rule"
+      "COM{EX RULE NP: the girl and the boy}"
+
+      e: _CAT $c { NP N };
+      @(NPCOORD _CAT)
+
+     |"if it is any other category, pass it to
+      the same category coordination rule"
+      "COM{EX RULE S: the girl sleeps and walks.}"
+      "COM{EX RULE PP: with the girl and in the park}"
+
+      e: _CAT ~$ { NP N };
+      @(SCCOORD _CAT)
+
+     |"allow bracketing around any category"
+      "COM{EX RULE S: [the girl] sleeps.}"
+      "COM{EX RULE S: boys baked [the bananas in the cake].}"
+
+      LB: @(OT-MARK GenBadPunct); "preceding quote mark"
+                                  "disprefer in generation"
+      _CAT: @PUSHUP; "this pushes the quotes to the top
+                      to avoid vacuous ambiguity for things like:
+                      COM{EX RULES NP: [cakes])"
+      RB "following quote mark"}.
+
+	  NPCOORD(_CAT) = "coordination of nominals"
+   "COM{EX RULE NP: girls and boys}"
+   "This differs from SCCOORD in that the conjunction provides NUM pl to
+   the resulting coordinated f-structure and the person features are
+   resolved for the noun phrase."
+
+   _CAT: @IN-SET  "first nominal"
+         @NP-CONJUNCT; "calls person resolution template"
+
+   CONJnp: @PUSHUP; "conjunction"
+           "PUSHUP avoids vacuous ambiguity in constructions like:
+            COM{EX RULES NP: girls and boys}"
+
+   _CAT: @IN-SET "second nominal"
+         @NP-CONJUNCT.
+
+	SCCOORD(_CAT) = "coordination of non-nominals"
+	"COM{EX RULES PP: with girls and with boys}"
+	"COM{EX RULES S: girls sleep and boys sleep.}"
+	"no features other than a COORD-FORM are provided to the coordinated
+	f-structure."
+
+	_CAT: @IN-SET; "first constituent"
+	(COMMA: @(OT-MARK GenBadPunct)) "optional comma; 
+										disprefered in generation"
+						"COM{EX RULES S: girls sleep, and boys sleep.}"
+
+	CONJ: @PUSHUP; "conjunction"
+			"PUSHUP avoids vacuous ambiguity in constructions like:
+			COM{EX RULES S: boys walk and sleep.}" 
+
+	_CAT: @IN-SET "second constituent".
+
+----
+
+DEMO	ENGLISH		TEMPLATES	(1.0)
+
+	OT-MARK(mark) = mark $ o::*.
+
+	TENSE(T)	= (^ TENSE) = T.
+
+	CASE(C) 	= (^ CASE) = C. 
+
+	VPRES	=	@(TENSE pres)
+				(^ MOOD) = indicative.
+
+	VPAST	=	@(TENSE past)
+				(^ MOOD) = indicative.
+
+	PRED(P) = (^ PRED) = 'P'. 
+
+	CN(P N)	=	@(PRED P)
+	            (^ NUM) = N
+	            (^ PERS) = 3
+	            (^ NTYPE) = count
+				{ (^ NUM) =c sg (^ DEF) | (^ NUM) =c pl }. 
+	
+	PRON(P E N T) = 	@(PRED P)
+	  					(^ NUM) = N
+	  					(^ PERS) = E
+	  					(^ PRON-TYPE) = T
+	  					(^ NTYPE) = pron. 
+
+	NAME(NAME) =	@(PRED NAME)
+					(^ NUM) = sg
+					(^ PERS) = 3
+					(^ NTYPE) = name.
+	
+	INTRANS(P)	=	(^ PRED) = 'P<(^ SUBJ)>'
+					(^ PASSIVE) = -.
+	TRANS(P)	=	@(PASS (^ PRED) = 'P<(^ SUBJ) (^ OBJ)>').
+	DITRANS(P)	=	@(PASS @(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL-TO)>')).
+
+	DITRANS-OBL(P) = @(PASS (^ PRED)='P<(^ SUBJ) (^ OBJ) (^ OBL)>').
+	INTRANS-OBL(P) = (^ PRED) = 'P<(^SUBJ)(^OBL)>'.
+
+	OPT-TRANS(P)	=	{ @(INTRANS P) | @(TRANS P) }.
+
+	PASS(FRAME)	=	{ 	FRAME
+						(^ PASSIVE) = - | 
+						FRAME
+						(^ PASSIVE) = +
+						(^ PARTICIPLE) =c past
+						(^ OBJ)	-->	(^ SUBJ) 
+						{ (^ SUBJ) --> (^ OBL-AG) | (^ SUBJ) --> NULL }
+					}.
+
+	DAT-SHIFT(FRAME)	=	{ FRAME | FRAME
+								(^ OBJ) --> (^ OBJ2)
+								(^ OBL-TO) --> (^ OBJ)
+							}.
+
+	PASTP = (^ PARTICIPLE) = past. 
+
+	SG-AGR	= 	(^ SUBJ PERS) = 3
+	   			(^ SUBJ NUM) = sg. 
+	
+	BARE-AGR 	=	{ (^ SUBJ NUM) = pl | 
+					  (^ SUBJ NUM) = sg 
+					  (^ SUBJ PERS) ~= 3
+					  @(OT-MARK sg-imp)
+					}.
+
+	BE	=	{ (^ PARTICIPLE) =c past (^ PASSIVE) =c + | (^ PRED) = 'be<(^ SUBJ)(^ OBJ)>' }.
+
+	PREP(P) = {	(^ PRED) = 'P<(^OBJ)>'
+				(^ PTYPE) = sem | 
+				(^ PTYPE) = nosem
+				(^ PFORM) = P}.
+
+	POSSDET(P E N) =	(^ POSS PRED) = 'P'
+						(^ POSS PERS) = E
+						(^ POSS NUM) = N
+						(^ POSS PcreRON-TYPE) = poss
+						(^ DEF) = +.
+
+	ANIMATE = (^ ANIMATE) = +.
+
+	INANIMATE = (^ ANIMATE) = -.
+
+	LOCATION = (^ LOC) = +.
+
+	   NP-CONJUNCT = "provides person resolution features for nominal
+                 coordination" 
+  
+      { "if either conjunct is 1st person; the whole NP is"
+        "COM{EX TEMPLATES NP: the boys and me}"
+        (! PERS)=c 1
+        (^ PERS)=1
+       |"if a conjunct is 2nd person and the NP is not
+        already 1st person, make it 2nd person"
+        (! PERS)=c 2
+        { (^ PERS)=c 1 "one conjunct was 1st person"
+                       "COM{EX TEMPLATES NP: you and I}"
+         |(^ PERS)=2 } "else assign 2nd person"
+                       "COM{EX TEMPLATES NP: you and the boys}"
+       |"otherwise, the NP is 3rd person"
+        "COM{EX TEMPLATES NP: the boys and her}"
+        (^ PERS)=3}.
+
+----
+
+DEMO	ENGLISH		LEXICON	(1.0)
+
+"Name"
+	Sam 	N	*	@(NAME Sam)
+					@ANIMATE.
+	Jordan 	N	*	@(NAME Jordan)
+					@ANIMATE.
+	Alex 	N	*	@(NAME Alex)
+					@ANIMATE.
+	Sophie 	N	*	@(NAME Sophie)
+					@ANIMATE.
+	Mary 	N	*	@(NAME Mary)
+					@ANIMATE.
+
+"Noun"
+
+	bone		N	*	@(CN bone sg)
+						@INANIMATE.
+	bones		N	*	@(CN bone pl)
+						@INANIMATE.
+
+	dog 		N	*	@(CN dog sg)
+						@ANIMATE.
+	dogs 		N	*	@(CN dog pl)
+						@ANIMATE.
+
+	cat 		N	*	@(CN cat sg)
+						@ANIMATE.
+	cats 		N	*	@(CN cat pl)
+						@ANIMATE.
+
+	mouse 		N	*	@(CN mouse sg)
+						@ANIMATE.
+	mice 		N	*	@(CN mouse pl)
+						@ANIMATE.
+
+	treat 		N	*	@(CN treat sg)
+						@INANIMATE.
+	treats 		N	*	@(CN treat pl)
+						@INANIMATE.
+
+	boy 		N	*	@(CN boy sg)
+						@ANIMATE.
+	boys 		N	*	@(CN boy pl)
+						@ANIMATE.
+
+	girl 		N	*	@(CN girl sg)
+						@ANIMATE.
+	girls 		N	*	@(CN girl pl)
+						@ANIMATE.
+
+	cake 		N	*	@(CN cake sg).
+	cakes 		N	*	@(CN cake pl).
+
+	banana 		N	*	@(CN banana sg)
+						@INANIMATE.
+	bananas 	N	*	@(CN banana pl)
+						@INANIMATE.
+	
+	gorilla 	N	*	@(CN gorilla sg)
+						@ANIMATE.
+	gorillas 	N	*	@(CN gorilla pl)
+						@ANIMATE.
+
+	book		N	*	@(CN book sg)
+						@INANIMATE.
+	books		N	*	@(CN book pl)
+						@INANIMATE.
+
+	zookeeper	N	*	@(CN zookeeper sg)
+						@ANIMATE.
+	zookeepers	N	*	@(CN zookeeper pl)
+						@ANIMATE.
+
+	wizard		N	*	@(CN wizard sg)
+						@ANIMATE.
+	apprentice	N	*	@(CN apprentice sg)
+						@ANIMATE.
+
+	waiter		N	*	@(CN waiter sg)
+						@ANIMATE.
+	waiters		N	*	@(CN waiter pl)
+						@ANIMATE.
+
+	table		N	*	@(CN table sg)
+						{@ANIMATE | @INANIMATE @LOCATION}.
+	tables		N	*	@(CN table pl)
+						@INANIMATE.
+
+	telescope	N	*	@(CN telescope sg)
+						@INANIMATE.
+	telescopes	N	*	@(CN telescope pl)
+						@INANIMATE.
+
+	monkey		N	*	@(CN monkey sg)
+						@ANIMATE.
+	monkeys		N	*	@(CN monkey pl)
+						@ANIMATE.
+	
+	bench		N	*	@(CN bench sg)
+						@INANIMATE
+						@LOCATION.
+	benches		N	*	@(CN bench pl)
+						@INANIMATE
+						@LOCATION.
+
+	hour		N	*	@(CN hour sg)
+						@INANIMATE.
+	hours		N	*	@(CN hour pl)
+						@INANIMATE.
+
+	cage		N	*	@(CN cage sg)
+						@INANIMATE
+						@LOCATION.
+	cages		N	*	@(CN cage pl)
+						@INANIMATE
+						@LOCATION.
+
+	garden		N	*	@(CN garden sg)
+						@INANIMATE
+						@LOCATION.
+	gardens		N	*	@(CN garden pl)
+						@INANIMATE
+						@LOCATION.
+
+	bean		N	*	@(CN bean sg)
+						@INANIMATE.
+	beans		N	*	@(CN bean pl)
+						@INANIMATE.
+
+	thought		N	*	@(CN thought sg)
+						@INANIMATE.
+	thoughts	N	*	@(CN thought pl)
+						@INANIMATE.
+
+	child		N	*	@(CN child sg)
+						@ANIMATE.
+
+	children	N	*	@(CN child pl)
+						@ANIMATE.
+
+	robot		N	*	@(CN robot sg)
+						@INANIMATE.
+	robots		N	*	@(CN robot pl)
+						@INANIMATE.
+
+	leopard		N	*	@(CN leopard sg)
+						@ANIMATE.
+	leopards	N	*	@(CN leopard pl)
+						@ANIMATE.
+
+"Pronoun"
+
+	I 	  	PRON 	* 	@(PRON I 1 sg pers) 
+						@(CASE nom).
+
+	me 	  	PRON 	* 	@(PRON I 1 sg pers) 
+						@(CASE acc).
+
+	mine	PRON 	* 	@(PRON mine 1 sg poss).
+
+	you		PRON 	* 	{@(PRON you 2 sg pers)
+						|@(PRON you 2 pl pers)}.
+
+	You		PRON 	* 	{@(PRON you 2 sg pers)
+						|@(PRON you 2 pl pers)}.
+
+	yours	PRON 	* 	{@(PRON yours 2 sg poss)
+						|@(PRON yours 2 pl poss)}.
+
+	he 	  	PRON 	* 	@(PRON he 3 sg pers)
+						@(CASE nom).
+
+	him 	PRON 	* 	@(PRON he 3 sg pers)
+						@(CASE acc).
+
+	his		PRON 	* 	@(PRON his 3 sg poss);
+			D		*	@(POSSDET his 3 sg).
+
+	she 	PRON 	* 	@(PRON she 3 sg pers)
+						@(CASE nom).
+
+	hers	PRON 	* 	@(PRON hers 3 sg poss).
+
+	it	  	PRON 	* 	@(PRON it 3 sg pers).
+
+	we 	  	PRON 	* 	@(PRON we 1 pl pers)
+						@(CASE nom).
+
+	us		PRON 	* 	@(PRON we 1 pl pers)
+						@(CASE acc).
+
+	they 	PRON 	* 	@(PRON they 3 pl pers)
+						@(CASE nom). 
+
+	them 	PRON 	* 	@(PRON they 3 pl pers)
+						@(CASE acc).
+
+	theirs	PRON 	* 	@(PRON theirs 3 pl poss).
+
+"Verb"
+
+	devours 	V 	*  	@(TRANS devour)
+						@VPRES
+						@SG-AGR.
+
+	devour		V 	*  	@(TRANS devour)
+						@VPRES
+						@BARE-AGR.
+	
+	devoured 	V 	*  	@(TRANS devour)
+						{ @PASTP | @VPAST }.
+
+	appears 	V 	*  	@(INTRANS appear)
+						@VPRES
+						@SG-AGR.
+
+	appear 		V 	*  	@(INTRANS appear)
+						@VPRES
+						@BARE-AGR.
+	
+	appeared 	V 	*  	@(INTRANS appear)
+						{ @PASTP | @VPAST }.
+
+	eats 		V 	*	@(OPT-TRANS eat)
+						@VPRES
+						@SG-AGR.
+
+	Eats 		V 	*	@(OPT-TRANS eat)
+						@VPRES
+						@SG-AGR.
+	
+	eat 		V	*	@(OPT-TRANS eat)
+						@VPRES
+						@BARE-AGR.
+	
+	Eat 		V	*	@(OPT-TRANS eat)
+						@VPRES
+						@BARE-AGR.
+	
+	ate 		V 	*	@(OPT-TRANS eat)
+						@VPAST.
+
+	eaten 		V 	*	@(OPT-TRANS eat)
+						@PASTP.
+
+	sees 		V 	*  	@(TRANS see)
+						@VPRES
+						@SG-AGR.
+
+	see 		V 	*  	@(TRANS see)
+						@VPRES
+						@BARE-AGR.
+
+	saw 		V 	*	@(TRANS see)
+						@VPAST.
+	
+	seen 		V 	*	@(TRANS see)
+						@PASTP.
+	
+	chases 		V 	*	@(TRANS chase)
+						@VPRES
+						@SG-AGR.
+	
+	chase 		V	*	@(TRANS chase)
+						@VPRES
+						@BARE-AGR.
+	
+	chased 		V	*	@(TRANS chase)
+						{ @PASTP | @VPAST }.
+
+	sits 		V 	*  	@(INTRANS sit)
+						@VPRES
+						@SG-AGR.
+
+	sit 		V 	*  	@(INTRANS sit)
+						@VPRES
+						@BARE-AGR.
+
+	sat 		V 	*  	@(INTRANS sit)
+						{ @PASTP | @VPAST }.
+
+	sleeps 		V 	*  	@(INTRANS sleep)
+						@VPRES
+						@SG-AGR.
+	
+	sleep 		V 	*  	@(INTRANS sleep)
+						@VPRES
+						@BARE-AGR.
+
+	slept 		V 	*  	@(INTRANS sleep)
+						@VPAST.
+
+	puts 		V 	*	@(TRANS put)
+						@VPRES
+						@SG-AGR.
+
+	put 		V 	*	@(TRANS put)
+						{ @VPRES @BARE-AGR | @VPAST | @PASTP }.
+
+	gives 		V 	*	@(DITRANS give)
+						@VPRES
+						@SG-AGR.
+
+	give 		V 	*	@(DITRANS give)
+						@VPRES
+						@BARE-AGR.
+	
+	Give 		V 	*	@(DITRANS give)
+						@VPRES
+						@BARE-AGR.
+
+	gave 		V 	*	@(DITRANS give)
+						@VPAST.
+	Gave 		V 	*	@(DITRANS give)
+						@VPAST.
+
+	given 		V 	*	@(DITRANS give)
+						@PASTP.
+
+	waits 		V 	*  	{@(INTRANS wait) | @(INTRANS-OBL wait)
+											{(^ OBL ANIMATE) =c +
+											@(OT-MARK AnimObl)} 
+											(^ OBL PFORM) =c on
+						 }
+						@VPRES
+						@SG-AGR.
+
+	wait 		V 	*  	{@(INTRANS wait) | @(INTRANS-OBL wait) 
+											{(^ OBL ANIMATE) =c +
+											@(OT-MARK AnimObl)} 
+											(^ OBL PFORM) =c on
+						 }
+						@VPRES
+						@BARE-AGR.
+	
+	waited 		V 	*  	{@(INTRANS wait) | @(INTRANS-OBL wait) 
+											{(^ OBL ANIMATE) =c +
+											@(OT-MARK AnimObl)} 
+											(^ OBL PFORM) =c on
+						 }
+						@VPAST.
+
+	talks 		V 	*  	{@(INTRANS talk) | @(INTRANS-OBL talk)
+											{(^ OBL ANIMATE) =c +
+											@(OT-MARK AnimObl)} 
+											(^ OBL PFORM) =c to
+						 }
+						@VPRES
+						@SG-AGR.
+
+	talk 		V 	*  	{@(INTRANS talk) | @(INTRANS-OBL talk) 
+											{(^ OBL ANIMATE) =c +
+											@(OT-MARK AnimObl)} 
+											(^ OBL PFORM) =c to
+						 }
+						@VPRES
+						@BARE-AGR.
+
+	talked 		V 	*  	{@(INTRANS talk) | @(INTRANS-OBL talk) 
+											{(^ OBL ANIMATE) =c +
+											@(OT-MARK AnimObl)} 
+											(^ OBL PFORM) =c to
+						 }
+						@VPAST.
+
+	argues 		V 	*  	{@(INTRANS argue) | @(INTRANS-OBL argue)
+											{(^ OBL ANIMATE) =c +
+											@(OT-MARK AnimObl)} 
+											(^ OBL PFORM) =c with
+						 }
+						@VPRES
+						@SG-AGR.
+
+	argue 		V 	*  	{@(INTRANS argue) | @(INTRANS-OBL argue) 
+											{(^ OBL ANIMATE) =c +
+											@(OT-MARK AnimObl)} 
+											(^ OBL PFORM) =c with
+						 }
+						@VPRES
+						@BARE-AGR.
+
+	argued 		V 	*  	{@(INTRANS argue) | @(INTRANS-OBL argue) 
+											{(^ OBL ANIMATE) =c +
+											@(OT-MARK AnimObl)} 
+											(^ OBL PFORM) =c with
+						 }
+						@VPAST.
+	
+	Think		V 	*	@(TRANS think)
+						@VPRES
+						@BARE-AGR.
+
+	educate		V 	*	@(TRANS educate)
+						@VPRES
+						@BARE-AGR.
+
+	educates	V	*	@(TRANS educate)
+						@VPRES
+						@SG-AGR.
+
+	educated	V	*	@(TRANS educate)
+						{ @PASTP | @VPAST }.
+
+	likes		V 	*	@(TRANS like)
+						@VPRES
+						@SG-AGR.
+	
+	like		V 	*	@(TRANS like)
+						@VPRES
+						@BARE-AGR.
+
+	liked		V	*	@(TRANS like)
+						{ @PASTP | @VPAST }.
+
+"Auxiliary"
+
+	is		AUX		*	@(TENSE pres)
+						(^ SUBJ PERS) = 3
+						(^ SUBJ NUM) = sg
+						@BE.
+
+	am		AUX		*	@(TENSE pres)
+						(^ SUBJ PERS) = 1
+						(^ SUBJ NUM) = sg
+						@BE.
+	
+	are		AUX		*	@(TENSE pres)
+						{ (^ SUBJ PERS) = 2 | (^ SUBJ PERS) = 3 }
+						(^ SUBJ NUM) = pl
+						@BE.
+
+	was		AUX		*	@(TENSE past)
+						{ (^ SUBJ PERS) = 1 | (^ SUBJ PERS) = 3 }
+						(^ SUBJ NUM) = sg
+						@BE.
+
+	were	AUX		*	@(TENSE past)
+						{ (^ SUBJ PERS) = 2 | (^ SUBJ PERS) = 3 }
+						(^ SUBJ NUM) = pl
+						@BE.
+
+"Adjective"
+
+	small		A 		* 	@(PRED small).
+	black		A 		* 	@(PRED black).
+	hungry		A 		* 	@(PRED hungry).
+	creative	A 		* 	@(PRED creative).
+	bright		A 		* 	@(PRED bright).
+	intelligent	A 		* 	@(PRED intelligent).
+	efficient	A 		* 	@(PRED efficient).
+	lazy		A 		* 	@(PRED lazy).
+
+"Adverb"
+
+	quickly	ADV 	* 	@(PRED quickly). 
+	very   	ADV 	* 	@(PRED very). 
+
+
+"Preposition"
+
+	by 		P 	* 	@(PREP by).
+	to 		P 	*	@(PREP to).
+	on 		P 	* 	@(PREP on).
+	in 		P 	* 	@(PREP in).
+	with 	P 	* 	@(PREP with).
+	for 	P 	* 	@(PREP for).
+
+"Determiner"
+
+	the		D	* 	(^ DEF) = +.
+
+	The		D	* 	(^ DEF) = +.
+
+	a   	D	* 	(^ DEF) = -
+					(^ NUM) = sg.
+
+
+	"Possessive determiner"
+
+	my		D	*	@(POSSDET my 1 sg).
+
+	your	D	*	{@(POSSDET your 2 sg)
+					|@(POSSDET your 2 pl)}.
+
+	"his		D	*	@(POSSDET his 3 sg)."
+
+	her		D	*	@(POSSDET her 3 sg).
+
+	their	D	*	@(POSSDET their 3 pl).
+
+	our		D	*	@(POSSDET our 1 pl).
+
+	its		D	*	@(POSSDET its 3 sg).
+
+"Coordination"
+
+	and  CONJ 	* 	@(COORD-FORM %stem);
+		 CONJnp * @(COORD-FORM %stem) @(NUM pl).
+
+
+"Punctuation"
+
+	. PERIOD * (^ STMT-TYPE) = decl. 
+
+	, COMMA  * . 
+
+	!  EXCL * (^ STMT-TYPE) = excl. 
+
+
+----

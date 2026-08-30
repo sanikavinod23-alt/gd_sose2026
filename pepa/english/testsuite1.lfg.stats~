@@ -1,0 +1,120 @@
+((1) (6 0.030 41) (3 words))
+((2) (12 0.010 56) (5 words))
+((3) (6 0.007 57) (5 words))
+((4) (12 0.005 44) (3 words))
+((5) (12 0.005 55) (5 words))
+((6) (0 0.001 0) (5 words))
+((7) (0 0.001 0) (3 words))
+((8) (0 0.001 0) (3 words))
+((9) (0 0.001 0) (3 words))
+((10) (12 0.007 64) (7 words))
+((11) (6 0.004 44) (4 words))
+((12) (6 0.004 44) (4 words))
+((13) (6 0.005 62) (7 words))
+((14) (0 0.001 0) (7 words))
+((15) (0 0.001 0) (4 words))
+((16) (0 0.001 0) (5 words))
+((17) (36 0.006 71) (7 words))
+((18) (12 0.005 67) (6 words))
+((19) (3 0.003 43) (3 words))
+((20) (3 0.003 48) (4 words))
+((21) (0 0.001 0) (6 words))
+((22) (0 0.001 0) (3 words))
+((23) (0 0.000 0) (3 words))
+((24) (0 0.000 0) (3 words))
+((25) (0 0.001 0) (8 words))
+((26) (0 0.001 0) (8 words))
+((27) (24 0.006 79) (9 words))
+((28) (0 0.001 0) (10 words))
+((29) (0 0.001 0) (8 words))
+((30) (0 0.001 0) (9 words))
+((31) (12 0.005 62) (6 words))
+((32) (0 0.001 0) (4 words))
+((33) (3 0.005 58) (5 words))
+((34) (3 0.006 72) (7 words))
+((35) (24 0.008 87) (9 words))
+((36) (6 0.004 51) (4 words))
+((37) (12 0.005 67) (5 words))
+((38) (36 0.008 99) (7 words))
+((39) (12 0.005 57) (6 words))
+((40) (36 0.008 101) (8 words))
+((41) (6 0.004 61) (5 words))
+((42) (6 0.005 68) (7 words))
+((43) (3 0.003 36) (2 words))
+((44) (3 0.003 45) (3 words))
+((45) (3 0.003 45) (3 words))
+((46) (6 0.006 81) (6 words))
+((47) (0 0.001 0) (3 words))
+((48) (0 0.001 0) (5 words))
+((49) (0 0.000 0) (2 words))
+((50) (0 0.001 0) (3 words))
+((51) (0 0.000 0) (3 words))
+((52) (0 0.001 0) (6 words))
+((53) (24 0.006 79) (9 words))
+((54) (0 0.001 0) (10 words))
+((55) (12 0.004 62) (6 words))
+((56) (12 0.004 62) (6 words))
+((57) (48 0.007 81) (8 words))
+((58) (12 0.005 81) (8 words))
+((59) (12 0.005 76) (8 words))
+((60) (24 0.007 90) (10 words))
+((61) (12 0.005 62) (6 words))
+((62) (48 0.007 89) (9 words))
+((63) (4 0.003 52) (3 words))
+((64) (6 0.004 58) (5 words))
+((65) (0 0.001 0) (4 words))
+((66) (0 0.001 0) (3 words))
+((67) (0 0.001 0) (6 words))
+((68) (24 0.011 108) (9 words))
+((69) (12 0.007 102) (7 words))
+((70) (24 0.008 117) (5 words))
+((71) (12 0.007 101) (6 words))
+((72) (12 0.005 90) (6 words))
+((73) (12 0.006 94) (5 words))
+((74) (3 0.006 89) (5 words))
+((75) (6 0.004 67) (3 words))
+((76) (6 0.008 119) (8 words))
+((77) (6 0.007 103) (8 words))
+((78) (6 0.006 99) (6 words))
+((79) (0 0.001 0) (7 words))
+((80) (0 0.001 0) (7 words))
+((81) (0 0.001 0) (5 words))
+((82) (0 0.001 0) (7 words))
+((83) (16 0.007 90) (8 words))
+((84) (0 0.001 0) (8 words))
+((85) (0 0.001 0) (12 words))
+((86) (0 0.002 0) (14 words))
+((87) (0 0.001 0) (5 words))
+((88) (12 0.006 82) (7 words))
+((89) (3 0.004 69) (3 words))
+((90) (2 0.004 73) (3 words))
+((91) (0 0.001 0) (6 words))
+((92) (0 0.001 0) (8 words))
+((93) (0 0.001 0) (12 words))
+((94) (8 0.014 196) (14 words))
+
+XLE release of Sep 25, 2017 21:02.
+Grammar = /Users/joanna.pepa/Desktop/GitHub/gd_sose2026/pepa/grammar1.lfg.
+Grammar last modified on Jul 10, 2026 08:46.
+Host machine is Mac.fritz.box.
+94 sentences, 0 errors, 0 mismatches
+38 sentences had 0 parses
+56 good sentences
+timeout = 15
+max_xle_scratch_storage = 100 MB
+prune_subtree_location = 1
+max_new_events_per_graph_when_skimming = 500
+maximum scratch storage per sentence = 1.00 MB (#94)
+maximum raw subtrees per sentence = 342 (#86)
+maximum event count per sentence = 20920
+average event count per graph = 43.545
+tokens = 4.2%, morph = 19.3%, multiword = 0.1%, lex = 20.1%, chart = 30.8%,
+unifier = 20.4%, completer = 1.7%, solver = 3.4%, output = 0.0%
+max_alloc_mem = 1090.79 MB
+0.374 CPU secs total, 0.030 CPU secs max
+elapsed time = 1 seconds
+  range parsed failed  words   seconds  subtrees     optimal
+   1-10     55     35   5.85     0.006     72.00       12.67
+  11-20      1      3  14.00     0.014    196.00        8.00
+    all     56     38   6.00     0.006     74.21       12.59
+0.08 of the variance in seconds is explained by the number of subtrees

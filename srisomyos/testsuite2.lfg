@@ -1,0 +1,37 @@
+# Templates: should work
+
+the cat sleeps
+
+the dog devours the bone
+
+the cats chase a mouse
+
+the dog eats
+
+the cats eat a treat
+
+# Feature Unification: should NOT work
+
+the girl see the gorilla
+
+cat chases dogs
+
+gorilla devour bananas
+
+gorillas devours banana
+
+# Passive: should work
+
+the girl was seen by the gorilla
+
+the cake was eaten
+
+the cat was chased
+
+the bone was devoured by a dog
+
+# Passive: should NOT work
+
+the girl was saw by the gorilla
+
+the dog was slept

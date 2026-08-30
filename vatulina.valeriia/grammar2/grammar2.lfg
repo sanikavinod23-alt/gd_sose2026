@@ -1,0 +1,86 @@
+DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT S .
+  FILES .
+  LEXENTRIES (DEMO LANGUAGE).
+  TEMPLATES (DEMO LANGUAGE). 
+  RULES (DEMO LANGUAGE).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 OBL.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM COORD-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+
+DEMO   LANGUAGE   RULES (1.0)
+	
+S --> NP+: @GFN,
+      PP*: {
+	    (^ OBL-DI) = !
+	    (! PFORM) =c di
+	   |
+	    ! $ (^ ADJUNCT)
+	    (! PTYPE) =c sem
+	   };
+      VP.
+
+NP --> N: ^=!.
+
+PP --> { P: ^=!
+	   (! PTYPE) =c sem;
+	 NP: (^ OBJ) = !
+       |
+	 P: ^=!
+	   (! PTYPE) =c nosem;
+         NP
+       }.
+
+VP --> V.
+
+----
+
+DEMO LANGUAGE TEMPLATES (1.0)
+
+GFN = { (^ SUBJ) = !
+      | (^ OBJ) = !
+      }.
+
+OPT-TRANS(P) = { (^ PRED) = 'P<(^SUBJ)(^OBJ)>'
+	       | (^ PRED) = 'P<(^SUBJ)>' }.
+
+DITRANS(P) = @(DAT-SHIFT (^ PRED)='P<(^ SUBJ)(^ OBJ)(^ OBL-DI)>').
+
+DAT-SHIFT(SCHEMATA) = { SCHEMATA 
+	                 | SCHEMATA 
+	                 (^ OBJ)-->(^ OBJ2)
+	                 (^ OBL-DI)-->(^ OBJ)}.
+
+----
+
+DEMO LANGUAGE LEXICON (1.0)
+
+"nouns"
+
+tam	N * (^ PRED) = 'tam'.
+
+plim	N * (^ PRED) = 'plim'.
+
+tipf	N * (^ PRED) = 'tipf'.
+
+bobo	N * (^ PRED) = 'bobo'.
+
+"verbs"
+
+taotao	V * @(OPT-TRANS taotao). "eat"
+
+guagua	V * @(DITRANS guagua). "give"
+
+"prepositions"
+
+ya 	P * (^ PRED) = 'ya<(^ OBJ)>' 
+	    (^ PTYPE) = sem.        "in"
+
+di 	P * (^ PFORM) = 'di'
+	    (^ PTYPE) = nosem.      "to"
+
+----

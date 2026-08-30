@@ -1,0 +1,76 @@
+  DEMO   ENGLISH   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES.
+  LEXENTRIES   (DEMO   ENGLISH).
+  TEMPLATES (DEMO   ENGLISH).
+  RULES   (DEMO   ENGLISH).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 OBL.
+  SEMANTICFUNCTIONS    ADJUNCT.
+  NONDISTRIBUTIVES    NUM PERS.
+  EPSILON   e.
+
+----
+
+DEMO   ENGLISH   RULES (1.0)
+
+
+   S --> ( ( NP: @GF )*,
+           ( PP: @GF )* )
+         V: ^=!.
+	
+   NP --> N: ^=!.
+
+
+   PP --> P: ^=!;
+          NP: (^ OBJ)=!.
+
+----
+
+DEMO   ENGLISH   TEMPLATES (1.0)
+
+
+INTRANS(P)   = (^ PRED) = 'P<(^ SUBJ)>'.
+
+TRANS(P)     = (^ PRED) = 'P<(^ SUBJ)(^ OBJ)>'.
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+DITRANS(P)   = (^ PRED) = 'P<(^ SUBJ)(^ OBJ)(^ OBL)>'.
+
+PREP(P)      = (^ PRED)  = 'P<(^ OBJ)>'
+               (^ PFORM) = P.
+
+
+GF = { (^ SUBJ) = !
+     | (^ OBJ)  = !
+     | (^ OBJ2) = !
+     | (^ OBL)  = !
+     | ! $ (^ ADJUNCT) }.
+
+N-CASE(P) = (^ PRED) = 'P'
+            (^ NUM)  = sg
+            (^ PERS) = 3
+            { (^ CASE) = nom  (SUBJ ^)     "nominative -> I'm a subject"
+            | (^ CASE) = acc  (OBJ ^) }.   "accusative -> I'm an object"
+----
+
+DEMO   ENGLISH   LEXICON (1.0)
+
+"NOUNS"
+
+plim   N * @(N-CASE gorilla).
+tam    N * @(N-CASE garden).
+tipf   N * @(N-CASE banana).
+bobo   N * @(N-CASE baboon).
+
+"VERBS  (verb-final)"
+
+taotao V * @(OPT-TRANS eat).     
+guagua V * @(DITRANS give).
+
+"PREPOSITIONS"
+
+ya     P * @(PREP ya).           "'in'  (locative)"
+di     P * @(PREP di).           "'to'  (recipient)"
+
+----

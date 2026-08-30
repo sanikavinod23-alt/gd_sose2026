@@ -1,0 +1,85 @@
+DEMO   NLANG   CONFIG (1.0)
+  ROOTCAT  S.
+  FILES.
+  LEXENTRIES   (DEMO NLANG).
+  TEMPLATES (DEMO NLANG). 
+  RULES   (DEMO NLANG).
+  GOVERNABLERELATIONS   SUBJ OBJ OBJ2 OBL.
+  SEMANTICFUNCTIONS     ADJUNCT TOPIC FOCUS.
+  EPSILON   e.
+  
+ ----
+DEMO   NLANG   RULES (1.0)
+
+ROOT --> S.
+
+S --> {NP: @GF | PP: @GF}*, V: ^=!.
+
+PP --> P: ^ = !;
+       NP: (^ OBJ) = !.
+
+NP --> N: ^ = !.
+
+----
+
+
+DEMO NLANG TEMPLATES (1.0) 
+
+GF = {(^ SUBJ) = ! 
+     |(^ OBJ) = ! 
+     |(^ OBJ2) = ! 
+     |(^ OBL) = ! 
+     |! $ (^ ADJUNCT)
+     }.
+
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'.
+
+TRANS(P) = (^ PRED)='P<(^ SUBJ)(^ OBJ)>'.
+
+DITRANS(P) = (^ PRED)='P<(^ SUBJ) (^ OBJ)
+                (^ OBL-TO)>'.
+
+PREP(P) = "template for most prepositions"
+	  { (^ PRED) = 'P<(^OBJ)>' 
+	    (^ PTYPE) = sem
+	  | (^ PTYPE) = nosem
+	    (^ PFORM) = P}.
+        
+PPGF = { @GF
+        |! $ (^ ADJUNCT)
+       }.
+
+       
+----
+
+
+DEMO NLANG LEXICON (1.0)
+
+"Nouns" 
+
+tam "garden"  N *   (^ PRED) = 'garden'.
+                    
+                    
+plim "gorilla" N *  (^ PRED) = 'gorilla'.
+                   
+
+tipf "banana" N *   (^ PRED) = 'banana'.
+                
+
+bobo "baboon" N *   (^ PRED) = 'baboon'.
+
+                    
+
+"Verbs" 
+
+taotao "eat"   V * @(TRANS eat). 
+
+guagua "give"  V * (^ PRED) = 'give<(^ SUBJ)(^ OBJ)(^ OBL)>'.
+
+"Preposition"
+
+ya "in" P * @(PREP ya).
+
+di "to" P * @(PREP di).
+
+----

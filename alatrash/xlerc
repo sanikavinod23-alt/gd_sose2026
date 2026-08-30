@@ -1,0 +1,4 @@
+set-character-encoding stdio utf-8
+set timeout 15
+create-parser grammar1.lfg
+parse-testfile testfile1.lfg

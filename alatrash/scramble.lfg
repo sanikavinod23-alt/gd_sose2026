@@ -1,0 +1,57 @@
+SCRAMBLE   ALIEN   CONFIG (1.0)
+  ROOTCAT   S.
+  FILES  .
+  LEXENTRIES   (SCRAMBLE ALIEN).
+  TEMPLATES  (SCRAMBLE ALIEN).
+  RULES   (SCRAMBLE ALIEN).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD.
+
+----
+SCRAMBLE ALIEN RULES (1.0)
+
+"The comma between NP* and PP* is the SHUFFLE OPERATOR"
+S --> NP*: @GF ,
+      PP*: @GF ;
+      V: ^=! .
+
+NP --> N: ^=! .
+
+PP --> P: ^=! ;
+       NP: (^ OBJ) = ! .
+
+----
+SCRAMBLE ALIEN TEMPLATES (1.0)
+
+"The GF Macro tests all possible garmmatical functions for the scrambled words"
+GF = { (^ SUBJ) = ! | (^ OBJ) = ! | (^ OBJ2) = ! | (^ OBL) = ! | ! $ (^ ADJUNCT) }.
+
+----
+SCRAMBLE ALIEN LEXICON (1.0)
+
+"Nouns"
+tam   N * (^ PRED) = 'garden'.
+plim  N * (^ PRED) = 'gorilla'.
+tipf  N * (^ PRED) = 'banana'.
+bobo  N * (^ PRED) = 'baboon'.
+
+"Verbs "
+"Eat can optionally take an OBL for the location (in the garden)"
+taotao V * { (^ PRED) = 'eat<(^ SUBJ)(^ OBJ)>' 
+           | (^ PRED) = 'eat<(^ SUBJ)(^ OBJ)(^ OBL)>' 
+             (^ OBL PFORM) =c ya }.
+
+"Give requires a giver, a gift, and a recipient"
+guagua V * (^ PRED) = 'give<(^ SUBJ)(^ OBJ)(^ OBL)>'
+           (^ OBL PFORM) =c di .
+
+"Prepositions"
+
+ya    P * (^ PFORM) = ya 
+          (^ PRED) = 'ya<(^ OBJ)>' .
+
+di    P * (^ PFORM) = di 
+          (^ PRED) = 'di<(^ OBJ)>' .

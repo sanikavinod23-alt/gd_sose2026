@@ -1,32 +1,327 @@
 #show how it works
 
-the dog devours bones
+the dog devours bones (1 0.008 11)
 
 # unification failure, subject-verb agreement (consistency)
 
-the dogs devours bones
+the dogs devours bones (0 0.004 11)
 
 # coherence violation
 
-the dog appears bones 
+the dog appears bones (0 0.002 0)
 
 # completeness violation
 
-the dog devours 
+the dog devours (0 0.001 8)
 
 # missing PRED value, completeness violation
 
-the dog devours a bone
+the dog devours a bone (1 0.002 13)
 
 #missing rules, unknown words
 
-the dog devours bones in the park
+the dog devours bones in the park (0 0.002 0)
 
 #new verbs --- intrans
 
-a dog sleeps
+a dog sleeps (1 0.003 8)
 
 #new verbs -- trans
 
-a dog chases a bone
+a dog chases a bone (1 0.002 13)
 
+# 8 sentences, 0.023 CPU secs total, 0.004 CPU secs max (04/24/26)
+
+# 2 mismatches, 8 sentences, 0.046 CPU secs total, 0.017 CPU secs max (05/08/26)
+
+# 8 sentences, 0.044 CPU secs total, 0.018 CPU secs max (05/10/26)
+
+# 8 sentences, 0.024 CPU secs total, 0.008 CPU secs max (05/15/26)
+
+#sentences from ex 3 that work
+
+the cat sleeps
+
+#transitive verb1
+
+the dog devours the bone
+
+#transitive verb2
+
+the cats chase a mouse
+
+#subj-verb agreement
+
+the dog eats
+
+#plural
+
+the cats eat a treat
+
+#sentences from ex 3 that do not work
+
+cat chases dogs 
+
+#no subj-verb agreement
+
+the girl see the gorilla
+
+#singular nouns need articles
+
+gorilla devour bananas
+
+#article not necessary for plural nouns
+
+gorillas devours banana
+
+#passive constructions that work
+
+the girl was seen by the gorilla
+
+#new lexicon items
+
+the cake was eaten
+
+#passive without oblique agent
+
+the cat was chased
+
+#passive with oblique agent
+
+the bone was devoured by a dog
+
+#passive construction that do not work
+
+the girl was saw by the gorilla
+
+#no agreement between auxiliary and main verb
+
+the dog was slept
+
+#sentences from ex 4 that work
+
+the girl gave the dog a bone
+
+#ditransitive verb
+
+the girl gives the gorilla bananas
+
+#plural nouns do not need articles
+
+gorillas devour bananas
+
+#but singular nouns do
+
+a gorilla devours bananas
+
+#sentences from ex 4 that do not work
+
+the girl give the gorilla bananas
+
+#no agreement
+
+gorillas devours bananas
+
+#no agreement
+
+gorilla devour bananas
+
+#no agreement
+
+gorillas devours banana
+
+#dative shift
+
+the girl gives a bone to the dog
+
+#pp as indirect object
+
+the zookeeper gave a banana to the gorilla
+
+#passive with ditransitive verb
+
+the dog was given a bone by the girl
+
+#dative passive
+
+a bone was given to the dog by the girl
+
+#dative shifts that do not work
+
+the girl gave to the dog a bone
+
+#no right word order
+
+the dog was given by the girl a bone
+
+#no sem pps
+
+The waiter waited on the table.
+
+#pp as oblique
+
+Jordan talked to Sam.
+
+#no sem pps do not have a pred value, only pform
+
+Alex argued with a gorilla.
+
+#sem pps
+
+Sam saw a monkey with a telescope.
+
+#pps as adjuncts
+
+The dog sat on the bench with a book.
+
+#sentences from ex. 5 that work
+
+the small dog slept
+
+the small black dog slept
+
+the small black hungry dog ate bones
+
+the gorilla devoured the banana quickly
+
+the small black hungry dog ate bones quickly
+
+the very small gorilla slept
+
+the very very very small gorilla slept
+
+the small, black, hungry dog slept.
+
+#working with pronouns
+
+he sleeps
+
+she devoured it
+
+they devoured them
+
+I waited for him for hours
+
+#possessives
+
+my dog sleeps
+
+she gave us her banana
+
+#not working 
+
+him sleeps
+
+them devoured it
+
+they devoured they
+
+I waited for she for hours
+
+#work (sometimes with many solutions)
+
+the gorilla put the banana in the cage
+
+the gorilla in the cage devoured a banana
+
+the gorilla devoured a banana in the cage
+
+the dog was given a bone by the girl
+
+a bone was given to the dog by the girl
+
+the zookeeper waited on the gorilla
+
+a banana was put in the cage by the gorilla
+
+the gorilla waited on the bench
+
+the zookeeper waited by the bench
+
+the zookeeper waited by the bench in the garden
+
+#imperatives (ex. 6)
+
+Eat the beans!
+
+Give the gorilla a banana!
+
+Think a creative thought!
+
+#wrong imperatives
+
+Eats the beans!
+
+Gave a bone to the dog!
+
+#should work
+
+Sophie educated the bright robot and the intelligent child.
+
+Sophie educated the bright and efficient robot.
+
+lazy leopards sleep and eat.
+
+Mary and the gorilla like bananas.
+
+The gorilla and I like bananas.
+
+You and Mary like bananas.
+
+#ex. 7 
+
+Sophie implemented a new grammar.
+
+Lazy tigers yawn.
+
+The curious leprechaun stole a goat in Ireland.
+
+The house was built by a diligent worker.
+
+The building houses a happy family.
+
+#ex. 8
+
+John promised the cat to eat yogurt.
+
+John persuaded the cat to eat yogurt.
+
+John wanted to eat yogurt.
+
+John wanted the cat to eat yogurt.
+
+John thought that the cat ate the yogurt.
+
+John persuaded Mary to want to eat beans.
+
+#getting 6 solutions for these last two
+
+John wanted Mary to think that Bill persuaded Kim to eat beans.
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans.
+
+#raising works
+
+It seems to rain.
+
+Mary seems to eat a banana.
+
+It seems to be raining.
+
+Mary seems to be eating a banana.
+
+#ex. 9
+
+Sophie likes hoppers.
+
+hoppers, Sophie likes.
+
+hoppers, Sophie wants Mary to like.
+
+#parsing with many solutions
+
+hoppers, John persuaded Mary to want to eat.
+
+hoppers, John wanted Mary to think that Bill persuaded Kim to eat.
+
+hoppers, John thought that Mary wanted Bill to think that Kim wants to eat.

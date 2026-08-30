@@ -1,0 +1,34 @@
+
+#sentence 1
+
+plim tipf taotao (2 0.004 9)
+
+#sentence 2
+
+tipf plim taotao (2 0.001 9)
+
+#sentence 3
+
+tipf ya tam plim taotao (0 0.001 9)
+
+#sentence 4
+
+ya tam tipf taotao (0 0.001 9)
+
+#sentence 5
+
+plim di bobo tipf guagua (0 0.001 0)
+
+#sentence 6
+
+di bobo plim tipf guagua (0 0.001 0)
+
+#sentence 7
+
+bobo ya tam tipf di plim guagua (0 0.001 10)
+
+#sentence 8
+
+tipf di bobo ya tam plim guagua (0 0.001 10)
+
+# 8 sentences, 0.009 CPU secs total, 0.004 CPU secs max (07/09/26)

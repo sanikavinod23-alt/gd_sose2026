@@ -1,0 +1,265 @@
+#1
+
+a dog devours the bone (1 0.010 14)
+
+#2
+
+a dog sleeps (1 0.004 9)
+
+#3
+
+the dog chases a bone        (1 0.003 14)
+
+#4
+
+the girls like the cake (1 0.005 14)
+
+#5
+
+the gorillas see the girl (1 0.003 14)
+
+#6
+
+the bone was devoured by a dog (1+2 0.004 24)
+
+#7 
+
+a boy was chased by the gorilla (1+2 0.004 24)
+
+#8 
+
+the boys like the girl (1 0.003 14)
+
+#9 
+
+a girl likes the boy (1 0.003 14)
+
+#10
+
+the boy slept (1 0.003 9)
+
+#11 
+
+the cats devoured the mice (1 0.004 14)
+
+#12 
+
+a cat eats the mouse (2 0.004 23)
+
+#13 
+
+the girl gave the dog a bone (1 0.003 19)
+
+#14 
+
+the girl gives the gorilla bananas (1 0.004 17)
+
+#15 
+
+gorillas devour bananas (1 0.004 10)
+
+#16 
+
+a gorilla devours bananas (1 0.003 12)
+
+#17
+
+the girl give the gorilla bananas (0 0.003 16)
+
+#18 
+
+gorillas devours bananas (0 0.003 9)
+
+#19
+
+gorilla devour bananas (0 0.004 9)
+
+#20 
+
+gorillas devours banana (0 0.002 0)
+
+#21 
+
+the girl gives a bone to the dog (2 0.004 33)
+
+#22 
+
+the zookeeper gave a banana to the gorilla (2 0.006 33)
+
+#23 
+
+the dog was given a bone by the girl (2+4 0.005 36)
+
+#24 
+
+a bone was given to the dog by the girl (2+6 0.006 46)
+
+#25
+
+the girl gave to the dog a bone  (0 0.003 0)
+
+#26 
+
+the dog was given by the girl a bone  (0 0.003 0)
+
+#27 
+
+the waiter waited on the table (1 0.003 20)
+
+#28 
+
+Jordan talked to Sam (1 0.005 16)
+
+#29
+
+Alex argued with a gorilla (1 0.004 18)
+
+#30 
+
+Sam saw a monkey with a telescope (1+1 0.004 27)
+
+#31
+
+the dog sat on the bench with a book (1+1 0.006 38)
+
+#32
+
+the gorilla waited on the bench (1 0.004 20)
+
+#33
+
+the zookeeper waited on the gorilla (1 0.004 20)
+
+#34
+
+the gorilla put the banana in the cage (2 0.006 29)
+
+#35
+
+the gorilla in the cage devoured a banana (1 0.004 25)
+
+#36
+
+the gorilla devoured a banana in the cage (1+1 0.004 29)
+
+#37
+
+a banana was put in the cage by the gorilla (2+3 0.006 42)
+
+#38
+
+the zookeeper waited by the bench (1 0.005 20)
+
+#39
+
+the zookeeper waited by the bench in the garden (1+1 0.004 38)
+
+#40
+
+Sophie educated the bright robot and the intelligent child. (2 0.006 32)
+
+#41
+
+Sophie educated the bright and efficient robot. (2 0.004 27)
+
+#42
+
+lazy leopards sleep and eat. (6 0.004 36)
+
+#43
+
+Mary and the gorilla like bananas. (2 0.006 24)
+
+#44
+
+The gorilla and I like bananas. (2 0.005 24)
+
+#45
+
+you and Mary like bananas. (4 0.004 22)
+
+#46
+
+eat the beans! (10 0.005 27)
+
+#47
+
+give the gorilla a banana! (2 0.004 16)
+
+#48
+
+think a creative thought! (0 0.002 0)
+
+#49
+
+eats the beans! (0 0.004 24)
+
+#50
+
+gave a bone to the dog! (0 0.004 27)
+
+#51
+
+Sophie implemented a new grammar. (4 0.004 28)
+
+#52
+
+lazy tigers yawn. (4 0.005 25)
+
+#53
+
+the curious leprechaun stole a goat in Ireland. (4+4 0.006 45)
+
+#54
+
+the house was built by a diligent worker. (2+4 0.005 45)
+
+#55
+
+the building houses a happy family. (2 0.005 30)
+
+#56
+
+John persuaded Mary to want to eat beans. (40 0.009 69)
+
+#57
+
+John wanted Mary to think that Bill persuaded Kim to eat beans. (48 0.011 95)
+
+#58
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans. (960 0.013 135)
+
+#59
+
+it seems to be raining. (0 0.003 0)
+
+#60
+
+Mary seems to be eating a banana. (0 0.003 0)
+
+#61
+
+Sophie likes hoppers. (2 0.005 21)
+
+#62
+
+hoppers, Sophie likes. (1 0.004 20)
+
+#63
+
+hoppers, Sophie wants Mary to like. (0 0.003 31)
+
+#64
+
+hoppers, John persuaded Mary to want to eat. (16 0.011 62)
+
+#65
+
+hoppers, John wanted Mary to think that Bill persuaded Kim to eat. (16 0.014 92)
+
+#66
+
+hoppers, John thought that Mary wanted Bill to think that Kim wants to eat. (576 0.020 128)
+
+# 66 sentences, 0.326 CPU secs total, 0.020 CPU secs max (07/10/26)

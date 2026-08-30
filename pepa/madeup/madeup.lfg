@@ -1,0 +1,91 @@
+DEMO   MADEUP   CONFIG (1.0)
+  ROOTCAT  S.
+  FILES .
+  LEXENTRIES   (DEMO MADEUP).
+  TEMPLATES (DEMO MADEUP). 
+  RULES   (DEMO MADEUP).
+  GOVERNABLERELATIONS    SUBJ OBJ OBJ2 COMP XCOMP OBL OBL-?+.
+  SEMANTICFUNCTIONS    ADJUNCT  TOPIC FOCUS POSS STANDARD.
+  NONDISTRIBUTIVES    NUM PERS CONJ-FORM.
+  EPSILON   e.
+  OPTIMALITYORDER NOGOOD PPadj +PPattach.
+  GENOPTIMALITYORDER GenBadPunct NOGOOD +PUNCT CAPITAL.
+
+
+----
+
+
+DEMO MADEUP RULES (1.0)
+
+S --> { NP: @GF
+      | PP: @GF
+      }*
+      V: ^=!.
+
+NP --> N: ^=!.
+
+PP --> P
+       NP: (^ OBJ) = !.
+
+
+----
+
+
+DEMO MADEUP TEMPLATES (1.0)
+
+GF = {(^ SUBJ) = ! | (^ OBJ) = ! | (^ OBJ2) = ! | (^ OBL) = ! | (^ ADJUNCT) = ! }.
+
+INTRANS(P) = (^ PRED)='P<(^ SUBJ)>'.
+
+PASS(FRAME) = { FRAME 
+		(^ PASSIVE) = -
+		| FRAME
+		(^ PASSIVE) = +
+		(^ PARTICIPLE) =c past
+		(^ OBJ)-->(^ SUBJ)
+		{ (^ SUBJ)-->(^ OBL-AG)
+		| (^ SUBJ)--> NULL}
+		}.
+
+DAT-SHIFT(FRAME) = { FRAME
+                     | FRAME
+                       (^ OBJ)-->(^ OBJ2)
+                       (^ OBL-TO)-->(^ OBJ)}.
+
+TRANS(P) = @(PASS (^ PRED)='P<(^ SUBJ)(^ OBJ)>').
+
+OPT-TRANS(P) = { @(INTRANS P) | @(TRANS P) }.
+
+DITRANS(P) = @(PASS @(DAT-SHIFT (^ PRED)='P<(^ SUBJ) (^ OBJ)
+              (^ OBL-TO)>')).
+
+
+----
+
+
+DEMO MADEUP LEXICON (1.0)
+
+
+"NOUNS"
+
+tam    N * (^ PRED) = 'garden'.
+plim   N * (^ PRED) = 'gorilla'.
+tipf   N * (^ PRED) = 'banana'.
+bobo   N * (^ PRED) = 'baboon'.
+
+
+
+"VERBS"
+
+taotao V * @(OPT-TRANS eat).
+guagua V * @(DITRANS give).
+
+
+
+"PREPOSITION"
+
+ya     P * (^ PRED) = 'in<(^ OBJ)>'.
+di     P * (^ PRED) = 'to<(^ OBJ)>'.
+
+
+----

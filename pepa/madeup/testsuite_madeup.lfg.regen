@@ -1,0 +1,81 @@
+{Plim tipf|Tipf plim} taotao
+
+1:REGENERATION DID NOT MATCH 'plim tipf taotao'.
+
+{Plim tipf|Tipf plim} taotao
+
+2:REGENERATION DID NOT MATCH 'tipf plim taotao'.
+
+{ {Plim tipf|Tipf plim} ya tam
+   |{Ya tam tipf|Tipf ya tam} plim
+   |{Ya tam plim|Plim ya tam} tipf} 
+taotao
+
+3:REGENERATION DID NOT MATCH 'tipf ya tam plim taotao'.
+
+{Tipf ya tam|Ya tam tipf} taotao
+
+4:REGENERATION DID NOT MATCH 'ya tam tipf taotao'.
+
+{ Tipf {plim di bobo|di bobo plim}
+   |{Plim di bobo|Di bobo plim} tipf
+   |Plim tipf di bobo
+   |Di bobo tipf plim} 
+guagua
+
+5:REGENERATION DID NOT MATCH 'plim di bobo tipf guagua'.
+
+{ Tipf {plim di bobo|di bobo plim}
+   |{Plim di bobo|Di bobo plim} tipf
+   |Plim tipf di bobo
+   |Di bobo tipf plim} 
+guagua
+
+6:REGENERATION DID NOT MATCH 'di bobo plim tipf guagua'.
+
+{   { {Di plim bobo|Bobo di plim} tipf
+       |Tipf {bobo di plim|di plim bobo}
+       |Di plim tipf bobo
+       |Bobo tipf di plim} 
+    ya tam
+   |  { Ya tam {bobo tipf|tipf bobo}
+       |Tipf {ya tam bobo|bobo ya tam}
+       |Bobo {tipf ya tam|ya tam tipf}} 
+    di plim
+   |Ya tam 
+      { {bobo di plim|di plim bobo} tipf
+       |{di plim tipf|tipf di plim} bobo}
+   |  { {Di plim bobo|Bobo di plim} ya tam
+       |Bobo ya tam di plim
+       |Di plim ya tam bobo} 
+    tipf
+   |  { Tipf {ya tam di plim|di plim ya tam}
+       |Di plim {tipf ya tam|ya tam tipf}} 
+    bobo} 
+guagua
+
+7:REGENERATION DID NOT MATCH 'bobo ya tam tipf di plim guagua'.
+
+{   { {Plim di bobo|Di bobo plim} tipf
+       |Tipf {di bobo plim|plim di bobo}
+       |Plim tipf di bobo
+       |Di bobo tipf plim} 
+    ya tam
+   |  { Ya tam {di bobo tipf|tipf di bobo}
+       |Tipf {ya tam di bobo|di bobo ya tam}
+       |Di bobo {tipf ya tam|ya tam tipf}} 
+    plim
+   |Ya tam 
+      { {di bobo plim|plim di bobo} tipf
+       |{plim tipf|tipf plim} di bobo}
+   |  { {Plim di bobo|Di bobo plim} ya tam
+       |Di bobo ya tam plim
+       |Plim ya tam di bobo} 
+    tipf
+   |  { Tipf {ya tam plim|plim ya tam}
+       |Plim {tipf ya tam|ya tam tipf}} 
+    di bobo} 
+guagua
+
+8:REGENERATION DID NOT MATCH 'tipf di bobo ya tam plim guagua'.
+

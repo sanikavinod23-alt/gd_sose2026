@@ -1,0 +1,12 @@
+
+
+#specify grammar
+set defaultParser grammar1.lfg
+
+#load parser
+create-parser $defaultParser
+
+
+# keyboard shortcut "t" to parse a testsuite
+proc t {} {parse-testfile testsuite1.lfg}
+

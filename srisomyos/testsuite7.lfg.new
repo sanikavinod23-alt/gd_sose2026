@@ -1,0 +1,253 @@
+#show how it works
+
+the dog devours bones (1 0.002 12)
+
+# unification failure, subject-verb agreement (consistency)
+
+the dogs devours bones (0 0.001 11)
+
+# coherence violation
+
+the dog appears bones  (0 0.002 0)
+
+# completeness violation
+
+the dog devours  (0 0.001 9)
+
+# missing PRED value, completeness violation
+
+the dog devours a bone (1 0.001 14)
+
+#missing rules, unknown words
+
+the dog devours bones in the park (1+1 0.002 32)
+
+#new verbs --- intrans
+
+a dog sleeps (1 0.001 9)
+
+#new verbs -- trans
+
+a dog chases a bone (1 0.001 14)
+
+# Templates: should work
+
+the cat sleeps (1 0.001 9)
+
+the dog devours the bone (1 0.001 14)
+
+the cats chase a mouse (1 0.001 14)
+
+the dog eats (2 0.001 18)
+
+the cats eat a treat (2 0.001 21)
+
+# Feature Unification: should NOT work
+
+the girl see the gorilla (0 0.001 14)
+
+cat chases dogs (0 0.001 1)
+
+gorilla devour bananas (0 0.001 1)
+
+gorillas devours banana (0 0.001 6)
+
+# Passive: should work
+
+the girl was seen by the gorilla (1+2 0.002 24)
+
+the cake was eaten (1 0.001 11)
+
+the cat was chased (1 0.001 11)
+
+the bone was devoured by a dog (1+2 0.001 24)
+
+# Passive: should NOT work
+
+the girl was saw by the gorilla (0 0.001 0)
+
+the dog was slept (0 0.001 0)
+
+# Templates with arguments: should work
+
+the girl gave the dog a bone (1 0.001 19)
+
+the girl gives the gorilla bananas (1 0.001 17)
+
+gorillas devour bananas (1 0.001 10)
+
+a gorilla devours bananas (1 0.001 12)
+
+# Templates with arguments: should not work
+
+the girl give the gorilla bananas (0 0.001 17)
+
+gorillas devours bananas (0 0.001 9)
+
+gorilla devour bananas (0 0.001 1)
+
+gorillas devours banana (0 0.001 6)
+
+# Lexical Rules: should work
+
+the girl gives a bone to the dog (1 0.001 33)
+
+the zookeeper gave a banana to the gorilla (1 0.001 33)
+
+the dog was given a bone by the girl (1+3 0.002 34)
+
+a bone was given to the dog by the girl (1+2 0.002 46)
+
+# Lexical Rules: should NOT work
+
+the girl gave to the dog a bone (0 0.001 0)
+
+the dog was given by the girl a bone (0 0.001 0)
+
+# PPs: Obliques
+
+the waiter waited on the table (1+4 0.001 20)
+
+Jordan talked to Sam (1+2 0.001 16)
+
+Alex argued with a gorilla (1+2 0.001 18)
+
+# PPs: Adjuncts
+
+Sam saw a monkey with a telescope (1+1 0.001 27)
+
+the dog sat on the bench with a book (1+1 0.002 38)
+
+# Adjectives and Adverbs
+
+the small dog slept (1 0.001 12)
+
+the small black dog slept (1 0.001 15)
+
+the small black hungry dog ate bones (2 0.001 30)
+
+the gorilla devoured the banana quickly (1 0.001 16)
+
+the small black hungry dog ate bones quickly (2 0.001 32)
+
+the very small gorilla slept (1 0.001 14)
+
+the very very very small gorilla slept (1 0.001 18)
+
+# With pucntuation
+
+the small, black, hungry dog slept. (1 0.001 24)
+
+# Pronouns: should work
+
+he sleeps (1 0.001 7)
+
+she devoured it (1 0.001 10)
+
+they devoured them (1 0.001 10)
+
+I waited for him for hours (1 0.001 25)
+
+my dog sleeps (1 0.001 9)
+
+she gave us her banana (1 0.001 15)
+
+# Pronouns: should NOT work
+
+him sleeps (0 0.001 3)
+
+them devoured it (0 0.001 3)
+
+they devoured they (0 0.001 8)
+
+I waited for she for hours (0 0.001 13)
+
+# OT-Marks (i.e. 1 solution)
+
+the dog was given a bone by the girl (1+3 0.002 34)
+
+a bone was given to the dog by the girl (1+2 0.002 46)
+
+the gorilla waited on the bench (1+1 0.001 20)
+
+the zookeeper waited on the gorilla (1+2 0.001 20)
+
+the gorilla put the banana in the cage (1+1 0.002 29)
+
+the gorilla in the cage devoured a banana (1 0.001 25)
+
+the gorilla devoured a banana in the cage (1+1 0.002 29)
+
+a banana was put in the cage by the gorilla (1+3 0.002 42)
+
+the zookeeper waited by the bench (1 0.002 20)
+
+the zookeeper waited by the bench in the garden (1+1 0.002 38)
+
+# Imperatives: should work
+
+Eat the beans! (1+1 0.001 11)
+
+Give the gorilla a banana! (1+1 0.002 16)
+
+Think a creative thought! (1+1 0.002 14)
+
+# Imperatives: should NOT work
+
+Eats the beans! (0 0.001 8)
+
+Gave a bone to the dog! (0 0.001 0)
+
+# Metarulemacros and Coordination
+
+Sophie educated the bright robot and the intelligent child. (1 0.002 28)
+
+Sophie educated the bright and efficient robot. (1 0.001 28)
+
+lazy leopards sleep and eat. (2 0.001 30)
+
+Mary and the gorilla like bananas. (1 0.001 20)
+
+The gorilla and I like bananas. (1 0.001 20)
+
+You and Mary like bananas. (2 0.001 18)
+
+# Extending Grammar: should work
+
+Sophie implemented a new grammar. (1 0.001 32)
+
+lazy tigers yawn. (2 0.001 24)
+
+The curious leprechaun stole a goat in Ireland. (1+1 0.002 59)
+
+The house was built by a diligent worker. (1+1 0.002 49)
+
+The building houses a happy family. (1 0.001 39)
+
+# COMPs and XCOMPs: should work
+
+John promised the cat to eat yoghurt. (1 0.002 46)
+
+John persuaded the cat to eat yoghurt. (1 0.002 46)
+
+John wanted to eat yoghurt. (1 0.002 41)
+
+John wanted the cat to eat yoghurt. (1 0.002 46)
+
+John thought that the cat ate the yoghurt. (2 0.002 51)
+
+# Recursive Embedding: should work
+
+John persuaded Mary to want to eat beans. (1+2 0.002 77)
+
+John wanted Mary to think that Bill persuaded Kim to eat beans. (6 0.003 103)
+
+John thought that Mary wanted Bill to think that Kim wants to eat beans. (6 0.003 117)
+
+# Control vs. Raising
+
+It seems to be raining. (1 0.001 29)
+
+Mary seems to be eating a banana. (1 0.002 34)
+
+# 96 sentences, 0.132 CPU secs total, 0.003 CPU secs max (07/03/26)

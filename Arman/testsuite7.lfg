@@ -1,0 +1,187 @@
+
+# Grammatical base sentences 1-5
+
+the cat sleeps (1 0.004 9)
+
+the dog devours the bone (1 0.002 14)
+
+the cats chase a mouse (1 0.001 14)
+
+the dog eats (1 0.001 9)
+
+the cats eat a treat (1 0.001 14)
+
+
+# Ungrammatical base sentences 6-9
+
+the girl see the gorilla (0 0.001 13)
+
+cat chases dogs (0 0.001 0)	
+
+gorilla devour bananas (0 0.001 0)
+
+gorillas devours banana (0 0.001 0)
+
+
+# Grammatical passive sentences 10-13
+
+the girl was seen by the gorilla (1+2 0.002 24)
+
+the cake was eaten (1 0.001 11)
+
+the cat was chased (1 0.001 11)
+
+the bone was devoured by a dog (1+2 0.001 24)
+
+
+# Ungrammatical passive sentences 14-15
+
+the girl was saw by the gorilla (0 0.001 9)
+
+the dog was slept (0 0.001 0)   
+
+
+# Grammatical ditransitives 16 - 19
+
+the girl gave the dog a bone (1 0.001 19)
+
+the girl gives the gorilla bananas (1 0.001 17)
+
+gorillas devour bananas (1 0.001 10)
+
+a gorilla devours bananas (1 0.001 12)
+
+
+# Ungrammatical ditransitives 20 - 23
+
+the girl give the gorilla bananas (0 0.001 16)
+
+gorillas devours bananas (0 0.001 9)
+
+gorilla devour bananas (0 0.001 0)
+
+gorillas devours banana (0 0.001 0)
+
+
+# Ditransitives + passive grammatical 24 - 27
+
+the girl gives a bone to the dog (1 0.001 33)
+
+the zookeeper gave a banana to the gorilla (1 0.001 33)
+
+the dog was given a bone by the girl (1+3 0.001 34)
+
+a bone was given to the dog by the girl (1+2 0.002 46)
+
+
+# Grammatical PP sentences 28 - 30
+
+The waiter waited on the table. (1+4 0.002 22)   
+
+Jordan talked to Sam. (1+2 0.001 18) 		
+
+Alex argued with a gorilla. (1+2 0.001 20)	
+
+
+# PP attachment sentences 31 - 32
+
+Sam saw a monkey with a telescope. (1+1 0.001 29)
+
+The dog sat on the bench with a book. (1+1 0.001 40)  
+
+# adjectives 33 - 41
+
+the small dog slept (1 0.001 12)
+
+the small black dog slept (1 0.001 15)
+
+the small black hungry dog ate bones (1 0.001 21)
+
+the gorilla devoured the banana quickly (1 0.001 16)
+
+the small black hungry dog ate bones quickly (1 0.001 23)
+
+the very small gorilla slept (1 0.001 14)
+
+the very very very small gorilla slept (1 0.001 18)
+
+the dog was given a bone by the girl (1+3 0.001 34)
+
+a bone was given to the dog by the girl (1+2 0.002 46)
+
+# Pronouns 42 - 47
+
+he sleeps. (1 0.001 9)
+
+she devoured it. (1 0.001 12)
+
+they devoured them. (1 0.001 12)
+
+I waited for him for hours (1 0.001 25)
+
+my dog sleeps (1 0.001 9)
+
+she gave us her banana (1 0.001 15)
+
+# Pronouns ungrammatical 48 - 51
+
+him sleeps (0 0.001 3)
+
+them devoured it (0 0.001 3)
+
+they devoured they (0 0.001 8)
+
+I waited for she for hours (0 0.001 13)
+
+# OT-marks 52 - 61
+
+the dog was given a bone by the girl (1+3 0.001 34)
+
+a bone was given to the dog by the girl (1+2 0.001 46)
+
+the gorilla waited on the bench (1+1 0.001 20)
+
+the zookeeper waited on the gorilla (1+2 0.001 20)
+
+the gorilla put the banana in the cage (1+2 0.001 29)
+
+the gorilla in the cage devoured a banana (1 0.001 25)
+
+the gorilla devoured a banana in the cage (1+1 0.001 29)
+
+a banana was put in the cage by the gorilla (1+14 0.001 42)
+
+the zookeeper waited by the bench (1 0.001 20)	
+
+the zookeeper waited by the bench in the garden (1+1 0.001 38) 
+
+# Imperatives 62 - 64
+
+Eat the beans! (2 0.001 11)
+
+Give the gorilla a banana! (2 0.001 16)
+
+Think a creative thought!  (2 0.001 14)
+
+# Imperatives ungrammatical 65 - 66
+
+Eats the beans! (0 0.001 8)
+
+Gave a bone to the dog! (0 0.001 0)
+
+# Coordination 67 - 72
+
+Sophie educated the bright robot and the intelligent child. (1 0.001 28)
+
+Sophie educated the bright and efficient robot. (1 0.001 23)
+
+lazy leopards sleep and eat. (1 0.001 18)
+
+Mary and the gorilla like bananas. (1 0.001 20)
+
+The gorilla and I like bananas. (1 0.001 20)
+
+You and Mary like bananas.  (2 0.001 18)
+
+
+# 72 sentences, 0.075 CPU secs total, 0.004 CPU secs max (06/11/26)
